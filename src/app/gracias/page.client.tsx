@@ -9,20 +9,13 @@ export default function GraciasPageClient() {
   const { language } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-[var(--color-brand-cream)] text-[var(--color-brand-black)] flex flex-col">
+    <div className="min-h-screen bg-[var(--color-brand-pink-light)] text-[var(--color-brand-black)] flex flex-col">
       <Navbar />
 
-      <main className="flex-grow pt-36 pb-24 px-6 md:px-16 flex items-center justify-center relative overflow-hidden bg-[var(--color-brand-cream)]">
-        {/* Background decorative blobs matching the brand's visual identity */}
-        <div className="absolute top-10 right-0 w-80 h-80 rounded-full bg-[var(--color-brand-pink-light)] opacity-50 blur-3xl z-0 pointer-events-none" />
-        <div className="absolute bottom-10 -left-10 w-96 h-96 rounded-full bg-[var(--color-brand-gold-light)] opacity-45 blur-3xl z-0 pointer-events-none" />
-
-        <div className="max-w-2xl w-full bg-white rounded-[3rem] p-8 md:p-16 shadow-elevated border border-gray-100 relative z-10 overflow-hidden text-center">
-          {/* Decorative Top Accent line */}
-          <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[var(--color-brand-gold)] to-[var(--color-brand-pink)]" />
-
-          {/* Success Icon using brand pink identity */}
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--color-brand-pink-light)] text-[var(--color-brand-pink-dark)] mb-8 border border-[var(--color-brand-pink)]">
+      <main className="flex-grow pt-36 pb-24 px-6 md:px-16 flex items-center justify-center bg-[var(--color-brand-pink-light)]">
+        <div className="max-w-2xl w-full bg-white rounded-[2rem] p-8 md:p-16 shadow-soft border border-white relative overflow-hidden text-center">
+          {/* Success Icon - Green as requested */}
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-50 text-green-500 mb-8 border border-green-100">
             <CheckCircle2 className="w-8 h-8" />
           </div>
 
