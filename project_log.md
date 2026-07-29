@@ -167,7 +167,7 @@ This log serves as a source of truth for the development, configuration, and des
   * Changed the landing page diagnostic CTA from "Conversar con Katherine" to `"CONVERSA CONMIGO"` (ES) and `"TALK WITH ME"` (EN) in `translations.ts`.
   * Corrected the about section typo `"fundadores and marcas"` to `"fundadores y marcas"` in `page.client.tsx`.
   * Configured methodology pillar titles to break into exactly 2 lines across both languages.
-  * Created the new bilingual `/gracias` route (`page.tsx` wrapper + `page.client.tsx` client component) to display a checkout thank-you message, next steps checklist, and a WhatsApp contact button.
+  * Created the new bilingual `/gracias` route (`page.tsx` wrapper + `page.client.tsx` client component) to display a checkout thank-you message, next steps checklist, and a WhatsApp contact button. Polished the layout with decorative HSL background blobs, rounded-[3rem] shadow card, brand pink success icon, and a brand gold WhatsApp CTA button matching the premium visual identity.
   * Added the `/gracias` route to sitemap.ts.
   * Verified compile and static page generation via a successful `npm run build` using sandbox bypass.
 
