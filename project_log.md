@@ -158,6 +158,18 @@ This log serves as a source of truth for the development, configuration, and des
   * Swapped `/images/KT_Podcast.webp` for `/images/ktspacepodcast.webp` in [page.client.tsx](file:///Users/idanshichor/Documents/App%20Dev/Websites%20/katherine-website/src/app/page.client.tsx) to ensure consistency across the entire website.
   * Optimized image alt text to `"KT.360 - Sin Pelos en la Lengua — Podcast de Katherine Velasquez"` for improved SEO relevance.
   * Replaced the plain text title (`Estrategia 360: The Podcast`) with the new WebP logo `/images/kt-360-bw.webp` wrapped in an `h2` with screen-reader text for SEO and branding consistency.
+* **2026-07-29:** Updated Services and pricing cards, corrected typo, split methodology titles, and added bilingual checkout thank you page (branch `feature/update-services-pricing-and-gracias`):
+  * Added direct Wompi payment checkout links for all pricing packages across Card 1, Card 2, and Card 3.
+  * Formatted service cards to list features with colon-split bold headings.
+  * Card 1 lists 4 plans as compact horizontal rows with direct CTAs.
+  * Card 2 shows monthly pricing and Wompi CTA.
+  * Card 3 lists inclusion callout, 1-hour pricing, buy hour CTA, and a customize workshop WhatsApp button.
+  * Changed the landing page diagnostic CTA from "Conversar con Katherine" to `"CONVERSA CONMIGO"` (ES) and `"TALK WITH ME"` (EN) in `translations.ts`.
+  * Corrected the about section typo `"fundadores and marcas"` to `"fundadores y marcas"` in `page.client.tsx`.
+  * Configured methodology pillar titles to break into exactly 2 lines across both languages.
+  * Created the new bilingual `/gracias` route (`page.tsx` wrapper + `page.client.tsx` client component) to display a checkout thank-you message, next steps checklist, and a WhatsApp contact button.
+  * Added the `/gracias` route to sitemap.ts.
+  * Verified compile and static page generation via a successful `npm run build` using sandbox bypass.
 
 ---
 

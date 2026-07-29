@@ -185,7 +185,7 @@ export default function PageClient() {
               {language === "es" ? (
                 <>
                   Soy Ingeniera Civil con doble maestría en Marketing y Comunicación Digital. Tras fundar mis propias empresas y asesorar proyectos en el ecosistema corporativo y de startups, entendí que un negocio no escala solo con buen marketing o mejores procesos.<br /><br />
-                  El verdadero crecimiento ocurre en la intersección de tres áreas: la <span className="font-bold">estructura del negocio</span>, la <span className="font-bold">estrategia de comunicación</span> y la <span className="font-bold">mentalidad del líder</span>. A esto lo llamo mi enfoque <span className="font-script text-3xl">360.</span> Ayudo a fundadores and marcas maduras a operar con sistema, claridad y dirección.
+                  El verdadero crecimiento ocurre en la intersección de tres áreas: la <span className="font-bold">estructura del negocio</span>, la <span className="font-bold">estrategia de comunicación</span> y la <span className="font-bold">mentalidad del líder</span>. A esto lo llamo mi enfoque <span className="font-script text-3xl">360.</span> Ayudo a fundadores y marcas maduras a operar con sistema, claridad y dirección.
                 </>
               ) : (
                 <>
@@ -213,25 +213,33 @@ export default function PageClient() {
               {/* Pillar 1 */}
               <div>
                 <p className="font-heading text-6xl text-[var(--color-brand-gold)] opacity-30 mb-4 font-black">01</p>
-                <h3 className="font-heading text-2xl mb-4 italic font-bold">{t("methodology.p1_title")}</h3>
+                <h3 className="font-heading text-2xl mb-4 italic font-bold">
+                  {language === "es" ? <>Estructura de<br />Negocio</> : <>Business<br />Structure</>}
+                </h3>
                 <p className="font-body text-sm leading-relaxed text-gray-700">{t("methodology.p1_desc")}</p>
               </div>
               {/* Pillar 2 */}
               <div>
                 <p className="font-heading text-6xl text-[var(--color-brand-gold)] opacity-30 mb-4 font-black">02</p>
-                <h3 className="font-heading text-2xl mb-4 italic font-bold">{t("methodology.p2_title")}</h3>
+                <h3 className="font-heading text-2xl mb-4 italic font-bold">
+                  {language === "es" ? <>Estrategia &<br />Social Media</> : <>Strategy &<br />Social Media</>}
+                </h3>
                 <p className="font-body text-sm leading-relaxed text-gray-700">{t("methodology.p2_desc")}</p>
               </div>
               {/* Pillar 3 */}
               <div>
                 <p className="font-heading text-6xl text-[var(--color-brand-gold)] opacity-30 mb-4 font-black">03</p>
-                <h3 className="font-heading text-2xl mb-4 italic font-bold">{t("methodology.p3_title")}</h3>
+                <h3 className="font-heading text-2xl mb-4 italic font-bold">
+                  {language === "es" ? <>Mentalidad<br />Ejecutiva</> : <>Executive<br />Mindset</>}
+                </h3>
                 <p className="font-body text-sm leading-relaxed text-gray-700">{t("methodology.p3_desc")}</p>
               </div>
               {/* Pillar 4 */}
               <div>
                 <p className="font-heading text-6xl text-[var(--color-brand-gold)] opacity-30 mb-4 font-black">04</p>
-                <h3 className="font-heading text-2xl mb-4 italic font-bold">{t("methodology.p4_title")}</h3>
+                <h3 className="font-heading text-2xl mb-4 italic font-bold">
+                  {language === "es" ? <>Ejecución &<br />Medición</> : <>Execution &<br />Analytics</>}
+                </h3>
                 <p className="font-body text-sm leading-relaxed text-gray-700">{t("methodology.p4_desc")}</p>
               </div>
             </div>
@@ -248,30 +256,77 @@ export default function PageClient() {
               <p className="font-body text-[var(--color-brand-black)] font-medium text-lg">{t("services.desc")}</p>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-8">
+            <div className="grid lg:grid-cols-3 gap-8 items-stretch">
               {/* Tier 1 - Standard */}
-              <div className="bg-white p-10 rounded-[2rem] shadow-soft border border-white mt-0 lg:mt-8 mb-0 lg:-mb-8 flex flex-col hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+              <div className="bg-white p-8 rounded-[2rem] shadow-soft border border-white mt-0 lg:mt-8 mb-0 lg:-mb-8 flex flex-col hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
                 <h3 className="font-heading italic text-3xl mb-2 text-center text-[var(--color-brand-black)]">{t("services.t1_title")}</h3>
                 <p className="text-center font-bold text-sm uppercase tracking-widest text-gray-500 mb-6">{t("services.t1_subtitle")}</p>
                 <p className="font-body text-sm text-gray-700 mb-8 leading-relaxed text-center">
                   {t("services.t1_desc")}
                 </p>
-                <ul className="space-y-3 mb-10 text-sm font-medium text-gray-700">
-                  {(t("services.t1_features") as string[]).map((feature, i) => (
-                    <li key={i} className={`flex gap-2 items-start ${i === 1 ? "font-bold text-[var(--color-brand-black)]" : ""}`}>
-                      <span>✦</span> <span>{feature}</span>
-                    </li>
-                  ))}
+                <ul className="space-y-4 mb-10 text-xs font-medium text-gray-700">
+                  {(t("services.t1_features") as string[]).map((feature, i) => {
+                    const splitIndex = feature.indexOf(":");
+                    return (
+                      <li key={i} className="flex gap-2 items-start text-xs leading-relaxed text-gray-700 font-medium">
+                        <span className="text-[var(--color-brand-gold)] font-bold shrink-0">✦</span>
+                        <span>
+                          {splitIndex !== -1 ? (
+                            <>
+                              <strong className="font-bold text-[var(--color-brand-black)]">
+                                {feature.substring(0, splitIndex + 1)}
+                              </strong>
+                              {feature.substring(splitIndex + 1)}
+                            </>
+                          ) : (
+                            feature
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
-                <div className="flex justify-center mt-auto">
-                  <a href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" target="_blank" rel="noopener noreferrer" className="bg-transparent border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-8 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] w-full hover:bg-[var(--color-brand-black)] hover:text-white transition-colors cursor-pointer text-center block">
-                    {t("services.t1_cta")}
-                  </a>
+                <div className="mt-auto pt-8 border-t border-gray-100 w-full space-y-3">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 text-center">
+                    {language === "es" ? "Programas Disponibles" : "Available Programs"}
+                  </p>
+                  {((t("services.t1_plans") as any[]) || []).map((plan, idx) => (
+                    <div key={idx} className="bg-gray-50 border border-gray-100 hover:border-gray-200 transition-all p-4 rounded-2xl flex flex-col justify-between items-start md:flex-row md:items-center gap-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h4 className="text-xs font-bold text-[var(--color-brand-black)] leading-tight">
+                            {plan.name}
+                          </h4>
+                          {plan.name.includes("Popular") && (
+                            <span className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0">
+                              {language === "es" ? "Más Popular" : "Most Popular"}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[10px] text-gray-500 mt-1 leading-snug">
+                          {plan.desc}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between md:justify-end gap-3 w-full md:w-auto border-t md:border-t-0 pt-2 md:pt-0 border-gray-200/50">
+                        <span className="text-xs font-black text-[var(--color-brand-black)] shrink-0">
+                          {plan.price}
+                        </span>
+                        <a 
+                          href={plan.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="bg-[var(--color-brand-black)] text-white border border-[var(--color-brand-black)] px-4 py-2 rounded-full font-bold uppercase tracking-widest text-[9px] hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors cursor-pointer text-center inline-block shrink-0"
+                        >
+                          {language === "es" ? "Pagar" : "Pay"}
+                        </a>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Tier 2 - Featured (Center) */}
-              <div className="bg-white p-10 rounded-[2rem] shadow-elevated border-2 border-[var(--color-brand-gold)] relative flex flex-col z-10 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
+              <div className="bg-white p-8 rounded-[2rem] shadow-elevated border-2 border-[var(--color-brand-gold)] relative flex flex-col z-10 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-brand-black)] text-white text-[10px] font-bold tracking-widest uppercase py-1 px-4 rounded-full">
                   {t("services.t2_tag")}
                 </div>
@@ -280,38 +335,125 @@ export default function PageClient() {
                 <p className="font-body text-sm text-gray-700 mb-8 leading-relaxed text-center">
                   {t("services.t2_desc")}
                 </p>
-                <ul className="space-y-3 mb-10 text-sm font-medium text-gray-700">
-                  {(t("services.t2_features") as string[]).map((feature, i) => (
-                    <li key={i} className="flex gap-2 items-start">
-                      <span>✦</span> <span>{feature}</span>
-                    </li>
-                  ))}
+                <ul className="space-y-4 mb-10 text-xs font-medium text-gray-700">
+                  {(t("services.t2_features") as string[]).map((feature, i) => {
+                    const splitIndex = feature.indexOf(":");
+                    return (
+                      <li key={i} className="flex gap-2 items-start text-xs leading-relaxed text-gray-700 font-medium">
+                        <span className="text-[var(--color-brand-gold)] font-bold shrink-0">✦</span>
+                        <span>
+                          {splitIndex !== -1 ? (
+                            <>
+                              <strong className="font-bold text-[var(--color-brand-black)]">
+                                {feature.substring(0, splitIndex + 1)}
+                              </strong>
+                              {feature.substring(splitIndex + 1)}
+                            </>
+                          ) : (
+                            feature
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
-                <div className="flex justify-center mt-auto">
-                  <a href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" target="_blank" rel="noopener noreferrer" className="bg-[var(--color-brand-gold)] border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-8 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] w-full hover:bg-[var(--color-brand-gold-light)] transition-colors cursor-pointer text-center block">
-                    {t("services.t2_cta")}
+                <div className="mt-auto pt-8 border-t border-gray-100 w-full text-center">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-3">
+                    {language === "es" ? "Inversión del Acompañamiento" : "Advisory Investment"}
+                  </p>
+                  <p className="text-3xl font-black text-[var(--color-brand-black)] mb-1">
+                    {(t("services.t2_plan") as any)?.price}
+                  </p>
+                  <p className="text-[10px] text-gray-500 mb-6 uppercase tracking-wider font-bold">
+                    {(t("services.t2_plan") as any)?.name}
+                  </p>
+                  <a 
+                    href={(t("services.t2_plan") as any)?.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="bg-[var(--color-brand-gold)] border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[10px] w-full hover:bg-[var(--color-brand-gold-light)] transition-colors cursor-pointer text-center block"
+                  >
+                    {language === "es" ? "Contratar Acompañamiento" : "Start Advisory"}
                   </a>
                 </div>
               </div>
 
               {/* Tier 3 */}
-              <div className="bg-white p-10 rounded-[2rem] shadow-soft border border-white mt-0 lg:mt-8 mb-0 lg:-mb-8 flex flex-col hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+              <div className="bg-white p-8 rounded-[2rem] shadow-soft border border-white mt-0 lg:mt-8 mb-0 lg:-mb-8 flex flex-col hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
                 <h3 className="font-heading italic text-3xl mb-2 text-center text-[var(--color-brand-black)]">{t("services.t3_title")}</h3>
                 <p className="text-center font-bold text-sm uppercase tracking-widest text-gray-500 mb-6">{t("services.t3_subtitle")}</p>
                 <p className="font-body text-sm text-gray-700 mb-8 leading-relaxed text-center">
                   {t("services.t3_desc")}
                 </p>
-                <ul className="space-y-3 mb-10 text-sm font-medium text-gray-700">
-                  {(t("services.t3_features") as string[]).map((feature, i) => (
-                    <li key={i} className="flex gap-2 items-start">
-                      <span>✦</span> <span>{feature}</span>
-                    </li>
-                  ))}
+                <ul className="space-y-4 mb-10 text-xs font-medium text-gray-700">
+                  {(t("services.t3_features") as string[]).map((feature, i) => {
+                    const splitIndex = feature.indexOf(":");
+                    return (
+                      <li key={i} className="flex gap-2 items-start text-xs leading-relaxed text-gray-700 font-medium">
+                        <span className="text-[var(--color-brand-gold)] font-bold shrink-0">✦</span>
+                        <span>
+                          {splitIndex !== -1 ? (
+                            <>
+                              <strong className="font-bold text-[var(--color-brand-black)]">
+                                {feature.substring(0, splitIndex + 1)}
+                              </strong>
+                              {feature.substring(splitIndex + 1)}
+                            </>
+                          ) : (
+                            feature
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
-                <div className="flex justify-center mt-auto">
-                  <a href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" target="_blank" rel="noopener noreferrer" className="bg-transparent border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-8 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] w-full hover:bg-[var(--color-brand-black)] hover:text-white transition-colors cursor-pointer text-center block">
-                    {t("services.t3_cta")}
-                  </a>
+                <div className="mt-auto pt-8 border-t border-gray-100 w-full flex flex-col">
+                  {/* Inclusion Callout Box */}
+                  <div className="bg-[var(--color-brand-pink-light)] p-4 rounded-2xl border border-[var(--color-brand-pink-light)] mb-5 text-[11px] text-gray-700 leading-relaxed font-medium text-left">
+                    <strong className="font-bold text-[var(--color-brand-black)] block mb-1">
+                      {language === "es" ? "Incluido en todas las sesiones:" : "Included in all sessions:"}
+                    </strong>
+                    {t("services.t3_inclusions")}
+                  </div>
+
+                  <p className="text-[11px] italic text-gray-600 mb-5 px-2 leading-relaxed text-center">
+                    {t("services.t3_question")}
+                  </p>
+
+                  <div className="bg-gray-50 border border-gray-100 p-4 rounded-2xl flex flex-col justify-between items-start md:flex-row md:items-center gap-4">
+                    <div className="flex-grow text-left">
+                      <h4 className="text-xs font-bold text-[var(--color-brand-black)] leading-tight">
+                        {(t("services.t3_plan") as any)?.name}
+                      </h4>
+                      <span className="text-[10px] text-gray-500 mt-1 block">
+                        {language === "es" ? "1 Hora Puntual" : "1 Advisory Hour"}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between md:justify-end gap-3 w-full md:w-auto border-t md:border-t-0 pt-2 md:pt-0 border-gray-200/50">
+                      <span className="text-xs font-black text-[var(--color-brand-black)] shrink-0">
+                        {(t("services.t3_plan") as any)?.price}
+                      </span>
+                      <a 
+                        href={(t("services.t3_plan") as any)?.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="bg-[var(--color-brand-black)] text-white border border-[var(--color-brand-black)] px-4 py-2 rounded-full font-bold uppercase tracking-widest text-[9px] hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors cursor-pointer text-center inline-block shrink-0"
+                      >
+                        {language === "es" ? "Pagar" : "Pay"}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <a 
+                      href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20consultar%20sobre%20los%20talleres%20y%20capacitaciones%20in-company%20para%20mi%20equipo." 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="bg-transparent border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[10px] w-full hover:bg-[var(--color-brand-black)] hover:text-white transition-colors cursor-pointer text-center block"
+                    >
+                      {language === "es" ? "Diseñar sesión a mi medida" : "Customize my session"}
+                    </a>
+                  </div>
                 </div>
               </div>
 

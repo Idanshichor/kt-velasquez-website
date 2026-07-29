@@ -32,9 +32,9 @@ export const translations = {
     diagnostic: {
       tag: "El diagnóstico común",
       title: "Tu negocio o marca está creciendo, pero te quedas preguntándote ¿qué sigue?",
-      desc1: "Has construido tracción y tienes la validación del mercado, pero el día a día se siente reactivo. Falta alineación entre tus operaciones, tu comunicación y tu propia energía como líder.",
+      desc1: "Has construido tracción y tienes la validación del mercado, pero el día a día se siente reactivo. Falta alinear operaciones, comunicación y tu propia energía como líder.",
       desc2: "Soy la estratega a la que llamas cuando estás listo para dejar de adivinar y diseñar un plan claro de crecimiento.",
-      cta: "Conversar con Katherine"
+      cta: "CONVERSA CONMIGO"
     },
     about: {
       tag: "Hola, soy Katherine",
@@ -59,41 +59,75 @@ export const translations = {
       desc: "Estructura y claridad diseñadas para tu etapa actual.",
       t1_title: "Mentoría de Marca Personal 360",
       t1_subtitle: "Posicionamiento y autoridad para líderes",
-      t1_desc: "Diseñado y personalizado para profesionales y fundadores que quieren empaquetar su conocimiento, dominar su nicho y construir una marca personal influyente con una estrategia de contenidos clara y una mentalidad inquebrantable.",
+      t1_desc: "Este programa está diseñado de manera personalizada para ti, si eres un profesional o fundador que busca empaquetar su conocimiento, dominar su nicho y construir una marca personal influyente con una estrategia clara y una mentalidad sólida.",
       t1_features: [
-        "Definición de pilares de posicionamiento.",
-        "Auditoría de diferenciación y análisis de brechas en el mercado.",
-        "Estrategia integral de Social Media y contenidos.",
-        "Formación en UX Writing y narrativa de autoridad.",
-        "Trabajo de enfoque y mentalidad.",
-        "Plan de acción personalizado a tu ritmo."
+        "Definición de tus pilares de posicionamiento: Identificaremos las bases estratégicas sobre las cuales vas a construir tu autoridad en el mercado.",
+        "Auditoría de diferenciación y análisis de mercado: Analizaremos en detalle a tu competencia para encontrar tu valor único y lograr que destaques con claridad.",
+        "Estrategia integral de Social Media y contenidos: Diseñaremos un plan a tu medida para que sepas exactamente qué publicar, cómo comunicarlo y cómo convertir tu audiencia en clientes.",
+        "Formación en UX Writing y narrativa de autoridad: Aprenderás las técnicas de redacción persuasiva y estructura de mensajes necesarias para que cada publicación genere impacto y confianza.",
+        "Trabajo de enfoque y mentalidad: Desarrollaremos las herramientas para superar bloqueos y comunicar con seguridad, claridad y enfoque constante en tus objetivos.",
+        "Plan de acción personalizado a tu ritmo: Construiremos un paso a paso claro y aplicable a tu agenda real para garantizar que avances con seguridad hacia tus metas."
       ],
-      t1_cta: "Potenciar mi marca",
+      t1_plans: [
+        {
+          name: "Programa VIP 360 (Más Popular)",
+          desc: "12 Horas de Mentoría — Acompañamiento por 3 meses",
+          price: "$900.000 COP",
+          link: "https://checkout.wompi.co/l/2CNIob"
+        },
+        {
+          name: "Aceleración Estratégica",
+          desc: "8 Horas de Asesoría — Acompañamiento por 2 meses",
+          price: "$700.000 COP",
+          link: "https://checkout.wompi.co/l/k2bWcs"
+        },
+        {
+          name: "Impulso Clave",
+          desc: "4 Horas de Asesoría — Acompañamiento por 1 mes",
+          price: "$400.000 COP",
+          link: "https://checkout.wompi.co/l/4CnI6A"
+        },
+        {
+          name: "Sesión Diagnóstico Express",
+          desc: "1 Hora de Asesoría Puntual",
+          price: "$180.000 COP",
+          link: "https://checkout.wompi.co/l/Cuakxy"
+        }
+      ],
       t2_tag: "Destacado",
       t2_title: "Consultoría 1:1 Premium (Empresas y Startups)",
       t2_subtitle: "Dirección y optimización de negocio",
-      t2_desc: "Un diagnóstico profundo y acompañamiento estratégico personalizado para startups y empresas constituidas. Alineamos tus objetivos comerciales con tu operación y tu presencia digital.",
+      t2_desc: "Este programa está diseñado para ti y tu equipo si lideras una startup o empresa constituida y buscas acelerar su crecimiento. Analizaremos tu modelo de negocio en profundidad para alinear tus objetivos comerciales con una operación eficiente y una presencia digital que convierta.",
       t2_features: [
-        "Diagnóstico profundo de operaciones actuales.",
-        "Plan estratégico de expansión a 90 días.",
-        "Alineación de Mkt / Ventas / Operaciones.",
-        "Auditoría analítica y optimización de embudos.",
-        "Acompañamiento directo en la toma de decisiones.",
-        "Soporte y acceso directo vía WhatsApp."
+        "Diagnóstico profundo de tus operaciones actuales: Analizaremos a fondo el estado de tu negocio para identificar cuellos de botella, ineficiencias y oportunidades inmediatas de mejora.",
+        "Plan estratégico de expansión a 6 meses: Diseñaremos una hoja de ruta clara, accionable y a la medida de tu empresa para escalar tus resultados de forma ordenada.",
+        "Alineación de Marketing, Ventas y Operaciones: Lograremos que todas las áreas de tu negocio hablen el mismo idioma para maximizar la conversión y la retención de clientes.",
+        "Auditoría analítica y optimización de embudos: Revisaremos tus métricas y canales de venta para ajustar cada etapa del embudo y optimizar tu retorno de inversión.",
+        "Acompañamiento directo en la toma de decisiones: Tendrás un aliado estratégico a tu lado para validar pasos clave, resolver bloqueos y ejecutar con seguridad.",
+        "Soporte y acceso directo vía WhatsApp: Mantendremos una comunicación constante y fluida para resolver tus dudas del día a día sin frenar el ritmo de tu negocio."
       ],
-      t2_cta: "Solicitar sesión de diagnóstico",
+      t2_plan: {
+        name: "Acompañamiento Mensual Empresarial",
+        price: "$600.000 COP",
+        link: "https://checkout.wompi.co/l/XlbNWX"
+      },
       t3_title: "Talleres e In-Company",
       t3_subtitle: "Capacitación estratégica para equipos",
-      t3_desc: "Sesiones intensivas y workshops para alinear a tu equipo de trabajo bajo el Ecosistema 360.",
+      t3_desc: "Este programa está diseñado para ti y tu empresa si buscas transformar las capacidades de tu talento humano de forma directa e interactiva. A través de sesiones intensivas y workshops prácticos en las instalaciones de tu organización, alinearás a tu equipo bajo el Ecosistema 360 para potenciar su rendimiento y llevar los resultados de tu negocio al siguiente nivel.",
       t3_features: [
-        "Workshops intensivos (presenciales u online).",
-        "Capacitación práctica en analítica digital.",
-        "Implementación del Ecosistema 360.",
-        "Optimización y agilidad en procesos internos.",
-        "Alineación e integración del equipo de trabajo.",
-        "Material práctico y playbooks de ejecución."
+        "Workshops intensivos presenciales: Capacitaremos a tu equipo cara a cara con metodologías dinámicas, actividades prácticas e interacción en tiempo real adaptadas a tu operación.",
+        "Capacitación práctica en analítica digital: Formaremos a tu talento en vivo para que tome decisiones basadas en datos reales y optimice cada acción estratégica.",
+        "Implementación del Ecosistema 360: Guiaremos a tu equipo de manera presencial en la integración de esta estructura para que trabajen de forma articulada y con una visión global del negocio.",
+        "Optimización y agilidad en procesos internos: Trabajaremos hombro a hombro con tu equipo para eliminar fricciones en la operación diaria, acelerar tiempos de entrega y aumentar la productividad.",
+        "Alineación e integración del equipo de trabajo: Crearemos un espacio de conexión presencial donde todos los colaboradores remen en la misma dirección, compartiendo los mismos objetivos estratégicos."
       ],
-      t3_cta: "Consultar disponibilidad"
+      t3_inclusions: "Incluido en todas las sesiones: Entregaremos a tu equipo material práctico y playbooks de ejecución (guías físicas y digitales paso a paso) con herramientas listas para aplicar desde el primer día.",
+      t3_question: "¿En qué área de tu equipo necesitas ayuda hoy? (Hablemos y te diseño la sesión a tu medida).",
+      t3_plan: {
+        name: "Capacitación estratégica para equipos - 1 Hora de Mentoría",
+        price: "$190.000 COP",
+        link: "https://checkout.wompi.co/l/1dvqBr"
+      }
     },
     newsletter: {
       tag: "Recibe el Newsletter 360",
@@ -262,7 +296,7 @@ export const translations = {
       title: "Your business or brand is growing, yet you're left wondering: what's next?",
       desc1: "You've built traction and validated your market, but the day-to-day operations still feel reactive. There's a mismatch between your logistics, your brand narrative, and your own energy as a leader.",
       desc2: "I am the strategist you call when you're ready to stop guessing and design a clear path to scale.",
-      cta: "Speak with Katherine"
+      cta: "TALK WITH ME"
     },
     about: {
       tag: "Hi, I'm Katherine",
@@ -287,41 +321,75 @@ export const translations = {
       desc: "Structure and clarity built for your current stage of growth.",
       t1_title: "360° Personal Brand Mentorship",
       t1_subtitle: "Authority and positioning for leaders",
-      t1_desc: "Tailored for professionals and founders who want to package their expertise, command authority in their niche, and build an influential personal brand with a clear content engine and an unshakeable mindset.",
+      t1_desc: "This program is custom-designed for you if you are a professional or founder looking to package your expertise, dominate your niche, and build an influential personal brand with a clear strategy and a solid mindset.",
       t1_features: [
-        "Core positioning pillars definition.",
-        "Differentiation audit and market gap analysis.",
-        "Comprehensive social media and content strategy.",
-        "UX writing training and authority storytelling.",
-        "Strategic focus and leadership mindset work.",
-        "Custom action plan tailored to your pace."
+        "Core positioning pillars definition: We will identify the strategic bases upon which you will build your authority in the market.",
+        "Differentiation audit and market analysis: We will analyze your competitors in detail to find your unique value and help you stand out clearly.",
+        "Comprehensive Social Media and content strategy: We will design a custom plan so you know exactly what to publish, how to communicate it, and how to convert your audience into clients.",
+        "UX Writing and authority storytelling training: You will learn the persuasive writing techniques and message structures needed to ensure every post generates impact and trust.",
+        "Focus and mindset work: We will develop the tools to overcome blockages and communicate with confidence, clarity, and constant focus on your goals.",
+        "Action plan tailored to your pace: We will build a clear, actionable step-by-step roadmap that fits your real agenda to ensure you move forward confidently toward your goals."
       ],
-      t1_cta: "Elevate my brand",
+      t1_plans: [
+        {
+          name: "VIP 360 Program (Most Popular)",
+          desc: "12 Mentorship Hours — 3-month accompaniment",
+          price: "$900.000 COP",
+          link: "https://checkout.wompi.co/l/2CNIob"
+        },
+        {
+          name: "Strategic Acceleration",
+          desc: "8 Advisory Hours — 2-month accompaniment",
+          price: "$700.000 COP",
+          link: "https://checkout.wompi.co/l/k2bWcs"
+        },
+        {
+          name: "Key Boost",
+          desc: "4 Advisory Hours — 1-month accompaniment",
+          price: "$400.000 COP",
+          link: "https://checkout.wompi.co/l/4CnI6A"
+        },
+        {
+          name: "Express Diagnostic Session",
+          desc: "1 Hour of focused Advisory",
+          price: "$180.000 COP",
+          link: "https://checkout.wompi.co/l/Cuakxy"
+        }
+      ],
       t2_tag: "Featured",
       t2_title: "Premium 1:1 Consulting (Startups & SMEs)",
       t2_subtitle: "Business direction and optimization",
-      t2_desc: "Deep-dive diagnostic and dedicated strategic alignment for established startups and growing companies. We bridge your business operations with your digital presence and commercial goals.",
+      t2_desc: "This program is designed for you and your team if you lead a startup or established company and want to accelerate its growth. We will analyze your business model in depth to align your commercial goals with an efficient operation and a high-converting digital presence.",
       t2_features: [
-        "Comprehensive audit of current operations.",
-        "90-day strategic expansion roadmap.",
-        "Alignment of marketing, sales, and operations.",
-        "Data-driven analytics and funnel optimization.",
-        "Direct high-level advisory in decision making.",
-        "Dedicated priority support via WhatsApp."
+        "Deep diagnostic of current operations: We will analyze your business's state in depth to identify bottlenecks, inefficiencies, and immediate opportunities for improvement.",
+        "6-month strategic expansion plan: We will design a clear, actionable, and customized roadmap for your company to scale your results in an orderly manner.",
+        "Alignment of Marketing, Sales, and Operations: We will align all areas of your business to speak the same language to maximize client conversion and retention.",
+        "Analytics audit and funnel optimization: We will review your metrics and sales channels to adjust each stage of the funnel and optimize your return on investment.",
+        "Direct advisory in decision-making: You will have a strategic partner by your side to validate key steps, overcome bottlenecks, and execute with confidence.",
+        "Priority support and direct WhatsApp access: We will maintain constant and smooth communication to solve your daily questions without slowing down your business's momentum."
       ],
-      t2_cta: "Request a diagnostic session",
+      t2_plan: {
+        name: "Monthly Business Advisory",
+        price: "$600.000 COP",
+        link: "https://checkout.wompi.co/l/XlbNWX"
+      },
       t3_title: "Workshops & In-Company Training",
       t3_subtitle: "Strategic training for high-performing teams",
-      t3_desc: "Intensive training sessions and bespoke workshops designed to align your teams under the 360° Ecosystem.",
+      t3_desc: "This program is designed for you and your company if you are looking to transform the capabilities of your human talent in a direct and interactive way. Through intensive sessions and practical workshops at your organization's facilities, we will align your team under the 360° Ecosystem to boost their performance and take your business results to the next level.",
       t3_features: [
-        "Intensive workshops (in-person or remote).",
-        "Hands-on training in digital analytics.",
-        "Implementation of the 360° business model.",
-        "Internal process optimization and workflow agility.",
-        "Team alignment and cross-functional integration.",
-        "Practical handbooks and playbooks for execution."
+        "Intensive workshops (in-person or remote): We will train your team face-to-face with dynamic methodologies, practical activities, and real-time interaction tailored to your operations.",
+        "Hands-on digital analytics training: We will train your talent live to make decisions based on real data and optimize every strategic action.",
+        "Implementation of the 360° Ecosystem: We will guide your team in person to integrate this framework, enabling them to work cohesively and with a global business vision.",
+        "Workflow optimization and agility: We will work shoulder-to-shoulder with your team to eliminate daily friction, accelerate delivery times, and boost productivity.",
+        "Team alignment and integration: We will create a connection space where all collaborators steer in the same direction, sharing the same strategic goals."
       ],
-      t3_cta: "Check availability"
+      t3_inclusions: "Included in all sessions: We will deliver practical materials and execution playbooks (step-by-step physical and digital guides) with tools ready to apply from day one.",
+      t3_question: "Which area of your team needs help today? (Let's talk and I'll design a custom session for you).",
+      t3_plan: {
+        name: "Strategic training for teams - 1 Hour Mentorship",
+        price: "$190.000 COP",
+        link: "https://checkout.wompi.co/l/1dvqBr"
+      }
     },
     newsletter: {
       tag: "Join the 360° Newsletter",
