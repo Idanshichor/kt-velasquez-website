@@ -66,7 +66,8 @@ export const translations = {
         "Estrategia integral de Social Media y contenidos: Diseñaremos un plan a tu medida para que sepas exactamente qué publicar, cómo comunicarlo y cómo convertir tu audiencia en clientes.",
         "Formación en UX Writing y narrativa de autoridad: Aprenderás las técnicas de redacción persuasiva y estructura de mensajes necesarias para que cada publicación genere impacto y confianza.",
         "Trabajo de enfoque y mentalidad: Desarrollaremos las herramientas para superar bloqueos y comunicar con seguridad, claridad y enfoque constante en tus objetivos.",
-        "Plan de acción personalizado a tu ritmo: Construiremos un paso a paso claro y aplicable a tu agenda real para garantizar que avances con seguridad hacia tus metas."
+        "Plan de acción personalizado a tu ritmo: Construiremos un paso a paso claro y aplicable a tu agenda real para garantizar que avances con seguridad hacia tus metas.",
+        "Soporte y acceso directo vía Google Chat: Mantendremos una comunicación constante y fluida para acompañar tu proceso y resolver tus dudas entre sesiones."
       ],
       t1_plans: [
         {
@@ -104,7 +105,7 @@ export const translations = {
         "Alineación de Marketing, Ventas y Operaciones: Lograremos que todas las áreas de tu negocio hablen el mismo idioma para maximizar la conversión y la retención de clientes.",
         "Auditoría analítica y optimización de embudos: Revisaremos tus métricas y canales de venta para ajustar cada etapa del embudo y optimizar tu retorno de inversión.",
         "Acompañamiento directo en la toma de decisiones: Tendrás un aliado estratégico a tu lado para validar pasos clave, resolver bloqueos y ejecutar con seguridad.",
-        "Soporte y acceso directo vía WhatsApp: Mantendremos una comunicación constante y fluida para resolver tus dudas del día a día sin frenar el ritmo de tu negocio."
+        "Soporte y acceso directo vía Google Chat: Mantendremos una comunicación constante y fluida para resolver tus dudas del día a día sin frenar el ritmo de tu negocio."
       ],
       t2_plan: {
         name: "Acompañamiento Mensual Empresarial",
@@ -326,7 +327,8 @@ export const translations = {
         "Comprehensive Social Media and content strategy: We will design a custom plan so you know exactly what to publish, how to communicate it, and how to convert your audience into clients.",
         "UX Writing and authority storytelling training: You will learn the persuasive writing techniques and message structures needed to ensure every post generates impact and trust.",
         "Focus and mindset work: We will develop the tools to overcome blockages and communicate with confidence, clarity, and constant focus on your goals.",
-        "Action plan tailored to your pace: We will build a clear, actionable step-by-step roadmap that fits your real agenda to ensure you move forward confidently toward your goals."
+        "Action plan tailored to your pace: We will build a clear, actionable step-by-step roadmap that fits your real agenda to ensure you move forward confidently toward your goals.",
+        "Direct access & priority support via Google Chat: We will maintain constant, smooth communication to answer questions and guide your execution between sessions."
       ],
       t1_plans: [
         {
@@ -364,7 +366,7 @@ export const translations = {
         "Alignment of Marketing, Sales, and Operations: We will align all areas of your business to speak the same language to maximize client conversion and retention.",
         "Analytics audit and funnel optimization: We will review your metrics and sales channels to adjust each stage of the funnel and optimize your return on investment.",
         "Direct advisory in decision-making: You will have a strategic partner by your side to validate key steps, overcome bottlenecks, and execute with confidence.",
-        "Priority support and direct WhatsApp access: We will maintain constant and smooth communication to solve your daily questions without slowing down your business's momentum."
+        "Direct access & priority support via Google Chat: We will maintain constant and smooth communication to solve your daily questions without slowing down your business's momentum."
       ],
       t2_plan: {
         name: "Monthly Business Advisory",

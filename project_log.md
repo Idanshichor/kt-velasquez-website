@@ -171,10 +171,10 @@ This log serves as a source of truth for the development, configuration, and des
   * Added the `/gracias` route to sitemap.ts.
   * Verified compile and static page generation via a successful `npm run build` using sandbox bypass.
 * **2026-10-05:** Updated services pricing section under branch `feature/update-pricing-tiers`:
-  * **Mentoría de Marca Personal / Emprendimiento 360:** Updated title and updated session durations from 1-hour to 1.5-hour sessions with new rates: 1 session ($220.000 COP), 4 sessions ($720.000 COP), 8 sessions ($1.200.000 COP), and 12 sessions ($1.500.000 COP). Applied in both Spanish and English in `src/app/translations.ts`.
-  * **Consultoría 1:1 Premium (Empresas y Startups):** Updated price to `"Desde $720.000 COP"` (EN: `"From $720.000 COP"`).
+  * **Mentoría de Marca Personal / Emprendimiento 360:** Updated title and updated session durations from 1-hour to 1.5-hour sessions with new rates: 1 session ($220.000 COP), 4 sessions ($720.000 COP), 8 sessions ($1.200.000 COP), and 12 sessions ($1.500.000 COP). Converted the 4 stacked cards into an on-brand interactive dropdown selector with each option linking directly to its respective Wompi link and updating the primary CTA button. Added *"Soporte y acceso directo vía Google Chat"* to tier features (ES & EN).
+  * **Consultoría 1:1 Premium (Empresas y Startups):** Updated price to `"Desde $720.000 COP"` (EN: `"From $720.000 COP"`). Updated support channel from WhatsApp to *"Soporte y acceso directo vía Google Chat"* in tier features (ES & EN).
   * **Talleres e In-Company:** Updated rate to `$200.000 COP por hora` (EN: `$200.000 COP per hour`), removed the single 1-hour Wompi checkout purchase card, and streamlined the tier CTA exclusively to `[Diseñar sesión a mi medida]` linking directly to WhatsApp.
-  * Verified clean compile via `npm run build` (Turbopack/TypeScript 0 errors, 10/10 static pages).
+  * Verified clean compile via `npm run build` (Turbopack/TypeScript 0 errors, 12/12 static pages).
 
 ---
 

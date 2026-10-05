@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Marquee } from "@/components/marquee";
@@ -10,9 +11,25 @@ import Image from "next/image";
 import { Web3Form } from "@/components/web3-form";
 import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 
 export default function PageClient() {
   const { language, t } = useLanguage();
+  const [selectedPlanIndex, setSelectedPlanIndex] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const t1Plans = ((t("services.t1_plans") as any[]) || []);
+  const selectedPlan = t1Plans[selectedPlanIndex] || t1Plans[0] || {};
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const testimonials = [
     {
@@ -286,42 +303,107 @@ export default function PageClient() {
                     );
                   })}
                 </ul>
-                <div className="mt-auto pt-8 border-t border-gray-100 w-full space-y-3">
+                <div className="mt-auto pt-8 border-t border-gray-100 w-full" ref={dropdownRef}>
                   <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 text-center">
                     {language === "es" ? "Programas Disponibles" : "Available Programs"}
                   </p>
-                  {((t("services.t1_plans") as any[]) || []).map((plan, idx) => (
-                    <div key={idx} className="bg-gray-50 border border-gray-100 hover:border-gray-200 transition-all p-4 rounded-2xl flex flex-col justify-between items-start md:flex-row md:items-center gap-4">
-                      <div className="flex-1 min-w-0">
+
+                  <div className="relative">
+                    {/* Dropdown Selector Button */}
+                    <button
+                      type="button"
+                      onClick={() => setIsDropdownOpen((prev) => !prev)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isDropdownOpen}
+                      className="w-full bg-gray-50 hover:bg-gray-100/80 border border-gray-200/90 rounded-2xl p-4 text-left flex items-center justify-between gap-3 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-gold)]"
+                    >
+                      <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <h4 className="text-xs font-bold text-[var(--color-brand-black)] leading-tight">
-                            {plan.name}
-                          </h4>
-                          {plan.name.includes("Popular") && (
+                          <span className="text-xs font-bold text-[var(--color-brand-black)] leading-tight">
+                            {selectedPlan.name}
+                          </span>
+                          {selectedPlan.name?.includes("Popular") && (
                             <span className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0">
                               {language === "es" ? "Más Popular" : "Most Popular"}
                             </span>
                           )}
                         </div>
-                        <p className="text-[10px] text-gray-500 mt-1 leading-snug">
-                          {plan.desc}
+                        <p className="text-[10px] text-gray-500 mt-1 leading-snug truncate">
+                          {selectedPlan.desc}
                         </p>
                       </div>
-                      <div className="flex items-center justify-between md:justify-end gap-3 w-full md:w-auto border-t md:border-t-0 pt-2 md:pt-0 border-gray-200/50">
-                        <span className="text-xs font-black text-[var(--color-brand-black)] shrink-0">
-                          {plan.price}
+                      <div className="flex items-center gap-2 shrink-0 pl-1 border-l border-gray-200/60">
+                        <span className="text-xs font-black text-[var(--color-brand-black)]">
+                          {selectedPlan.price}
                         </span>
-                        <a 
-                          href={plan.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="bg-[var(--color-brand-black)] text-white border border-[var(--color-brand-black)] px-4 py-2 rounded-full font-bold uppercase tracking-widest text-[9px] hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors cursor-pointer text-center inline-block shrink-0"
-                        >
-                          {language === "es" ? "Pagar" : "Pay"}
-                        </a>
+                        <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isDropdownOpen ? "rotate-180 text-[var(--color-brand-black)]" : ""}`} />
                       </div>
-                    </div>
-                  ))}
+                    </button>
+
+                    {/* Dropdown Menu with each option linking to its Wompi link */}
+                    {isDropdownOpen && (
+                      <div 
+                        className="absolute bottom-full mb-2 left-0 right-0 md:bottom-auto md:top-full md:mt-2 bg-white rounded-2xl shadow-elevated border border-gray-200/80 p-2 z-50 space-y-1.5 animate-in fade-in duration-150"
+                        role="listbox"
+                      >
+                        {t1Plans.map((plan: any, idx: number) => (
+                          <a
+                            key={idx}
+                            href={plan.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => {
+                              setSelectedPlanIndex(idx);
+                              setIsDropdownOpen(false);
+                            }}
+                            className={`w-full p-3 rounded-xl flex items-center justify-between gap-3 text-left transition-all group ${
+                              selectedPlanIndex === idx 
+                                ? "bg-[var(--color-brand-gold-light)] border border-[var(--color-brand-gold)]/40" 
+                                : "hover:bg-gray-50 border border-transparent"
+                            }`}
+                            role="option"
+                            aria-selected={selectedPlanIndex === idx}
+                          >
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="text-xs font-bold text-[var(--color-brand-black)] group-hover:text-[var(--color-brand-gold)] transition-colors">
+                                  {plan.name}
+                                </span>
+                                {plan.name?.includes("Popular") && (
+                                  <span className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[8px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider shrink-0">
+                                    {language === "es" ? "Popular" : "Popular"}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-[10px] text-gray-500 mt-0.5 leading-snug">
+                                {plan.desc}
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-2.5 shrink-0 pl-2">
+                              <span className="text-xs font-black text-[var(--color-brand-black)]">
+                                {plan.price}
+                              </span>
+                              <span className="bg-[var(--color-brand-black)] text-white border border-[var(--color-brand-black)] px-3 py-1.5 rounded-full font-bold uppercase tracking-widest text-[8px] group-hover:bg-[var(--color-brand-gold)] group-hover:border-[var(--color-brand-gold)] group-hover:text-[var(--color-brand-black)] transition-all shrink-0">
+                                {language === "es" ? "Pagar" : "Pay"}
+                              </span>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Primary CTA button for the currently selected plan */}
+                  <div className="mt-4">
+                    <a 
+                      href={selectedPlan.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="bg-[var(--color-brand-black)] text-white border-2 border-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[10px] w-full hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors cursor-pointer text-center block"
+                    >
+                      {language === "es" ? "Pagar Programa" : "Pay Program"} — {selectedPlan.price}
+                    </a>
+                  </div>
                 </div>
               </div>
 
