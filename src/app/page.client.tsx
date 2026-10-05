@@ -315,7 +315,9 @@ export default function PageClient() {
                       onClick={() => setIsDropdownOpen((prev) => !prev)}
                       aria-haspopup="listbox"
                       aria-expanded={isDropdownOpen}
-                      className="w-full bg-gray-50 hover:bg-gray-100/80 border border-gray-200/90 rounded-2xl p-4 text-left flex items-center justify-between gap-3 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-gold)]"
+                      className={`w-full bg-gray-50 hover:bg-gray-100/80 border rounded-2xl p-4 text-left flex items-center justify-between gap-3 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-gold)] ${
+                        isDropdownOpen ? "border-[var(--color-brand-gold)] ring-1 ring-[var(--color-brand-gold)]" : "border-gray-200/90"
+                      }`}
                     >
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -340,42 +342,44 @@ export default function PageClient() {
                       </div>
                     </button>
 
-                    {/* Dropdown Menu with each option linking to its Wompi link */}
+                    {/* Dropdown Options List - rendered inline in document flow so it never gets cut off */}
                     {isDropdownOpen && (
                       <div 
-                        className="absolute bottom-full mb-2 left-0 right-0 md:bottom-auto md:top-full md:mt-2 bg-white rounded-2xl shadow-elevated border border-gray-200/80 p-2 z-50 space-y-1.5 animate-in fade-in duration-150"
+                        className="mt-2 bg-gray-50/70 rounded-2xl border border-gray-200/80 p-2 space-y-1.5 transition-all"
                         role="listbox"
                       >
                         {t1Plans.map((plan: any, idx: number) => (
-                          <a
+                          <button
                             key={idx}
-                            href={plan.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            type="button"
                             onClick={() => {
                               setSelectedPlanIndex(idx);
                               setIsDropdownOpen(false);
                             }}
-                            className={`w-full p-3 rounded-xl flex items-center justify-between gap-3 text-left transition-all group ${
+                            className={`w-full p-3.5 rounded-xl flex items-center justify-between gap-3 text-left transition-all cursor-pointer group ${
                               selectedPlanIndex === idx 
-                                ? "bg-[var(--color-brand-gold-light)] border border-[var(--color-brand-gold)]/40" 
-                                : "hover:bg-gray-50 border border-transparent"
+                                ? "bg-white border-2 border-[var(--color-brand-gold)] shadow-sm" 
+                                : "bg-white/80 hover:bg-white border border-gray-200/60 hover:border-gray-300"
                             }`}
                             role="option"
                             aria-selected={selectedPlanIndex === idx}
                           >
                             <div className="min-w-0 flex-1">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <span className="text-xs font-bold text-[var(--color-brand-black)] group-hover:text-[var(--color-brand-gold)] transition-colors">
+                                <span className={`text-xs font-bold transition-colors ${
+                                  selectedPlanIndex === idx 
+                                    ? "text-[var(--color-brand-black)]" 
+                                    : "text-gray-700 group-hover:text-[var(--color-brand-black)]"
+                                }`}>
                                   {plan.name}
                                 </span>
                                 {plan.name?.includes("Popular") && (
                                   <span className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[8px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider shrink-0">
-                                    {language === "es" ? "Popular" : "Popular"}
+                                    {language === "es" ? "Más Popular" : "Most Popular"}
                                   </span>
                                 )}
                               </div>
-                              <p className="text-[10px] text-gray-500 mt-0.5 leading-snug">
+                              <p className="text-[10px] text-gray-500 mt-1 leading-snug">
                                 {plan.desc}
                               </p>
                             </div>
@@ -383,11 +387,11 @@ export default function PageClient() {
                               <span className="text-xs font-black text-[var(--color-brand-black)]">
                                 {plan.price}
                               </span>
-                              <span className="bg-[var(--color-brand-black)] text-white border border-[var(--color-brand-black)] px-3 py-1.5 rounded-full font-bold uppercase tracking-widest text-[8px] group-hover:bg-[var(--color-brand-gold)] group-hover:border-[var(--color-brand-gold)] group-hover:text-[var(--color-brand-black)] transition-all shrink-0">
-                                {language === "es" ? "Pagar" : "Pay"}
-                              </span>
+                              {selectedPlanIndex === idx && (
+                                <span className="w-2 h-2 rounded-full bg-[var(--color-brand-gold)] shrink-0" />
+                              )}
                             </div>
-                          </a>
+                          </button>
                         ))}
                       </div>
                     )}

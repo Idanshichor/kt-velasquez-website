@@ -57,7 +57,7 @@ export const translations = {
     services: {
       title: "Soluciones Estratégicas",
       desc: "Estructura y claridad diseñadas para tu etapa actual.",
-      t1_title: "Mentoría de Marca Personal / Emprendimiento 360",
+      t1_title: "Mentoría para Marca Personal & Emprendimiento",
       t1_subtitle: "Posicionamiento y autoridad para líderes",
       t1_desc: "Este programa está diseñado de manera personalizada para ti, si eres un profesional o fundador que busca empaquetar su conocimiento, dominar su nicho y construir una marca personal influyente con una estrategia clara y una mentalidad sólida.",
       t1_features: [
@@ -72,27 +72,27 @@ export const translations = {
       t1_plans: [
         {
           name: "Programa VIP 360 (Más Popular)",
-          desc: "12 Sesiones de 1.5 Horas — Acompañamiento por 3 meses",
+          desc: "12 sesiones cada una de 1h y 30 min",
           price: "$1.500.000 COP",
-          link: "https://checkout.wompi.co/l/2CNIob"
+          link: "https://checkout.wompi.co/l/R2Y4GM"
         },
         {
-          name: "Aceleración Estratégica",
-          desc: "8 Sesiones de 1.5 Horas — Acompañamiento por 2 meses",
+          name: "Aceleración estratégica 360",
+          desc: "8 sesiones cada una de 1h y 30 min",
           price: "$1.200.000 COP",
-          link: "https://checkout.wompi.co/l/k2bWcs"
+          link: "https://checkout.wompi.co/l/BS52Q2"
         },
         {
-          name: "Impulso Clave",
-          desc: "4 Sesiones de 1.5 Horas — Acompañamiento por 1 mes",
+          name: "Impulso Clave 360",
+          desc: "4 sesiones cada una de 1h y 30 min",
           price: "$720.000 COP",
-          link: "https://checkout.wompi.co/l/4CnI6A"
+          link: "https://checkout.wompi.co/l/MozVhR"
         },
         {
-          name: "Sesión Diagnóstico Express",
-          desc: "1 Sesión de 1.5 Horas Puntual",
+          name: "Sesión de diagnóstico express",
+          desc: "1 h y 30 min de asesoría puntual",
           price: "$220.000 COP",
-          link: "https://checkout.wompi.co/l/Cuakxy"
+          link: "https://checkout.wompi.co/l/toalcJ"
         }
       ],
       t2_tag: "Destacado",
@@ -318,7 +318,7 @@ export const translations = {
     services: {
       title: "Strategic Solutions",
       desc: "Structure and clarity built for your current stage of growth.",
-      t1_title: "360° Personal Brand & Entrepreneurship Mentorship",
+      t1_title: "Personal Brand & Entrepreneurship Mentorship",
       t1_subtitle: "Authority and positioning for leaders",
       t1_desc: "This program is custom-designed for you if you are a professional or founder looking to package your expertise, dominate your niche, and build an influential personal brand with a clear strategy and a solid mindset.",
       t1_features: [
@@ -333,27 +333,27 @@ export const translations = {
       t1_plans: [
         {
           name: "VIP 360 Program (Most Popular)",
-          desc: "12 Mentorship Sessions (1.5h each) — 3-month accompaniment",
+          desc: "12 sessions (1h 30m each)",
           price: "$1.500.000 COP",
-          link: "https://checkout.wompi.co/l/2CNIob"
+          link: "https://checkout.wompi.co/l/R2Y4GM"
         },
         {
-          name: "Strategic Acceleration",
-          desc: "8 Advisory Sessions (1.5h each) — 2-month accompaniment",
+          name: "Strategic Acceleration 360",
+          desc: "8 sessions (1h 30m each)",
           price: "$1.200.000 COP",
-          link: "https://checkout.wompi.co/l/k2bWcs"
+          link: "https://checkout.wompi.co/l/BS52Q2"
         },
         {
-          name: "Key Boost",
-          desc: "4 Advisory Sessions (1.5h each) — 1-month accompaniment",
+          name: "Key Boost 360",
+          desc: "4 sessions (1h 30m each)",
           price: "$720.000 COP",
-          link: "https://checkout.wompi.co/l/4CnI6A"
+          link: "https://checkout.wompi.co/l/MozVhR"
         },
         {
           name: "Express Diagnostic Session",
-          desc: "1 Focused Advisory Session (1.5h)",
+          desc: "1 focused advisory session (1h 30m)",
           price: "$220.000 COP",
-          link: "https://checkout.wompi.co/l/Cuakxy"
+          link: "https://checkout.wompi.co/l/toalcJ"
         }
       ],
       t2_tag: "Featured",
