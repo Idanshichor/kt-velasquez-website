@@ -420,31 +420,16 @@ export default function PageClient() {
                     {t("services.t3_question")}
                   </p>
 
-                  <div className="bg-gray-50 border border-gray-100 p-4 rounded-2xl flex flex-col justify-between items-start md:flex-row md:items-center gap-4">
-                    <div className="flex-grow text-left">
-                      <h4 className="text-xs font-bold text-[var(--color-brand-black)] leading-tight">
-                        {(t("services.t3_plan") as any)?.name}
-                      </h4>
-                      <span className="text-[10px] text-gray-500 mt-1 block">
-                        {language === "es" ? "1 Hora Puntual" : "1 Advisory Hour"}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between md:justify-end gap-3 w-full md:w-auto border-t md:border-t-0 pt-2 md:pt-0 border-gray-200/50">
-                      <span className="text-xs font-black text-[var(--color-brand-black)] shrink-0">
-                        {(t("services.t3_plan") as any)?.price}
-                      </span>
-                      <a 
-                        href={(t("services.t3_plan") as any)?.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="bg-[var(--color-brand-black)] text-white border border-[var(--color-brand-black)] px-4 py-2 rounded-full font-bold uppercase tracking-widest text-[9px] hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors cursor-pointer text-center inline-block shrink-0"
-                      >
-                        {language === "es" ? "Pagar" : "Pay"}
-                      </a>
-                    </div>
+                  <div className="text-center mb-6">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-2">
+                      {(t("services.t3_price_label") as string) || (language === "es" ? "Inversión" : "Investment")}
+                    </p>
+                    <p className="text-3xl font-black text-[var(--color-brand-black)] mb-1">
+                      {(t("services.t3_price") as string) || "$200.000 COP"} <span className="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wider">{(t("services.t3_price_unit") as string) || (language === "es" ? "por hora" : "per hour")}</span>
+                    </p>
                   </div>
 
-                  <div className="mt-4">
+                  <div>
                     <a 
                       href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20consultar%20sobre%20los%20talleres%20y%20capacitaciones%20in-company%20para%20mi%20equipo." 
                       target="_blank" 

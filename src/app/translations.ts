@@ -57,7 +57,7 @@ export const translations = {
     services: {
       title: "Soluciones Estratégicas",
       desc: "Estructura y claridad diseñadas para tu etapa actual.",
-      t1_title: "Mentoría de Marca Personal 360",
+      t1_title: "Mentoría de Marca Personal / Emprendimiento 360",
       t1_subtitle: "Posicionamiento y autoridad para líderes",
       t1_desc: "Este programa está diseñado de manera personalizada para ti, si eres un profesional o fundador que busca empaquetar su conocimiento, dominar su nicho y construir una marca personal influyente con una estrategia clara y una mentalidad sólida.",
       t1_features: [
@@ -71,26 +71,26 @@ export const translations = {
       t1_plans: [
         {
           name: "Programa VIP 360 (Más Popular)",
-          desc: "12 Horas de Mentoría — Acompañamiento por 3 meses",
-          price: "$900.000 COP",
+          desc: "12 Sesiones de 1.5 Horas — Acompañamiento por 3 meses",
+          price: "$1.500.000 COP",
           link: "https://checkout.wompi.co/l/2CNIob"
         },
         {
           name: "Aceleración Estratégica",
-          desc: "8 Horas de Asesoría — Acompañamiento por 2 meses",
-          price: "$700.000 COP",
+          desc: "8 Sesiones de 1.5 Horas — Acompañamiento por 2 meses",
+          price: "$1.200.000 COP",
           link: "https://checkout.wompi.co/l/k2bWcs"
         },
         {
           name: "Impulso Clave",
-          desc: "4 Horas de Asesoría — Acompañamiento por 1 mes",
-          price: "$400.000 COP",
+          desc: "4 Sesiones de 1.5 Horas — Acompañamiento por 1 mes",
+          price: "$720.000 COP",
           link: "https://checkout.wompi.co/l/4CnI6A"
         },
         {
           name: "Sesión Diagnóstico Express",
-          desc: "1 Hora de Asesoría Puntual",
-          price: "$180.000 COP",
+          desc: "1 Sesión de 1.5 Horas Puntual",
+          price: "$220.000 COP",
           link: "https://checkout.wompi.co/l/Cuakxy"
         }
       ],
@@ -108,7 +108,7 @@ export const translations = {
       ],
       t2_plan: {
         name: "Acompañamiento Mensual Empresarial",
-        price: "$600.000 COP",
+        price: "Desde $720.000 COP",
         link: "https://checkout.wompi.co/l/XlbNWX"
       },
       t3_title: "Talleres e In-Company",
@@ -123,11 +123,9 @@ export const translations = {
       ],
       t3_inclusions: "Incluido en todas las sesiones: Entregaremos a tu equipo material práctico y playbooks de ejecución (guías físicas y digitales paso a paso) con herramientas listas para aplicar desde el primer día.",
       t3_question: "¿En qué área de tu equipo necesitas ayuda hoy? (Hablemos y te diseño la sesión a tu medida).",
-      t3_plan: {
-        name: "Capacitación estratégica para equipos - 1 Hora de Mentoría",
-        price: "$190.000 COP",
-        link: "https://checkout.wompi.co/l/1dvqBr"
-      }
+      t3_price_label: "Inversión",
+      t3_price: "$200.000 COP",
+      t3_price_unit: "por hora"
     },
     newsletter: {
       tag: "Recibe el Newsletter 360",
@@ -319,7 +317,7 @@ export const translations = {
     services: {
       title: "Strategic Solutions",
       desc: "Structure and clarity built for your current stage of growth.",
-      t1_title: "360° Personal Brand Mentorship",
+      t1_title: "360° Personal Brand & Entrepreneurship Mentorship",
       t1_subtitle: "Authority and positioning for leaders",
       t1_desc: "This program is custom-designed for you if you are a professional or founder looking to package your expertise, dominate your niche, and build an influential personal brand with a clear strategy and a solid mindset.",
       t1_features: [
@@ -333,26 +331,26 @@ export const translations = {
       t1_plans: [
         {
           name: "VIP 360 Program (Most Popular)",
-          desc: "12 Mentorship Hours — 3-month accompaniment",
-          price: "$900.000 COP",
+          desc: "12 Mentorship Sessions (1.5h each) — 3-month accompaniment",
+          price: "$1.500.000 COP",
           link: "https://checkout.wompi.co/l/2CNIob"
         },
         {
           name: "Strategic Acceleration",
-          desc: "8 Advisory Hours — 2-month accompaniment",
-          price: "$700.000 COP",
+          desc: "8 Advisory Sessions (1.5h each) — 2-month accompaniment",
+          price: "$1.200.000 COP",
           link: "https://checkout.wompi.co/l/k2bWcs"
         },
         {
           name: "Key Boost",
-          desc: "4 Advisory Hours — 1-month accompaniment",
-          price: "$400.000 COP",
+          desc: "4 Advisory Sessions (1.5h each) — 1-month accompaniment",
+          price: "$720.000 COP",
           link: "https://checkout.wompi.co/l/4CnI6A"
         },
         {
           name: "Express Diagnostic Session",
-          desc: "1 Hour of focused Advisory",
-          price: "$180.000 COP",
+          desc: "1 Focused Advisory Session (1.5h)",
+          price: "$220.000 COP",
           link: "https://checkout.wompi.co/l/Cuakxy"
         }
       ],
@@ -370,7 +368,7 @@ export const translations = {
       ],
       t2_plan: {
         name: "Monthly Business Advisory",
-        price: "$600.000 COP",
+        price: "From $720.000 COP",
         link: "https://checkout.wompi.co/l/XlbNWX"
       },
       t3_title: "Workshops & In-Company Training",
@@ -385,11 +383,9 @@ export const translations = {
       ],
       t3_inclusions: "Included in all sessions: We will deliver practical materials and execution playbooks (step-by-step physical and digital guides) with tools ready to apply from day one.",
       t3_question: "Which area of your team needs help today? (Let's talk and I'll design a custom session for you).",
-      t3_plan: {
-        name: "Strategic training for teams - 1 Hour Mentorship",
-        price: "$190.000 COP",
-        link: "https://checkout.wompi.co/l/1dvqBr"
-      }
+      t3_price_label: "Investment",
+      t3_price: "$200.000 COP",
+      t3_price_unit: "per hour"
     },
     newsletter: {
       tag: "Join the 360° Newsletter",
