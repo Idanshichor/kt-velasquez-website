@@ -1,22 +1,15 @@
 "use client";
 
 import { useLanguage } from "@/context/language-context";
-import { wordScrub } from "@/lib/motion";
 import { Scene } from "./scene";
 
 export function AboutPreview() {
   const { language, t } = useLanguage();
   return (
-    <Scene
-      className="py-32 md:py-40 px-6 md:px-16 bg-[var(--color-brand-pink-light)]"
-      build={({ root }) => {
-        const text = root.querySelector<HTMLElement>("[data-words]")!;
-        wordScrub(text, text, "top 78%", "bottom 55%");
-      }}
-    >
+    <Scene className="py-32 md:py-40 px-6 md:px-16 bg-[var(--color-brand-pink-light)]">
       <div className="max-w-4xl mx-auto text-center">
         <p data-reveal className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--color-brand-black)] mb-8">{t("about.tag")}</p>
-        <p data-words className="font-body text-[var(--color-brand-black)] text-lg md:text-2xl leading-relaxed mb-10 text-left md:text-center">
+        <p data-reveal className="font-body text-[var(--color-brand-black)] text-lg md:text-[1.375rem] leading-[1.7] text-left md:text-center">
           {language === "es" ? (
             <>
               Soy Ingeniera Civil con doble maestría en Marketing y Comunicación Digital. Tras fundar mis propias empresas y asesorar proyectos en el ecosistema corporativo y de startups, entendí que un negocio no escala solo con buen marketing o mejores procesos.<br /><br />

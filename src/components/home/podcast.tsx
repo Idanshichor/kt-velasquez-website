@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useLanguage } from "@/context/language-context";
 import { Scene } from "./scene";
 
-const BARS = Array.from({ length: 28 }, (_, i) => ({ h: 24 + ((i * 37) % 56), d: (i % 7) * 0.17 }));
-
 export function Podcast() {
   const { language, t } = useLanguage();
   return (
@@ -16,11 +14,6 @@ export function Podcast() {
         <div data-mask className="relative aspect-square md:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-elevated">
           <div data-mask-img className="absolute inset-0">
             <Image src="/images/ktspacepodcast.webp" alt="KT.360 - Sin Pelos en la Lengua — Podcast de Katherine Velasquez" fill className="object-cover" />
-          </div>
-          <div className="absolute inset-x-0 bottom-0 h-24 flex items-end justify-center gap-1.5 px-8 pb-5 bg-gradient-to-t from-black/40 to-transparent" aria-hidden="true">
-            {BARS.map((b, i) => (
-              <span key={i} className="wave-bar w-1 rounded-full bg-white/80" style={{ height: `${b.h}%`, animationDelay: `${b.d}s` }} />
-            ))}
           </div>
         </div>
 
@@ -45,7 +38,7 @@ export function Podcast() {
             )}
           </p>
           <div data-reveal className="flex justify-center md:justify-start">
-            <Link data-cursor href="/podcast" className="bg-transparent border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-colors cursor-pointer hover:bg-[var(--color-brand-black)] hover:text-white inline-block text-center">
+            <Link href="/podcast" className="bg-transparent border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-colors cursor-pointer hover:bg-[var(--color-brand-black)] hover:text-white inline-block text-center">
               {t("podcast.cta")}
             </Link>
           </div>

@@ -20,7 +20,7 @@ export function useScene(ref: RefObject<HTMLElement | null>, build: Build | unde
         const { motion, desktop } = ctx.conditions as { motion: boolean; desktop: boolean };
         if (!motion) return;
         const cleanup = build?.({ root, desktop: !!desktop });
-        genericEffects(root, !!desktop);
+        genericEffects(root);
         return cleanup || undefined;
       },
     );

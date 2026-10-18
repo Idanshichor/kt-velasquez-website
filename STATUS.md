@@ -53,10 +53,11 @@ After approval
 - [ ] Deploy (only when Idan says)
 
 ## Open items
-- Idan: star cursor yes/no; inner pages same pass or after.
+- Idan: compare v1 and v2 previews; pick one. Inner pages after.
 - Katherine: real results for hero and testimonials, credentials, podcast URLs.
 - SEO phase 2 (English URLs, hreflang) waits for approval.
 
 ## Last changes
+- 2026-10-18 (v2, branch `feature/premium-rebuild-v2`, off `feature/premium-rebuild`): second pass after Idan said the first felt almost unusable. Removed star cursor, reading line, all scroll pins (banner, method, testimonials), word-by-word scroll fade, magnetic buttons, velocity marquee, gold border sweep, podcast sound bars, floating CTA stars. Lenis lighter (lerp 0.16). Services: compact cards show feature labels only, "Ver todo lo que incluye" opens the full text; featured tier dark; swipe rail on phones; fixed doubled "Incluido en todas las sesiones:". Logos evened out. Desktop page height ~10,700 px (first pass ~17,000). Copy, Wompi links and plan picker unchanged. New UI labels only: "Ver todo lo que incluye / Ver menos" (EN "See everything included / Show less").
 - 2026-10-18: home page rebuilt. Lenis + GSAP/ScrollTrigger/SplitText; sticky-based pins (banner, method, testimonials, desktop only); velocity marquee; mask reveals; star cursor + reading line; nav hides on scroll down; FAQ height via grid rows; services text raised to 12 px min, gold sweep on featured tier; `--color-brand-gold-deep` for gold text. Inner pages untouched (still old fade-up, now with smooth scroll and star cursor). Hero image left as in main.
 - 2026-10-18: created audits, STATUS.md, branch.

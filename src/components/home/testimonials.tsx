@@ -1,8 +1,6 @@
 "use client";
 
 import { useLanguage } from "@/context/language-context";
-import { gsap } from "@/lib/gsap";
-import { enablePin, pinStack } from "@/lib/motion";
 import { Scene } from "./scene";
 
 export function Testimonials() {
@@ -31,39 +29,31 @@ export function Testimonials() {
   ];
 
   return (
-    <Scene
-      className="testi pin-wrap bg-white"
-      build={({ root, desktop }) => {
-        const cards = Array.from(root.querySelectorAll<HTMLElement>(".testi-card"));
-        if (desktop) {
-          const undo = enablePin(root, 340);
-          pinStack(root, cards);
-          return undo;
-        }
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.12, scrollTrigger: { trigger: cards[0], start: "top 88%", once: true } },
-        );
-      }}
-    >
-      <div className="pin-stage">
-        <div className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-0 lg:pt-28 lg:h-full lg:flex lg:flex-col lg:justify-center text-center">
-          <h2 data-lines className="font-heading italic text-3xl md:text-4xl text-[var(--color-brand-black)] mb-16 lg:mb-0">
-            {t("testimonials.title")}
-          </h2>
-          <div className="testi-list grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, i) => (
-              <div key={i} className="testi-card bg-[var(--color-brand-cream)] p-10 rounded-[2rem] border border-[var(--color-brand-gold-light)] shadow-soft text-left flex flex-col">
-                <div className="text-[var(--color-brand-gold-deep)] font-heading text-5xl mb-4 leading-none">&ldquo;</div>
-                <p className="testi-text font-body text-gray-700 leading-relaxed mb-8 flex-grow">{testimonial.text}</p>
-                <div>
-                  <p className="font-bold uppercase tracking-widest text-xs text-[var(--color-brand-black)]">{testimonial.name}</p>
-                  <p className="text-xs text-gray-600 mt-1">{testimonial.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+    <Scene className="bg-white py-28 md:py-36 px-6 md:px-16">
+      <div className="max-w-7xl mx-auto">
+        <h2 data-lines className="font-heading italic text-4xl md:text-5xl text-center text-[var(--color-brand-black)] mb-14 md:mb-20">
+          {t("testimonials.title")}
+        </h2>
+        <div data-stagger className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+          {testimonials.map((testimonial, i) => (
+            <figure
+              key={i}
+              className={`rounded-[1.75rem] p-8 md:p-10 flex flex-col h-full ${
+                i === 1
+                  ? "bg-[var(--color-brand-black)] text-white lg:-mt-6 lg:pb-14"
+                  : "bg-[var(--color-brand-cream)] border border-[var(--color-brand-gold-light)]"
+              }`}
+            >
+              <span aria-hidden="true" className={`font-heading text-6xl leading-[0.6] mb-6 ${i === 1 ? "text-[var(--color-brand-gold)]" : "text-[var(--color-brand-gold-deep)]"}`}>&ldquo;</span>
+              <blockquote className={`font-body leading-relaxed mb-10 flex-grow ${i === 1 ? "text-white/85 text-base md:text-[17px]" : "text-gray-700 text-[15px]"}`}>
+                {testimonial.text}
+              </blockquote>
+              <figcaption className={`pt-6 border-t ${i === 1 ? "border-white/15" : "border-[var(--color-brand-black)]/10"}`}>
+                <p className={`font-bold uppercase tracking-widest text-xs ${i === 1 ? "text-[var(--color-brand-gold)]" : "text-[var(--color-brand-black)]"}`}>{testimonial.name}</p>
+                <p className={`text-xs mt-1 ${i === 1 ? "text-white/60" : "text-gray-600"}`}>{testimonial.role}</p>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </Scene>

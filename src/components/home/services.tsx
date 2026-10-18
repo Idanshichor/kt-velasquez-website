@@ -1,9 +1,77 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ChevronDown, Plus } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
 import { Scene } from "./scene";
+
+const IN_COMPANY_WHATSAPP =
+  "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20consultar%20sobre%20los%20talleres%20y%20capacitaciones%20in-company%20para%20mi%20equipo.";
+
+/** Splits "Label: detail" into its two halves. */
+function splitLabel(text: string) {
+  const i = text.indexOf(":");
+  return i === -1 ? { label: text, detail: "" } : { label: text.slice(0, i), detail: text.slice(i + 1).trim() };
+}
+
+/**
+ * The feature list of one tier. Closed, it shows only the short label of each
+ * feature, so the three cards stay compact. Open, each label shows its full text.
+ */
+function Features({ items, dark = false, extra }: { items: string[]; dark?: boolean; extra?: ReactNode }) {
+  const { language } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const muted = dark ? "text-white/70" : "text-gray-600";
+  const strong = dark ? "text-white" : "text-[var(--color-brand-black)]";
+  const rule = dark ? "border-white/12" : "border-[var(--color-brand-black)]/10";
+
+  return (
+    <div className="mb-8">
+      <ul className={`border-t ${rule}`}>
+        {items.map((feature, i) => {
+          const { label, detail } = splitLabel(feature);
+          return (
+            <li key={i} className={`border-b ${rule} py-3`}>
+              <div className="flex gap-3 items-baseline">
+                <span aria-hidden="true" className={`text-[11px] shrink-0 ${dark ? "text-[var(--color-brand-gold)]" : "text-[var(--color-brand-gold-deep)]"}`}>✦</span>
+                <div className="min-w-0">
+                  <p className={`text-[14px] font-medium leading-snug ${strong}`}>{label}</p>
+                  {detail && (
+                    <div className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                      <p className={`overflow-hidden text-[13.5px] leading-relaxed ${muted}`} aria-hidden={!open}>
+                        <span className="block pt-1.5">{detail}</span>
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+      {extra && (
+        <div className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+          <div className="overflow-hidden" aria-hidden={!open}>
+            <div className="pt-5">{extra}</div>
+          </div>
+        </div>
+      )}
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className={`mt-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] cursor-pointer transition-colors ${
+          dark ? "text-[var(--color-brand-gold)] hover:text-white" : "text-[var(--color-brand-gold-deep)] hover:text-[var(--color-brand-black)]"
+        }`}
+      >
+        <Plus className={`w-3.5 h-3.5 transition-transform duration-300 ${open ? "rotate-45" : ""}`} />
+        {open
+          ? language === "es" ? "Ver menos" : "Show less"
+          : language === "es" ? "Ver todo lo que incluye" : "See everything included"}
+      </button>
+    </div>
+  );
+}
 
 export function Services() {
   const { language, t } = useLanguage();
@@ -13,6 +81,9 @@ export function Services() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const t1Plans = ((t("services.t1_plans") as any[]) || []);
   const selectedPlan = t1Plans[selectedPlanIndex] || t1Plans[0] || {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const t2Plan = (t("services.t2_plan") as any) || {};
+  const inclusions = splitLabel((t("services.t3_inclusions") as string) || "");
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -24,270 +95,198 @@ export function Services() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const eyebrow = "text-[11px] font-bold uppercase tracking-[0.2em] mb-3";
+  const cardTitle = "font-heading italic text-[1.75rem] md:text-[2rem] leading-[1.1] mb-5";
+  const cardDesc = "font-body text-[14.5px] leading-relaxed mb-8";
+  const card = "relative rounded-[1.75rem] p-7 md:p-9 flex flex-col shrink-0 w-[86%] sm:w-[62%] lg:w-auto snap-start";
+
   return (
-    <Scene id="servicios" className="py-32 px-6 md:px-16 bg-[var(--color-brand-gold-light)] relative overflow-hidden">
+    <Scene id="servicios" className="py-28 md:py-36 px-6 md:px-16 bg-[var(--color-brand-gold-light)] relative">
       <div className="max-w-7xl mx-auto relative z-10">
-            <div data-reveal className="text-center mb-20">
-              <h2 className="font-heading italic text-5xl md:text-6xl text-[var(--color-brand-black)] mb-6">{t("services.title")}</h2>
-              <p className="font-body text-[var(--color-brand-black)] font-medium text-lg">{t("services.desc")}</p>
-            </div>
+        <div className="text-center mb-14 md:mb-20">
+          <h2 data-lines className="font-heading italic text-5xl md:text-6xl text-[var(--color-brand-black)] mb-5">{t("services.title")}</h2>
+          <p data-reveal className="font-body text-[var(--color-brand-black)] font-medium text-lg">{t("services.desc")}</p>
+        </div>
 
-            <div data-stagger className="grid lg:grid-cols-3 gap-8 items-stretch">
-              {/* Tier 1 - Standard */}
-              <div className="bg-white p-8 rounded-[2rem] shadow-soft border border-white mt-0 lg:mt-8 mb-0 lg:-mb-8 flex flex-col hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
-                <h3 className="font-heading italic text-3xl mb-2 text-center text-[var(--color-brand-black)]">{t("services.t1_title")}</h3>
-                <p className="text-center font-bold text-sm uppercase tracking-widest text-gray-500 mb-6">{t("services.t1_subtitle")}</p>
-                <p className="font-body text-sm text-gray-700 mb-8 leading-relaxed text-center">
-                  {t("services.t1_desc")}
-                </p>
-                <ul className="space-y-4 mb-10 text-sm font-medium text-gray-700">
-                  {(t("services.t1_features") as string[]).map((feature, i) => {
-                    const splitIndex = feature.indexOf(":");
-                    return (
-                      <li key={i} className="flex gap-2 items-start text-sm leading-relaxed text-gray-700 font-medium">
-                        <span className="text-[var(--color-brand-gold-deep)] font-bold shrink-0">✦</span>
-                        <span>
-                          {splitIndex !== -1 ? (
-                            <>
-                              <strong className="font-bold text-[var(--color-brand-black)]">
-                                {feature.substring(0, splitIndex + 1)}
-                              </strong>
-                              {feature.substring(splitIndex + 1)}
-                            </>
-                          ) : (
-                            feature
-                          )}
+        <div data-stagger className="no-scrollbar flex lg:grid lg:grid-cols-3 gap-4 lg:gap-7 items-start lg:items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory scroll-px-6 -mx-6 px-6 md:-mx-16 md:px-16 lg:mx-0 lg:px-0 py-4 lg:py-0">
+          {/* Tier 1 */}
+          <article className={`${card} bg-white`}>
+            <p className={`${eyebrow} text-gray-500`}>{t("services.t1_subtitle")}</p>
+            <h3 className={`${cardTitle} text-[var(--color-brand-black)]`}>{t("services.t1_title")}</h3>
+            <p className={`${cardDesc} text-gray-700`}>{t("services.t1_desc")}</p>
+            <Features items={t("services.t1_features") as string[]} />
+            <div className="mt-auto">
+            <div className="w-full" ref={dropdownRef}>
+              <p className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 text-center">
+                {language === "es" ? "Programas Disponibles" : "Available Programs"}
+              </p>
+
+              <div className="relative">
+                {/* Dropdown Selector Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsDropdownOpen((prev) => !prev)}
+                  aria-haspopup="listbox"
+                  aria-expanded={isDropdownOpen}
+                  className={`w-full bg-gray-50 hover:bg-gray-100/80 border rounded-2xl p-4 text-left flex items-center justify-between gap-3 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-gold)] ${
+                    isDropdownOpen ? "border-[var(--color-brand-gold)] ring-1 ring-[var(--color-brand-gold)]" : "border-gray-200/90"
+                  }`}
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-sm font-bold text-[var(--color-brand-black)] leading-tight">
+                        {selectedPlan.name}
+                      </span>
+                      {selectedPlan.name?.includes("Popular") && (
+                        <span className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0">
+                          {language === "es" ? "Más Popular" : "Most Popular"}
                         </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <div className="mt-auto pt-8 border-t border-gray-100 w-full" ref={dropdownRef}>
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 text-center">
-                    {language === "es" ? "Programas Disponibles" : "Available Programs"}
-                  </p>
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1 leading-snug truncate">
+                      {selectedPlan.desc}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0 pl-1 border-l border-gray-200/60">
+                    <span className="text-sm font-black text-[var(--color-brand-black)]">
+                      {selectedPlan.price}
+                    </span>
+                    <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isDropdownOpen ? "rotate-180 text-[var(--color-brand-black)]" : ""}`} />
+                  </div>
+                </button>
 
-                  <div className="relative">
-                    {/* Dropdown Selector Button */}
-                    <button
-                      type="button"
-                      onClick={() => setIsDropdownOpen((prev) => !prev)}
-                      aria-haspopup="listbox"
-                      aria-expanded={isDropdownOpen}
-                      className={`w-full bg-gray-50 hover:bg-gray-100/80 border rounded-2xl p-4 text-left flex items-center justify-between gap-3 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-gold)] ${
-                        isDropdownOpen ? "border-[var(--color-brand-gold)] ring-1 ring-[var(--color-brand-gold)]" : "border-gray-200/90"
-                      }`}
-                    >
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-sm font-bold text-[var(--color-brand-black)] leading-tight">
-                            {selectedPlan.name}
-                          </span>
-                          {selectedPlan.name?.includes("Popular") && (
-                            <span className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0">
-                              {language === "es" ? "Más Popular" : "Most Popular"}
+                {/* Dropdown Options List - rendered inline in document flow so it never gets cut off */}
+                {isDropdownOpen && (
+                  <div 
+                    className="mt-2 bg-gray-50/70 rounded-2xl border border-gray-200/80 p-2 space-y-1.5 transition-all"
+                    role="listbox"
+                  >
+                    {t1Plans.map((plan: { name?: string; desc?: string; price?: string }, idx: number) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => {
+                          setSelectedPlanIndex(idx);
+                          setIsDropdownOpen(false);
+                        }}
+                        className={`w-full p-3.5 rounded-xl flex items-center justify-between gap-3 text-left transition-all cursor-pointer group ${
+                          selectedPlanIndex === idx 
+                            ? "bg-white border-2 border-[var(--color-brand-gold)] shadow-sm" 
+                            : "bg-white/80 hover:bg-white border border-gray-200/60 hover:border-gray-300"
+                        }`}
+                        role="option"
+                        aria-selected={selectedPlanIndex === idx}
+                      >
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className={`text-sm font-bold transition-colors ${
+                              selectedPlanIndex === idx 
+                                ? "text-[var(--color-brand-black)]" 
+                                : "text-gray-700 group-hover:text-[var(--color-brand-black)]"
+                            }`}>
+                              {plan.name}
                             </span>
+                            {plan.name?.includes("Popular") && (
+                              <span className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider shrink-0">
+                                {language === "es" ? "Más Popular" : "Most Popular"}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1 leading-snug">
+                            {plan.desc}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2.5 shrink-0 pl-2">
+                          <span className="text-sm font-black text-[var(--color-brand-black)]">
+                            {plan.price}
+                          </span>
+                          {selectedPlanIndex === idx && (
+                            <span className="w-2 h-2 rounded-full bg-[var(--color-brand-gold)] shrink-0" />
                           )}
                         </div>
-                        <p className="text-xs text-gray-500 mt-1 leading-snug truncate">
-                          {selectedPlan.desc}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2 shrink-0 pl-1 border-l border-gray-200/60">
-                        <span className="text-sm font-black text-[var(--color-brand-black)]">
-                          {selectedPlan.price}
-                        </span>
-                        <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isDropdownOpen ? "rotate-180 text-[var(--color-brand-black)]" : ""}`} />
-                      </div>
-                    </button>
-
-                    {/* Dropdown Options List - rendered inline in document flow so it never gets cut off */}
-                    {isDropdownOpen && (
-                      <div 
-                        className="mt-2 bg-gray-50/70 rounded-2xl border border-gray-200/80 p-2 space-y-1.5 transition-all"
-                        role="listbox"
-                      >
-                        {t1Plans.map((plan: any, idx: number) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            onClick={() => {
-                              setSelectedPlanIndex(idx);
-                              setIsDropdownOpen(false);
-                            }}
-                            className={`w-full p-3.5 rounded-xl flex items-center justify-between gap-3 text-left transition-all cursor-pointer group ${
-                              selectedPlanIndex === idx 
-                                ? "bg-white border-2 border-[var(--color-brand-gold)] shadow-sm" 
-                                : "bg-white/80 hover:bg-white border border-gray-200/60 hover:border-gray-300"
-                            }`}
-                            role="option"
-                            aria-selected={selectedPlanIndex === idx}
-                          >
-                            <div className="min-w-0 flex-1">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className={`text-sm font-bold transition-colors ${
-                                  selectedPlanIndex === idx 
-                                    ? "text-[var(--color-brand-black)]" 
-                                    : "text-gray-700 group-hover:text-[var(--color-brand-black)]"
-                                }`}>
-                                  {plan.name}
-                                </span>
-                                {plan.name?.includes("Popular") && (
-                                  <span className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider shrink-0">
-                                    {language === "es" ? "Más Popular" : "Most Popular"}
-                                  </span>
-                                )}
-                              </div>
-                              <p className="text-xs text-gray-500 mt-1 leading-snug">
-                                {plan.desc}
-                              </p>
-                            </div>
-                            <div className="flex items-center gap-2.5 shrink-0 pl-2">
-                              <span className="text-sm font-black text-[var(--color-brand-black)]">
-                                {plan.price}
-                              </span>
-                              {selectedPlanIndex === idx && (
-                                <span className="w-2 h-2 rounded-full bg-[var(--color-brand-gold)] shrink-0" />
-                              )}
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                      </button>
+                    ))}
                   </div>
-
-                  {/* Primary CTA button for the currently selected plan */}
-                  <div className="mt-4">
-                    <a 
-                      href={selectedPlan.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="bg-[var(--color-brand-black)] text-white border-2 border-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs w-full hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors cursor-pointer text-center block"
-                    >
-                      {language === "es" ? "Pagar Programa" : "Pay Program"} — {selectedPlan.price}
-                    </a>
-                  </div>
-                </div>
+                )}
               </div>
 
-              {/* Tier 2 - Featured (Center) */}
-              <div className="bg-white p-8 rounded-[2rem] shadow-elevated border-2 border-[var(--color-brand-gold)] gold-sweep relative flex flex-col z-10 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-brand-black)] text-white text-xs font-bold tracking-widest uppercase py-1 px-4 rounded-full">
-                  {t("services.t2_tag")}
-                </div>
-                <h3 className="font-heading italic text-3xl mb-1 text-center text-[var(--color-brand-black)]">{t("services.t2_title")}</h3>
-                <p className="text-center font-bold text-sm uppercase tracking-widest text-[var(--color-brand-gold-deep)] mb-6">{t("services.t2_subtitle")}</p>
-                <p className="font-body text-sm text-gray-700 mb-8 leading-relaxed text-center">
-                  {t("services.t2_desc")}
-                </p>
-                <ul className="space-y-4 mb-10 text-sm font-medium text-gray-700">
-                  {(t("services.t2_features") as string[]).map((feature, i) => {
-                    const splitIndex = feature.indexOf(":");
-                    return (
-                      <li key={i} className="flex gap-2 items-start text-sm leading-relaxed text-gray-700 font-medium">
-                        <span className="text-[var(--color-brand-gold-deep)] font-bold shrink-0">✦</span>
-                        <span>
-                          {splitIndex !== -1 ? (
-                            <>
-                              <strong className="font-bold text-[var(--color-brand-black)]">
-                                {feature.substring(0, splitIndex + 1)}
-                              </strong>
-                              {feature.substring(splitIndex + 1)}
-                            </>
-                          ) : (
-                            feature
-                          )}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <div className="mt-auto pt-8 border-t border-gray-100 w-full text-center">
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-3">
-                    {language === "es" ? "Inversión del Acompañamiento" : "Advisory Investment"}
-                  </p>
-                  <p className="text-3xl font-black text-[var(--color-brand-black)] mb-1">
-                    {(t("services.t2_plan") as any)?.price}
-                  </p>
-                  <p className="text-xs text-gray-500 mb-6 uppercase tracking-wider font-bold">
-                    {(t("services.t2_plan") as any)?.name}
-                  </p>
-                  <a 
-                    href={(t("services.t2_plan") as any)?.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="bg-[var(--color-brand-gold)] border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs w-full hover:bg-[var(--color-brand-gold-light)] transition-colors cursor-pointer text-center block"
-                  >
-                    {language === "es" ? "Contratar Acompañamiento" : "Start Advisory"}
-                  </a>
-                </div>
+              {/* Primary CTA button for the currently selected plan */}
+              <div className="mt-4">
+                <a 
+                  href={selectedPlan.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-[var(--color-brand-black)] text-white border-2 border-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs w-full hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors cursor-pointer text-center block"
+                >
+                  {language === "es" ? "Pagar Programa" : "Pay Program"} — {selectedPlan.price}
+                </a>
               </div>
-
-              {/* Tier 3 */}
-              <div className="bg-white p-8 rounded-[2rem] shadow-soft border border-white mt-0 lg:mt-8 mb-0 lg:-mb-8 flex flex-col hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
-                <h3 className="font-heading italic text-3xl mb-2 text-center text-[var(--color-brand-black)]">{t("services.t3_title")}</h3>
-                <p className="text-center font-bold text-sm uppercase tracking-widest text-gray-500 mb-6">{t("services.t3_subtitle")}</p>
-                <p className="font-body text-sm text-gray-700 mb-8 leading-relaxed text-center">
-                  {t("services.t3_desc")}
-                </p>
-                <ul className="space-y-4 mb-10 text-sm font-medium text-gray-700">
-                  {(t("services.t3_features") as string[]).map((feature, i) => {
-                    const splitIndex = feature.indexOf(":");
-                    return (
-                      <li key={i} className="flex gap-2 items-start text-sm leading-relaxed text-gray-700 font-medium">
-                        <span className="text-[var(--color-brand-gold-deep)] font-bold shrink-0">✦</span>
-                        <span>
-                          {splitIndex !== -1 ? (
-                            <>
-                              <strong className="font-bold text-[var(--color-brand-black)]">
-                                {feature.substring(0, splitIndex + 1)}
-                              </strong>
-                              {feature.substring(splitIndex + 1)}
-                            </>
-                          ) : (
-                            feature
-                          )}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <div className="mt-auto pt-8 border-t border-gray-100 w-full flex flex-col">
-                  {/* Inclusion Callout Box */}
-                  <div className="bg-[var(--color-brand-pink-light)] p-4 rounded-2xl border border-[var(--color-brand-pink-light)] mb-5 text-[13px] text-gray-700 leading-relaxed font-medium text-left">
-                    <strong className="font-bold text-[var(--color-brand-black)] block mb-1">
-                      {language === "es" ? "Incluido en todas las sesiones:" : "Included in all sessions:"}
-                    </strong>
-                    {t("services.t3_inclusions")}
-                  </div>
-
-                  <p className="text-[13px] italic text-gray-600 mb-5 px-2 leading-relaxed text-center">
-                    {t("services.t3_question")}
-                  </p>
-
-                  <div className="text-center mb-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-2">
-                      {(t("services.t3_price_label") as string) || (language === "es" ? "Inversión" : "Investment")}
-                    </p>
-                    <p className="text-3xl font-black text-[var(--color-brand-black)] mb-1">
-                      {(t("services.t3_price") as string) || "$200.000 COP"} <span className="text-sm md:text-sm font-semibold text-gray-500 uppercase tracking-wider">{(t("services.t3_price_unit") as string) || (language === "es" ? "por hora" : "per hour")}</span>
-                    </p>
-                  </div>
-
-                  <div>
-                    <a 
-                      href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20consultar%20sobre%20los%20talleres%20y%20capacitaciones%20in-company%20para%20mi%20equipo." 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="bg-transparent border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs w-full hover:bg-[var(--color-brand-black)] hover:text-white transition-colors cursor-pointer text-center block"
-                    >
-                      {language === "es" ? "Diseñar sesión a mi medida" : "Customize my session"}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
             </div>
+            </div>
+          </article>
+
+          {/* Tier 2, featured */}
+          <article className={`${card} bg-[var(--color-brand-black)] text-white lg:-my-4 lg:py-12 shadow-elevated`}>
+            <span className="absolute top-6 right-6 md:top-8 md:right-8 bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] text-[10px] font-bold tracking-[0.18em] uppercase py-1 px-3 rounded-full">
+              {t("services.t2_tag")}
+            </span>
+            <p className={`${eyebrow} text-[var(--color-brand-gold)] pr-24`}>{t("services.t2_subtitle")}</p>
+            <h3 className={`${cardTitle} text-white`}>{t("services.t2_title")}</h3>
+            <p className={`${cardDesc} text-white/75`}>{t("services.t2_desc")}</p>
+            <Features items={t("services.t2_features") as string[]} dark />
+            <div className="mt-auto pt-6 border-t border-white/12">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50 mb-2">
+                {language === "es" ? "Inversión del Acompañamiento" : "Advisory Investment"}
+              </p>
+              <p className="font-heading text-[2rem] leading-none text-white mb-2">{t2Plan.price}</p>
+              <p className="text-xs text-white/55 mb-6 uppercase tracking-wider font-bold">{t2Plan.name}</p>
+              <a
+                href={t2Plan.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[var(--color-brand-gold)] border-2 border-[var(--color-brand-gold)] text-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs w-full hover:bg-white hover:border-white transition-colors cursor-pointer text-center block"
+              >
+                {language === "es" ? "Contratar Acompañamiento" : "Start Advisory"}
+              </a>
+            </div>
+          </article>
+
+          {/* Tier 3 */}
+          <article className={`${card} bg-white`}>
+            <p className={`${eyebrow} text-gray-500`}>{t("services.t3_subtitle")}</p>
+            <h3 className={`${cardTitle} text-[var(--color-brand-black)]`}>{t("services.t3_title")}</h3>
+            <p className={`${cardDesc} text-gray-700`}>{t("services.t3_desc")}</p>
+            <Features
+              items={t("services.t3_features") as string[]}
+              extra={
+                <div className="bg-[var(--color-brand-pink-light)] p-4 rounded-2xl text-[13px] text-gray-700 leading-relaxed">
+                  <strong className="font-bold text-[var(--color-brand-black)] block mb-1">
+                    {inclusions.detail ? `${inclusions.label}:` : language === "es" ? "Incluido en todas las sesiones:" : "Included in all sessions:"}
+                  </strong>
+                  {inclusions.detail || inclusions.label}
+                </div>
+              }
+            />
+            <div className="mt-auto pt-6 border-t border-[var(--color-brand-black)]/10">
+              <p className="text-[13px] italic text-gray-600 mb-5 leading-relaxed">{t("services.t3_question")}</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gray-400 mb-2">
+                {(t("services.t3_price_label") as string) || (language === "es" ? "Inversión" : "Investment")}
+              </p>
+              <p className="font-heading text-[2rem] leading-none text-[var(--color-brand-black)] mb-6">
+                {(t("services.t3_price") as string) || "$200.000 COP"}{" "}
+                <span className="font-body text-xs font-semibold text-gray-500 uppercase tracking-wider">{(t("services.t3_price_unit") as string) || (language === "es" ? "por hora" : "per hour")}</span>
+              </p>
+              <a
+                href={IN_COMPANY_WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-transparent border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs w-full hover:bg-[var(--color-brand-black)] hover:text-white transition-colors cursor-pointer text-center block"
+              >
+                {language === "es" ? "Diseñar sesión a mi medida" : "Customize my session"}
+              </a>
+            </div>
+          </article>
+        </div>
       </div>
     </Scene>
   );

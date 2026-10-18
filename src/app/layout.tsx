@@ -41,7 +41,6 @@ export const metadata: Metadata = {
 import { LanguageProvider } from "@/context/language-context";
 import { Analytics } from "@vercel/analytics/next";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { StarCursor } from "@/components/star-cursor";
 
 // Hides animated elements until scene scripts take over. Gives up after 4s if scripts never load.
 const motionFlag = `(function(){try{var d=document.documentElement;if(!matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("motion-ok");setTimeout(function(){if(!window.__motionReady){d.classList.remove("motion-ok")}},4000)}}catch(e){}})()`;
@@ -61,7 +60,6 @@ export default function RootLayout({
           {children}
         </LanguageProvider>
         <SmoothScroll />
-        <StarCursor />
         <Analytics />
       </body>
     </html>

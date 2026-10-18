@@ -24,7 +24,7 @@ export function SmoothScroll() {
 
     if (reduced) return;
 
-    const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.95 });
+    const lenis = new Lenis({ lerp: 0.16 });
     window.__lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
     const tick = (time: number) => lenis.raf(time * 1000);
@@ -39,7 +39,7 @@ export function SmoothScroll() {
       const target = document.querySelector(url.hash);
       if (!target) return;
       e.preventDefault();
-      lenis.scrollTo(target as HTMLElement, { offset: -96, duration: 1.6 });
+      lenis.scrollTo(target as HTMLElement, { offset: -96, duration: 1 });
       history.pushState(null, "", url.hash);
     };
     document.addEventListener("click", onClick, true);

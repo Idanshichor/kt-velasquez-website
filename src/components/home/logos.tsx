@@ -7,23 +7,24 @@ import { Scene } from "./scene";
 const LOGOS = [
   { src: "/images/BioChange_logo.png", alt: "BioChange", href: "https://biochange.life/" },
   { src: "/images/logo-roma-studio.webp", alt: "Roma Studio Creativo", href: "https://romastudiocreativo.es/" },
-  { src: "/images/logo-bound-travel-updated.png", alt: "Bound To Travel", href: "https://www.boundtotravel.com/", scale: "scale-150" },
-  { src: "/images/logo-aev.png", alt: "AevArk", href: "https://www.aevark.com/", scale: "scale-110" },
-  { src: "/images/logo-lightu-v2.png", alt: "Light U", href: "https://www.lightu.es/" },
+  { src: "/images/logo-bound-travel-updated.png", alt: "Bound To Travel", href: "https://www.boundtotravel.com/", scale: "scale-[2.1]" },
+  { src: "/images/logo-aev.png", alt: "AevArk", href: "https://www.aevark.com/", scale: "scale-[0.8]" },
+  { src: "/images/logo-lightu-v2.png", alt: "Light U", href: "https://www.lightu.es/", scale: "scale-[1.6]" },
 ];
 
 export function Logos() {
   const { t } = useLanguage();
   return (
-    <Scene className="py-24 px-6 md:px-16 bg-white border-y border-gray-100">
-      <div data-stagger className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-12 md:gap-20">
-        <p className="text-base font-black uppercase tracking-[0.3em] text-[var(--color-brand-black)] shrink-0 hidden md:block">{t("logos.trust")}</p>
-        <div className="w-[1px] h-16 bg-gray-200 hidden md:block" />
-        {LOGOS.map((logo) => (
-          <a key={logo.alt} data-cursor href={logo.href} target="_blank" rel="noopener noreferrer" className="block hover:-translate-y-1 transition-transform">
-            <Image src={logo.src} alt={logo.alt} width={240} height={120} className={`object-contain grayscale opacity-40 hover:opacity-90 hover:grayscale-0 transition-all h-28 w-auto ${logo.scale || ""}`} />
-          </a>
-        ))}
+    <Scene className="py-16 md:py-20 px-6 md:px-16 bg-white border-b border-gray-100">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <p data-reveal className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 shrink-0">{t("logos.trust")}</p>
+        <div data-stagger className="grid grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-8 items-center flex-1 w-full">
+          {LOGOS.map((logo) => (
+            <a key={logo.alt} href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={logo.alt} className="group relative block h-14 md:h-16">
+              <Image src={logo.src} alt={logo.alt} fill sizes="200px" className={`object-contain grayscale opacity-55 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ${logo.scale || ""}`} />
+            </a>
+          ))}
+        </div>
       </div>
     </Scene>
   );
