@@ -77,11 +77,14 @@ export function Services() {
   const label = "text-[11px] font-bold uppercase tracking-[0.18em]";
 
   return (
-    <Scene id="servicios" className="py-28 md:py-36 px-6 md:px-16 bg-[var(--color-brand-gold-light)] relative">
+    <Scene id="servicios" className="py-28 md:py-40 px-6 md:px-16 bg-[var(--color-brand-black)] text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 data-lines className="font-heading italic text-5xl md:text-6xl text-[var(--color-brand-black)] mb-5">{t("services.title")}</h2>
-          <p data-reveal className="font-body text-[var(--color-brand-black)] font-medium text-lg">{t("services.desc")}</p>
+        <div className="grid md:grid-cols-[auto_minmax(0,1fr)] gap-8 md:gap-14 items-center mb-14 md:mb-20">
+          <KtStar className="statement-star w-14 md:w-28 text-[var(--color-brand-gold)]" />
+          <div>
+            <h2 data-lines className="font-heading text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.02] tracking-tight text-white mb-5">{t("services.title")}</h2>
+            <p data-reveal className="font-heading italic text-white/65 text-xl md:text-2xl">{t("services.desc")}</p>
+          </div>
         </div>
 
         {/* Tabs */}
@@ -97,27 +100,27 @@ export function Services() {
                 onClick={() => setActive(i)}
                 className={`svc-tab relative shrink-0 w-[78%] sm:w-[46%] md:w-auto text-left rounded-[1.5rem] p-5 md:p-7 border-[1.5px] transition-all duration-500 cursor-pointer ${
                   on
-                    ? "bg-[var(--color-brand-black)] border-[var(--color-brand-black)] text-white shadow-elevated md:-translate-y-1.5"
-                    : "bg-white/70 border-[var(--color-brand-black)]/10 text-[var(--color-brand-black)] hover:bg-white hover:border-[var(--color-brand-black)]/30"
+                    ? "bg-[var(--color-brand-pink)] border-[var(--color-brand-pink)] text-[var(--color-brand-black)] md:-translate-y-1.5"
+                    : "bg-white/[0.04] border-white/15 text-white hover:bg-white/[0.08] hover:border-white/35"
                 }`}
               >
                 <div className="flex items-center justify-between mb-4 md:mb-6">
-                  <span className={`font-heading text-2xl md:text-3xl leading-none ${on ? "text-[var(--color-brand-gold)]" : "text-[var(--color-brand-gold-deep)]"}`}>0{i + 1}</span>
+                  <span className={`font-heading text-2xl md:text-3xl leading-none ${on ? "text-[var(--color-brand-pink-dark)]" : "text-[var(--color-brand-gold)]"}`}>0{i + 1}</span>
                   {tier.tag && (
-                    <span className={`${label} text-[10px] py-1 px-2.5 rounded-full ${on ? "bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]" : "bg-[var(--color-brand-pink)] text-[var(--color-brand-black)]"}`}>{tier.tag}</span>
+                    <span className={`${label} text-[10px] py-1 px-2.5 rounded-full ${on ? "bg-[var(--color-brand-black)] text-white" : "bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]"}`}>{tier.tag}</span>
                   )}
                 </div>
-                <p className={`${label} mb-2 ${on ? "text-white/55" : "text-gray-500"}`}>{tier.subtitle}</p>
+                <p className={`${label} mb-2 ${on ? "text-[var(--color-brand-black)]/60" : "text-white/50"}`}>{tier.subtitle}</p>
                 <h3 className="font-heading italic text-xl md:text-[1.65rem] leading-[1.15] mb-4 md:mb-6 min-h-[2.3em]">{tier.title}</h3>
-                <p className={`text-sm font-bold ${on ? "text-white" : "text-[var(--color-brand-black)]"}`}>{tier.price}</p>
-                <span aria-hidden="true" className={`absolute left-7 right-7 -bottom-px h-[3px] rounded-full bg-[var(--color-brand-pink-dark)] origin-left transition-transform duration-500 ${on ? "scale-x-100" : "scale-x-0"}`} />
+                <p className={`text-sm font-bold ${on ? "text-[var(--color-brand-black)]" : "text-white"}`}>{tier.price}</p>
+                <span aria-hidden="true" className={`absolute left-7 right-7 -bottom-px h-[3px] rounded-full bg-[var(--color-brand-black)] origin-left transition-transform duration-500 ${on ? "scale-x-100" : "scale-x-0"}`} />
               </button>
             );
           })}
         </div>
 
         {/* Panel */}
-        <div id="svc-panel" role="tabpanel" key={active} className="svc-panel mt-4 md:mt-6 bg-white rounded-[2rem] shadow-soft grid lg:grid-cols-[minmax(0,1fr)_26rem] overflow-hidden">
+        <div id="svc-panel" role="tabpanel" key={active} className="svc-panel mt-4 md:mt-6 bg-white text-[var(--color-brand-black)] rounded-[2rem] grid lg:grid-cols-[minmax(0,1fr)_26rem] overflow-hidden">
           <div className="p-7 md:p-12">
             <p className="font-heading italic text-xl md:text-2xl leading-relaxed text-[var(--color-brand-black)] mb-10 max-w-3xl">{desc}</p>
             <FeatureList items={features} />
