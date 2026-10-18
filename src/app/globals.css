@@ -142,15 +142,22 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
 .wave-bar { transform-origin: bottom; animation: wave 1.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .wave-bar { animation: none; transform: scaleY(0.6); } }
 
-/* KT components: outlined cards with a solid offset shadow, and the one button */
-.kt-card { border: 1.5px solid var(--color-brand-black); box-shadow: 6px 6px 0 var(--kt-shadow, var(--color-brand-black)); }
-.kt-card-lift { transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
-.kt-card-lift:hover { translate: -3px -3px; box-shadow: 9px 9px 0 var(--kt-shadow, var(--color-brand-black)); }
-.kt-btn { display: inline-flex; align-items: center; gap: 14px; padding: 8px 8px 8px 28px; border-radius: 999px; border: 1.5px solid var(--color-brand-black); font-weight: 700; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; box-shadow: 4px 4px 0 var(--color-brand-black); transition: translate 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s, color 0.3s; }
-.kt-btn:hover { translate: -2px -2px; box-shadow: 6px 6px 0 var(--color-brand-black); }
-.kt-btn:active { translate: 2px 2px; box-shadow: 1px 1px 0 var(--color-brand-black); }
+/* KT360 video kit, carried to the web: uppercase editorial titles, lower-third eyebrows,
+   short gold rules, soft cards, and the one button. Colour keeps its kit meaning:
+   gold builds, purple was before, magenta breaks, pink recovers, white structures, black holds. */
+.kt-title { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.95; font-weight: 400; }
+.kt-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; }
+.kt-eyebrow::before { content: ""; width: 3px; height: 1.6em; border-radius: 2px; background: var(--color-brand-pink-dark); }
+.kt-eyebrow.on-dark::before { background: var(--color-brand-pink); }
+.kt-rule { display: block; width: 64px; height: 1px; background: var(--color-brand-gold); }
+.kt-card { border: 1px solid rgba(26, 26, 26, 0.12); box-shadow: 0 24px 60px -28px rgba(26, 26, 26, 0.35); }
+.kt-card-lift { transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.kt-card-lift:hover { translate: 0 -4px; }
+.kt-btn { display: inline-flex; align-items: center; gap: 14px; padding: 8px 8px 8px 28px; border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
 .kt-btn-dot { width: 38px; height: 38px; border-radius: 999px; display: grid; place-items: center; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
 .kt-btn:hover .kt-btn-dot { transform: rotate(90deg); }
+.kt-btn-dark:hover { background: var(--color-brand-pink-dark); }
+.kt-btn-gold:hover, .kt-btn-pink:hover { background: #fff; }
 .kt-btn-dark { background: var(--color-brand-black); color: #fff; }
 .kt-btn-dark .kt-btn-dot { background: var(--color-brand-gold); color: var(--color-brand-black); }
 .kt-btn-gold { background: var(--color-brand-gold); color: var(--color-brand-black); }

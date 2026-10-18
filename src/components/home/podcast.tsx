@@ -26,7 +26,7 @@ export function Podcast() {
 
         {/* Podcast content */}
         <div className="flex flex-col text-center md:text-left">
-          <p data-reveal className="text-sm font-bold uppercase tracking-[0.3em] text-[var(--color-brand-black)] mb-4 opacity-70">{t("podcast.tag")}</p>
+          <p data-reveal className="kt-eyebrow justify-center md:justify-start text-[var(--color-brand-black)] mb-6">{t("podcast.tag")}</p>
           <h2 data-reveal className="mb-6 relative w-full max-w-[280px] md:max-w-[340px] aspect-[671/351] mx-auto md:mx-0">
             <span className="sr-only">
               {t("podcast.title_p1")} {t("podcast.title_p2")}

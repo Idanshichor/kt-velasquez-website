@@ -18,7 +18,7 @@ function splitLabel(text: string) {
 /** Full feature list of one service: short name in bold, the sentence under it. */
 function FeatureList({ items }: { items: string[] }) {
   return (
-    <ul className="grid sm:grid-cols-2 gap-x-10 gap-y-6">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6">
       {items.map((feature, i) => {
         const { label, detail } = splitLabel(feature);
         return (
@@ -82,8 +82,9 @@ export function Services() {
         <div className="grid md:grid-cols-[auto_minmax(0,1fr)] gap-8 md:gap-14 items-center mb-14 md:mb-20">
           <KtStar className="statement-star w-14 md:w-28 text-[var(--color-brand-gold)]" />
           <div>
-            <h2 data-lines className="font-heading text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.02] tracking-tight text-white mb-5">{t("services.title")}</h2>
-            <p data-reveal className="font-heading italic text-white/65 text-xl md:text-2xl">{t("services.desc")}</p>
+            <h2 data-lines className="kt-title text-5xl md:text-7xl lg:text-[5.5rem] text-white mb-6">{t("services.title")}</h2>
+            <span data-reveal className="kt-rule mb-5" />
+            <p data-reveal className="font-body text-white/65 text-lg md:text-xl">{t("services.desc")}</p>
           </div>
         </div>
 
@@ -111,7 +112,7 @@ export function Services() {
                   )}
                 </div>
                 <p className={`${label} mb-2 ${on ? "text-[var(--color-brand-black)]/60" : "text-white/50"}`}>{tier.subtitle}</p>
-                <h3 className="font-heading italic text-xl md:text-[1.65rem] leading-[1.15] mb-4 md:mb-6 min-h-[2.3em]">{tier.title}</h3>
+                <h3 className="kt-title text-lg md:text-[1.4rem] leading-[1.05] mb-4 md:mb-6 min-h-[2.2em]">{tier.title}</h3>
                 <p className={`text-sm font-bold ${on ? "text-[var(--color-brand-black)]" : "text-white"}`}>{tier.price}</p>
                 <span aria-hidden="true" className={`absolute left-7 right-7 -bottom-px h-[3px] rounded-full bg-[var(--color-brand-black)] origin-left transition-transform duration-500 ${on ? "scale-x-100" : "scale-x-0"}`} />
               </button>
@@ -120,7 +121,7 @@ export function Services() {
         </div>
 
         {/* Panel */}
-        <div id="svc-panel" role="tabpanel" key={active} style={{ "--kt-shadow": "var(--color-brand-pink)" } as React.CSSProperties} className="svc-panel kt-card mt-4 md:mt-6 bg-white text-[var(--color-brand-black)] rounded-[2rem] grid lg:grid-cols-[minmax(0,1fr)_26rem] overflow-hidden">
+        <div id="svc-panel" role="tabpanel" key={active} style={{ "--kt-shadow": "var(--color-brand-pink)" } as React.CSSProperties} className="svc-panel kt-card mt-4 md:mt-6 bg-white text-[var(--color-brand-black)] rounded-[2rem] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_26rem] overflow-hidden">
           <div className="p-7 md:p-12">
             <p className="font-heading italic text-xl md:text-2xl leading-relaxed text-[var(--color-brand-black)] mb-10 max-w-3xl">{desc}</p>
             <FeatureList items={features} />

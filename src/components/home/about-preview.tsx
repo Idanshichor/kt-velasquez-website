@@ -45,7 +45,7 @@ export function AboutPreview() {
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] gap-10 lg:gap-20 items-start">
         <div className="lg:sticky lg:top-36 text-center lg:text-left">
           <h2 data-reveal className="font-script text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-[var(--color-brand-pink-dark)]">{t("about.tag")}</h2>
-          <KtStar className="statement-star hidden lg:block w-16 h-16 mt-10 text-[var(--color-brand-gold)]" />
+          <span className="kt-rule mt-8 mx-auto lg:mx-0" />
         </div>
         <div>
           <p data-reveal className="font-body text-gray-600 text-base md:text-lg leading-[1.75] mb-10 max-w-2xl">{lead}</p>

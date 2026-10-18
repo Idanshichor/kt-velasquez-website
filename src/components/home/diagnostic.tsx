@@ -13,7 +13,7 @@ export function Diagnostic() {
   return (
     <Scene
       id="quien-soy"
-      className="py-32 px-6 md:px-16 bg-[var(--color-brand-gold)] relative overflow-hidden"
+      className="py-32 px-6 md:px-16 bg-[var(--color-brand-purple)] text-white relative overflow-hidden"
       build={({ root }) => {
         const frame = root.querySelector<HTMLElement>("[data-frame]");
         if (frame) {
@@ -27,37 +27,37 @@ export function Diagnostic() {
     >
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10">
         <div className="flex flex-col gap-8 order-2 lg:order-1 text-center lg:text-left">
-          <p data-reveal className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--color-brand-black)]">{t("diagnostic.tag")}</p>
+          <p data-reveal className="kt-eyebrow on-dark justify-center lg:justify-start text-white">{t("diagnostic.tag")}</p>
 
           <Scrub
             as="h2"
-            className="font-heading text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight text-[var(--color-brand-black)]"
+            className="kt-title text-4xl md:text-5xl lg:text-6xl text-white"
             parts={
               language === "es"
                 ? [
                     { text: "Tu negocio o marca está creciendo, pero te quedas preguntándote" },
-                    { text: "¿qué sigue?", className: "font-script normal-case text-[var(--color-brand-pink-dark)] text-[1.4em] leading-none", block: true },
+                    { text: "¿qué sigue?", className: "font-script normal-case tracking-normal text-[var(--color-brand-pink)] text-[1.4em] leading-[1.1]", block: true },
                   ]
                 : [
                     { text: "Your business or brand is growing, yet you're left wondering:" },
-                    { text: "what's next?", className: "font-script normal-case text-[var(--color-brand-pink-dark)] text-[1.4em] leading-none", block: true },
+                    { text: "what's next?", className: "font-script normal-case tracking-normal text-[var(--color-brand-pink)] text-[1.4em] leading-[1.1]", block: true },
                   ]
             }
           />
 
-          <p data-reveal className="text-[var(--color-brand-black)] font-medium text-sm md:text-base leading-relaxed max-w-md mx-auto lg:mx-0">
+          <p data-reveal className="text-white/80 font-medium text-sm md:text-base leading-relaxed max-w-md mx-auto lg:mx-0">
             {t("diagnostic.desc1")}
             <br /><br />
             {t("diagnostic.desc2")}
           </p>
           <div data-reveal className="flex justify-center lg:justify-start mt-4">
-            <KtCta href={WHATSAPP}>{t("diagnostic.cta")}</KtCta>
+            <KtCta href={WHATSAPP} tone="pink">{t("diagnostic.cta")}</KtCta>
           </div>
         </div>
 
         <div className="relative h-[450px] md:h-[600px] w-full p-6 lg:order-2 order-1 flex justify-center">
           {/* Thin gold border frame behind photo */}
-          <div data-frame className="absolute inset-0 border-[1.5px] border-[var(--color-brand-black)] rounded-[2rem] top-10 bottom-0 left-0 right-10 z-0 hidden lg:block" />
+          <div data-frame className="absolute inset-0 border border-white/50 rounded-[2rem] top-10 bottom-0 left-0 right-10 z-0 hidden lg:block" />
 
           <div data-mask className="kt-card relative w-full h-full z-10 overflow-hidden rounded-[2rem]">
             <div data-mask-img className="absolute inset-0">
