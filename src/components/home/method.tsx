@@ -18,7 +18,7 @@ export function Method() {
   return (
     <Scene
       id="metodologia"
-      className="method360 bg-[var(--color-brand-pink-light)] py-28 md:py-36 px-6 md:px-16"
+      className="method360 bg-[var(--color-brand-pink-dark)] text-white py-28 md:py-36 px-6 md:px-16"
       build={({ root, desktop }) => {
         if (!desktop || window.innerHeight < 740) return;
         const cards = Array.from(root.querySelectorAll<HTMLElement>(".m-card"));
@@ -52,18 +52,18 @@ export function Method() {
     >
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-14 lg:gap-24 items-start">
         <div className="m-anchor text-center lg:text-left">
-          <h2 data-lines className="font-heading italic text-5xl md:text-7xl leading-tight text-[var(--color-brand-black)] mb-5">
-            {t("methodology.title")} <span className="not-italic font-black text-[var(--color-brand-gold-deep)] font-script text-6xl md:text-7xl">{t("methodology.title_accent")}</span>
+          <h2 data-lines className="font-heading italic text-5xl md:text-7xl leading-tight text-white mb-5">
+            {t("methodology.title")} <span className="not-italic font-black text-[var(--color-brand-gold)] font-script text-6xl md:text-7xl">{t("methodology.title_accent")}</span>
           </h2>
-          <p data-reveal className="font-body text-gray-700 font-medium text-lg md:text-xl">{t("methodology.desc")}</p>
+          <p data-reveal className="font-body text-white/85 font-medium text-lg md:text-xl">{t("methodology.desc")}</p>
 
           <div className="relative hidden lg:block mt-10 w-[min(100%,340px)] aspect-square" aria-hidden="true">
             <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 400 400">
               <g className="m-orbit">
-                <circle cx="200" cy="200" r="170" fill="none" stroke="var(--color-brand-black)" strokeOpacity="0.35" strokeWidth="1.2" strokeDasharray="3 9" />
-                <circle cx="200" cy="30" r="5" fill="var(--color-brand-pink-dark)" transform="rotate(45 200 200)" />
+                <circle cx="200" cy="200" r="170" fill="none" stroke="#fff" strokeOpacity="0.6" strokeWidth="1.2" strokeDasharray="3 9" />
+                <circle cx="200" cy="30" r="5" fill="var(--color-brand-gold)" transform="rotate(45 200 200)" />
               </g>
-              <circle cx="200" cy="200" r="122" fill="none" stroke="var(--color-brand-gold-deep)" strokeOpacity="0.35" strokeWidth="1" />
+              <circle cx="200" cy="200" r="122" fill="none" stroke="var(--color-brand-gold)" strokeOpacity="0.7" strokeWidth="1" />
               {[[200, 30], [370, 200], [200, 370], [30, 200]].map(([x, y], i) => (
                 <g key={i} className="m-node" transform={`translate(${x} ${y})`}>
                   <circle r="22" className="m-node-ring" />
@@ -72,8 +72,8 @@ export function Method() {
               ))}
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <KtStar className="kt-turn w-10 h-10 text-[var(--color-brand-pink-dark)] mb-1" />
-              <span className="font-script text-6xl md:text-7xl text-[var(--color-brand-gold-deep)] leading-none">360</span>
+              <KtStar className="kt-turn w-10 h-10 text-white mb-1" />
+              <span className="font-script text-6xl md:text-7xl text-[var(--color-brand-gold)] leading-none">360</span>
             </div>
           </div>
         </div>
@@ -81,16 +81,16 @@ export function Method() {
         <div className="m-cards relative grid gap-6">
           <div className="m-progress" aria-hidden="true"><i /></div>
           {pillars.map((p, i) => (
-            <article key={p.n} className={`m-card relative rounded-[1.75rem] p-7 md:p-12 shadow-soft ${i % 2 ? "bg-[var(--color-brand-cream)]" : "bg-white"}`} style={{ zIndex: i + 1 }}>
+            <article key={p.n} className={`m-card kt-card relative rounded-[1.75rem] p-7 md:p-12 text-[var(--color-brand-black)] ${i % 2 ? "bg-[var(--color-brand-gold)]" : "bg-white"}`} style={{ zIndex: i + 1 }}>
               <div className="flex gap-1.5 mb-5 md:mb-8" aria-hidden="true">
                 <span className="w-2 h-2 rounded-full bg-[var(--color-brand-pink-dark)]" />
                 <span className="w-2 h-2 rounded-full bg-[var(--color-brand-gold)]" />
                 <span className="w-2 h-2 rounded-full bg-[var(--color-brand-black)]" />
               </div>
-              <p className="font-heading text-5xl md:text-7xl text-[var(--color-brand-gold-deep)] leading-none mb-4 md:mb-6" aria-hidden="true">{p.n}</p>
+              <p className="font-heading text-5xl md:text-7xl text-[var(--color-brand-pink-dark)] leading-none mb-4 md:mb-6" aria-hidden="true">{p.n}</p>
               <h3 className="font-heading text-2xl md:text-4xl leading-tight mb-3 md:mb-5 italic font-bold text-[var(--color-brand-black)]">{p.title}</h3>
-              <p className="font-body text-[15px] md:text-lg leading-relaxed text-gray-700 max-w-[46ch]">{p.desc}</p>
-              <KtStar className="absolute right-8 bottom-8 w-7 h-7 text-[var(--color-brand-pink)]" />
+              <p className="font-body text-[15px] md:text-lg leading-relaxed text-[var(--color-brand-black)]/80 max-w-[46ch]">{p.desc}</p>
+              <KtStar className="absolute right-8 bottom-8 w-7 h-7 text-[var(--color-brand-pink-dark)]" />
             </article>
           ))}
         </div>

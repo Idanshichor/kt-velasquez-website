@@ -83,7 +83,7 @@ export function Testimonials() {
             startX.current = null;
             if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
           }}
-          className="relative bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] rounded-[2rem] p-8 md:p-14 min-h-[26rem] md:min-h-[30rem] flex flex-col touch-pan-y select-none"
+          style={{ "--kt-shadow": "var(--color-brand-gold)" } as React.CSSProperties} className="kt-card relative bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] rounded-[2rem] p-8 md:p-14 min-h-[26rem] md:min-h-[30rem] flex flex-col touch-pan-y select-none"
         >
           <KtStar className="kt-turn absolute -top-6 -right-6 w-20 h-20 md:w-28 md:h-28 text-[var(--color-brand-gold)]" />
           <span aria-hidden="true" className="font-heading text-7xl md:text-8xl leading-[0.5] text-[var(--color-brand-pink-dark)] mb-6 md:mb-10">&ldquo;</span>

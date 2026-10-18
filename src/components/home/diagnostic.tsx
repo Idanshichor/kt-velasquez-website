@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import { gsap } from "@/lib/gsap";
 import { Scene } from "./scene";
-import { Scrub } from "./scrub";
+import { KtCta, Scrub } from "./scrub";
 
 const WHATSAPP = "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29";
 
@@ -13,7 +13,7 @@ export function Diagnostic() {
   return (
     <Scene
       id="quien-soy"
-      className="py-32 px-6 md:px-16 bg-[var(--color-brand-gold-light)] relative overflow-hidden"
+      className="py-32 px-6 md:px-16 bg-[var(--color-brand-gold)] relative overflow-hidden"
       build={({ root }) => {
         const frame = root.querySelector<HTMLElement>("[data-frame]");
         if (frame) {
@@ -51,17 +51,15 @@ export function Diagnostic() {
             {t("diagnostic.desc2")}
           </p>
           <div data-reveal className="flex justify-center lg:justify-start mt-4">
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="bg-[var(--color-brand-gold)] border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[var(--color-brand-gold-light)] transition-colors cursor-pointer text-center inline-block">
-              {t("diagnostic.cta")}
-            </a>
+            <KtCta href={WHATSAPP}>{t("diagnostic.cta")}</KtCta>
           </div>
         </div>
 
         <div className="relative h-[450px] md:h-[600px] w-full p-6 lg:order-2 order-1 flex justify-center">
           {/* Thin gold border frame behind photo */}
-          <div data-frame className="absolute inset-0 border border-[var(--color-brand-gold)] top-10 bottom-0 left-0 right-10 z-0 hidden lg:block" />
+          <div data-frame className="absolute inset-0 border-[1.5px] border-[var(--color-brand-black)] rounded-[2rem] top-10 bottom-0 left-0 right-10 z-0 hidden lg:block" />
 
-          <div data-mask className="relative w-full h-full z-10 overflow-hidden border-4 border-white shadow-soft">
+          <div data-mask className="kt-card relative w-full h-full z-10 overflow-hidden rounded-[2rem]">
             <div data-mask-img className="absolute inset-0">
               <Image src="/images/KTSecondPhoto.webp" alt="Katherine Velasquez" fill sizes="(max-width: 768px) 100vw, 50vw" quality={90} className="object-cover object-[center_40%]" />
             </div>

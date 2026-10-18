@@ -120,17 +120,17 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
 }
 
 /* Method 360: orbit beside a stack of sticky cards (desktop with room only) */
-.method360 .m-node-ring { fill: var(--color-brand-pink-light); stroke: var(--color-brand-black); stroke-width: 1.2; transition: fill 0.4s, r 0.4s; }
-.method360 .m-node-num { font-family: var(--font-body); font-size: 13px; font-weight: 700; fill: var(--color-brand-black); letter-spacing: 0.05em; transition: fill 0.4s; }
-.method360 .m-node.is-on .m-node-ring { fill: var(--color-brand-black); r: 27px; }
+.method360 .m-node-ring { fill: var(--color-brand-pink-dark); stroke: #fff; stroke-width: 1.2; transition: fill 0.4s, r 0.4s; }
+.method360 .m-node-num { font-family: var(--font-body); font-size: 13px; font-weight: 700; fill: #fff; letter-spacing: 0.05em; transition: fill 0.4s; }
+.method360 .m-node.is-on .m-node-ring { fill: var(--color-brand-black); stroke: var(--color-brand-gold); r: 27px; }
 .method360 .m-node.is-on .m-node-num { fill: var(--color-brand-gold); }
 .method360 .m-progress { display: none; }
 @media (min-width: 1024px) and (min-height: 740px) and (prefers-reduced-motion: no-preference) {
   .method360 .m-anchor { position: sticky; top: 120px; }
   .method360 .m-cards { gap: 110px; padding-bottom: 80px; }
   .method360 .m-card { position: sticky; top: 150px; min-height: 380px; display: flex; flex-direction: column; justify-content: center; }
-  .method360 .m-progress { display: block; position: absolute; top: 0; bottom: 80px; left: -32px; width: 2px; background: rgba(26, 26, 26, 0.12); }
-  .method360 .m-progress i { display: block; height: 100%; background: var(--color-brand-gold-deep); transform: scaleY(0); transform-origin: top; }
+  .method360 .m-progress { display: block; position: absolute; top: 0; bottom: 80px; left: -32px; width: 2px; background: rgba(255, 255, 255, 0.25); }
+  .method360 .m-progress i { display: block; height: 100%; background: var(--color-brand-gold); transform: scaleY(0); transform-origin: top; }
 }
 
 /* Services: the detail panel eases in when a tab is picked */
@@ -141,6 +141,22 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
 @keyframes wave { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
 .wave-bar { transform-origin: bottom; animation: wave 1.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .wave-bar { animation: none; transform: scaleY(0.6); } }
+
+/* KT components: outlined cards with a solid offset shadow, and the one button */
+.kt-card { border: 1.5px solid var(--color-brand-black); box-shadow: 6px 6px 0 var(--kt-shadow, var(--color-brand-black)); }
+.kt-card-lift { transition: translate 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.kt-card-lift:hover { translate: -3px -3px; box-shadow: 9px 9px 0 var(--kt-shadow, var(--color-brand-black)); }
+.kt-btn { display: inline-flex; align-items: center; gap: 14px; padding: 8px 8px 8px 28px; border-radius: 999px; border: 1.5px solid var(--color-brand-black); font-weight: 700; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; box-shadow: 4px 4px 0 var(--color-brand-black); transition: translate 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s, color 0.3s; }
+.kt-btn:hover { translate: -2px -2px; box-shadow: 6px 6px 0 var(--color-brand-black); }
+.kt-btn:active { translate: 2px 2px; box-shadow: 1px 1px 0 var(--color-brand-black); }
+.kt-btn-dot { width: 38px; height: 38px; border-radius: 999px; display: grid; place-items: center; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.kt-btn:hover .kt-btn-dot { transform: rotate(90deg); }
+.kt-btn-dark { background: var(--color-brand-black); color: #fff; }
+.kt-btn-dark .kt-btn-dot { background: var(--color-brand-gold); color: var(--color-brand-black); }
+.kt-btn-gold { background: var(--color-brand-gold); color: var(--color-brand-black); }
+.kt-btn-gold .kt-btn-dot { background: var(--color-brand-black); color: var(--color-brand-gold); }
+.kt-btn-pink { background: var(--color-brand-pink); color: var(--color-brand-black); }
+.kt-btn-pink .kt-btn-dot { background: var(--color-brand-black); color: var(--color-brand-pink); }
 
 /* Horizontal card rails (services on phones) */
 .no-scrollbar { scrollbar-width: none; }

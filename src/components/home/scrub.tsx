@@ -73,3 +73,17 @@ export function KtStar({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+type CtaTone = "dark" | "gold" | "pink";
+
+/** The one KT button: a pill with the label and a round star badge that turns on hover. */
+export function KtCta({ href, children, tone = "dark", external = true }: { href: string; children: React.ReactNode; tone?: CtaTone; external?: boolean }) {
+  return (
+    <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={`kt-btn kt-btn-${tone}`}>
+      <span>{children}</span>
+      <span className="kt-btn-dot" aria-hidden="true">
+        <KtStar className="w-3.5 h-3.5" />
+      </span>
+    </a>
+  );
+}

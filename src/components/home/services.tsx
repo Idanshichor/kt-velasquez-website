@@ -120,13 +120,13 @@ export function Services() {
         </div>
 
         {/* Panel */}
-        <div id="svc-panel" role="tabpanel" key={active} className="svc-panel mt-4 md:mt-6 bg-white text-[var(--color-brand-black)] rounded-[2rem] grid lg:grid-cols-[minmax(0,1fr)_26rem] overflow-hidden">
+        <div id="svc-panel" role="tabpanel" key={active} style={{ "--kt-shadow": "var(--color-brand-pink)" } as React.CSSProperties} className="svc-panel kt-card mt-4 md:mt-6 bg-white text-[var(--color-brand-black)] rounded-[2rem] grid lg:grid-cols-[minmax(0,1fr)_26rem] overflow-hidden">
           <div className="p-7 md:p-12">
             <p className="font-heading italic text-xl md:text-2xl leading-relaxed text-[var(--color-brand-black)] mb-10 max-w-3xl">{desc}</p>
             <FeatureList items={features} />
           </div>
 
-          <aside className="bg-[var(--color-brand-pink-light)] p-7 md:p-10 flex flex-col justify-center gap-6">
+          <aside className="bg-[var(--color-brand-pink)] border-t-[1.5px] lg:border-t-0 lg:border-l-[1.5px] border-[var(--color-brand-black)] p-7 md:p-10 flex flex-col justify-center gap-6">
             {active === 0 && (
               <div className="w-full" ref={dropdownRef}>
                 <p className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 text-center">

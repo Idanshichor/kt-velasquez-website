@@ -8,7 +8,7 @@ import { KtStar } from "./scrub";
 export function Faq() {
   const { t } = useLanguage();
   return (
-    <Scene className="py-28 md:py-36 px-6 md:px-16 bg-[var(--color-brand-gold-light)]">
+    <Scene className="py-28 md:py-36 px-6 md:px-16 bg-white">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] gap-12 lg:gap-20 items-start">
         <div className="lg:sticky lg:top-36 text-center lg:text-left">
           <h2 data-lines className="font-heading italic text-5xl md:text-6xl leading-[1.05] text-[var(--color-brand-black)]">

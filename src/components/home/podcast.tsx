@@ -1,19 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useLanguage } from "@/context/language-context";
 import { Scene } from "./scene";
+import { KtCta } from "./scrub";
 
 const BARS = Array.from({ length: 28 }, (_, i) => ({ h: 24 + ((i * 37) % 56), d: (i % 7) * 0.17 }));
 
 export function Podcast() {
   const { language, t } = useLanguage();
   return (
-    <Scene className="py-24 md:py-32 px-6 md:px-16 bg-[var(--color-brand-pink-light)]">
+    <Scene className="py-24 md:py-32 px-6 md:px-16 bg-[var(--color-brand-pink)]">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Podcast image */}
-        <div data-mask className="relative aspect-square md:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-elevated">
+        <div data-mask className="kt-card relative aspect-square md:aspect-[4/5] rounded-[2rem] overflow-hidden">
           <div data-mask-img className="absolute inset-0">
             <Image src="/images/ktspacepodcast.webp" alt="KT.360 - Sin Pelos en la Lengua — Podcast de Katherine Velasquez" fill className="object-cover" />
           </div>
@@ -45,9 +45,7 @@ export function Podcast() {
             )}
           </p>
           <div data-reveal className="flex justify-center md:justify-start">
-            <Link href="/podcast" className="bg-transparent border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-colors cursor-pointer hover:bg-[var(--color-brand-black)] hover:text-white inline-block text-center">
-              {t("podcast.cta")}
-            </Link>
+            <KtCta href="/podcast" external={false}>{t("podcast.cta")}</KtCta>
           </div>
         </div>
       </div>
