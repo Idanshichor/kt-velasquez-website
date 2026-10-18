@@ -102,10 +102,8 @@ html.motion-ok:not(.motion-ready) [data-frame],
 html.motion-ok:not(.motion-ready) [data-hero-tag],
 html.motion-ok:not(.motion-ready) [data-hero-desc],
 html.motion-ok:not(.motion-ready) [data-hero-cta] { opacity: 0; }
-html.motion-ok:not(.motion-ready) [data-hero-script] { clip-path: inset(-10% 100% -10% 0); }
-html.motion-ok:not(.motion-ready) [data-hero-frame] { clip-path: inset(16% 34% 16% 34% round 28px); }
-html.motion-ok:not(.motion-ready) [data-hero-rule] { transform: scaleX(0); }
-.hero-char { display: inline-block; will-change: transform, filter; }
+html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
+
 
 .split-line { padding-bottom: 0.12em; }
 
@@ -143,9 +141,6 @@ html.motion-ok:not(.motion-ready) [data-hero-rule] { transform: scaleX(0); }
 @keyframes wave { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
 .wave-bar { transform-origin: bottom; animation: wave 1.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .wave-bar { animation: none; transform: scaleY(0.6); } }
-
-/* Pink marker under key words (about section) */
-.kt-mark { background-image: linear-gradient(var(--color-brand-pink), var(--color-brand-pink)); background-repeat: no-repeat; background-position: 0 88%; background-size: 100% 40%; padding: 0 0.1em; }
 
 /* Horizontal card rails (services on phones) */
 .no-scrollbar { scrollbar-width: none; }

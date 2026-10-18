@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
-import { gsap, SplitText } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { Scene } from "./scene";
 
 const WHATSAPP = "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29";
@@ -16,39 +16,16 @@ export function Hero() {
       build={({ root }) => {
         const q = (s: string) => root.querySelector<HTMLElement>(s);
 
-        // Intro, plays once on load. The photo opens from a small framed window
-        // to full bleed, then the name settles in letter by letter, out of a soft blur.
+        // Intro, plays once on load: a calm settle. The photo eases back from a slight
+        // zoom while the words float up softly, one after the other.
         const img = q("[data-hero-img]");
-        const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-        tl.fromTo(
-          q("[data-hero-frame]"),
-          { clipPath: "inset(16% 34% 16% 34% round 28px)" },
-          { clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 1.9, ease: "expo.inOut" },
-          0,
+        gsap.fromTo(img, { scale: 1.08, opacity: 0.4 }, { scale: 1, opacity: 1, duration: 3.2, ease: "power2.out" });
+        root.querySelectorAll<HTMLElement>("[data-hero-line]").forEach((el) => gsap.set(el, { visibility: "visible" }));
+        gsap.fromTo(
+          [q("[data-hero-tag]"), ...root.querySelectorAll<HTMLElement>("[data-hero-line]"), q("[data-hero-script]"), q("[data-hero-desc]"), q("[data-hero-cta]")],
+          { opacity: 0, y: 22 },
+          { opacity: 1, y: 0, duration: 1.8, ease: "power3.out", stagger: 0.14, delay: 0.25, clearProps: "transform" },
         );
-        tl.fromTo(img, { scale: 1.3 }, { scale: 1, duration: 2.6, ease: "expo.inOut" }, 0);
-        root.querySelectorAll<HTMLElement>("[data-hero-line]").forEach((el, i) => {
-          gsap.set(el, { visibility: "visible" });
-          const chars = SplitText.create(el, { type: "chars", charsClass: "hero-char" }).chars;
-          tl.fromTo(
-            chars,
-            { yPercent: 60, opacity: 0, filter: "blur(10px)" },
-            { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1.4, stagger: 0.035 },
-            1.15 + i * 0.12,
-          );
-        });
-        tl.fromTo(q("[data-hero-tag]"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.2 }, 1.1);
-        tl.fromTo(q("[data-hero-rule]"), { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: "expo.inOut" }, 1.6);
-        tl.fromTo(
-          q("[data-hero-script]"),
-          { clipPath: "inset(-10% 100% -10% 0%)" },
-          { clipPath: "inset(-10% -5% -10% -2%)", duration: 2, ease: "power2.inOut" },
-          1.8,
-        );
-        tl.fromTo(q("[data-hero-desc]"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1.2 }, 2.1);
-        tl.fromTo(q("[data-hero-cta]"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1.2 }, 2.25);
-        // After the intro the photo keeps a very slow breath, so the hero never feels frozen
-        tl.to(img, { scale: 1.05, duration: 14, ease: "sine.inOut", repeat: -1, yoyo: true }, 2.6);
 
         // Leaving the hero: the photo drifts slower than the text
         const st = { trigger: root, start: "top top", end: "bottom top", scrub: true };
@@ -81,7 +58,6 @@ export function Hero() {
             <h1 className="order-1 font-heading text-5xl md:text-6xl lg:text-[5.5rem] leading-[0.95] tracking-tight uppercase text-[var(--color-brand-cream)] mt-4 md:mt-0">
               <span data-hero-line className="block w-max mx-auto md:mx-0">{t("hero.katherine")}</span>
               <span data-hero-line className="block w-max mx-auto md:mx-0">{t("hero.velasquez")}</span>
-              <span data-hero-rule aria-hidden="true" className="block h-px w-24 md:w-40 mt-5 md:mt-6 mx-auto md:mx-0 bg-[var(--color-brand-gold)] origin-left" />
               <span className="sr-only">— {t("hero.h1_keyword")}</span>
             </h1>
 
