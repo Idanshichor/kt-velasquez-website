@@ -103,6 +103,9 @@ html.motion-ok:not(.motion-ready) [data-hero-tag],
 html.motion-ok:not(.motion-ready) [data-hero-desc],
 html.motion-ok:not(.motion-ready) [data-hero-cta] { opacity: 0; }
 html.motion-ok:not(.motion-ready) [data-hero-script] { clip-path: inset(-10% 100% -10% 0); }
+html.motion-ok:not(.motion-ready) [data-hero-frame] { clip-path: inset(16% 34% 16% 34% round 28px); }
+html.motion-ok:not(.motion-ready) [data-hero-rule] { transform: scaleX(0); }
+.hero-char { display: inline-block; will-change: transform, filter; }
 
 .split-line { padding-bottom: 0.12em; }
 
@@ -132,36 +135,20 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { clip-path: inset(-10% 100
   .method360 .m-progress i { display: block; height: 100%; background: var(--color-brand-gold-deep); transform: scaleY(0); transform-origin: top; }
 }
 
-/* Service pills: short names that grow into the full sentence */
-.kt-pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.kt-pill {
-  --pill-bg: #fff; --pill-fg: var(--color-brand-black); --pill-line: var(--color-brand-black);
-  background: var(--pill-bg); color: var(--pill-fg); border: 1.5px solid var(--pill-line); border-radius: 999px;
-  transition: background 0.3s, color 0.3s, translate 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
-}
-.kt-pill.p0 { --pill-bg: var(--color-brand-pink); }
-.kt-pill.p1 { --pill-bg: #fff; }
-.kt-pill.p2 { --pill-bg: var(--color-brand-gold-light); }
-.kt-pill.p3 { --pill-bg: var(--color-brand-black); --pill-fg: #fff; }
-.kt-pills.is-dark .kt-pill { --pill-line: rgba(255, 255, 255, 0.85); }
-.kt-pills.is-dark .kt-pill.p1 { --pill-bg: transparent; --pill-fg: #fff; }
-.kt-pills.is-dark .kt-pill.p3 { --pill-bg: var(--color-brand-gold); --pill-fg: var(--color-brand-black); }
-.kt-pill:not(.is-open):hover { translate: 0 -3px; box-shadow: 0 6px 0 rgba(26, 26, 26, 0.14); }
-.kt-pill.is-open { border-radius: 22px; width: 100%; }
-.kt-pill button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 9px 16px 9px 16px; font: inherit; font-size: 13.5px; font-weight: 600; line-height: 1.3; text-align: left; color: inherit; background: none; border: 0; border-radius: inherit; cursor: pointer; }
-.kt-pill button:disabled { cursor: default; }
-.kt-pill button:focus-visible { outline: 2px solid var(--color-brand-pink-dark); outline-offset: 3px; }
-.kt-pill-ttl { flex: 1; }
-.kt-pill-plus { position: relative; flex: none; width: 11px; height: 11px; }
-.kt-pill-plus::before, .kt-pill-plus::after { content: ""; position: absolute; inset: 4.5px 0 auto; height: 1.5px; background: currentColor; transition: rotate 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
-.kt-pill-plus::after { rotate: 90deg; }
-.kt-pill.is-open .kt-pill-plus::after { rotate: 0deg; }
-.kt-pill-body { padding: 0 18px 16px; font-size: 13.5px; line-height: 1.6; opacity: 0.85; }
+/* Services: the detail panel eases in when a tab is picked */
+@keyframes svc-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) { .svc-panel { animation: svc-in 0.55s cubic-bezier(0.22, 1, 0.36, 1); } }
+
+/* Soundwave (podcast) */
+@keyframes wave { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
+.wave-bar { transform-origin: bottom; animation: wave 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .wave-bar { animation: none; transform: scaleY(0.6); } }
+
+/* Pink marker under key words (about section) */
+.kt-mark { background-image: linear-gradient(var(--color-brand-pink), var(--color-brand-pink)); background-repeat: no-repeat; background-position: 0 88%; background-size: 100% 40%; padding: 0 0.1em; }
 
 /* Horizontal card rails (services on phones) */
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
-/* Nav hides on scroll down, returns on scroll up */
-.nav-hidden { transform: translateY(-100%); }
 

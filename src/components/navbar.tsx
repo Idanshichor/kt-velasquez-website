@@ -3,32 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
-  const navRef = useRef<HTMLElement>(null);
-  const menuOpen = useRef(false);
-  menuOpen.current = isMobileMenuOpen;
-
-  // Hide on scroll down, return on scroll up
-  useEffect(() => {
-    let last = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      navRef.current?.classList.toggle("nav-hidden", y > 240 && y > last + 2 && !menuOpen.current);
-      if (y < last - 2) navRef.current?.classList.remove("nav-hidden");
-      last = y;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <nav ref={navRef} className="fixed top-0 w-full z-50 bg-[var(--color-brand-cream)]/90 backdrop-blur-xl border-b border-gray-200 h-20 md:h-24 flex items-center justify-between px-6 md:px-16 transition-all duration-300">
+    <nav className="fixed top-0 w-full z-50 bg-[var(--color-brand-cream)]/90 backdrop-blur-xl border-b border-gray-200 h-20 md:h-24 flex items-center justify-between px-6 md:px-16 transition-all duration-300">
       <Link href="/" className="flex items-center shrink-0 z-50">
         <Image
           src="/images/KT_LOGO.webp"

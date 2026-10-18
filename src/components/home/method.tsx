@@ -57,7 +57,7 @@ export function Method() {
           </h2>
           <p data-reveal className="font-body text-gray-700 font-medium text-lg md:text-xl">{t("methodology.desc")}</p>
 
-          <div className="relative mx-auto lg:mx-0 mt-8 w-[min(100%,240px)] md:w-[min(100%,300px)] lg:w-[min(100%,340px)] aspect-square" aria-hidden="true">
+          <div className="relative hidden lg:block mt-10 w-[min(100%,340px)] aspect-square" aria-hidden="true">
             <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 400 400">
               <g className="m-orbit">
                 <circle cx="200" cy="200" r="170" fill="none" stroke="var(--color-brand-black)" strokeOpacity="0.35" strokeWidth="1.2" strokeDasharray="3 9" />

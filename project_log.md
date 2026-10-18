@@ -193,6 +193,10 @@ This log serves as a source of truth for the development, configuration, and des
 
 ---
 
+* **2026-10-18:** Home page v4 (branch `feature/premium-rebuild-v4`, off v3) from Idan's review: fixed nav, services tabs + panel, new hero intro, podcast bars back, testimonial slider, FAQ cards, richer Diagnóstico and About sections, 360 orbit hidden on phones. Copy and payments unchanged. `npm run build` clean.
+
+---
+
 ## ⚠️ Guidelines for Future Updates
 1. **Feature Branching:** Do **NOT** push or commit directly to the `main` branch. Create a feature branch (e.g. `feature/name` or `fix/name`) for any edits. Make sure to push your feature branches to the `live` remote repository (`https://github.com/Idanshichor/kt-velasquez-website.git`) so Vercel can generate a **Preview Deployment** link to test changes before they go live. Once verified, merge the branch into `main` on the `live` repository.
 2. **Copy Modification:** Do **NOT** modify or change any of the copy on the landing page unless explicitly requested by the user.

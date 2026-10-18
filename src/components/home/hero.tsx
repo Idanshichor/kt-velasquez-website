@@ -16,39 +16,55 @@ export function Hero() {
       build={({ root }) => {
         const q = (s: string) => root.querySelector<HTMLElement>(s);
 
-        // Intro, plays once on load
-        gsap.fromTo(q("[data-hero-img]"), { scale: 1.18 }, { scale: 1, duration: 2.4, ease: "power3.out" });
-        gsap.fromTo(q("[data-hero-tag]"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: "power3.out" });
+        // Intro, plays once on load. The photo opens from a small framed window
+        // to full bleed, then the name settles in letter by letter, out of a soft blur.
+        const img = q("[data-hero-img]");
+        const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+        tl.fromTo(
+          q("[data-hero-frame]"),
+          { clipPath: "inset(16% 34% 16% 34% round 28px)" },
+          { clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 1.9, ease: "expo.inOut" },
+          0,
+        );
+        tl.fromTo(img, { scale: 1.3 }, { scale: 1, duration: 2.6, ease: "expo.inOut" }, 0);
         root.querySelectorAll<HTMLElement>("[data-hero-line]").forEach((el, i) => {
           gsap.set(el, { visibility: "visible" });
-          SplitText.create(el, {
-            type: "lines",
-            mask: "lines",
-            autoSplit: true,
-            onSplit(self) {
-              return gsap.from(self.lines, { yPercent: 115, duration: 1.3, ease: "power4.out", delay: 0.45 + i * 0.15 });
-            },
-          });
+          const chars = SplitText.create(el, { type: "chars", charsClass: "hero-char" }).chars;
+          tl.fromTo(
+            chars,
+            { yPercent: 60, opacity: 0, filter: "blur(10px)" },
+            { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1.4, stagger: 0.035 },
+            1.15 + i * 0.12,
+          );
         });
-        gsap.fromTo(
+        tl.fromTo(q("[data-hero-tag]"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.2 }, 1.1);
+        tl.fromTo(q("[data-hero-rule]"), { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: "expo.inOut" }, 1.6);
+        tl.fromTo(
           q("[data-hero-script]"),
           { clipPath: "inset(-10% 100% -10% 0%)" },
-          { clipPath: "inset(-10% -5% -10% -2%)", duration: 1.8, delay: 1.0, ease: "power2.inOut" },
+          { clipPath: "inset(-10% -5% -10% -2%)", duration: 2, ease: "power2.inOut" },
+          1.8,
         );
-        gsap.fromTo(q("[data-hero-desc]"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1, delay: 1.3, ease: "power3.out" });
-        gsap.fromTo(q("[data-hero-cta]"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1, delay: 1.5, ease: "power3.out" });
+        tl.fromTo(q("[data-hero-desc]"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1.2 }, 2.1);
+        tl.fromTo(q("[data-hero-cta]"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1.2 }, 2.25);
+        // After the intro the photo keeps a very slow breath, so the hero never feels frozen
+        tl.to(img, { scale: 1.05, duration: 14, ease: "sine.inOut", repeat: -1, yoyo: true }, 2.6);
 
-        // Leaving the hero: photo drifts slower than text, and dims
+        // Leaving the hero: the photo drifts slower than the text
         const st = { trigger: root, start: "top top", end: "bottom top", scrub: true };
-        gsap.to(q("[data-hero-img]"), { yPercent: 12, ease: "none", scrollTrigger: st });
-        gsap.to(q("[data-hero-dim]"), { opacity: 0.55, ease: "none", scrollTrigger: st });
-        gsap.to(q("[data-hero-copy]"), { yPercent: -14, opacity: 0.2, ease: "none", scrollTrigger: st });
+        gsap.to(q("[data-hero-parallax]"), { yPercent: 10, ease: "none", scrollTrigger: st });
+        gsap.to(q("[data-hero-dim]"), { opacity: 0.35, ease: "none", scrollTrigger: st });
+        gsap.to(q("[data-hero-copy]"), { yPercent: -10, opacity: 0.4, ease: "none", scrollTrigger: st });
       }}
     >
       {/* Full background image */}
       <div className="absolute inset-0 z-0 bg-black">
+        <div data-hero-frame className="absolute inset-0 overflow-hidden">
+        <div data-hero-parallax className="absolute inset-0">
         <div data-hero-img className="absolute inset-0">
           <Image src="/images/KT_Hero.webp" alt="Katherine Velasquez Background" fill sizes="100vw" className="object-cover object-[82%_40%] md:object-[75%_center]" priority />
+        </div>
+        </div>
         </div>
         {/* Mobile dark gradient overlay for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent md:hidden" />
@@ -65,6 +81,7 @@ export function Hero() {
             <h1 className="order-1 font-heading text-5xl md:text-6xl lg:text-[5.5rem] leading-[0.95] tracking-tight uppercase text-[var(--color-brand-cream)] mt-4 md:mt-0">
               <span data-hero-line className="block w-max mx-auto md:mx-0">{t("hero.katherine")}</span>
               <span data-hero-line className="block w-max mx-auto md:mx-0">{t("hero.velasquez")}</span>
+              <span data-hero-rule aria-hidden="true" className="block h-px w-24 md:w-40 mt-5 md:mt-6 mx-auto md:mx-0 bg-[var(--color-brand-gold)] origin-left" />
               <span className="sr-only">— {t("hero.h1_keyword")}</span>
             </h1>
 

@@ -1,7 +1,9 @@
 "use client";
 
 import { useLanguage } from "@/context/language-context";
+import { useRef, useState } from "react";
 import { Scene } from "./scene";
+import { KtStar } from "./scrub";
 
 export function Testimonials() {
   const { language, t } = useLanguage();
@@ -28,33 +30,78 @@ export function Testimonials() {
     },
   ];
 
+  const [i, setI] = useState(1);
+  const n = testimonials.length;
+  const go = (d: number) => setI((v) => (v + d + n) % n);
+  const startX = useRef<number | null>(null);
+  const cur = testimonials[i];
+  // The one number that matters gets the gold, wherever it appears in the quote
+  const parts = cur.text.split(/(\$250,000)/);
+
   return (
-    <Scene className="bg-white py-28 md:py-36 px-6 md:px-16">
-      <div className="max-w-7xl mx-auto">
-        <h2 data-lines className="font-heading italic text-4xl md:text-5xl text-center text-[var(--color-brand-black)] mb-14 md:mb-20">
-          {t("testimonials.title")}
-        </h2>
-        <div data-stagger className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-start">
-          {testimonials.map((testimonial, i) => (
-            <figure
-              key={i}
-              className={`rounded-[1.75rem] p-8 md:p-10 flex flex-col h-full ${
-                i === 1
-                  ? "bg-[var(--color-brand-black)] text-white lg:-mt-6 lg:pb-14"
-                  : "bg-[var(--color-brand-cream)] border border-[var(--color-brand-gold-light)]"
-              }`}
-            >
-              <span aria-hidden="true" className={`font-heading text-6xl leading-[0.6] mb-6 ${i === 1 ? "text-[var(--color-brand-gold)]" : "text-[var(--color-brand-gold-deep)]"}`}>&ldquo;</span>
-              <blockquote className={`font-body leading-relaxed mb-10 flex-grow ${i === 1 ? "text-white/85 text-base md:text-[17px]" : "text-gray-700 text-[15px]"}`}>
-                {testimonial.text}
-              </blockquote>
-              <figcaption className={`pt-6 border-t ${i === 1 ? "border-white/15" : "border-[var(--color-brand-black)]/10"}`}>
-                <p className={`font-bold uppercase tracking-widest text-xs ${i === 1 ? "text-[var(--color-brand-gold)]" : "text-[var(--color-brand-black)]"}`}>{testimonial.name}</p>
-                <p className={`text-xs mt-1 ${i === 1 ? "text-white/60" : "text-gray-600"}`}>{testimonial.role}</p>
-              </figcaption>
-            </figure>
-          ))}
+    <Scene className="bg-white py-28 md:py-36 px-6 md:px-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 lg:gap-20 items-center">
+        <div>
+          <h2 data-lines className="font-heading italic text-4xl md:text-5xl leading-tight text-[var(--color-brand-black)] mb-10 md:mb-14">
+            {t("testimonials.title")}
+          </h2>
+          <div data-reveal className="flex items-center gap-6">
+            <p className="font-heading text-5xl md:text-6xl leading-none text-[var(--color-brand-black)] tabular-nums">
+              0{i + 1}
+              <span className="text-xl md:text-2xl text-gray-400 align-top ml-1">/0{n}</span>
+            </p>
+            <div className="flex gap-3 ml-auto lg:ml-0">
+              {[-1, 1].map((d) => (
+                <button
+                  key={d}
+                  type="button"
+                  onClick={() => go(d)}
+                  aria-label={d < 0 ? (language === "es" ? "Anterior" : "Previous") : language === "es" ? "Siguiente" : "Next"}
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-[var(--color-brand-black)] grid place-items-center text-[var(--color-brand-black)] hover:bg-[var(--color-brand-black)] hover:text-white transition-colors cursor-pointer"
+                >
+                  <svg viewBox="0 0 24 24" className={`w-5 h-5 ${d < 0 ? "rotate-180" : ""}`} aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="flex gap-2 mt-8" aria-hidden="true">
+            {testimonials.map((_, k) => (
+              <span key={k} className="h-[3px] flex-1 rounded-full bg-gray-200 overflow-hidden">
+                <span className={`block h-full bg-[var(--color-brand-pink-dark)] origin-left transition-transform duration-700 ${k === i ? "scale-x-100" : "scale-x-0"}`} />
+              </span>
+            ))}
+          </div>
         </div>
+
+        <figure
+          data-reveal
+          aria-live="polite"
+          onPointerDown={(e) => { startX.current = e.clientX; }}
+          onPointerUp={(e) => {
+            if (startX.current === null) return;
+            const dx = e.clientX - startX.current;
+            startX.current = null;
+            if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+          }}
+          className="relative bg-[var(--color-brand-black)] text-white rounded-[2rem] p-8 md:p-14 min-h-[26rem] md:min-h-[30rem] flex flex-col touch-pan-y select-none"
+        >
+          <KtStar className="kt-turn absolute -top-6 -right-6 w-20 h-20 md:w-28 md:h-28 text-[var(--color-brand-pink)]" />
+          <span aria-hidden="true" className="font-heading text-7xl md:text-8xl leading-[0.5] text-[var(--color-brand-gold)] mb-6 md:mb-10">&ldquo;</span>
+          <div key={i} className="svc-panel flex-1 flex flex-col">
+            <blockquote className="font-heading italic text-lg md:text-2xl leading-[1.55] text-white/90 flex-1">
+              {parts.map((p, k) => (p === "$250,000" ? <span key={k} className="not-italic font-bold text-[var(--color-brand-gold)]">{p}</span> : p))}
+            </blockquote>
+            <figcaption className="mt-10 pt-6 border-t border-white/15 flex items-center gap-4">
+              <span className="w-11 h-11 rounded-full bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] grid place-items-center font-heading italic text-lg" aria-hidden="true">
+                {cur.name.charAt(0)}
+              </span>
+              <span>
+                <span className="block font-bold uppercase tracking-widest text-xs text-[var(--color-brand-gold)]">{cur.name}</span>
+                <span className="block text-xs mt-1 text-white/60">{cur.role}</span>
+              </span>
+            </figcaption>
+          </div>
+        </figure>
       </div>
     </Scene>
   );
