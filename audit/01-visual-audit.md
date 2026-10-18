@@ -32,7 +32,7 @@ One long home page (about 11,000 px) made of 12 sections. Every section is the s
 
 ### Images and performance
 
-14. `KTSecondPhoto.webp` is 2.9 MB. `ktspacepodcast.webp` is 0.7 MB. The hero is `unoptimized`. These cost seconds on a Colombian mobile connection.
+14. `KTSecondPhoto.webp` is 2.9 MB at source and `ktspacepodcast.webp` is 0.7 MB. Both go through `next/image`, so visitors get resized versions, not the originals. The hero is `unoptimized` on purpose (245 KB, was blurring). No change needed; check real transfer sizes in the browser before touching images.
 15. The gallery images (`public/images/gallery`, 10 photos) are not used on the home page.
 16. The Mango Creative logo exists in `public/images` but is not in the trust strip.
 
@@ -71,7 +71,7 @@ Smooth scroll: Lenis driven from the GSAP ticker, as in the hub README. Anchor l
 - Mobile gets lighter versions (no heavy pins, simple stagger) using `ScrollTrigger.matchMedia`.
 - Minimum text size 12 px for labels, 14 px for body in the service tiers.
 - New text-gold token (darker) for gold on light backgrounds.
-- Hero and Quién soy photos converted to lighter files. Originals stay.
+- Images stay as they are (next/image already resizes them).
 - No payment code changes. Wompi links and the plan picker logic stay as they are.
 - Branch work stays on `feature/premium-rebuild`. No push, no deploy without asking.
 

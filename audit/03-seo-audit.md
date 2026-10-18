@@ -16,7 +16,7 @@ Date: 2026-10-18. Builds on the earlier `SEO-AUDIT.md` (June 2026). Rebuild rule
 
 1. **English is not indexable.** Language is client state (`useState("es")`, localStorage, `?lang=` parameter). Google sees only Spanish. Fix: real URLs per language (`/en/...`) with `hreflang`. This is a structural change and doubles the pages. Recommended, but only after the visual rebuild lands. The earlier audit parked it as Phase 2 pending Katherine's positioning approval.
 2. **Hidden H1 keyword text** (`sr-only` span in the H1). Search engines may treat it as hidden text. Safer: keep the visible H1 as the name, put the keyword phrase in a visible sub-heading or the hero description. Needs a copy decision.
-3. **Hero image is `unoptimized`, About photo is 2.9 MB.** Core Web Vitals (LCP) hit. Rebuild fixes this: resized files, AVIF/WebP through `next/image`, correct `sizes`, `priority` on the hero only.
+3. **Hero image is `unoptimized`** (245 KB, kept on purpose to avoid blur). The big source photos go through `next/image`, so visitors do not download the originals. Check LCP with Lighthouse after the rebuild; only change images if the numbers say so.
 
 ### Medium
 
