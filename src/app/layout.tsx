@@ -40,6 +40,11 @@ export const metadata: Metadata = {
 
 import { LanguageProvider } from "@/context/language-context";
 import { Analytics } from "@vercel/analytics/next";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { StarCursor } from "@/components/star-cursor";
+
+// Hides animated elements until scene scripts take over. Gives up after 4s if scripts never load.
+const motionFlag = `(function(){try{var d=document.documentElement;if(!matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("motion-ok");setTimeout(function(){if(!window.__motionReady){d.classList.remove("motion-ok")}},4000)}}catch(e){}})()`;
 
 export default function RootLayout({
   children,
@@ -47,11 +52,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: motionFlag }} />
+      </head>
       <body className={`${playfair.variable} ${inter.variable} ${script.variable} ${scriptReadable.variable} antialiased bg-[var(--color-brand-cream)] text-[var(--color-brand-black)]`}>
         <LanguageProvider>
           {children}
         </LanguageProvider>
+        <SmoothScroll />
+        <StarCursor />
         <Analytics />
       </body>
     </html>

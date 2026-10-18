@@ -6,6 +6,7 @@
   --color-brand-pink-dark: #E01E79;
   --color-brand-gold: #EBBF7E;
   --color-brand-gold-light: #F5E5CD;
+  --color-brand-gold-deep: #8F6A2A; /* gold for text on light backgrounds (4.9:1 on white) */
   --color-brand-cream: #FFFFFF;
   --color-brand-black: #1A1A1A;
   --color-brand-purple: #7244D4;
@@ -87,3 +88,81 @@ body {
 .gallery-marquee-track:hover {
   animation-play-state: paused;
 }
+
+/* ---------- Motion system (GSAP + Lenis) ---------- */
+
+/* Before scene scripts run, hide what they will animate in. Removed once scripts are ready. */
+html.motion-ok:not(.motion-ready) [data-reveal] { opacity: 0; transform: translateY(40px); }
+html.motion-ok:not(.motion-ready) [data-stagger] > * { opacity: 0; }
+html.motion-ok:not(.motion-ready) [data-lines],
+html.motion-ok:not(.motion-ready) [data-words],
+html.motion-ok:not(.motion-ready) [data-hero-line] { visibility: hidden; }
+html.motion-ok:not(.motion-ready) [data-mask] { clip-path: inset(100% 0 0 0); }
+html.motion-ok:not(.motion-ready) [data-frame],
+html.motion-ok:not(.motion-ready) [data-hero-tag],
+html.motion-ok:not(.motion-ready) [data-hero-desc],
+html.motion-ok:not(.motion-ready) [data-hero-cta] { opacity: 0; }
+html.motion-ok:not(.motion-ready) [data-hero-script] { clip-path: inset(-10% 100% -10% 0); }
+html.motion-ok:not(.motion-ready) [data-banner-bg] { clip-path: circle(0% at 50% 50%); }
+
+.split-line { padding-bottom: 0.12em; }
+
+/* Pinned scenes: a tall wrapper with a sticky stage. Only applied by script on desktop. */
+.pin-wrap.is-pinned { position: relative; height: var(--pin-h, 300vh); }
+.pin-wrap.is-pinned > .pin-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+
+/* Method 360: four steps take turns */
+.method .method-progress { display: none; }
+.method.is-pinned .method-progress { display: block; }
+.method.is-pinned .method-panels { display: block; position: relative; height: min(30rem, 68svh); margin-top: 0; }
+.method.is-pinned .method-panel { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; }
+.method.is-pinned .method-panel .method-num { font-size: clamp(5rem, 10vw, 9rem); opacity: 0.5; line-height: 1; }
+.method.is-pinned .method-panel h3 { font-size: clamp(2rem, 3.4vw, 3.5rem); line-height: 1.05; }
+.method.is-pinned .method-panel p.method-text { font-size: clamp(1rem, 1.25vw, 1.2rem); max-width: 34rem; line-height: 1.7; }
+
+/* Testimonials: one quote at a time */
+.testi.is-pinned .testi-list { display: block; width: 100%; position: relative; height: min(34rem, 72svh); max-width: 56rem; margin: 2.5rem auto 0; }
+.testi.is-pinned .testi-card { position: absolute; inset: 0; background: transparent; border: 0; box-shadow: none; padding: 0; justify-content: center; text-align: center; align-items: center; }
+.testi.is-pinned .testi-text { font-family: var(--font-heading); font-style: italic; font-size: clamp(1.05rem, 1.55vw, 1.5rem); line-height: 1.55; }
+
+/* Featured service tier: a slow gold light travels around the border */
+@property --sweep { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes sweep { to { --sweep: 360deg; } }
+@media (prefers-reduced-motion: no-preference) {
+  .gold-sweep::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(from var(--sweep), transparent 0 68%, var(--color-brand-gold) 84%, #fff 92%, var(--color-brand-gold) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: sweep 7s linear infinite;
+    pointer-events: none;
+  }
+}
+
+/* Soundwave (podcast) */
+@keyframes wave { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
+.wave-bar { transform-origin: bottom; animation: wave 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .wave-bar { animation: none; transform: scaleY(0.6); } }
+
+/* Floating stars (final CTA) */
+@keyframes drift { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(20deg); } }
+.star-drift { animation: drift 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .star-drift { animation: none; } }
+
+/* Nav hides on scroll down, returns on scroll up */
+.nav-hidden { transform: translateY(-100%); }
+
+/* Star cursor + reading progress (desktop pointer only) */
+.star-cursor { position: fixed; top: 0; left: 0; z-index: 90; pointer-events: none; opacity: 0; transition: opacity 0.3s; display: none; }
+.star-cursor span { display: block; margin: -14px 0 0 -14px; font-size: 28px; line-height: 1; color: var(--color-brand-pink-dark); transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.star-cursor.is-hot span { transform: scale(1.9) rotate(45deg); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) { .star-cursor { display: block; } }
+.read-progress { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); height: 40vh; width: 1px; background: rgba(26, 26, 26, 0.12); z-index: 40; pointer-events: none; display: none; }
+.read-progress-fill { position: absolute; inset: 0; background: var(--color-brand-gold-deep); transform-origin: top; transform: scaleY(0); }
+.read-progress-tip { position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%); font-size: 12px; line-height: 1; color: var(--color-brand-gold-deep); }
+@media (min-width: 1024px) { .read-progress { display: block; } }

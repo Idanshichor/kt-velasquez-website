@@ -7,13 +7,14 @@ export default function FaqAccordion() {
   const faqs = t("faqs") as Array<{ q: string; a: string }>;
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div data-stagger className="max-w-3xl mx-auto">
       {faqs.map((faq, i) => {
         const isOpen = openIndex === i;
         return (
           <div key={i} className={`border-b border-gray-200 ${i === 0 ? "border-t" : ""}`}>
             <button
               onClick={() => setOpenIndex(isOpen ? -1 : i)}
+              aria-expanded={isOpen}
               className="w-full flex items-center justify-between py-7 text-left group cursor-pointer"
             >
               <span
@@ -34,13 +35,15 @@ export default function FaqAccordion() {
               </span>
             </button>
             <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                isOpen ? "max-h-[300px] opacity-100 pb-8" : "max-h-0 opacity-0"
+              className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               }`}
             >
-              <p className="text-gray-800 font-normal text-base leading-relaxed pl-0 md:pl-1 max-w-2xl">
-                {faq.a}
-              </p>
+              <div className="overflow-hidden">
+                <p className="text-gray-800 font-normal text-base leading-relaxed pl-0 md:pl-1 max-w-2xl pb-8">
+                  {faq.a}
+                </p>
+              </div>
             </div>
           </div>
         );
