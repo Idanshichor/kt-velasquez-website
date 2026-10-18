@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ChevronDown, Plus } from "lucide-react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
 import { Scene } from "./scene";
 
@@ -15,61 +15,63 @@ function splitLabel(text: string) {
 }
 
 /**
- * The feature list of one tier. Closed, it shows only the short label of each
- * feature, so the three cards stay compact. Open, each label shows its full text.
+ * The features of one tier as pills. Each pill shows the short name; tapping it
+ * grows it into the full sentence. The open pill is clipped open and its
+ * neighbours slide to their new spots, so nothing jumps.
  */
-function Features({ items, dark = false, extra }: { items: string[]; dark?: boolean; extra?: ReactNode }) {
-  const { language } = useLanguage();
-  const [open, setOpen] = useState(false);
-  const muted = dark ? "text-white/70" : "text-gray-600";
-  const strong = dark ? "text-white" : "text-[var(--color-brand-black)]";
-  const rule = dark ? "border-white/12" : "border-[var(--color-brand-black)]/10";
+function Pills({ items, dark = false }: { items: string[]; dark?: boolean }) {
+  const [open, setOpen] = useState<number | null>(null);
+  const refs = useRef<(HTMLLIElement | null)[]>([]);
+  const before = useRef<DOMRect[] | null>(null);
+
+  const toggle = (i: number) => {
+    before.current = refs.current.map((el) => (el ? el.getBoundingClientRect() : new DOMRect()));
+    setOpen((o) => (o === i ? null : i));
+  };
+
+  useLayoutEffect(() => {
+    const prev = before.current;
+    before.current = null;
+    if (!prev || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const opts = { duration: 520, easing: "cubic-bezier(0.22, 1, 0.36, 1)" };
+    refs.current.forEach((el, i) => {
+      if (!el) return;
+      const a = prev[i];
+      const b = el.getBoundingClientRect();
+      const dx = a.left - b.left;
+      const dy = a.top - b.top;
+      if (i === open) {
+        const r = Math.max(0, b.width - a.width);
+        const d = Math.max(0, b.height - a.height);
+        el.animate(
+          [
+            { transform: `translate(${dx}px, ${dy}px)`, clipPath: `inset(0 ${r}px ${d}px 0 round 24px)` },
+            { transform: "none", clipPath: "inset(0 0 0 0 round 24px)" },
+          ],
+          opts,
+        );
+      } else if (dx || dy) {
+        el.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "none" }], opts);
+      }
+    });
+  }, [open]);
 
   return (
-    <div className="mb-8">
-      <ul className={`border-t ${rule}`}>
-        {items.map((feature, i) => {
-          const { label, detail } = splitLabel(feature);
-          return (
-            <li key={i} className={`border-b ${rule} py-3`}>
-              <div className="flex gap-3 items-baseline">
-                <span aria-hidden="true" className={`text-[11px] shrink-0 ${dark ? "text-[var(--color-brand-gold)]" : "text-[var(--color-brand-gold-deep)]"}`}>✦</span>
-                <div className="min-w-0">
-                  <p className={`text-[14px] font-medium leading-snug ${strong}`}>{label}</p>
-                  {detail && (
-                    <div className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-                      <p className={`overflow-hidden text-[13.5px] leading-relaxed ${muted}`} aria-hidden={!open}>
-                        <span className="block pt-1.5">{detail}</span>
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      {extra && (
-        <div className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-          <div className="overflow-hidden" aria-hidden={!open}>
-            <div className="pt-5">{extra}</div>
-          </div>
-        </div>
-      )}
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className={`mt-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] cursor-pointer transition-colors ${
-          dark ? "text-[var(--color-brand-gold)] hover:text-white" : "text-[var(--color-brand-gold-deep)] hover:text-[var(--color-brand-black)]"
-        }`}
-      >
-        <Plus className={`w-3.5 h-3.5 transition-transform duration-300 ${open ? "rotate-45" : ""}`} />
-        {open
-          ? language === "es" ? "Ver menos" : "Show less"
-          : language === "es" ? "Ver todo lo que incluye" : "See everything included"}
-      </button>
-    </div>
+    <ul className={`kt-pills mb-8 ${dark ? "is-dark" : ""}`}>
+      {items.map((feature, i) => {
+        const { label, detail } = splitLabel(feature);
+        const isOpen = open === i;
+        return (
+          <li key={i} ref={(el) => { refs.current[i] = el; }} className={`kt-pill p${i % 4}${isOpen ? " is-open" : ""}`}>
+            <button type="button" aria-expanded={isOpen} onClick={() => toggle(i)} disabled={!detail}>
+              <span className="kt-pill-ttl">{label}</span>
+              {detail && <span className="kt-pill-plus" aria-hidden="true" />}
+            </button>
+            {isOpen && detail && <p className="kt-pill-body">{detail}</p>}
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
@@ -83,7 +85,6 @@ export function Services() {
   const selectedPlan = t1Plans[selectedPlanIndex] || t1Plans[0] || {};
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const t2Plan = (t("services.t2_plan") as any) || {};
-  const inclusions = splitLabel((t("services.t3_inclusions") as string) || "");
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -114,7 +115,7 @@ export function Services() {
             <p className={`${eyebrow} text-gray-500`}>{t("services.t1_subtitle")}</p>
             <h3 className={`${cardTitle} text-[var(--color-brand-black)]`}>{t("services.t1_title")}</h3>
             <p className={`${cardDesc} text-gray-700`}>{t("services.t1_desc")}</p>
-            <Features items={t("services.t1_features") as string[]} />
+            <Pills items={t("services.t1_features") as string[]} />
             <div className="mt-auto">
             <div className="w-full" ref={dropdownRef}>
               <p className="text-xs font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 text-center">
@@ -233,7 +234,7 @@ export function Services() {
             <p className={`${eyebrow} text-[var(--color-brand-gold)] pr-24`}>{t("services.t2_subtitle")}</p>
             <h3 className={`${cardTitle} text-white`}>{t("services.t2_title")}</h3>
             <p className={`${cardDesc} text-white/75`}>{t("services.t2_desc")}</p>
-            <Features items={t("services.t2_features") as string[]} dark />
+            <Pills items={t("services.t2_features") as string[]} dark />
             <div className="mt-auto pt-6 border-t border-white/12">
               <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50 mb-2">
                 {language === "es" ? "Inversión del Acompañamiento" : "Advisory Investment"}
@@ -256,17 +257,7 @@ export function Services() {
             <p className={`${eyebrow} text-gray-500`}>{t("services.t3_subtitle")}</p>
             <h3 className={`${cardTitle} text-[var(--color-brand-black)]`}>{t("services.t3_title")}</h3>
             <p className={`${cardDesc} text-gray-700`}>{t("services.t3_desc")}</p>
-            <Features
-              items={t("services.t3_features") as string[]}
-              extra={
-                <div className="bg-[var(--color-brand-pink-light)] p-4 rounded-2xl text-[13px] text-gray-700 leading-relaxed">
-                  <strong className="font-bold text-[var(--color-brand-black)] block mb-1">
-                    {inclusions.detail ? `${inclusions.label}:` : language === "es" ? "Incluido en todas las sesiones:" : "Included in all sessions:"}
-                  </strong>
-                  {inclusions.detail || inclusions.label}
-                </div>
-              }
-            />
+            <Pills items={[...(t("services.t3_features") as string[]), (t("services.t3_inclusions") as string) || ""].filter(Boolean)} />
             <div className="mt-auto pt-6 border-t border-[var(--color-brand-black)]/10">
               <p className="text-[13px] italic text-gray-600 mb-5 leading-relaxed">{t("services.t3_question")}</p>
               <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-gray-400 mb-2">

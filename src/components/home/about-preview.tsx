@@ -6,7 +6,7 @@ import { Scene } from "./scene";
 export function AboutPreview() {
   const { language, t } = useLanguage();
   return (
-    <Scene className="py-32 md:py-40 px-6 md:px-16 bg-[var(--color-brand-pink-light)]">
+    <Scene className="py-28 md:py-36 px-6 md:px-16 bg-white">
       <div className="max-w-4xl mx-auto text-center">
         <p data-reveal className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--color-brand-black)] mb-8">{t("about.tag")}</p>
         <p data-reveal className="font-body text-[var(--color-brand-black)] text-lg md:text-[1.375rem] leading-[1.7] text-left md:text-center">

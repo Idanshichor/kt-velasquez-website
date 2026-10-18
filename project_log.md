@@ -189,6 +189,10 @@ This log serves as a source of truth for the development, configuration, and des
 
 ---
 
+* **2026-10-18:** Home page third pass (branch `feature/premium-rebuild-v3`, off v2). Mango-style elements in KT360 colors: scroll-lit statement banner, scroll-driven marquee, Method 360 orbit with sticky stacked cards, expandable service pills, full-bleed closing CTA. Copy and payments unchanged. `npm run build` clean.
+
+---
+
 ## ⚠️ Guidelines for Future Updates
 1. **Feature Branching:** Do **NOT** push or commit directly to the `main` branch. Create a feature branch (e.g. `feature/name` or `fix/name`) for any edits. Make sure to push your feature branches to the `live` remote repository (`https://github.com/Idanshichor/kt-velasquez-website.git`) so Vercel can generate a **Preview Deployment** link to test changes before they go live. Once verified, merge the branch into `main` on the `live` repository.
 2. **Copy Modification:** Do **NOT** modify or change any of the copy on the landing page unless explicitly requested by the user.
