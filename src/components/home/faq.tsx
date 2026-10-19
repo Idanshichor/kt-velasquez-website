@@ -12,7 +12,7 @@ export function Faq() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] gap-12 lg:gap-20 items-start">
         <div className="lg:sticky lg:top-36 text-center lg:text-left">
           <h2 data-lines className="kt-title text-5xl md:text-6xl text-[var(--color-brand-black)]">
-            {t("faq.title")} <span className="font-script normal-case tracking-normal text-6xl md:text-7xl text-[var(--color-brand-pink-dark)]">{t("faq.accent")}</span>
+            {t("faq.title")} <span className="font-script normal-case tracking-normal text-6xl md:text-7xl text-[var(--color-brand-pink-ink)]">{t("faq.accent")}</span>
           </h2>
           <div className="relative hidden lg:block w-44 h-44 mt-12" aria-hidden="true">
             <svg viewBox="0 0 200 200" className="kt-turn absolute inset-0 w-full h-full">

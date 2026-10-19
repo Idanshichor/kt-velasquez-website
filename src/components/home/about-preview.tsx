@@ -44,7 +44,7 @@ export function AboutPreview() {
     <Scene className="py-28 md:py-40 px-6 md:px-16 bg-white">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] gap-10 lg:gap-20 items-start">
         <div className="lg:sticky lg:top-36 text-center lg:text-left">
-          <h2 data-reveal className="font-script text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-[var(--color-brand-pink-dark)]">{t("about.tag")}</h2>
+          <h2 data-reveal className="font-script text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-[var(--color-brand-pink-ink)]">{t("about.tag")}</h2>
           <span className="kt-rule mt-8 mx-auto lg:mx-0" />
         </div>
         <div>

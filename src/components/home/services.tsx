@@ -106,7 +106,7 @@ export function Services() {
                 }`}
               >
                 <div className="flex items-center justify-between mb-4 md:mb-6">
-                  <span className={`font-heading text-2xl md:text-3xl leading-none ${on ? "text-[var(--color-brand-pink-dark)]" : "text-[var(--color-brand-gold)]"}`}>0{i + 1}</span>
+                  <span className={`font-heading text-2xl md:text-3xl leading-none ${on ? "text-[var(--color-brand-pink-ink)]" : "text-[var(--color-brand-gold)]"}`}>0{i + 1}</span>
                   {tier.tag && (
                     <span className={`${label} text-[10px] py-1 px-2.5 rounded-full ${on ? "bg-[var(--color-brand-black)] text-white" : "bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]"}`}>{tier.tag}</span>
                   )}

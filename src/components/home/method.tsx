@@ -53,7 +53,7 @@ export function Method() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-14 lg:gap-24 items-start">
         <div className="m-anchor text-center lg:text-left">
           <h2 data-lines className="kt-title text-5xl md:text-7xl text-[var(--color-brand-black)] mb-5">
-            {t("methodology.title")} <span className="normal-case tracking-normal text-[var(--color-brand-pink-dark)] font-script text-6xl md:text-8xl">{t("methodology.title_accent")}</span>
+            {t("methodology.title")} <span className="normal-case tracking-normal text-[var(--color-brand-pink-ink)] font-script text-6xl md:text-8xl">{t("methodology.title_accent")}</span>
           </h2>
           <p data-reveal className="font-body text-[var(--color-brand-black)]/80 font-medium text-lg md:text-xl">{t("methodology.desc")}</p>
 

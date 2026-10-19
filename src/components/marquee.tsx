@@ -36,7 +36,7 @@ export function Marquee() {
   const run = (
     <div className="flex shrink-0 items-center">
       {items.map((item, i) => (
-        <span key={i} className="flex items-center font-heading italic text-2xl md:text-4xl text-white whitespace-nowrap">
+        <span key={i} className="flex items-center font-heading italic text-2xl md:text-4xl text-[var(--color-brand-black)] whitespace-nowrap">
           <span className="px-7 md:px-10">{item}</span>
           <KtStar className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-brand-gold)]" />
         </span>

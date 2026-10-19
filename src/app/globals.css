@@ -3,7 +3,8 @@
 @theme {
   --color-brand-pink: #FFB4C8;
   --color-brand-pink-light: #FFDFE8;
-  --color-brand-pink-dark: #E01E79;
+  --color-brand-pink-dark: #FFB4C8; /* exact logo pink, sampled from KT_LOGO.webp */
+  --color-brand-pink-ink: #AD002E; /* deep shade of the logo hue (344°) for pink text on light backgrounds */
   --color-brand-gold: #EBBF7E;
   --color-brand-gold-light: #F5E5CD;
   --color-brand-gold-deep: #8F6A2A; /* gold for text on light backgrounds (4.9:1 on white) */
@@ -156,7 +157,7 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
 .kt-btn { display: inline-flex; align-items: center; gap: 14px; padding: 8px 8px 8px 28px; border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
 .kt-btn-dot { width: 38px; height: 38px; border-radius: 999px; display: grid; place-items: center; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
 .kt-btn:hover .kt-btn-dot { transform: rotate(90deg); }
-.kt-btn-dark:hover { background: var(--color-brand-pink-dark); }
+.kt-btn-dark:hover { background: var(--color-brand-pink-dark); color: var(--color-brand-black); }
 .kt-btn-gold:hover, .kt-btn-pink:hover { background: #fff; }
 .kt-btn-dark { background: var(--color-brand-black); color: #fff; }
 .kt-btn-dark .kt-btn-dot { background: var(--color-brand-gold); color: var(--color-brand-black); }
