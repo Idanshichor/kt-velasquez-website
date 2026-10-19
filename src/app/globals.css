@@ -4,7 +4,7 @@
   --color-brand-pink: #FFB4C8;
   --color-brand-pink-light: #FFDFE8;
   --color-brand-pink-dark: #FFB4C8; /* exact logo pink, sampled from KT_LOGO.webp */
-  --color-brand-pink-ink: #AD002E; /* deep shade of the logo hue (344°) for pink text on light backgrounds */
+  --color-brand-pink-ink: var(--color-brand-black); /* pink text on light backgrounds uses brand black: logo pink is too faint to read */
   --color-brand-gold: #EBBF7E;
   --color-brand-gold-light: #F5E5CD;
   --color-brand-gold-deep: #8F6A2A; /* gold for text on light backgrounds (4.9:1 on white) */
@@ -122,7 +122,7 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
 
 /* Method 360: orbit beside a stack of sticky cards (desktop with room only) */
 .method360 .m-node-ring { fill: var(--color-brand-pink-dark); stroke: #fff; stroke-width: 1.2; transition: fill 0.4s, r 0.4s; }
-.method360 .m-node-num { font-family: var(--font-body); font-size: 13px; font-weight: 700; fill: #fff; letter-spacing: 0.05em; transition: fill 0.4s; }
+.method360 .m-node-num { font-family: var(--font-body); font-size: 13px; font-weight: 700; fill: var(--color-brand-black); letter-spacing: 0.05em; transition: fill 0.4s; }
 .method360 .m-node.is-on .m-node-ring { fill: var(--color-brand-black); stroke: var(--color-brand-gold); r: 27px; }
 .method360 .m-node.is-on .m-node-num { fill: var(--color-brand-gold); }
 .method360 .m-progress { display: none; }
