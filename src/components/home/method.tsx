@@ -51,13 +51,14 @@ export function Method() {
       }}
     >
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-14 lg:gap-24 items-start">
-        <div className="m-anchor text-center lg:text-left">
-          <h2 data-lines className="kt-title text-5xl md:text-7xl text-[var(--color-brand-black)] mb-5">
-            {t("methodology.title")} <span className="normal-case tracking-normal text-[var(--color-brand-pink-ink)] font-script text-6xl md:text-8xl">{t("methodology.title_accent")}</span>
+        <div className="m-anchor flex flex-col items-center text-center">
+          {/* The orbit carries the "360", so the heading only spells it out in English */}
+          <h2 data-lines className="kt-title text-5xl md:text-7xl text-[var(--color-brand-black)]">
+            {t("methodology.title")}
+            {language !== "es" && <> <span className="normal-case tracking-normal font-script text-6xl md:text-8xl">{t("methodology.title_accent")}</span></>}
           </h2>
-          <p data-reveal className="font-body text-[var(--color-brand-black)]/80 font-medium text-lg md:text-xl">{t("methodology.desc")}</p>
 
-          <div className="relative hidden lg:block mt-10 w-[min(100%,340px)] aspect-square" aria-hidden="true">
+          <div className="relative my-12 md:my-14 w-[min(78vw,340px)] aspect-square" aria-hidden="true">
             <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 400 400">
               <g className="m-orbit">
                 <circle cx="200" cy="200" r="170" fill="none" stroke="var(--color-brand-black)" strokeOpacity="0.45" strokeWidth="1.2" strokeDasharray="3 9" />
@@ -76,6 +77,8 @@ export function Method() {
               <span className="font-script text-6xl md:text-7xl text-[var(--color-brand-black)] leading-none">360</span>
             </div>
           </div>
+
+          <p data-reveal className="font-body text-[var(--color-brand-black)]/80 font-medium text-lg md:text-xl max-w-[40ch]">{t("methodology.desc")}</p>
         </div>
 
         <div className="m-cards relative grid gap-6">

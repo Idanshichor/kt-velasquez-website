@@ -51,18 +51,18 @@ export function Hero() {
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-24 w-full relative z-10 grid md:grid-cols-2 gap-12 items-center flex-1 md:flex-none">
         <div data-hero-copy className="flex flex-col text-center md:text-left z-20 h-full md:h-auto justify-between md:justify-center md:gap-6">
-          <p data-hero-tag className="font-heading text-2xl md:text-3xl text-[var(--color-brand-cream)] mb-2 md:mb-0">
-            <span className="italic">{t("hero.consultoria")}</span>
+          <p data-hero-tag className="kt-eyebrow on-dark text-white md:text-[13px] self-center md:self-start mb-2 md:mb-0">
+            {t("hero.consultoria")}
           </p>
 
           <div className="flex flex-col gap-6 mt-auto md:mt-0 pt-16 md:pt-0 md:pb-0">
-            <h1 className="order-1 font-heading text-5xl md:text-6xl lg:text-[5.5rem] leading-[0.95] tracking-tight uppercase text-[var(--color-brand-cream)] mt-4 md:mt-0">
+            <h1 className="order-1 kt-title text-5xl md:text-6xl lg:text-[5.5rem] text-white mt-4 md:mt-0">
               <span data-hero-line className="block w-max mx-auto md:mx-0">{t("hero.katherine")}</span>
               <span data-hero-line className="block w-max mx-auto md:mx-0">{t("hero.velasquez")}</span>
               <span className="sr-only">— {t("hero.h1_keyword")}</span>
             </h1>
 
-            <div data-hero-script className="order-3 md:order-2 font-script-readable text-2xl md:text-[2.25rem] lg:text-[2.75rem] text-[var(--color-brand-gold)] max-w-[500px] leading-tight text-center md:text-left mx-auto md:mx-0 md:-ml-2 mt-2 md:mt-4 hidden md:block">
+            <div data-hero-script className="order-3 md:order-2 self-start max-w-[460px] bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] font-heading italic text-xl lg:text-2xl leading-snug rounded-xl px-5 py-3 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.6)] hidden md:block">
               {t("hero.direccion")}
             </div>
 

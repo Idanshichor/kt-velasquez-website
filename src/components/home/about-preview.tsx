@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import { Scene } from "./scene";
-import { KtStar, Scrub, type ScrubPart } from "./scrub";
+import { Scrub, type ScrubPart } from "./scrub";
 
 const B = "font-bold not-italic";
 const S = "font-script not-italic text-[var(--color-brand-gold-deep)] text-[1.35em] leading-none";
@@ -42,14 +43,20 @@ export function AboutPreview() {
 
   return (
     <Scene className="py-28 md:py-40 px-6 md:px-16 bg-white">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] gap-10 lg:gap-20 items-start">
-        <div className="lg:sticky lg:top-36 text-center lg:text-left">
-          <h2 data-reveal className="font-script text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-[var(--color-brand-pink-ink)]">{t("about.tag")}</h2>
-          <span className="kt-rule mt-8 mx-auto lg:mx-0" />
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-14 lg:gap-20 items-center">
+        {/* Portrait with the name strap, like a lower third in the reels */}
+        <div data-reveal className="relative mx-auto w-full max-w-[420px] pb-8">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] kt-card">
+            <Image src="/images/KT_About_Hero.webp" alt="Katherine Velasquez" fill sizes="(max-width: 1024px) 90vw, 420px" quality={90} className="object-cover object-[center_25%]" />
+          </div>
+          <div className="absolute left-0 right-6 -bottom-0 md:-left-6 bg-[var(--color-brand-pink)] rounded-2xl px-6 py-5 shadow-[0_24px_60px_-28px_rgba(26,26,26,0.45)]">
+            <h2 className="kt-title text-[2rem] md:text-[2.6rem] text-[var(--color-brand-black)]">{t("about.tag")}</h2>
+          </div>
         </div>
         <div>
+          <span className="kt-rule mb-8" />
           <p data-reveal className="font-body text-gray-600 text-base md:text-lg leading-[1.75] mb-10 max-w-2xl">{lead}</p>
-          <Scrub parts={parts} className="font-heading italic text-2xl md:text-4xl leading-[1.3] tracking-tight text-[var(--color-brand-black)]" />
+          <Scrub parts={parts} className="font-heading italic text-2xl md:text-[2.1rem] leading-[1.3] tracking-tight text-[var(--color-brand-black)]" />
         </div>
       </div>
     </Scene>
