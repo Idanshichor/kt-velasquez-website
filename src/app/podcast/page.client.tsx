@@ -3,7 +3,7 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Scene } from "@/components/home/scene";
-import { Scrub } from "@/components/home/scrub";
+import { KtStar, Scrub } from "@/components/home/scrub";
 import { useLanguage } from "@/context/language-context";
 import Image from "next/image";
 import { useState } from "react";
@@ -11,6 +11,9 @@ import Link from "next/link";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 const INK = "text-[var(--color-brand-black)]";
+// Kit magenta #E01E79 ("breaks") comes from the KT360 design bundle; it is only used on this page
+const BARS = Array.from({ length: 40 }, (_, i) => ({ h: 20 + ((i * 37) % 70), d: (i % 7) * 0.17 }));
+const CARD_BG = ["bg-[var(--color-brand-pink)]", "bg-[var(--color-brand-gold)]", "bg-white"];
 
 /** Splits a title so its last word can sit on its own line in the script font. */
 function splitLast(title: string) {
@@ -133,58 +136,50 @@ export default function PodcastPageClient() {
     <div className={`min-h-screen bg-[var(--color-brand-cream)] ${INK}`}>
       <Navbar />
 
-      {/* HERO: podcast art with a pink lower-third, logo title and a jump to the form */}
-      <Scene className="relative w-full pt-32 pb-20 md:pt-44 md:pb-28 px-6 md:px-16 bg-white overflow-hidden">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-14 lg:gap-20 items-center">
-          <div className="flex flex-col text-center md:text-left order-2 md:order-1">
-            <h1 data-reveal className="mb-8 relative w-full max-w-[300px] md:max-w-[400px] aspect-[671/351] mx-auto md:mx-0">
+      {/* HERO (magenta, "breaks"): full screen, the mic shot fills the right side, a soundwave runs along the bottom */}
+      <Scene className="relative w-full min-h-[100svh] overflow-hidden bg-[#E01E79] text-white flex flex-col md:flex-row md:items-center pt-32 pb-24 md:pt-36 md:pb-24 px-6 md:px-16">
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-20 md:h-28 flex items-end justify-center gap-1 md:gap-1.5 px-4 pb-0 opacity-70 pointer-events-none">
+          {BARS.map((b, i) => (
+            <span key={i} className="wave-bar w-1 md:w-1.5 rounded-full bg-white" style={{ height: `${b.h}%`, animationDelay: `${b.d}s` }} />
+          ))}
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          <div className="max-w-[560px] md:max-w-[46%] lg:max-w-[520px] flex flex-col items-start gap-7">
+            <p data-reveal className="kt-eyebrow on-dark text-white md:text-[13px]">{t("podcastPage.heroTag")}</p>
+            <h1 data-reveal className="relative w-full max-w-[320px] md:max-w-[460px] aspect-[671/351]">
               <span className="sr-only">
                 {t("podcastPage.heroTitlePart1")} {t("podcastPage.heroTitlePart2")}
               </span>
-              <Image
-                src="/images/kt-360-bw.webp"
-                alt="KT.360 - Sin Pelos en la Lengua Podcast Logo"
-                fill
-                priority
-                sizes="400px"
-                className="object-contain"
-              />
+              <Image src="/images/kt-360-bw.webp" alt="KT.360 - Sin Pelos en la Lengua Podcast Logo" fill priority sizes="460px" className="object-contain object-left brightness-0 invert" />
             </h1>
-            <span data-reveal className="kt-rule mb-8 mx-auto md:mx-0" />
-            <p data-reveal className={`font-heading italic text-2xl md:text-[2rem] leading-[1.3] tracking-tight ${INK} max-w-xl mx-auto md:mx-0 mb-10`}>
+            <span data-reveal className="block w-16 h-[2px] bg-[var(--color-brand-gold)]" />
+            <p data-reveal className="text-white font-heading italic text-2xl md:text-[2rem] leading-[1.3] tracking-tight">
               {t("podcastPage.heroSubtitle")}
             </p>
-            <div data-reveal className="flex justify-center md:justify-start">
-              <a href="#postulate" className="kt-btn kt-btn-dark">
-                <span>{t("podcastPage.ctaButton")}</span>
-                <span className="kt-btn-dot" aria-hidden="true"><ArrowDown className="w-4 h-4" /></span>
-              </a>
-            </div>
+            <a data-reveal href="#postulate" className="kt-btn kt-btn-gold">
+              <span>{t("podcastPage.ctaButton")}</span>
+              <span className="kt-btn-dot" aria-hidden="true"><ArrowDown className="w-4 h-4" /></span>
+            </a>
           </div>
-
-          <div data-reveal className="relative mx-auto w-full max-w-[440px] pb-8 order-1 md:order-2">
-            <div className="relative aspect-square overflow-hidden rounded-[28px] kt-card">
-              <Image
-                src="/images/ktspacepodcast.webp"
-                alt="KT.360 - Sin Pelos en la Lengua — Podcast de Katherine Velasquez para CEOs y fundadoras"
-                fill
-                sizes="(max-width: 768px) 90vw, 440px"
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="absolute left-0 right-10 bottom-0 md:-left-6 bg-[var(--color-brand-pink)] rounded-2xl px-6 py-4 shadow-[0_24px_60px_-28px_rgba(26,26,26,0.45)]">
-              <p className={`kt-title text-[1.8rem] md:text-[2.2rem] ${INK}`}>{t("podcastPage.heroTag")}</p>
-            </div>
-          </div>
+        </div>
+        <div aria-hidden="true" className="relative z-[1] w-full aspect-square max-w-[420px] mx-auto -mb-24 mt-10 md:mt-0 md:mb-0 md:max-w-none md:aspect-auto md:absolute md:inset-y-0 md:right-0 md:w-[50%] lg:w-[56%] pointer-events-none">
+          <Image
+            src="/images/ktspacepodcast.webp"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 58vw"
+            className="object-contain object-bottom md:object-right-bottom"
+          />
         </div>
       </Scene>
 
-      {/* PLATFORMS STRIP */}
-      <Scene className="py-12 md:py-14 px-6 md:px-16 bg-white border-y border-[var(--color-brand-black)]/10">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-          <p data-reveal className={`kt-eyebrow ${INK} shrink-0`}>{t("podcastPage.platformsTitle")}</p>
-          <div data-stagger className="flex flex-wrap items-center justify-center md:justify-end gap-x-10 gap-y-6">
+      {/* PLATFORMS (gold, "builds"): a bold strip of where to listen */}
+      <Scene className="py-12 md:py-16 px-6 md:px-16 bg-[var(--color-brand-gold)]">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+          <p data-reveal className={`kt-title text-2xl md:text-3xl ${INK} text-center lg:text-left max-w-xs`}>{t("podcastPage.platformsTitle")}</p>
+          <div data-stagger className="flex flex-wrap items-center justify-center lg:justify-end gap-3 md:gap-4">
             {platforms.map((platform) => (
               <a
                 key={platform.name}
@@ -192,94 +187,93 @@ export default function PodcastPageClient() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={platform.name}
-                className="block fill-[var(--color-brand-black)] opacity-70 hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 rounded-md"
+                className="block fill-[var(--color-brand-black)] bg-white rounded-full px-5 py-3 transition-colors duration-500 hover:bg-[var(--color-brand-black)] hover:fill-white focus-visible:bg-[var(--color-brand-black)] focus-visible:fill-white"
               >
-                <span className="h-8 flex items-center">{platform.logoSvg}</span>
+                <span className="h-7 flex items-center [&_svg]:h-7">{platform.logoSvg}</span>
               </a>
             ))}
           </div>
         </div>
       </Scene>
 
-      {/* MANIFESTO: same layout as the "Hola, soy Katherine" block on the home page */}
-      <Scene className="py-28 md:py-40 px-6 md:px-16 bg-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-14 lg:gap-20 items-center">
-          <div data-reveal className="relative mx-auto w-full max-w-[400px] pb-8">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] kt-card">
-              <Image
-                src="/images/KT_Podcast_Katherine.webp"
-                alt="Katherine Velasquez, host del podcast Estrategia 360 - Sin Pelos en la Lengua"
-                fill
-                sizes="(max-width: 1024px) 90vw, 400px"
-                className="object-cover object-[center_20%]"
-              />
-            </div>
-            <div className="absolute left-0 right-6 bottom-0 md:-left-6 bg-[var(--color-brand-pink)] rounded-2xl px-6 py-5 shadow-[0_24px_60px_-28px_rgba(26,26,26,0.45)]">
-              <h2 className={`kt-title text-[2rem] md:text-[2.6rem] ${INK}`}>{t("podcastPage.manifestoTag")}</h2>
-            </div>
+      {/* MANIFESTO (black, "holds"): the quote as a big statement, like the home banner */}
+      <Scene className="statement relative overflow-hidden bg-[var(--color-brand-black)] text-white py-28 md:py-44 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[auto_minmax(0,1fr)] gap-10 md:gap-20 items-start">
+          <div className="flex md:flex-col items-center md:items-start gap-6">
+            <KtStar className="statement-star w-16 md:w-40 text-[var(--color-brand-gold)]" />
+            <p className="kt-eyebrow on-dark text-white">{t("podcastPage.manifestoTag")}</p>
           </div>
           <div>
             <Scrub
+              as="h2"
               parts={[{ text: `“${t("podcastPage.manifestoP1")}”` }]}
-              className={`font-heading italic text-2xl md:text-[2.1rem] leading-[1.3] tracking-tight ${INK} mb-10`}
+              className="kt-title text-3xl md:text-5xl lg:text-[3.6rem] leading-[1.02]"
             />
-            <span data-reveal className="kt-rule mb-8" />
-            <p data-reveal className={`font-body ${INK} text-base md:text-lg leading-[1.75] mb-10 max-w-2xl`}>
-              {t("podcastPage.manifestoP2")}
-            </p>
-            <div data-reveal className="relative bg-[var(--color-brand-pink-light)] rounded-[1.75rem] p-6 md:p-9 shadow-[0_24px_60px_-28px_rgba(26,26,26,0.35)]">
-              <p className={`font-heading italic text-lg md:text-2xl leading-relaxed ${INK}`}>{t("podcastPage.manifestoP3")}</p>
+            <span data-reveal className="kt-rule mt-12 mb-8" />
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              <p data-reveal className="font-body text-white/75 text-base md:text-lg leading-[1.75]">{t("podcastPage.manifestoP2")}</p>
+              <p data-reveal className="text-white font-heading italic text-xl md:text-[1.7rem] leading-[1.4]">
+                {t("podcastPage.manifestoP3")}
+              </p>
             </div>
           </div>
         </div>
       </Scene>
 
-      {/* VALUES: numbered index, like the Mango-style services list on home */}
-      <Scene className="py-28 md:py-40 px-6 md:px-16 bg-white">
+      {/* VALUES (purple): three bold cards side by side, each in its own kit colour */}
+      <Scene className="py-28 md:py-40 px-6 md:px-16 bg-[var(--color-brand-purple)] text-white overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-8 md:gap-16 items-end mb-14 md:mb-20">
-            <h2 data-lines className={`kt-title text-4xl md:text-6xl lg:text-[4.5rem] ${INK}`}>
+            <h2 data-lines className="kt-title text-4xl md:text-6xl lg:text-[4.5rem]">
               {valuesHead}
               {valuesScript && (
-                <span className="block font-script normal-case tracking-normal text-[0.85em] leading-[1.1] mt-1">{valuesScript}</span>
+                <span className="block font-script normal-case tracking-normal text-[0.9em] leading-[1.1] mt-1">{valuesScript}</span>
               )}
             </h2>
             <div data-reveal>
               <span className="kt-rule mb-5" />
-              <p className={`font-body ${INK} text-lg leading-relaxed`}>{t("podcastPage.valuesSubtitle")}</p>
+              <p className="font-body text-white/85 text-lg leading-relaxed">{t("podcastPage.valuesSubtitle")}</p>
             </div>
           </div>
 
-          <ol data-stagger className="border-t border-[var(--color-brand-black)]/15">
+          <ol data-stagger className="grid md:grid-cols-3 gap-5 md:gap-6">
             {values.map((v, i) => (
               <li
                 key={i}
-                className="border-b border-[var(--color-brand-black)]/15 grid grid-cols-[auto_minmax(0,1fr)] md:grid-cols-[6rem_minmax(0,1fr)_minmax(0,24rem)] items-start md:items-center gap-x-5 md:gap-x-10 gap-y-3 py-8 md:py-10 px-2 md:px-6"
+                className={`kt-card-lift ${CARD_BG[i]} ${INK} rounded-[2rem] p-8 md:p-10 flex flex-col min-h-[20rem] md:min-h-[26rem] shadow-[0_30px_70px_-30px_rgba(26,26,26,0.6)]`}
               >
-                <span className={`font-heading text-3xl md:text-5xl leading-none ${INK}/30`}>0{i + 1}</span>
-                <h3 className={`kt-title text-xl md:text-[2rem] leading-[1.05] ${INK}`}>{v.title}</h3>
-                <p className={`col-start-2 md:col-start-3 font-body text-base md:text-lg leading-relaxed ${INK}`}>{v.desc}</p>
+                <span className="font-heading text-7xl md:text-8xl leading-none">0{i + 1}</span>
+                <h3 className="kt-title text-2xl md:text-[1.9rem] leading-[1.05] mt-auto pt-10 mb-4">{v.title}</h3>
+                <p className="font-body text-base md:text-lg leading-relaxed">{v.desc}</p>
               </li>
             ))}
           </ol>
         </div>
       </Scene>
 
-      {/* GUEST APPLICATION FORM */}
-      <Scene id="postulate" className="py-28 md:py-36 px-6 md:px-16 bg-[var(--color-brand-pink-light)] scroll-mt-24">
+      {/* GUEST APPLICATION (pink, "recovers"): Katherine on the left, the form on the right */}
+      <Scene id="postulate" className="py-28 md:py-36 px-6 md:px-16 bg-[var(--color-brand-pink)] scroll-mt-24">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 lg:gap-20 items-start">
-          <div className="lg:sticky lg:top-36">
+          <div>
             <h2 data-lines className={`kt-title text-4xl md:text-5xl lg:text-[3.75rem] ${INK} mb-8`}>
               {ctaHead}
               {ctaScript && (
                 <span className="block font-script normal-case tracking-normal text-[0.85em] leading-[1.1] mt-1">{ctaScript}</span>
               )}
             </h2>
-            <span data-reveal className="kt-rule mb-6" />
-            <p data-reveal className={`font-body ${INK} text-base md:text-lg leading-relaxed`}>{t("podcastPage.ctaSubtitle")}</p>
+            <span className="block w-16 h-[2px] bg-[var(--color-brand-black)] mb-6" />
+            <p data-reveal className={`font-body ${INK} text-base md:text-lg leading-relaxed mb-10`}>{t("podcastPage.ctaSubtitle")}</p>
+            <div data-reveal className="hidden lg:block relative max-w-[340px] aspect-[4/5] rounded-[28px] overflow-hidden kt-card bg-white">
+              <Image
+                src="/images/KT_Podcast_Katherine.webp"
+                alt="Katherine Velasquez, host del podcast Estrategia 360 - Sin Pelos en la Lengua"
+                fill
+                sizes="340px"
+                className="object-cover object-[center_30%]"
+              />
+            </div>
           </div>
-
-          <div data-reveal className="bg-white p-7 md:p-12 rounded-[2rem] kt-card">
+          <div data-reveal className="bg-white p-7 md:p-12 rounded-[2rem] shadow-[0_30px_70px_-30px_rgba(26,26,26,0.5)]">
             {formStatus === "success" ? (
               <div role="status" className="text-center py-12 flex flex-col items-center justify-center">
                 <div className={`w-16 h-16 rounded-full bg-[var(--color-brand-pink)] ${INK} flex items-center justify-center mb-6 text-3xl`}>✓</div>
