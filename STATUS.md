@@ -72,3 +72,4 @@ After approval
 - 2026-10-20: Per Idan: home rows open a bubble, /servicios shows one service at a time, new service card. Same copy/prices/Wompi links.
 
 - 2026-10-20: /sobre-mi restyled to the home kit (numbered chapter list, pink lower-third portrait label, bubble quotes, pink CTA). Copy unchanged. Branch feature/sobre-mi-redesign, preview only.
+- 2026-10-20: /sobre-mi rebuilt on the KT360 Design System (TitleCard heads, LowerThird straps, dark EndCard close, four card tones, magenta #E01E79 accents). Copy unchanged.
