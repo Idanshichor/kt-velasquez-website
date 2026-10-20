@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import { gsap } from "@/lib/gsap";
 import { Scene } from "./scene";
-import { KtCta } from "./scrub";
 
 const WHATSAPP = "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29";
 
@@ -45,28 +44,40 @@ export function Hero() {
         <div data-hero-dim className="absolute inset-0 bg-black opacity-0 pointer-events-none" />
       </div>
 
+      {/* KT360 design system: section tagline idiom, Playfair uppercase title,
+          Inter body, primary pill button. Anchored to the screen edge so the words
+          fill the grey space left of Katherine. */}
       <div className="relative z-10 w-full px-6 md:pl-[6vw] md:pr-0">
         <div className="md:w-[50vw] md:max-w-[60rem]">
-          <div data-hero-title className="relative">
-            <h1 className="kt-title text-white text-[3.4rem] sm:text-7xl md:text-[clamp(5rem,9.5vw,11rem)]">
+          <p data-hero-strap className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-white mb-6 md:mb-8">
+            <span aria-hidden="true" className="w-8 h-[2px] bg-[var(--color-brand-pink)]" />
+            {t("hero.consultoria")}
+          </p>
+
+          <div data-hero-title>
+            <h1 className="font-heading uppercase tracking-tight leading-[0.95] text-white text-[3.4rem] sm:text-7xl md:text-[clamp(4.5rem,8.5vw,10rem)]">
               <span data-hero-line className="block">{t("hero.katherine")}</span>
-              <span data-hero-line className="block font-script normal-case tracking-normal text-[var(--color-brand-gold)] text-[0.78em] leading-[1.1] -mt-1 md:-mt-3 md:pl-[0.6em]">{t("hero.velasquez")}</span>
+              <span data-hero-line className="block">{t("hero.velasquez")}</span>
               <span className="sr-only">— {t("hero.h1_keyword")}</span>
             </h1>
           </div>
 
-          <div className="mt-8 md:mt-10 md:max-w-[34rem]">
-            <p data-hero-strap className="kt-eyebrow on-dark text-white mb-4">{t("hero.consultoria")}</p>
-            <p data-hero-strap className="font-heading italic text-white text-xl md:text-[1.75rem] leading-snug">{t("hero.direccion")}</p>
-          </div>
+          <p data-hero-strap className="mt-8 md:mt-10 font-body font-semibold text-white text-lg md:text-2xl leading-snug md:max-w-[34rem]">
+            {t("hero.direccion")}
+          </p>
+          <p data-hero-desc className="mt-4 font-body text-white/75 text-sm md:text-base leading-relaxed max-w-[28rem]">
+            {t("hero.description")}
+          </p>
 
-          <div className="mt-8 md:mt-10 flex flex-col items-start gap-6">
-            <div data-hero-cta className="shrink-0">
-              <KtCta href={WHATSAPP} tone="gold">{t("hero.cta")}</KtCta>
-            </div>
-            <p data-hero-desc className="font-body text-white/80 text-sm md:text-base leading-relaxed max-w-[26rem]">
-              {t("hero.description")}
-            </p>
+          <div data-hero-cta className="mt-8 md:mt-10">
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-full h-14 px-10 text-sm font-semibold tracking-widest uppercase bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] shadow-elevated transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-white hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              {t("hero.cta")}
+            </a>
           </div>
         </div>
       </div>
