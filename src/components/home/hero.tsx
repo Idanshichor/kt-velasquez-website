@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import { gsap } from "@/lib/gsap";
 import { Scene } from "./scene";
-import { KtCta, KtStar } from "./scrub";
+import { KtCta } from "./scrub";
 
 const WHATSAPP = "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29";
 
@@ -19,19 +19,17 @@ export function Hero() {
         const all = (s: string) => Array.from(root.querySelectorAll<HTMLElement>(s));
 
         // Intro, plays once on load. The photo settles from a slight zoom, the name
-        // rises line by line, the star spins in, and the tagline slides in from the side.
+        // rises line by line and the tagline slides in from the side.
         gsap.fromTo(q("[data-hero-img]"), { scale: 1.1, opacity: 0.5 }, { scale: 1, opacity: 1, duration: 3, ease: "power2.out" });
         all("[data-hero-line]").forEach((el) => gsap.set(el, { visibility: "visible" }));
         gsap.fromTo(all("[data-hero-line]"), { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.4, ease: "power4.out", stagger: 0.15, delay: 0.2 });
-        gsap.fromTo(q("[data-hero-star]"), { rotate: -120, scale: 0, opacity: 0 }, { rotate: 0, scale: 1, opacity: 1, duration: 1.6, ease: "back.out(1.6)", delay: 0.6 });
         gsap.fromTo(all("[data-hero-strap]"), { xPercent: -14, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 1.1, ease: "power3.out", stagger: 0.12, delay: 0.9, clearProps: "transform" });
         gsap.fromTo([q("[data-hero-desc]"), q("[data-hero-cta]")], { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", stagger: 0.12, delay: 1.1, clearProps: "transform" });
 
-        // Leaving the hero: layers move at different speeds
+        // Leaving the hero: the photo and the name move at different speeds
         const st = { trigger: root, start: "top top", end: "bottom top", scrub: true };
         gsap.to(q("[data-hero-parallax]"), { yPercent: 12, scale: 1.06, ease: "none", scrollTrigger: st });
         gsap.to(q("[data-hero-title]"), { yPercent: -35, ease: "none", scrollTrigger: st });
-        gsap.to(q("[data-hero-star]"), { rotate: 180, ease: "none", scrollTrigger: st });
         gsap.to(q("[data-hero-dim]"), { opacity: 0.5, ease: "none", scrollTrigger: st });
       }}
     >
@@ -47,18 +45,17 @@ export function Hero() {
         <div data-hero-dim className="absolute inset-0 bg-black opacity-0 pointer-events-none" />
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 md:px-16 lg:px-24">
-        <div className="max-w-[46rem]">
+      <div className="relative z-10 w-full px-6 md:pl-[6vw] md:pr-0">
+        <div className="md:w-[50vw] md:max-w-[60rem]">
           <div data-hero-title className="relative">
-            <span data-hero-star className="absolute -top-10 right-2 md:-top-14 md:-right-6 w-12 md:w-20 text-[var(--color-brand-gold)]"><KtStar className="w-full h-auto block" /></span>
-            <h1 className="kt-title text-white text-[3.4rem] sm:text-7xl md:text-8xl lg:text-[8.5rem]">
+            <h1 className="kt-title text-white text-[3.4rem] sm:text-7xl md:text-[clamp(5rem,9.5vw,11rem)]">
               <span data-hero-line className="block">{t("hero.katherine")}</span>
               <span data-hero-line className="block font-script normal-case tracking-normal text-[var(--color-brand-gold)] text-[0.78em] leading-[1.1] -mt-1 md:-mt-3 md:pl-[0.6em]">{t("hero.velasquez")}</span>
               <span className="sr-only">— {t("hero.h1_keyword")}</span>
             </h1>
           </div>
 
-          <div className="mt-8 md:mt-10 max-w-[30rem]">
+          <div className="mt-8 md:mt-10 md:max-w-[34rem]">
             <p data-hero-strap className="kt-eyebrow on-dark text-white mb-4">{t("hero.consultoria")}</p>
             <p data-hero-strap className="font-heading italic text-white text-xl md:text-[1.75rem] leading-snug">{t("hero.direccion")}</p>
           </div>
