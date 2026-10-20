@@ -19,8 +19,7 @@ export function Hero() {
         const all = (s: string) => Array.from(root.querySelectorAll<HTMLElement>(s));
 
         // Intro, plays once on load. The photo settles from a slight zoom, the name
-        // rises line by line, the star spins in, and the name straps slide in from
-        // the side like a lower third in the reels.
+        // rises line by line, the star spins in, and the tagline slides in from the side.
         gsap.fromTo(q("[data-hero-img]"), { scale: 1.1, opacity: 0.5 }, { scale: 1, opacity: 1, duration: 3, ease: "power2.out" });
         all("[data-hero-line]").forEach((el) => gsap.set(el, { visibility: "visible" }));
         gsap.fromTo(all("[data-hero-line]"), { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.4, ease: "power4.out", stagger: 0.15, delay: 0.2 });
@@ -59,15 +58,9 @@ export function Hero() {
             </h1>
           </div>
 
-          {/* Name straps, like the lower third in the reels */}
-          <div className="mt-8 md:mt-10 flex flex-col items-start gap-0">
-            <p data-hero-strap className="relative z-10 bg-[var(--color-brand-black)] text-white text-[11px] md:text-xs font-bold uppercase tracking-[0.3em] rounded-t-xl rounded-br-xl px-5 py-3 flex items-center gap-3">
-              <span aria-hidden="true" className="w-[3px] h-[1.6em] rounded-sm bg-[var(--color-brand-pink)]" />
-              {t("hero.consultoria")}
-            </p>
-            <p data-hero-strap className="max-w-[30rem] bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] font-heading italic text-lg md:text-2xl leading-snug rounded-b-2xl rounded-tr-2xl px-5 md:px-6 py-3 md:py-4 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.7)]">
-              {t("hero.direccion")}
-            </p>
+          <div className="mt-8 md:mt-10 max-w-[30rem]">
+            <p data-hero-strap className="kt-eyebrow on-dark text-white mb-4">{t("hero.consultoria")}</p>
+            <p data-hero-strap className="font-heading italic text-white text-xl md:text-[1.75rem] leading-snug">{t("hero.direccion")}</p>
           </div>
 
           <div className="mt-8 md:mt-10 flex flex-col items-start gap-6">
