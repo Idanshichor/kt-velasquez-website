@@ -179,9 +179,9 @@ export default function PodcastPageClient() {
 
       {/* PLATFORMS: a white bar under the hero, built like the home page's client logo strip */}
       <Scene className="py-12 md:py-14 px-6 md:px-16 bg-white border-b-[1.5px] border-[var(--color-brand-black)]">
-        <div className="max-w-7xl mx-auto flex flex-col xl:flex-row items-center gap-8 xl:gap-16">
-          <p data-reveal className={`text-[11px] font-bold uppercase tracking-[0.3em] ${INK} shrink-0`}>{t("podcastPage.platformsTitle")}</p>
-          <ul data-stagger className="flex flex-wrap items-center justify-center md:justify-between gap-x-10 gap-y-6 flex-1 w-full">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-8">
+          <p data-reveal className={`text-[11px] font-bold uppercase tracking-[0.3em] ${INK} text-center`}>{t("podcastPage.platformsTitle")}</p>
+          <ul data-stagger className="flex flex-wrap items-center justify-center gap-x-10 lg:gap-x-14 gap-y-6 w-full">
             {platforms.map((platform) => (
               <li key={platform.name}>
                 <a
@@ -191,7 +191,7 @@ export default function PodcastPageClient() {
                   aria-label={platform.name}
                   className="block fill-[var(--color-brand-black)] opacity-80 hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300"
                 >
-                  <span className="h-8 flex items-center [&_svg]:h-8">{platform.logoSvg}</span>
+                  <span className="h-7 flex items-center [&_svg]:h-7">{platform.logoSvg}</span>
                 </a>
               </li>
             ))}
