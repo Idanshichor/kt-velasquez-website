@@ -206,3 +206,4 @@ This log serves as a source of truth for the development, configuration, and des
 
 - 2026-10-19: v7 logo pink: 360 once in circle, hero + about restyled in KT360 kit. Commit 151f7e5, preview kt-velasquez-website-9fio1163b-ktvelasquez.vercel.app
 - 2026-10-19: New /servicios page (Mango layout: big title, numbered index, one block per service with all plans + Wompi links). Home services section is now a numbered list linking to it. Nav "Servicios" goes to /servicios; sitemap updated. Branch feature/services-page-mango.
+- 2026-10-20: Home service rows open a pink bubble (description + Leer más). /servicios is now a one-open-at-a-time list; service card redesigned (numbered includes list + price card with plan radio buttons instead of dropdown).

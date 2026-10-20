@@ -69,3 +69,4 @@ After approval
 - 2026-10-18: home page rebuilt. Lenis + GSAP/ScrollTrigger/SplitText; sticky-based pins (banner, method, testimonials, desktop only); velocity marquee; mask reveals; star cursor + reading line; nav hides on scroll down; FAQ height via grid rows; services text raised to 12 px min, gold sweep on featured tier; `--color-brand-gold-deep` for gold text. Inner pages untouched (still old fade-up, now with smooth scroll and star cursor). Hero image left as in main.
 - 2026-10-18: created audits, STATUS.md, branch.
 - 2026-10-19 (branch `feature/services-page-mango`): Added /servicios page and redesigned home services as a Mango-style numbered list. Copy, prices and Wompi links unchanged (moved to /servicios). Open: Idan to review preview.
+- 2026-10-20: Per Idan: home rows open a bubble, /servicios shows one service at a time, new service card. Same copy/prices/Wompi links.
