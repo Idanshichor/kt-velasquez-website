@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Plus } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FinalCta } from "@/components/home/final-cta";
@@ -22,7 +21,7 @@ function serviceFromHash() {
 export default function ServicesPageClient() {
   const { language, t } = useLanguage();
   const tiers = useServiceTiers();
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState(0);
   const es = language === "es";
   const title = (t("services.title") as string) || "";
   const cut = title.lastIndexOf(" ");
@@ -30,7 +29,7 @@ export default function ServicesPageClient() {
   useEffect(() => {
     function sync() {
       const i = serviceFromHash();
-      if (i === null) return;
+      if (i === null || i > 2) return;
       setOpen(i);
       requestAnimationFrame(() => document.getElementById(`servicio-${i + 1}`)?.scrollIntoView({ block: "start" }));
     }
@@ -40,13 +39,8 @@ export default function ServicesPageClient() {
   }, []);
 
   function toggle(i: number) {
-    const next = open === i ? null : i;
-    setOpen(next);
-    if (next !== null) {
-      history.replaceState(null, "", `#servicio-${next + 1}`);
-      // Wait for the other service to close, then bring this one to the top.
-      setTimeout(() => document.getElementById(`servicio-${next + 1}`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
-    }
+    setOpen(i);
+    history.replaceState(null, "", `#servicio-${i + 1}`);
   }
 
   return (
@@ -71,53 +65,54 @@ export default function ServicesPageClient() {
             </div>
           </header>
 
-          <ol className="border-t border-[var(--color-brand-black)]/15">
+          {/* Service picker: three cards side by side, the open one in logo pink */}
+          <div
+            role="tablist"
+            aria-label={es ? "Servicios" : "Services"}
+            className="no-scrollbar flex md:grid md:grid-cols-3 gap-3 md:gap-5 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 pb-2"
+          >
             {tiers.map((tier, i) => {
               const on = open === i;
               return (
-                <li key={i} id={`servicio-${i + 1}`} className="scroll-mt-24 border-b border-[var(--color-brand-black)]/15">
-                  <h2>
-                    <button
-                      type="button"
-                      aria-expanded={on}
-                      aria-controls={`servicio-${i + 1}-detalle`}
-                      onClick={() => toggle(i)}
-                      className={`group w-full text-left grid grid-cols-[auto_minmax(0,1fr)_auto] md:grid-cols-[6rem_minmax(0,1fr)_12rem_auto] items-center gap-x-5 md:gap-x-10 gap-y-2 py-7 md:py-9 px-2 md:px-6 rounded-2xl cursor-pointer transition-colors duration-500 hover:bg-[var(--color-brand-pink)] focus-visible:bg-[var(--color-brand-pink)] focus-visible:outline-none ${on ? "bg-[var(--color-brand-pink)]" : ""}`}
-                    >
-                      <span className={`font-heading text-3xl md:text-5xl leading-none transition-colors duration-500 self-start md:self-center ${on ? "text-[var(--color-brand-black)]" : "text-[var(--color-brand-black)]/30 group-hover:text-[var(--color-brand-black)]"}`}>
-                        0{i + 1}
-                      </span>
-                      <span className="min-w-0">
-                        <span className="flex items-center gap-3 flex-wrap mb-2">
-                          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-gray-500 group-hover:text-[var(--color-brand-black)]/70 transition-colors">{tier.subtitle}</span>
-                          {tier.tag && (
-                            <span className="text-[10px] font-bold uppercase tracking-[0.18em] py-1 px-2.5 rounded-full bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]">{tier.tag}</span>
-                          )}
-                        </span>
-                        <span className="kt-title block text-xl md:text-[2rem] leading-[1.05] text-[var(--color-brand-black)]">{tier.title}</span>
-                        <span className="md:hidden block mt-3 text-sm font-bold text-[var(--color-brand-black)]">{tier.price}</span>
-                      </span>
-                      <span className="hidden md:block text-right text-base font-bold text-[var(--color-brand-black)]">{tier.price}</span>
-                      <span className={`w-11 h-11 md:w-14 md:h-14 rounded-full border-[1.5px] border-[var(--color-brand-black)] grid place-items-center transition-all duration-500 ${on ? "bg-[var(--color-brand-black)] text-[var(--color-brand-pink)] rotate-45" : "text-[var(--color-brand-black)]"}`}>
-                        <Plus className="w-5 h-5" aria-hidden="true" />
-                      </span>
-                    </button>
-                  </h2>
-
-                  {on && (
-                    <div id={`servicio-${i + 1}-detalle`} className="svc-panel px-2 md:px-6 pt-8 md:pt-10 pb-12 md:pb-16">
-                      <p className="font-heading italic text-xl md:text-2xl leading-relaxed text-[var(--color-brand-black)] max-w-3xl mb-10 md:mb-12">{tier.desc}</p>
-                      <ServicePanel index={i} />
-                    </div>
-                  )}
-                </li>
+                <button
+                  key={i}
+                  id={`servicio-${i + 1}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={on}
+                  aria-controls="servicio-detalle"
+                  onClick={() => toggle(i)}
+                  className={`scroll-mt-28 snap-start shrink-0 w-[82%] sm:w-[48%] md:w-auto text-left rounded-[1.75rem] p-6 md:p-8 flex flex-col cursor-pointer transition-all duration-500 ${
+                    on
+                      ? "bg-[var(--color-brand-pink)] shadow-[0_24px_60px_-28px_rgba(26,26,26,0.45)] md:-translate-y-1.5"
+                      : "bg-white kt-card hover:bg-[var(--color-brand-pink-light)]"
+                  }`}
+                >
+                  <span className="flex items-start justify-between gap-3 mb-8 md:mb-12">
+                    <span className="font-heading text-5xl md:text-6xl leading-none text-[var(--color-brand-black)]">0{i + 1}</span>
+                    {tier.tag && (
+                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] py-1 px-2.5 rounded-full bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]">{tier.tag}</span>
+                    )}
+                  </span>
+                  <span className={`text-[11px] font-bold uppercase tracking-[0.18em] mb-2 ${on ? "text-[var(--color-brand-black)]/70" : "text-gray-500"}`}>{tier.subtitle}</span>
+                  <span className="kt-title text-xl md:text-[1.6rem] leading-[1.05] text-[var(--color-brand-black)] mb-6 min-h-[2.1em]">{tier.title}</span>
+                  <span className="mt-auto flex items-center justify-between gap-3 pt-5 border-t border-[var(--color-brand-black)]/15">
+                    <span className="text-sm font-bold text-[var(--color-brand-black)]">{tier.price}</span>
+                    <span className={`text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--color-brand-black)] ${on ? "" : "opacity-60"}`}>
+                      {on ? (es ? "Viendo" : "Viewing") : es ? "Ver" : "View"}
+                    </span>
+                  </span>
+                </button>
               );
             })}
-          </ol>
+          </div>
 
-          <p className="mt-10 text-sm text-gray-500">
-            {es ? "Toca un servicio para ver qué incluye y sus precios." : "Tap a service to see what it includes and its prices."}
-          </p>
+          {(
+            <div id="servicio-detalle" role="tabpanel" key={open} className="svc-panel mt-10 md:mt-16">
+              <p className="font-heading italic text-xl md:text-2xl leading-relaxed text-[var(--color-brand-black)] max-w-3xl mb-10 md:mb-12">{tiers[open].desc}</p>
+              <ServicePanel index={open} />
+            </div>
+          )}
         </div>
       </main>
 
