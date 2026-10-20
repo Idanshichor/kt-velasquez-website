@@ -13,71 +13,62 @@ export function Hero() {
 
   return (
     <Scene
-      className="relative w-full min-h-[100svh] flex flex-col justify-start pt-32 pb-6 md:justify-center md:pt-24 md:pb-0 overflow-hidden bg-white"
+      className="relative w-full md:min-h-[100svh] flex items-center pt-28 pb-20 md:pt-32 md:pb-16 px-6 md:px-16 bg-white overflow-hidden"
       build={({ root }) => {
         const q = (s: string) => root.querySelector<HTMLElement>(s);
 
-        // Intro, plays once on load: a calm settle. The photo eases back from a slight
-        // zoom while the words float up softly, one after the other.
-        const img = q("[data-hero-img]");
-        gsap.fromTo(img, { scale: 1.08, opacity: 0.4 }, { scale: 1, opacity: 1, duration: 3.2, ease: "power2.out" });
+        // Intro, plays once on load: the words float up one after the other while the
+        // photo settles into its card and the pink label slides in last.
+        gsap.fromTo(q("[data-hero-img]"), { scale: 1.08 }, { scale: 1, duration: 3.2, ease: "power2.out" });
+        gsap.fromTo(q("[data-hero-card]"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.6, ease: "power3.out", delay: 0.2, clearProps: "transform" });
         root.querySelectorAll<HTMLElement>("[data-hero-line]").forEach((el) => gsap.set(el, { visibility: "visible" }));
         gsap.fromTo(
-          [q("[data-hero-tag]"), ...root.querySelectorAll<HTMLElement>("[data-hero-line]"), q("[data-hero-script]"), q("[data-hero-desc]"), q("[data-hero-cta]")],
+          [q("[data-hero-tag]"), ...root.querySelectorAll<HTMLElement>("[data-hero-line]"), q("[data-hero-desc]"), q("[data-hero-cta]"), q("[data-hero-script]")],
           { opacity: 0, y: 22 },
           { opacity: 1, y: 0, duration: 1.8, ease: "power3.out", stagger: 0.14, delay: 0.25, clearProps: "transform" },
         );
 
-        // Leaving the hero: the photo drifts slower than the text
-        const st = { trigger: root, start: "top top", end: "bottom top", scrub: true };
-        gsap.to(q("[data-hero-parallax]"), { yPercent: 10, ease: "none", scrollTrigger: st });
-        gsap.to(q("[data-hero-dim]"), { opacity: 0.35, ease: "none", scrollTrigger: st });
-        gsap.to(q("[data-hero-copy]"), { yPercent: -10, opacity: 0.4, ease: "none", scrollTrigger: st });
+        // Leaving the hero: the photo drifts a little inside its card
+        gsap.to(q("[data-hero-parallax]"), { yPercent: 8, ease: "none", scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: true } });
       }}
     >
-      {/* Full background image */}
-      <div className="absolute inset-0 z-0 bg-black">
-        <div data-hero-frame className="absolute inset-0 overflow-hidden">
-        <div data-hero-parallax className="absolute inset-0">
-        <div data-hero-img className="absolute inset-0">
-          <Image src="/images/KT_Hero.webp" alt="Katherine Velasquez Background" fill sizes="100vw" className="object-cover object-[82%_40%] md:object-[75%_center]" priority />
-        </div>
-        </div>
-        </div>
-        {/* Mobile dark gradient overlay for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent md:hidden" />
-        <div data-hero-dim className="absolute inset-0 bg-black opacity-0 pointer-events-none" />
-      </div>
-
-      <div className="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-24 w-full relative z-10 grid md:grid-cols-2 gap-12 items-center flex-1 md:flex-none">
-        <div data-hero-copy className="flex flex-col text-center md:text-left z-20 h-full md:h-auto justify-between md:justify-center md:gap-6">
-          <p data-hero-tag className="kt-eyebrow on-dark text-white md:text-[13px] self-center md:self-start mb-2 md:mb-0">
+      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-14 md:gap-16 lg:gap-20 items-center">
+        <div className="flex flex-col items-start">
+          <p data-hero-tag className="kt-eyebrow text-[var(--color-brand-black)] mb-8">
             {t("hero.consultoria")}
           </p>
 
-          <div className="flex flex-col gap-6 mt-auto md:mt-0 pt-16 md:pt-0 md:pb-0">
-            <h1 className="order-1 kt-title text-5xl md:text-6xl lg:text-[5.5rem] text-white mt-4 md:mt-0">
-              <span data-hero-line className="block w-max mx-auto md:mx-0">{t("hero.katherine")}</span>
-              <span data-hero-line className="block w-max mx-auto md:mx-0">{t("hero.velasquez")}</span>
-              <span className="sr-only">— {t("hero.h1_keyword")}</span>
-            </h1>
+          <h1 className="kt-title text-6xl md:text-7xl lg:text-[6.5rem] text-[var(--color-brand-black)]">
+            <span data-hero-line className="block">{t("hero.katherine")}</span>
+            <span data-hero-line className="block font-script normal-case tracking-normal text-[0.8em] leading-[1.15] mt-1">{t("hero.velasquez")}</span>
+            <span className="sr-only">— {t("hero.h1_keyword")}</span>
+          </h1>
 
-            <div data-hero-script className="order-3 md:order-2 self-start max-w-[460px] bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] font-heading italic text-xl lg:text-2xl leading-snug rounded-xl px-5 py-3 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.6)] hidden md:block">
-              {t("hero.direccion")}
-            </div>
+          <div data-hero-desc className="mt-10 max-w-[30rem]">
+            <span className="kt-rule mb-6" />
+            <p className="font-body text-gray-600 text-base md:text-lg leading-relaxed">
+              {t("hero.description")}
+            </p>
+          </div>
 
-            <div data-hero-desc className="order-4 md:order-3 flex justify-center md:justify-start max-w-[480px] mx-auto md:mx-0">
-              <p className="font-body text-[var(--color-brand-cream)] text-sm md:text-base font-medium leading-relaxed text-center md:text-left">
-                {t("hero.description")}
-              </p>
-            </div>
-
-            <div data-hero-cta className="order-2 md:order-4 flex justify-center md:justify-start max-w-[480px] mx-auto md:mx-0">
-              <KtCta href={WHATSAPP} tone="gold">{t("hero.cta")}</KtCta>
-            </div>
+          <div data-hero-cta className="mt-10">
+            <KtCta href={WHATSAPP} tone="dark">{t("hero.cta")}</KtCta>
           </div>
         </div>
-        <div className="hidden md:block"></div>
+
+        {/* Portrait card with the pink lower third, same as the "Hola, soy Katherine" block */}
+        <div className="relative mx-auto w-full max-w-[440px] pb-10">
+          <div data-hero-card className="relative aspect-[4/5] overflow-hidden rounded-[28px] kt-card bg-[var(--color-brand-black)]">
+            <div data-hero-parallax className="absolute -inset-y-[6%] inset-x-0">
+              <div data-hero-img className="absolute inset-0">
+                <Image src="/images/KT_Hero.webp" alt="Katherine Velasquez" fill sizes="(max-width: 768px) 90vw, 440px" className="object-cover object-[90%_center]" priority />
+              </div>
+            </div>
+          </div>
+          <div data-hero-script className="absolute left-0 right-6 bottom-0 md:-left-8 bg-[var(--color-brand-pink)] rounded-2xl px-6 py-5 shadow-[0_24px_60px_-28px_rgba(26,26,26,0.45)]">
+            <p className="font-heading italic text-lg md:text-xl leading-snug text-[var(--color-brand-black)]">{t("hero.direccion")}</p>
+          </div>
+        </div>
       </div>
     </Scene>
   );
