@@ -70,3 +70,5 @@ After approval
 - 2026-10-18: created audits, STATUS.md, branch.
 - 2026-10-19 (branch `feature/services-page-mango`): Added /servicios page and redesigned home services as a Mango-style numbered list. Copy, prices and Wompi links unchanged (moved to /servicios). Open: Idan to review preview.
 - 2026-10-20: Per Idan: home rows open a bubble, /servicios shows one service at a time, new service card. Same copy/prices/Wompi links.
+
+- 2026-10-20: /sobre-mi restyled to the home kit (numbered chapter list, pink lower-third portrait label, bubble quotes, pink CTA). Copy unchanged. Branch feature/sobre-mi-redesign, preview only.
