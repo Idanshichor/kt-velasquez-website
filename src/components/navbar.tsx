@@ -28,7 +28,7 @@ export function Navbar() {
         <Link href="/" className="hover:text-[var(--color-brand-pink)] transition-colors">{t("nav.inicio")}</Link>
         <Link href="/sobre-mi" className="hover:text-[var(--color-brand-purple)] transition-colors">{t("nav.sobre_mi")}</Link>
         <Link href="/#metodologia" className="hover:text-[var(--color-brand-pink)] transition-colors">{t("nav.metodologia")}</Link>
-        <Link href="/#servicios" className="hover:text-[var(--color-brand-purple)] transition-colors">{t("nav.servicios")}</Link>
+        <Link href="/servicios" className="hover:text-[var(--color-brand-purple)] transition-colors">{t("nav.servicios")}</Link>
         <Link href="/podcast" className="hover:text-[var(--color-brand-pink)] transition-colors">{t("nav.podcast")}</Link>
       </div>
 
@@ -90,7 +90,7 @@ export function Navbar() {
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>{t("nav.inicio")}</Link>
             <Link href="/sobre-mi" onClick={() => setIsMobileMenuOpen(false)}>{t("nav.sobre_mi")}</Link>
             <Link href="/#metodologia" onClick={() => setIsMobileMenuOpen(false)}>{t("nav.metodologia")}</Link>
-            <Link href="/#servicios" onClick={() => setIsMobileMenuOpen(false)}>{t("nav.servicios")}</Link>
+            <Link href="/servicios" onClick={() => setIsMobileMenuOpen(false)}>{t("nav.servicios")}</Link>
             <Link href="/podcast" onClick={() => setIsMobileMenuOpen(false)}>{t("nav.podcast")}</Link>
           </div>
           
