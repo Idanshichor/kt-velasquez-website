@@ -5,28 +5,30 @@ import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Scene } from "@/components/home/scene";
-import { KtCta } from "@/components/home/scrub";
+import { KtCta, KtStar } from "@/components/home/scrub";
 import { useLanguage } from "@/context/language-context";
 
 const WHATSAPP = "https://wa.me/573216154870?text=Hola%20Kathe%2C%20le%C3%AD%20tu%20historia%20en%20sobre-mi%20y%20me%20encantar%C3%ADa%20que%20nos%20tomemos%20un%20caf%C3%A9%20para%20hablar%20de%20negocios%20%3A%29";
 
 /*
- * Built on the KT360 Design System (kt360-design-system@0.1.0, ds-bundle/ in the main checkout).
- * Each chapter is a TitleCard-style scene in one of the four card tones, and short lines ride on
- * the LowerThird strap. In the system, pink-dark is magenta #E01E79: rules and script on light tones.
+ * Follows the KT360 Manual de marca v1.3: titles in Inter uppercase 400, script for 1 to 3 words,
+ * a 3px bar before every label, a 64px rule, the gold star, and the photo frame (32px corners with a
+ * thin outline offset down-right). Each background keeps its colour role and its own text rules:
+ * purple = before, gold = builds, black = holds, magenta = breaks, pink = recovers, white = structure.
  */
-type Tone = "cream" | "gold" | "pink" | "dark";
-const TONES: Record<Tone, { bg: string; fg: string; muted: string; rule: string; script: string }> = {
-  cream: { bg: "bg-white", fg: "text-[var(--color-brand-black)]", muted: "text-[var(--color-brand-black)]/70", rule: "bg-[var(--color-brand-gold)]", script: "text-[#E01E79]" },
-  gold: { bg: "bg-[var(--color-brand-gold-light)]", fg: "text-[var(--color-brand-black)]", muted: "text-[var(--color-brand-black)]/70", rule: "bg-[var(--color-brand-gold)]", script: "text-[#E01E79]" },
-  pink: { bg: "bg-[var(--color-brand-pink-light)]", fg: "text-[var(--color-brand-black)]", muted: "text-[var(--color-brand-black)]/70", rule: "bg-[#E01E79]", script: "text-[#E01E79]" },
-  dark: { bg: "bg-[var(--color-brand-black)]", fg: "text-white", muted: "text-white/70", rule: "bg-[var(--color-brand-pink)]", script: "text-[var(--color-brand-pink)]" },
+type Bg = "white" | "black" | "pink" | "gold" | "purple" | "magenta";
+const BG: Record<Bg, { cls: string; sub: string; bar: string; rule: string; star: string; line: string }> = {
+  white: { cls: "bg-white text-[var(--color-brand-black)]", sub: "text-[var(--color-brand-black)]/75", bar: "bg-[var(--color-brand-pink)]", rule: "bg-[var(--color-brand-gold)]", star: "text-[var(--color-brand-gold)]", line: "border-[var(--color-brand-black)]" },
+  black: { cls: "bg-[var(--color-brand-black)] text-white", sub: "text-white/65", bar: "bg-[var(--color-brand-pink)]", rule: "bg-[var(--color-brand-gold)]", star: "text-[var(--color-brand-gold)]", line: "border-white" },
+  pink: { cls: "bg-[var(--color-brand-pink)] text-[var(--color-brand-black)]", sub: "text-[var(--color-brand-black)]", bar: "bg-[var(--color-brand-black)]", rule: "bg-[var(--color-brand-black)]", star: "text-[var(--color-brand-black)]", line: "border-[var(--color-brand-black)]" },
+  gold: { cls: "bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]", sub: "text-[var(--color-brand-black)]", bar: "bg-[var(--color-brand-black)]", rule: "bg-[var(--color-brand-black)]", star: "text-[var(--color-brand-black)]", line: "border-[var(--color-brand-black)]" },
+  purple: { cls: "bg-[var(--color-brand-purple)] text-white", sub: "text-white", bar: "bg-white", rule: "bg-white", star: "text-[var(--color-brand-gold)]", line: "border-white" },
+  magenta: { cls: "bg-[#E01E79] text-white", sub: "text-white", bar: "bg-white", rule: "bg-white", star: "text-white", line: "border-white" },
 };
 
-const EYEBROW = "font-body text-xs font-bold uppercase tracking-[0.3em]";
-const TITLE = "font-heading uppercase leading-[0.95] tracking-tight";
-const BODY = "font-body text-base md:text-lg leading-[1.8]";
-const SECTION = "py-24 md:py-32 px-6 md:px-16";
+const TITLE = "uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wrap:balance]";
+const BODY = "text-base md:text-[17px] leading-[1.7]";
+const SECTION = "py-24 md:py-36 px-6 md:px-16";
 
 const galleryPhotos = [
   { src: "/images/gallery/KT_Gallery_04.webp", width: 1600, height: 900, alt: "Katherine Velasquez alimentando a un elefante bebé en un santuario en Tailandia" },
@@ -52,55 +54,63 @@ const galleryPhotos = [
   { src: "/images/gallery/KT_Gallery_05.webp", width: 900, height: 1600, alt: "Katherine Velasquez entre los detalles arquitectónicos del Templo Blanco, Tailandia" }
 ];
 
-/** Splits a title so its last word can take the script accent, the TitleCard way. */
+/** Splits a title so its last word can take the script accent. */
 function splitLast(title: string) {
   const cut = title.lastIndexOf(" ");
   return cut === -1 ? [title, ""] : [title.slice(0, cut), title.slice(cut + 1)];
 }
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
-/** TitleCard anatomy: eyebrow, uppercase title, a short 1px rule. */
-function CardHead({ n, title, tone, className = "", size = "text-4xl md:text-6xl" }: { n: number; title: string; tone: Tone; className?: string; size?: string }) {
-  const t = TONES[tone];
+/** Label: 11px uppercase with the 3px bar in front. */
+function Label({ children, bg, className = "" }: { children: ReactNode; bg: Bg; className?: string }) {
   return (
-    <div className={className}>
-      <p data-reveal className={`${EYEBROW} ${t.muted}`}>{pad(n)} / 08</p>
-      <h2 data-lines className={`${TITLE} ${size} mt-5 ${t.fg}`}>{title}</h2>
-      <span data-reveal className={`block mt-8 h-px w-16 md:w-24 ${t.rule}`} />
-    </div>
+    <p data-reveal className={`inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] ${className}`}>
+      <span aria-hidden="true" className={`w-[3px] h-[1.6em] rounded-sm ${BG[bg].bar}`} />
+      {children}
+    </p>
   );
 }
 
-/** The LowerThird strap: a 4px accent bar and a panel with the line in Playfair. */
-const LT = {
-  light: { bg: "bg-white/95", name: "text-[var(--color-brand-black)]", role: "text-[var(--color-brand-black)]/60", bar: "bg-[#E01E79]" },
-  dark: { bg: "bg-[var(--color-brand-black)]/90", name: "text-white", role: "text-white/65", bar: "bg-[var(--color-brand-pink)]" },
-  pink: { bg: "bg-[var(--color-brand-pink)]", name: "text-[var(--color-brand-black)]", role: "text-[var(--color-brand-black)]/70", bar: "bg-[var(--color-brand-black)]" },
-};
-function LowerThird({ name, role, tone = "dark", as: Tag = "p", className = "" }: { name: ReactNode; role?: string; tone?: keyof typeof LT; as?: "p" | "h2"; className?: string }) {
-  const t = LT[tone];
+const Rule = ({ bg, className = "" }: { bg: Bg; className?: string }) => <span data-reveal className={`block w-16 h-px ${BG[bg].rule} ${className}`} />;
+
+/** The KT photo frame: 32px corners, a thin outline offset down and to the right. */
+function KFrame({ src, alt, bg, pos = "center", className = "" }: { src: string; alt: string; bg: Bg; pos?: string; className?: string }) {
   return (
-    <div className={`inline-flex items-stretch ${className}`}>
-      <span aria-hidden="true" className={`w-1 shrink-0 ${t.bar}`} />
-      <div className={`px-6 py-4 ${t.bg}`}>
-        <Tag className={`font-heading text-2xl md:text-3xl leading-none tracking-tight ${t.name}`}>{name}</Tag>
-        {role && <p className={`font-body mt-2 text-xs font-bold uppercase tracking-[0.25em] ${t.role}`}>{role}</p>}
+    <div data-reveal className={`relative mr-7 mb-7 ${className}`}>
+      <div aria-hidden="true" className={`absolute inset-0 translate-x-7 translate-y-7 rounded-[32px] border opacity-60 ${BG[bg].line}`} />
+      <div className="relative w-full h-full rounded-[32px] overflow-hidden shadow-[0_24px_60px_-28px_rgba(26,26,26,0.45)]">
+        <Image src={src} alt={alt} fill sizes="(max-width: 768px) 85vw, 440px" className="object-cover" style={{ objectPosition: pos }} />
       </div>
     </div>
   );
 }
 
+/** The four-point star, turning slowly. */
+const Star = ({ bg, className = "" }: { bg: Bg; className?: string }) => (
+  <KtStar className={`kt-turn ${BG[bg].star} ${className}`} />
+);
+
 export default function AboutPageClient() {
   const { language, t } = useLanguage();
   const s = (k: string) => t(`aboutPage.${k}`) as string;
   const [galleryLead, galleryAccent] = splitLast(s("galleryTitle"));
+  const [ctaLead, ctaAccent] = splitLast(s("ctaTitle"));
 
+  // The statement block: a 1 to 2 word script lead, the rest in capitals, the last words in gold.
+  const quote = s("ch5Quote").replace(/[“”"]/g, "").trim();
+  const comma = quote.indexOf(",");
+  const lead = comma > 0 && quote.slice(0, comma).split(" ").length <= 2 ? quote.slice(0, comma + 1) : "";
+  const main = (lead ? quote.slice(comma + 1) : quote).trim();
+  const words = main.split(" ");
+  const mainHead = words.slice(0, -3).join(" ");
+  const mainGold = words.slice(-3).join(" ");
+
+  // The site-wide --font-body token resolves on :root, before next/font defines --font-inter on body,
+  // so it falls back to system sans. Inter is set on this page's wrapper, where the variable exists.
   return (
-    <div className="min-h-screen bg-white text-[var(--color-brand-black)] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-[var(--color-brand-black)] overflow-x-hidden" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
       <Navbar />
 
-      {/* HERO: full-screen portrait, a dark TitleCard laid over it (title, script accent, rule, subtitle) */}
+      {/* HERO: full-screen photo, the name huge in white, script in gold, the star turning, a black label */}
       <Scene className="relative min-h-[100svh] flex items-end overflow-hidden bg-[var(--color-brand-black)] text-white">
         <div data-mask className="absolute inset-0 md:left-auto md:w-[66%]">
           <div data-mask-img className="absolute inset-0">
@@ -116,121 +126,149 @@ export default function AboutPageClient() {
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-black)] via-[var(--color-brand-black)]/30 to-transparent md:bg-gradient-to-r md:from-[var(--color-brand-black)] md:via-[var(--color-brand-black)]/10 md:to-transparent" />
         </div>
+        <Star bg="black" className="absolute right-8 md:right-16 top-28 md:top-32 w-12 md:w-16 z-10" />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-[50svh] pb-16 md:pt-40 md:pb-24">
-          <p data-reveal className={`${EYEBROW} text-white/60`}>{s("heroTag")}</p>
-          <h1 data-lines className={`${TITLE} text-6xl md:text-8xl lg:text-[7.5rem] mt-6 text-white`}>{s("heroTitlePart1")}</h1>
-          <p data-reveal className="font-script text-[var(--color-brand-pink)] text-[2.6rem] md:text-6xl lg:text-7xl leading-tight mt-2">{s("heroTitlePart2")}</p>
-          <span data-reveal className="block mt-8 h-px w-24 bg-[var(--color-brand-pink)]" />
-          <p data-reveal className="font-body text-white/70 text-base md:text-lg leading-relaxed mt-6 max-w-md">{s("heroSubtitle")}</p>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-[52svh] pb-16 md:pt-40 md:pb-24">
+          <h1 data-lines className={`${TITLE} text-[4.2rem] md:text-[7.5rem] lg:text-[9rem] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] text-[2.6rem] md:text-6xl lg:text-7xl leading-none mt-2 md:-mt-2 md:ml-24">{s("heroTitlePart2")}</p>
+          <p data-reveal className="mt-8 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
+          <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]">{s("heroSubtitle")}</p>
         </div>
       </Scene>
 
-      {/* 01 cream: head left, story right */}
-      <Scene className={`${SECTION} ${TONES.cream.bg}`}>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 md:gap-24">
-          <CardHead n={1} title={s("ch1Title")} tone="cream" />
-          <p data-reveal className={`${BODY} md:text-xl ${TONES.cream.fg} md:pt-12`}>{s("ch1Text")}</p>
-        </div>
-      </Scene>
-
-      {/* 02 gold: head across, two columns; the thesis line rides the lower-third bar */}
-      <Scene className={`${SECTION} ${TONES.gold.bg}`}>
-        <div className="max-w-7xl mx-auto">
-          <CardHead n={2} title={s("ch2Title")} tone="gold" size="text-5xl md:text-7xl lg:text-8xl" className="mb-14 md:mb-20" />
-          <div className="grid md:grid-cols-2 gap-10 md:gap-20">
-            <p data-reveal className={`${BODY} ${TONES.gold.fg}`}>{s("ch2Text1")}</p>
-            <p data-reveal className={`${BODY} ${TONES.gold.fg} border-l-4 border-[#E01E79] pl-6 self-start`}>{s("ch2Text2")}</p>
-          </div>
-        </div>
-      </Scene>
-
-      {/* 03 dark: centred card, the callout as the title-sized line */}
-      <Scene className={`${SECTION} md:py-40 ${TONES.dark.bg}`}>
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <CardHead n={3} title={s("ch3Title")} tone="dark" className="flex flex-col items-center" />
-          <p data-reveal className={`${BODY} ${TONES.dark.muted} mt-12 max-w-2xl`}>{s("ch3Text")}</p>
-          <p data-lines className={`${TITLE} text-4xl md:text-6xl lg:text-7xl text-white mt-16 md:mt-24`}>&ldquo;{s("ch3Callout")}&rdquo;</p>
-        </div>
-      </Scene>
-
-      {/* 04 pink: the photo carries the chapter title as a lower third */}
-      <Scene className={`${SECTION} ${TONES.pink.bg}`}>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-24 items-center">
-          <div className="relative w-full max-w-[480px] pb-10">
-            <div data-mask className="relative aspect-[4/5] w-full overflow-hidden shadow-[0_24px_60px_-28px_rgba(26,26,26,0.4)]">
-              <div data-mask-img className="absolute inset-0">
-                <Image src="/images/KTSecondPhoto.webp" alt="Katherine Velasquez" fill sizes="(max-width: 768px) 90vw, 480px" className="object-cover object-[center_35%]" />
-              </div>
-            </div>
-            <div data-reveal className="absolute left-0 bottom-0 md:-left-6">
-              <LowerThird as="h2" tone="light" name={s("ch4Title")} role={`${pad(4)} / 08`} />
-            </div>
-          </div>
-          <p data-reveal className={`${BODY} md:text-xl ${TONES.pink.fg}`}>{s("ch4Text")}</p>
-        </div>
-      </Scene>
-
-      {/* 05 cream: story left, the life lesson in the readable script */}
-      <Scene className={`${SECTION} ${TONES.cream.bg}`}>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 md:gap-24 items-end">
+      {/* 01 purple, what came before: white type only, few words, lots of air */}
+      <Scene className={`${SECTION} md:py-44 ${BG.purple.cls}`}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24 items-end">
           <div>
-            <CardHead n={5} title={s("ch5Title")} tone="cream" className="mb-10" />
-            <p data-reveal className={`${BODY} ${TONES.cream.fg}`}>{s("ch5Text")}</p>
+            <Label bg="purple">01</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch1Title")}</h2>
           </div>
-          <blockquote data-reveal className="font-script-readable text-[#E01E79] text-3xl md:text-[2.6rem] leading-[1.35]">{s("ch5Quote")}</blockquote>
+          <p data-reveal className={`${BODY} md:text-lg ${BG.purple.sub}`}>{s("ch1Text")}</p>
         </div>
       </Scene>
 
-      {/* 06 gold: three beats in three ruled columns */}
-      <Scene className={`${SECTION} ${TONES.gold.bg}`}>
-        <div className="max-w-7xl mx-auto">
-          <CardHead n={6} title={s("ch6Title")} tone="gold" size="text-4xl md:text-6xl lg:text-7xl" className="mb-14 md:mb-20 max-w-4xl" />
-          <div data-stagger className="grid md:grid-cols-3 gap-10 md:gap-12">
-            {["ch6Text1", "ch6Text2", "ch6Text3"].map((k) => (
-              <div key={k} className="border-t border-[var(--color-brand-black)]/25 pt-8">
-                <p className={`${BODY} ${TONES.gold.fg}`}>{s(k)}</p>
-              </div>
+      {/* 02 gold, building: all black, black rule */}
+      <Scene className={`${SECTION} ${BG.gold.cls}`}>
+        <div className="max-w-6xl mx-auto">
+          <Label bg="gold">02</Label>
+          <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl lg:text-8xl mt-8 max-w-4xl`}>{s("ch2Title")}</h2>
+          <Rule bg="gold" className="mt-10 mb-12 md:mb-16" />
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16">
+            <p data-reveal className={`${BODY} ${BG.gold.sub}`}>{s("ch2Text1")}</p>
+            <p data-reveal className={`${BODY} ${BG.gold.sub} border-l-[3px] border-[var(--color-brand-black)] pl-5 self-start`}>{s("ch2Text2")}</p>
+          </div>
+        </div>
+      </Scene>
+
+      {/* 03 black holds the story, then magenta breaks with one short line */}
+      <Scene className={`${SECTION} ${BG.black.cls}`}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24">
+          <div>
+            <Label bg="black">03</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch3Title")}</h2>
+            <Rule bg="black" className="mt-10" />
+          </div>
+          <p data-reveal className={`${BODY} ${BG.black.sub} md:pt-14`}>{s("ch3Text")}</p>
+        </div>
+      </Scene>
+      <Scene className={`py-28 md:py-44 px-6 md:px-16 ${BG.magenta.cls}`}>
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
+          <Star bg="magenta" className="w-14 md:w-24 shrink-0" />
+          <p data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl lg:text-[6.5rem]`}>{s("ch3Callout")}</p>
+        </div>
+      </Scene>
+
+      {/* 04 pink recovers: everything black, framed studio photo with a black outline */}
+      <Scene className={`${SECTION} ${BG.pink.cls}`}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-14 md:gap-24 items-center">
+          <KFrame bg="pink" src="/images/KTSecondPhoto.webp" alt="Katherine Velasquez" pos="center 35%" className="aspect-[4/5] w-full max-w-[400px]" />
+          <div>
+            <Label bg="pink">04</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch4Title")}</h2>
+            <Rule bg="pink" className="mt-10 mb-10" />
+            <p data-reveal className={`${BODY} ${BG.pink.sub}`}>{s("ch4Text")}</p>
+          </div>
+        </div>
+      </Scene>
+
+      {/* 05 white structure for the story, then the one statement block of the page on black */}
+      <Scene className={`${SECTION} ${BG.white.cls}`}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24">
+          <div>
+            <Label bg="white">05</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch5Title")}</h2>
+            <Rule bg="white" className="mt-10" />
+          </div>
+          <p data-reveal className={`${BODY} ${BG.white.sub} md:pt-14`}>{s("ch5Text")}</p>
+        </div>
+      </Scene>
+      <Scene className={`py-24 md:py-36 px-6 md:px-16 ${BG.black.cls}`}>
+        <figure className="max-w-6xl mx-auto grid md:grid-cols-[13rem_minmax(0,1fr)] gap-10 md:gap-16 items-center">
+          <Star bg="black" className="w-20 md:w-48" />
+          <blockquote>
+            {lead && <span data-reveal className="block font-script-readable text-[var(--color-brand-pink)] text-5xl md:text-7xl leading-none md:-ml-2">{lead}</span>}
+            <span data-lines className={`block ${TITLE} text-4xl md:text-6xl lg:text-7xl mt-3`}>
+              {mainHead} <span className="text-[var(--color-brand-gold)]">{mainGold}</span>
+            </span>
+          </blockquote>
+        </figure>
+      </Scene>
+
+      {/* 06 gold builds: Mango Creative in three ruled columns */}
+      <Scene className={`${SECTION} ${BG.gold.cls}`}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-start justify-between gap-8">
+            <div>
+              <Label bg="gold">06</Label>
+              <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8 max-w-4xl`}>{s("ch6Title")}</h2>
+            </div>
+            <Star bg="gold" className="hidden md:block w-14 shrink-0" />
+          </div>
+          <div data-stagger className="grid md:grid-cols-3 gap-0 mt-14 md:mt-20 border-t border-[var(--color-brand-black)]">
+            {["ch6Text1", "ch6Text2", "ch6Text3"].map((k, i) => (
+              <p key={k} className={`${BODY} pt-6 pb-6 md:pb-0 md:pr-8 ${i > 0 ? "md:pl-8 md:border-l border-t md:border-t-0 border-[var(--color-brand-black)]/30" : ""}`}>{s(k)}</p>
             ))}
           </div>
         </div>
       </Scene>
 
-      {/* 07 dark: the travelers' question in pink script */}
-      <Scene className={`${SECTION} md:py-40 ${TONES.dark.bg}`}>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-24">
+      {/* 07 white: a travel photo in the frame, the travelers' question as a large quote */}
+      <Scene className={`${SECTION} ${BG.white.cls}`}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-14 md:gap-24 items-center">
           <div>
-            <CardHead n={7} title={s("ch7Title")} tone="dark" className="mb-10" />
-            <p data-reveal className={`${BODY} ${TONES.dark.muted}`}>{s("ch7Text1")}</p>
+            <Label bg="white">07</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch7Title")}</h2>
+            <Rule bg="white" className="mt-10 mb-10" />
+            <p data-reveal className={`${BODY} ${BG.white.sub}`}>{s("ch7Text1")}</p>
+            <figure data-reveal className="mt-12">
+              <Label bg="white">{language === "es" ? "Pregunta Típica" : "Typical Question"}</Label>
+              <blockquote className="text-2xl md:text-[2rem] leading-[1.25] tracking-[-0.01em] mt-5 [text-wrap:balance]">{s("ch7Dialog")}</blockquote>
+            </figure>
+            <p data-reveal className={`${BODY} ${BG.white.sub} mt-12`}>{s("ch7Text2")}</p>
           </div>
-          <div className="md:pt-8">
-            <p data-reveal className={`${EYEBROW} text-white/60`}>{language === "es" ? "Pregunta Típica" : "Typical Question"}</p>
-            <blockquote data-reveal className="font-script-readable text-[var(--color-brand-pink)] text-3xl md:text-[2.5rem] leading-[1.35] mt-6">{s("ch7Dialog")}</blockquote>
-            <span data-reveal className="block my-10 h-px w-16 bg-[var(--color-brand-pink)]" />
-            <p data-reveal className={`${BODY} ${TONES.dark.muted}`}>{s("ch7Text2")}</p>
-          </div>
+          <KFrame bg="white" src="/images/gallery/KT_Gallery_07.webp" alt="Katherine Velasquez caminando frente al Templo Blanco de Chiang Rai, Tailandia" className="aspect-[4/5] w-full max-w-[400px] md:sticky md:top-32" />
         </div>
       </Scene>
 
-      {/* GALLERY: a cream TitleCard header, then the photos run edge to edge */}
-      <Scene className={`py-24 md:py-32 ${TONES.cream.bg}`}>
-        <div className="max-w-7xl mx-auto px-6 md:px-16 grid md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-10 md:gap-24 items-end mb-14 md:mb-20">
+      {/* GALLERY on black: travel photos run edge to edge */}
+      <Scene className={`py-24 md:py-32 ${BG.black.cls}`}>
+        <div className="max-w-6xl mx-auto px-6 md:px-16 grid md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-10 md:gap-24 items-end mb-14 md:mb-20">
           <div>
-            <p data-reveal className={`${EYEBROW} ${TONES.cream.muted}`}>{s("galleryTag")}</p>
-            <h2 data-lines className={`${TITLE} text-5xl md:text-7xl mt-5`}>{galleryLead}</h2>
-            {galleryAccent && <p data-reveal className="font-script text-[#E01E79] text-5xl md:text-7xl leading-tight mt-1">{galleryAccent}</p>}
+            <Label bg="black">{s("galleryTag")}</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{galleryLead}</h2>
+            {galleryAccent && <p data-reveal className="font-script text-[var(--color-brand-pink)] text-6xl md:text-8xl leading-none mt-1">{galleryAccent}</p>}
           </div>
-          <div data-reveal>
-            <span className="block h-px w-16 md:w-24 bg-[var(--color-brand-gold)] mb-6" />
-            <p className={`${BODY} ${TONES.cream.muted}`}>{s("gallerySubtitle")}</p>
+          <div>
+            <Rule bg="black" className="mb-6" />
+            <p data-reveal className={`${BODY} ${BG.black.sub}`}>{s("gallerySubtitle")}</p>
           </div>
         </div>
         <div className="relative w-full overflow-hidden">
-          <div className="flex gap-4 gallery-marquee-track w-max">
+          <div className="flex gap-3 gallery-marquee-track w-max">
             {[...galleryPhotos, ...galleryPhotos].map((photo, idx) => (
               <div
                 key={`${photo.src}-${idx}`}
-                className="shrink-0 relative overflow-hidden bg-[var(--color-brand-gold-light)] aspect-[4/5] w-[calc(100vw-5rem)] sm:w-[calc((100vw-4rem)/2)] md:w-[calc((100vw-10rem)/3)] xl:w-[340px]"
+                className="shrink-0 relative overflow-hidden rounded-xl bg-white/5 aspect-[4/5] w-[calc(100vw-5rem)] sm:w-[calc((100vw-4rem)/2)] md:w-[calc((100vw-10rem)/3)] xl:w-[320px]"
               >
                 <Image
                   src={photo.src}
@@ -245,29 +283,40 @@ export default function AboutPageClient() {
         </div>
       </Scene>
 
-      {/* 08 pink: the payoff, closing on the KT. VELASQUEZ line as a pink lower third */}
-      <Scene className={`${SECTION} md:py-40 ${TONES.pink.bg}`}>
-        <div className="max-w-7xl mx-auto">
-          <CardHead n={8} title={s("ch8Title")} tone="pink" size="text-5xl md:text-7xl lg:text-8xl" className="mb-14 md:mb-20" />
-          <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-start">
-            <p data-reveal className={`${BODY} md:text-xl font-medium ${TONES.pink.fg}`}>{s("ch8Text1")}</p>
+      {/* 08 gold builds: the payoff, ending on a black label */}
+      <Scene className={`${SECTION} md:py-44 ${BG.gold.cls}`}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-start justify-between gap-8">
             <div>
-              <p data-reveal className={`${BODY} ${TONES.pink.muted} mb-12`}>{s("ch8Text2")}</p>
-              <div data-reveal><LowerThird tone="pink" name={s("ch8Text3")} /></div>
+              <Label bg="gold">08</Label>
+              <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-8xl lg:text-[7rem] mt-8`}>{s("ch8Title")}</h2>
+            </div>
+            <Star bg="gold" className="w-12 md:w-20 shrink-0" />
+          </div>
+          <Rule bg="gold" className="mt-10 mb-12" />
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+            <p data-reveal className="text-xl md:text-2xl leading-[1.45] font-medium">{s("ch8Text1")}</p>
+            <div>
+              <p data-reveal className={`${BODY} ${BG.gold.sub} mb-10`}>{s("ch8Text2")}</p>
+              <p data-reveal className="inline-block bg-[var(--color-brand-black)] text-white px-5 py-3 text-sm md:text-base font-bold uppercase tracking-[0.2em]">{s("ch8Text3")}</p>
             </div>
           </div>
         </div>
       </Scene>
 
-      {/* CALL TO ACTION: the dark EndCard (logo, pink rule, script, then the invitation) */}
-      <Scene className={`${SECTION} md:py-40 ${TONES.dark.bg}`}>
-        <div className="max-w-3xl mx-auto flex flex-col items-center text-center">
-          <Image data-reveal src="/images/KT_White_Logo.webp" alt="KT. Velasquez" width={322} height={267} className="h-16 md:h-20 w-auto" />
-          <span data-reveal className="block mt-8 h-px w-16 bg-[var(--color-brand-pink)]" />
-          <h2 data-reveal className="font-script text-[var(--color-brand-pink)] text-6xl md:text-8xl leading-tight mt-8">{s("ctaTitle")}</h2>
-          <p data-reveal className={`${BODY} ${TONES.dark.muted} mt-10`}>{s("ctaText1")}</p>
-          <p data-reveal className={`${BODY} text-white mt-6`}>{s("ctaText2")}</p>
-          <div data-reveal className="mt-12"><KtCta href={WHATSAPP} tone="pink">{s("ctaButton")}</KtCta></div>
+      {/* CALL TO ACTION on pink: all black, black star, black button, no logo */}
+      <Scene className={`${SECTION} md:py-40 ${BG.pink.cls}`}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24 items-center">
+          <div>
+            <Star bg="pink" className="w-12 md:w-16 mb-10" />
+            <h2 data-lines className={`${TITLE} text-[13vw] sm:text-6xl md:text-8xl`}>{ctaLead}</h2>
+            {ctaAccent && <p data-reveal className="font-script text-[var(--color-brand-black)] text-6xl md:text-8xl leading-none mt-1 md:ml-16">{ctaAccent}</p>}
+          </div>
+          <div>
+            <p data-reveal className={`${BODY} ${BG.pink.sub}`}>{s("ctaText1")}</p>
+            <p data-reveal className={`${BODY} ${BG.pink.sub} mt-6 border-l-[3px] border-[var(--color-brand-black)] pl-5`}>{s("ctaText2")}</p>
+            <div data-reveal className="mt-10"><KtCta href={WHATSAPP}>{s("ctaButton")}</KtCta></div>
+          </div>
         </div>
       </Scene>
 

@@ -73,3 +73,4 @@ After approval
 
 - 2026-10-20: /sobre-mi restyled to the home kit (numbered chapter list, pink lower-third portrait label, bubble quotes, pink CTA). Copy unchanged. Branch feature/sobre-mi-redesign, preview only.
 - 2026-10-20: /sobre-mi rebuilt on the KT360 Design System (TitleCard heads, LowerThird straps, dark EndCard close, four card tones, magenta #E01E79 accents). Copy unchanged.
+- 2026-10-20: /sobre-mi restyled to the KT360 Manual de marca v1.3 (Inter uppercase titles, colour roles per chapter, KT photo frame, gold star, one statement block). Page sets Inter on its wrapper because the global --font-body token falls back to system sans.
