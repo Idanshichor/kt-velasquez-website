@@ -126,6 +126,17 @@ export default function PodcastPageClient() {
     { text: p1.slice(0, -2).join(" ") },
     { text: p1.slice(-2).join(" "), className: "text-[var(--color-brand-gold)]" },
   ];
+  // "Business + digital + mindset ... Sin filtros, ...": the first sentence becomes the big line with black "+"
+  // badges between the three parts; the rest is the script line underneath
+  const together = (() => {
+    const all = (t("podcastPage.manifestoP3") as string) || "";
+    const cut = all.indexOf(". ");
+    return cut === -1 ? { main: all, rest: "" } : { main: all.slice(0, cut + 1), rest: all.slice(cut + 2) };
+  })();
+  const PLUS = "inline-grid place-items-center align-middle w-[1.15em] h-[1.15em] rounded-full bg-[var(--color-brand-black)] text-[var(--color-brand-gold)] text-[0.7em] leading-none mx-[0.35em] -translate-y-[0.06em]";
+  const togetherParts: ScrubPart[] = together.main
+    .split(" + ")
+    .flatMap((chunk, i) => (i === 0 ? [{ text: chunk }] : [{ text: "+", className: PLUS }, { text: chunk }]));
   const [valuesHead, valuesScript] = splitLast((t("podcastPage.valuesTitle") as string) || "");
   const [ctaHead, ctaScript] = splitLast((t("podcastPage.ctaTitle") as string) || "");
 
@@ -152,22 +163,6 @@ export default function PodcastPageClient() {
             </h1>
             <p data-reveal className={`font-body ${INK} text-base md:text-lg leading-relaxed mt-8 max-w-md`}>{t("podcastPage.heroSubtitle")}</p>
 
-            <p data-reveal className={`mt-10 text-[11px] font-bold uppercase tracking-[0.26em] ${INK}`}>{t("podcastPage.platformsTitle")}</p>
-            <ul data-stagger className="mt-4 flex flex-wrap gap-2.5">
-              {platforms.map((platform) => (
-                <li key={platform.name}>
-                  <a
-                    href={platform.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block rounded-full bg-[var(--color-brand-black)] text-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] transition-colors duration-500 hover:bg-white hover:text-[var(--color-brand-black)] focus-visible:bg-white focus-visible:text-[var(--color-brand-black)]"
-                  >
-                    {platform.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-
             <div data-reveal className="mt-10">
               <KtCta href="#postulate" external={false}>{t("podcastPage.ctaButton")}</KtCta>
             </div>
@@ -179,6 +174,28 @@ export default function PodcastPageClient() {
             <Image src="/images/ktspacepodcast.webp" alt="" fill priority sizes="(max-width: 768px) 100vw, 52vw" className="object-contain object-bottom md:object-right-bottom grayscale contrast-[1.3] mix-blend-multiply" />
           </div>
           <KtStar className="kt-turn absolute right-6 top-4 md:right-16 md:top-36 w-14 md:w-20 text-[var(--color-brand-gold)]" />
+        </div>
+      </Scene>
+
+      {/* PLATFORMS: a white bar under the hero, built like the home page's client logo strip */}
+      <Scene className="py-12 md:py-14 px-6 md:px-16 bg-white border-b-[1.5px] border-[var(--color-brand-black)]">
+        <div className="max-w-7xl mx-auto flex flex-col xl:flex-row items-center gap-8 xl:gap-16">
+          <p data-reveal className={`text-[11px] font-bold uppercase tracking-[0.3em] ${INK} shrink-0`}>{t("podcastPage.platformsTitle")}</p>
+          <ul data-stagger className="flex flex-wrap items-center justify-center md:justify-between gap-x-10 gap-y-6 flex-1 w-full">
+            {platforms.map((platform) => (
+              <li key={platform.name}>
+                <a
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={platform.name}
+                  className="block fill-[var(--color-brand-black)] opacity-80 hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300"
+                >
+                  <span className="h-8 flex items-center [&_svg]:h-8">{platform.logoSvg}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </Scene>
 
@@ -243,11 +260,19 @@ export default function PodcastPageClient() {
         </div>
       </Scene>
 
-      {/* VOICE (gold, builds): the line about how business, digital and mindset go together */}
-      <Scene className="py-24 md:py-32 px-6 md:px-16 bg-[var(--color-brand-gold)]">
-        <div className="max-w-5xl mx-auto">
-          <p data-reveal className={`font-heading text-2xl md:text-4xl leading-[1.25] ${INK} [text-wrap:balance]`}>{t("podcastPage.manifestoP3")}</p>
-          <p data-reveal className={`mt-8 text-[11px] font-bold uppercase tracking-[0.22em] ${INK}`}>{t("podcastPage.heroTitlePart1")} {t("podcastPage.heroTitlePart2")}</p>
+      {/* HOW WE SEE IT (gold, builds): the three things that go together, joined by black "+" badges that
+          light up word by word, the gold star turning on a black disc, and the "sin filtros" line in script */}
+      <Scene className="relative overflow-hidden py-24 md:py-36 px-6 md:px-16 bg-[var(--color-brand-gold)]">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[auto_minmax(0,1fr)] gap-10 md:gap-16 items-center">
+          <div aria-hidden="true" className="w-24 h-24 md:w-44 md:h-44 rounded-full bg-[var(--color-brand-black)] grid place-items-center shadow-[0_24px_60px_-28px_rgba(26,26,26,0.6)]">
+            <KtStar className="kt-turn w-12 md:w-24 text-[var(--color-brand-gold)]" />
+          </div>
+          <div>
+            <Scrub parts={togetherParts} className={`kt-title text-3xl md:text-5xl lg:text-[3.4rem] leading-[1.08] ${INK}`} />
+            {together.rest && (
+              <p data-reveal className={`font-script-readable text-3xl md:text-[2.6rem] leading-[1.25] ${INK} mt-10 max-w-3xl`}>{together.rest}</p>
+            )}
+          </div>
         </div>
       </Scene>
 
