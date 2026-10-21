@@ -128,8 +128,8 @@ export default function AboutPageClient() {
         <Star bg="black" className="absolute right-8 md:right-16 top-28 md:top-32 w-12 md:w-16 z-10" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-[52svh] pb-16 md:pt-40 md:pb-24">
-          <h1 data-lines className={`${TITLE} text-[4.2rem] md:text-[min(9rem,calc((50vw-10rem)/4.8))] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
-          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[min(2.3rem,calc((100vw-3rem)/9.4))] md:text-[min(4.5rem,calc((50vw-13rem)/9.4))] leading-none mt-2 md:-mt-2 md:ml-12">{s("heroTitlePart2")}</p>
+          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[min(9rem,calc((50vw-10rem)/4.8))] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-[min(4.5rem,calc((50vw-13rem)/9.4))] leading-none mt-2 md:-mt-2 md:ml-12">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
           <p data-reveal className="mt-8 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
           <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md md:max-w-[min(28rem,calc(50vw-7rem))]">{s("heroSubtitle")}</p>
         </div>
