@@ -201,19 +201,18 @@ export default function ServicesPageClient() {
         })}
 
         {/* Mango Creative Studio: a different company, so it wears Mango's own system (yellow, charcoal, Cooper + Century Gothic, the mango mark) */}
-        <section className={`${mangoCooper.variable} ${mangoGothic.variable} py-24 md:py-32 px-6 md:px-16 bg-[#FFCC00] text-[#323336] [font-family:var(--font-mango-gothic)]`}>
+        <section className={`${mangoCooper.variable} ${mangoGothic.variable} py-24 md:py-32 px-6 md:px-16 bg-[var(--color-brand-black)] text-white [font-family:var(--font-mango-gothic)]`}>
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] gap-12 lg:gap-24 items-start">
             <div>
-              <a href={MANGO.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 mb-10 group" aria-label="Mango Creative Studio">
-                <img src="/images/mango-mark-black.svg" alt="" className="w-12 md:w-14 h-auto transition-transform duration-500 group-hover:-rotate-6" />
-                <span className="[font-family:var(--font-mango-cooper)] text-2xl md:text-3xl leading-none">Mango<br /><span className="text-base md:text-lg">Creative Studio</span></span>
+              <a href={MANGO.href} target="_blank" rel="noopener noreferrer" className="inline-block mb-10 group" aria-label="Mango Creative Studio">
+                <img src="/images/mango-mark.svg" alt="" className="w-14 md:w-16 h-auto transition-transform duration-500 group-hover:-rotate-6" />
               </a>
               <h2 className="[font-family:var(--font-mango-cooper)] text-4xl md:text-6xl leading-[1.05] mb-8 [text-wrap:balance]">{MANGO.title}</h2>
               <p className="text-lg md:text-xl font-bold leading-snug">{MANGO.question}</p>
             </div>
             <div className="lg:pt-24">
-              {MANGO.paragraphs.map((p) => <p key={p} className="text-base md:text-lg leading-[1.7] mb-5">{p}</p>)}
-              <a href={MANGO.href} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#323336] text-[#FFCC00] px-7 py-4 text-sm md:text-base font-bold transition-colors duration-300 hover:bg-[#D95629] hover:text-white">
+              {MANGO.paragraphs.map((p) => <p key={p} className="text-base md:text-lg leading-[1.7] mb-5 text-white/80">{p}</p>)}
+              <a href={MANGO.href} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#FFCC00] text-[var(--color-brand-black)] px-7 py-4 text-sm md:text-base font-bold transition-colors duration-300 hover:bg-white">
                 {MANGO.link}
                 <svg viewBox="0 0 16 16" className="w-4 h-4" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </a>

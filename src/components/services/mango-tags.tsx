@@ -10,11 +10,9 @@ export const MANGO_OFFERS: Record<"es" | "en", Item[]> = {
     { title: "Diseño Web a Medida", body: "Sitios web hechos a medida, con un diseño increíble, que funcionan a la perfección y convierten visitantes en clientes." },
     { title: "Landing Pages", tag: "Páginas de aterrizaje", body: "Páginas enfocadas en un solo objetivo, como una reserva, una llamada o una venta, diseñadas y escritas para convertir." },
     { title: "Branding", tag: "Identidad de marca", body: "Una identidad clara, del logotipo al estilo visual, para que tu negocio se recuerde." },
-    { title: "Estrategia de Marketing", body: "Un plan que conecta tu sitio web con los clientes que quieres alcanzar." },
     { title: "Posicionamiento SEO", body: "Aparece en Google ante las personas que ya buscan lo que ofreces." },
     { title: "AEO", tag: "Optimización para motores de respuesta", body: "Estructura tu contenido para que los asistentes de IA y los cuadros de respuesta te citen." },
     { title: "GEO", tag: "Optimización para motores generativos", body: "Aparece cuando la gente pregunta a ChatGPT, Gemini y Perplexity." },
-    { title: "Estrategia de Redes Sociales", body: "Un plan de contenido que convierte seguidores en visitantes y visitantes en clientes." },
     { title: "Analítica y Seguimiento de Conversiones", body: "Mide qué funciona y mejóralo, con números claros en lugar de suposiciones." },
     { title: "Hosting y Seguridad", body: "Hosting rápido y seguro con SSL para que tu sitio siga en línea y sea confiable." },
     { title: "Mantenimiento Web", body: "Actualizaciones, copias de seguridad y arreglos, para que tu sitio nunca quede abandonado." },
@@ -23,11 +21,9 @@ export const MANGO_OFFERS: Record<"es" | "en", Item[]> = {
     { title: "Custom Website Builds", body: "Tailor-made websites designed to look incredible, work flawlessly and convert visitors into customers." },
     { title: "Landing Pages", body: "Focused pages built around one goal, like a booking, a call or a sale, designed and written to convert." },
     { title: "Branding", body: "A clear identity, from logo to look and feel, so your business is remembered." },
-    { title: "Marketing Strategy", body: "A plan that connects your website to the customers you want to reach." },
     { title: "SEO Optimization", body: "Get found on Google by the people already searching for what you offer." },
     { title: "AEO", tag: "Answer Engine Optimization", body: "Structure your content so AI assistants and answer boxes quote you." },
     { title: "GEO", tag: "Generative Engine Optimization", body: "Show up when people ask ChatGPT, Gemini and Perplexity." },
-    { title: "Social Media Strategy", body: "A content plan that turns followers into visitors and visitors into clients." },
     { title: "Analytics and Conversion Tracking", body: "See what works and improve it, with clear numbers instead of guesses." },
     { title: "Hosting and Security", body: "Fast, secure hosting with SSL so your site stays up and trusted." },
     { title: "Website Maintenance", body: "Updates, backups and fixes, so your site never gets neglected." },
@@ -85,7 +81,7 @@ export function MangoTags({ items, href, label }: { items: Item[]; href: string;
             ref={(el) => {
               refs.current[i] = el;
             }}
-            className={`border-2 border-[var(--color-brand-black)] transition-[translate,box-shadow] duration-300 ${dark ? "bg-[var(--color-brand-black)] text-white" : "bg-white text-[var(--color-brand-black)]"} ${isOpen ? "basis-full rounded-[30px]" : `rounded-full ${tilt} hover:-translate-y-1 hover:shadow-[0_8px_0_rgba(26,26,26,0.16)]`}`}
+            className={`border-2 transition-[translate,box-shadow] duration-300 ${dark ? "border-white bg-[var(--color-brand-black)] text-white" : "border-white bg-white text-[var(--color-brand-black)]"} ${isOpen ? "basis-full rounded-[30px]" : `rounded-full ${tilt} hover:-translate-y-1 hover:shadow-[0_8px_0_rgba(255,255,255,0.18)]`}`}
           >
             <button type="button" aria-expanded={isOpen} aria-controls={`mango-svc-${i}`} onClick={() => toggle(i)} className="flex items-center gap-3.5 w-full py-3.5 pl-[18px] pr-5 text-left cursor-pointer rounded-[inherit] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-pink)]">
               <span className="text-[0.72rem] tracking-[0.08em] opacity-70 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
