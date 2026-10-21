@@ -8,32 +8,32 @@ export default function PrivacyPageClient() {
   const { language } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-[var(--color-brand-cream)] text-[var(--color-brand-black)] flex flex-col">
+    <div className="min-h-screen bg-white text-[var(--color-brand-black)] flex flex-col">
       <Navbar />
 
-      <main className="flex-grow pt-32 pb-24 px-6 md:px-16">
-        <div className="max-w-3xl mx-auto bg-white rounded-[2.5rem] p-8 md:p-16 shadow-soft border border-gray-100">
+      <main className="flex-grow pt-40 md:pt-52 pb-28 md:pb-36 px-6 md:px-16">
+        <div className="max-w-3xl mx-auto">
           {language === "es" ? (
             <article className="prose prose-stone">
-              <h1 className="font-heading text-4xl md:text-5xl mb-8 italic font-bold">
+              <h1 className="uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wrap:balance] text-5xl md:text-7xl mb-8">
                 Política de Privacidad
               </h1>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-8">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--color-brand-black)]/60 mb-16">
                 Última actualización: 29 de junio de 2026
               </p>
               
-              <div className="space-y-8 font-body text-base leading-relaxed text-gray-700 font-medium">
+              <div className="space-y-8 text-base md:text-[17px] leading-[1.7] text-[var(--color-brand-black)]">
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     1. Identificación del Responsable
                   </h2>
                   <p>
-                    Katherine Velasquez (en adelante, "la Responsable"), domiciliada en Medellín, Colombia, y con canal de contacto a través del número de WhatsApp +57 321 615 4870, es responsable del tratamiento de los datos personales recolectados en este sitio web (<a href="https://www.ktvelasquez.com" className="text-[var(--color-brand-pink)] hover:underline">www.ktvelasquez.com</a>).
+                    Katherine Velasquez (en adelante, "la Responsable"), domiciliada en Medellín, Colombia, y con canal de contacto a través del número de WhatsApp +57 321 615 4870, es responsable del tratamiento de los datos personales recolectados en este sitio web (<a href="https://www.ktvelasquez.com" className="underline underline-offset-4 decoration-[var(--color-brand-pink)] decoration-2">www.ktvelasquez.com</a>).
                   </p>
                 </section>
 
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     2. Marco Legal (Ley 1581 de 2012)
                   </h2>
                   <p>
@@ -42,7 +42,7 @@ export default function PrivacyPageClient() {
                 </section>
 
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     3. Datos Recolectados y Finalidad
                   </h2>
                   <p>
@@ -59,7 +59,7 @@ export default function PrivacyPageClient() {
                 </section>
 
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     4. Derechos del Titular de los Datos
                   </h2>
                   <p>
@@ -75,7 +75,7 @@ export default function PrivacyPageClient() {
                 </section>
 
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     5. Procedimiento para Ejercer sus Derechos (Habeas Data)
                   </h2>
                   <p>
@@ -86,25 +86,25 @@ export default function PrivacyPageClient() {
             </article>
           ) : (
             <article className="prose prose-stone">
-              <h1 className="font-heading text-4xl md:text-5xl mb-8 italic font-bold">
+              <h1 className="uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wrap:balance] text-5xl md:text-7xl mb-8">
                 Privacy Policy
               </h1>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-8">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--color-brand-black)]/60 mb-16">
                 Last updated: June 29, 2026
               </p>
               
-              <div className="space-y-8 font-body text-base leading-relaxed text-gray-700 font-medium">
+              <div className="space-y-8 text-base md:text-[17px] leading-[1.7] text-[var(--color-brand-black)]">
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     1. Data Controller Identification
                   </h2>
                   <p>
-                    Katherine Velasquez (hereinafter, "the Controller"), located in Medellin, Colombia, and reachable via WhatsApp at +57 321 615 4870, is the controller of the personal data collected on this website (<a href="https://www.ktvelasquez.com" className="text-[var(--color-brand-pink)] hover:underline">www.ktvelasquez.com</a>).
+                    Katherine Velasquez (hereinafter, "the Controller"), located in Medellin, Colombia, and reachable via WhatsApp at +57 321 615 4870, is the controller of the personal data collected on this website (<a href="https://www.ktvelasquez.com" className="underline underline-offset-4 decoration-[var(--color-brand-pink)] decoration-2">www.ktvelasquez.com</a>).
                   </p>
                 </section>
 
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     2. Legal Framework
                   </h2>
                   <p>
@@ -113,7 +113,7 @@ export default function PrivacyPageClient() {
                 </section>
 
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     3. Data Collected and Purpose
                   </h2>
                   <p>
@@ -130,7 +130,7 @@ export default function PrivacyPageClient() {
                 </section>
 
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     4. Your Rights as a Data Subject
                   </h2>
                   <p>
@@ -146,7 +146,7 @@ export default function PrivacyPageClient() {
                 </section>
 
                 <section>
-                  <h2 className="font-heading text-xl font-bold text-[var(--color-brand-black)] mb-3">
+                  <h2 className="text-sm font-bold uppercase tracking-[0.18em] mb-4 pt-8 border-t border-[var(--color-brand-black)]/15">
                     5. How to Exercise Your Rights
                   </h2>
                   <p>
