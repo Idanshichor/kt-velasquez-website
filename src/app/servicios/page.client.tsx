@@ -77,7 +77,8 @@ function ServiceBlock({ block, tone }: { block: Block; tone: Tone }) {
  * /servicios#servicio-3 lands on the third service.
  */
 export default function ServicesPageClient() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const verMas = language === "es" ? "Ver más" : "See more";
 
   return (
     <div className="min-h-screen bg-white text-[var(--color-brand-black)]">
@@ -109,13 +110,14 @@ export default function ServicesPageClient() {
               <li key={s.title} className="border-b border-[var(--color-brand-black)]/25">
                 <a
                   href={`#servicio-${i + 1}`}
-                  className="group grid grid-cols-[3.5rem_minmax(0,1fr)_auto] md:grid-cols-[6rem_minmax(0,1fr)_minmax(0,22rem)_auto] items-center gap-x-4 md:gap-x-10 gap-y-2 py-6 md:py-8 px-2 md:px-6 -mx-2 md:-mx-6 rounded-2xl transition-colors duration-500 hover:bg-white focus-visible:bg-white focus-visible:outline-none"
+                  className="group grid grid-cols-[3.5rem_minmax(0,1fr)] md:grid-cols-[6rem_minmax(0,1fr)_minmax(0,22rem)_auto] items-start md:items-center gap-x-4 md:gap-x-10 gap-y-2 py-6 md:py-8 px-2 md:px-6 -mx-2 md:-mx-6 rounded-2xl transition-colors duration-500 hover:bg-white focus-visible:bg-white focus-visible:outline-none"
                 >
                   <span className="text-4xl md:text-6xl font-normal leading-none tracking-[-0.03em]">0{i + 1}</span>
                   <span className={`${TITLE} text-xl md:text-[1.75rem]`}>{s.title}</span>
-                  <span className="col-start-2 col-span-2 md:col-start-auto md:col-span-1 row-start-2 md:row-start-auto text-[15px] leading-snug">{s.tagline}</span>
-                  <span className="row-start-1 col-start-3 md:row-start-auto md:col-start-auto w-11 h-11 md:w-14 md:h-14 rounded-full border-[1.5px] border-[var(--color-brand-black)] grid place-items-center transition-all duration-500 group-hover:bg-[var(--color-brand-black)] group-hover:text-white group-hover:translate-y-1">
-                    <ArrowDown className="w-5 h-5" aria-hidden="true" />
+                  <span className="col-start-2 md:col-start-auto text-[15px] leading-snug">{s.tagline}</span>
+                  <span className="col-start-2 md:col-start-auto justify-self-start mt-2 md:mt-0 inline-flex items-center gap-2 whitespace-nowrap h-11 md:h-12 pl-4 pr-1.5 rounded-full border-[1.5px] border-[var(--color-brand-black)] text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--color-brand-black)] transition-colors duration-500 group-hover:bg-[var(--color-brand-black)] group-hover:text-white">
+                    {verMas}
+                    <span className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[var(--color-brand-black)] text-white grid place-items-center transition-colors duration-500 group-hover:bg-white group-hover:text-[var(--color-brand-black)]"><ArrowDown className="w-4 h-4" aria-hidden="true" /></span>
                   </span>
                 </a>
               </li>
