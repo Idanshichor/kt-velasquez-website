@@ -26,10 +26,10 @@ const BG: Record<Bg, { cls: string; sub: string; bar: string; rule: string; star
   magenta: { cls: "bg-[#E01E79] text-white", sub: "text-white", bar: "bg-white", rule: "bg-white", star: "text-white", line: "border-white" },
 };
 
-/** Title placement inside the hero SVG, in photo-crop pixels: the H right stem touches her arm (x 872), baseline at her hip. */
-const LEAN_ES = { size: 343, x: 647, y: 609, lineGap: 304, gap: 245, edge: 874 };
-// "HELLO," is wider than "HOLA,": smaller type, same baseline, H stem still on her arm.
-const LEAN_EN = { size: 293, x: 680, y: 609, lineGap: 260, gap: 248, edge: 874 };
+/** Title placement inside the hero SVG, in photo-crop pixels: the last letter of line 1 touches her arm, baseline at her hip. */
+const LEAN_ES = { size: 330, x: 39, y: 609, lineGap: 292, edge: 890 };
+// "HELLO" is wider than "HOLA": smaller type, same baseline, last letter still against her arm.
+const LEAN_EN = { size: 272, x: 40, y: 609, lineGap: 241, edge: 890 };
 
 const TITLE = "uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wrap:balance]";
 const BODY = "text-base md:text-[17px] leading-[1.7]";
@@ -116,7 +116,7 @@ export default function AboutPageClient() {
     <div className="min-h-screen bg-white text-[var(--color-brand-black)] overflow-x-hidden" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
       <Navbar />
 
-      {/* HERO: Katherine leans on the H of the title. Photo, title and her cut-out live in one SVG
+      {/* HERO: Katherine leans on the last letter of HOLA. Photo, title and her cut-out live in one SVG
           (viewBox = photo crop in px), so her arm stays on the H at every screen size. */}
       <Scene className="relative overflow-hidden text-white pt-20 md:pt-24 pb-14 md:pb-20 bg-[linear-gradient(180deg,#67676B_0%,#7C7C81_55%,#86868C_100%)]">
         <div className="relative mx-auto w-full max-w-[1180px]">
@@ -135,9 +135,8 @@ export default function AboutPageClient() {
                 const [first, second = ""] = s("heroTitlePart1").split(",").map((w) => w.trim());
                 return (
                   <>
-                    {/* Line 1: the first letter, then a gap where she stands, then the rest of the word */}
-                    <tspan x={lean.x} y={lean.y}>{first.slice(0, 1)}</tspan>
-                    <tspan dx={lean.gap}>{first.slice(1)},</tspan>
+                    {/* Line 1 ends against her arm: she leans on its last letter */}
+                    <tspan x={lean.x} y={lean.y}>{first}</tspan>
                     {/* Line 2 ends at the same edge she leans on */}
                     <tspan x={lean.edge} y={lean.y + lean.lineGap} textAnchor="end">{second}</tspan>
                   </>
