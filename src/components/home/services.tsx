@@ -47,7 +47,7 @@ export function Services() {
                 <span className="hidden md:block text-sm font-bold text-[var(--color-brand-black)]">0{i + 1}</span>
                 <span className={`${TITLE} block text-2xl md:text-[1.9rem] text-[var(--color-brand-black)]`}>{s.title}</span>
                 <span className="col-span-2 md:col-span-1 row-start-2 md:row-start-auto text-[15px] leading-relaxed text-[var(--color-brand-black)]/75">{s.tagline}</span>
-                <span className="row-start-1 col-start-2 md:col-start-auto w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-[var(--color-brand-black)] grid place-items-center text-[var(--color-brand-black)] transition-colors duration-500 group-hover:bg-[var(--color-brand-black)] group-hover:text-white">
+                <span className="row-start-1 col-start-2 md:row-start-auto md:col-start-auto w-12 h-12 md:w-14 md:h-14 rounded-full border-[1.5px] border-[var(--color-brand-black)] grid place-items-center text-[var(--color-brand-black)] transition-colors duration-500 group-hover:bg-[var(--color-brand-black)] group-hover:text-white">
                   <ArrowUpRight className="w-5 h-5" aria-hidden="true" />
                 </span>
               </Link>
