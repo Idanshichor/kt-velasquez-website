@@ -4,10 +4,13 @@ import { useLanguage } from "@/context/language-context";
 import { Scene } from "./scene";
 import { KtStar } from "./scrub";
 
-const WHATSAPP = "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29";
+const WHATSAPP = {
+  es: "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29",
+  en: "https://wa.me/573216154870?text=Hi%20Kathe%2C%20I%27d%20like%20to%20talk%20to%20you%20about%20my%20project%20%3A%29",
+};
 
 export function FinalCta() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   return (
     <Scene className="relative overflow-hidden bg-[var(--color-brand-pink)] py-28 md:py-44 px-6 md:px-16">
       {/* A large slow orbit behind the words, the same 360 mark as the method section */}
@@ -26,7 +29,7 @@ export function FinalCta() {
           {t("cta.desc")}
         </p>
         <div data-reveal className="flex justify-center">
-          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 bg-[var(--color-brand-black)] text-white border-2 border-[var(--color-brand-black)] pl-10 pr-3 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors">
+          <a href={WHATSAPP[language === "es" ? "es" : "en"]} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 bg-[var(--color-brand-black)] text-white border-2 border-[var(--color-brand-black)] pl-10 pr-3 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-transparent hover:text-[var(--color-brand-black)] transition-colors">
             {t("cta.button")}
             <span className="w-10 h-10 rounded-full bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] grid place-items-center transition-transform duration-300 group-hover:rotate-45" aria-hidden="true">
               <KtStar className="w-4 h-4" />

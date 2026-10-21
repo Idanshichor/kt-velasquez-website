@@ -4,8 +4,8 @@ import "./globals.css";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const script = Great_Vibes({ weight: "400", subsets: ["latin"], variable: "--font-script" });
-const scriptReadable = Playball({ weight: "400", subsets: ["latin"], variable: "--font-script-readable" });
+const script = Great_Vibes({ weight: "400", subsets: ["latin"], variable: "--font-great-vibes" });
+const scriptReadable = Playball({ weight: "400", subsets: ["latin"], variable: "--font-playball" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ktvelasquez.com"),
@@ -51,11 +51,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning className={`${playfair.variable} ${inter.variable} ${script.variable} ${scriptReadable.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: motionFlag }} />
       </head>
-      <body className={`${playfair.variable} ${inter.variable} ${script.variable} ${scriptReadable.variable} antialiased bg-[var(--color-brand-cream)] text-[var(--color-brand-black)]`}>
+      <body className={`antialiased bg-[var(--color-brand-cream)] text-[var(--color-brand-black)]`}>
         <LanguageProvider>
           {children}
         </LanguageProvider>

@@ -49,7 +49,7 @@ export function Navbar() {
           <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "en" ? "text-white" : "text-gray-400"}`}>EN</span>
         </button>
 
-        <Link href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" target="_blank" rel="noopener noreferrer">
+        <Link href={language === "es" ? "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" : "https://wa.me/573216154870?text=Hi%20Kathe%2C%20I%27d%20like%20to%20talk%20to%20you%20about%20my%20project%20%3A%29"} target="_blank" rel="noopener noreferrer">
           <Button variant="outline" className="rounded-full shrink-0">
             {t("nav.contacto")}
           </Button>
@@ -95,7 +95,7 @@ export function Navbar() {
           </div>
           
           <div className="mt-auto mb-10 flex flex-col gap-6 items-center">
-            <Link href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
+            <Link href={language === "es" ? "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" : "https://wa.me/573216154870?text=Hi%20Kathe%2C%20I%27d%20like%20to%20talk%20to%20you%20about%20my%20project%20%3A%29"} target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
               <Button variant="outline" className="rounded-full w-full py-6 text-base tracking-widest border-2">
                 {t("nav.contacto")}
               </Button>

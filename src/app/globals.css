@@ -14,8 +14,8 @@
 
   --font-heading: var(--font-playfair), serif;
   --font-body: var(--font-inter), sans-serif;
-  --font-script: var(--font-script), cursive;
-  --font-script-readable: var(--font-script-readable), cursive;
+  --font-script: var(--font-great-vibes), cursive;
+  --font-script-readable: var(--font-playball), cursive;
 }
 
 body {
