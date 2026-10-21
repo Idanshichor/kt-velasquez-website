@@ -112,16 +112,26 @@ export default function AboutPageClient() {
 
       {/* HERO: full-screen photo of Katherine on the stool (right). A soft shade sits behind the words only:
           from the left on desktop, from the bottom on phones (it stops below her face), so the gold name reads. */}
-      <Scene className="relative min-h-[100svh] flex items-end overflow-hidden bg-[#C9C9C9] text-white">
+      <Scene className="relative min-h-[100svh] flex items-end lg:items-center overflow-hidden bg-[#C9C9C9] text-white">
         <div data-mask className="absolute inset-0">
           <div data-mask-img className="absolute inset-0">
+            {/* Phones and tablets: the tall original, so her whole figure fits. Desktop: the wide version. */}
             <Image
-              src="/images/KT_Stool_Hero.webp"
+              src="/images/KT_Stool_Portrait.webp"
               alt="Katherine Velasquez — Estratega 360 e Ingeniera Civil"
               fill
               sizes="100vw"
               quality={90}
-              className="object-cover object-[74%_center] lg:object-center"
+              className="object-cover object-[42%_top] lg:hidden"
+              priority
+            />
+            <Image
+              src="/images/KT_Stool_Hero.webp"
+              alt=""
+              fill
+              sizes="100vw"
+              quality={90}
+              className="object-cover object-center hidden lg:block"
               priority
             />
           </div>
@@ -129,10 +139,10 @@ export default function AboutPageClient() {
           <div className="absolute inset-y-0 left-0 w-[72%] hidden lg:block bg-gradient-to-r from-[var(--color-brand-black)]/80 via-[var(--color-brand-black)]/55 to-transparent" />
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pb-14 md:pb-20 lg:pb-24 lg:pt-40">
-          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[clamp(4.5rem,7vw,7.5rem)] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
-          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-6xl leading-none mt-2">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
-          <p data-reveal className="mt-8 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pb-14 md:pb-20 lg:py-32">
+          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[6.5rem] lg:text-[clamp(5.5rem,9vw,9.5rem)] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-[3.7rem] lg:text-[clamp(3.1rem,5.1vw,5.4rem)] leading-none mt-2 lg:mt-3">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
+          <p data-reveal className="mt-8 lg:mt-12 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
           <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md">{s("heroSubtitle")}</p>
         </div>
       </Scene>
