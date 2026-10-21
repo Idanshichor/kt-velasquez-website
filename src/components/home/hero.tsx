@@ -34,15 +34,15 @@ export function Hero() {
       }}
     >
       {/* Full-screen photo */}
-      <div className="absolute inset-x-0 bottom-0 top-[9.5rem] md:top-0 z-0">
+      <div className="absolute inset-x-0 bottom-0 top-12 bottom-[16%] md:top-0 md:bottom-0 z-0">
         <div data-hero-parallax className="absolute inset-0">
           <div data-hero-img className="absolute inset-0">
-            <Image src="/images/KT_Hero.webp" alt="Katherine Velasquez" fill sizes="100vw" className="object-cover object-[80%_0%] md:object-[78%_30%]" priority />
+            <Image src="/images/KT_Hero.webp" alt="Katherine Velasquez" fill sizes="100vw" className="object-cover object-[80%_30%] md:object-[78%_30%]" priority />
           </div>
         </div>
         {/* Shade so the white words read on the grey backdrop */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 md:bg-[linear-gradient(90deg,rgba(26,26,26,0.6),rgba(26,26,26,0)_62%)]" />
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[var(--color-brand-black)] to-transparent md:hidden" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--color-brand-black)] to-transparent md:hidden" />
         <div data-hero-dim className="absolute inset-0 bg-black opacity-0 pointer-events-none" />
       </div>
 
