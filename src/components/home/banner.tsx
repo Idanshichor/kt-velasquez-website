@@ -24,8 +24,8 @@ export function Banner() {
     <Scene className="statement relative overflow-hidden bg-[var(--color-brand-black)] text-white py-28 md:py-44 px-6 md:px-16">
       <div className="max-w-6xl mx-auto grid md:grid-cols-[auto_minmax(0,1fr)] gap-10 md:gap-20 items-center">
         <KtStar className="statement-star w-20 md:w-48 lg:w-56 text-[var(--color-brand-gold)]" />
-        <div>
-          <Scrub as="h2" parts={parts} className="kt-title text-5xl md:text-7xl lg:text-[5.5rem]" />
+        <div className="min-w-0">
+          <Scrub as="h2" parts={parts} className="kt-title text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5.5rem]" />
           <span data-reveal className="kt-rule mt-10" />
           <p data-reveal className="font-body text-white/65 mt-6 text-sm md:text-base font-medium max-w-xl leading-relaxed">
             {t("banner.desc")}

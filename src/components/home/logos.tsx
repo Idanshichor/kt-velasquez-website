@@ -15,7 +15,7 @@ const LOGOS = [
 export function Logos() {
   const { t } = useLanguage();
   return (
-    <Scene className="py-16 md:py-20 px-6 md:px-16 bg-white border-b-[1.5px] border-[var(--color-brand-black)]">
+    <Scene className="overflow-hidden py-16 md:py-20 px-6 md:px-16 bg-white border-b-[1.5px] border-[var(--color-brand-black)]">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
         <p data-reveal className="text-[11px] font-bold uppercase tracking-[0.3em] text-[var(--color-brand-black)] shrink-0">{t("logos.trust")}</p>
         <div data-stagger className="grid grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-8 items-center flex-1 w-full">

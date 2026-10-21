@@ -13,7 +13,7 @@ export function Hero() {
 
   return (
     <Scene
-      className="relative w-full min-h-[100svh] flex flex-col justify-end pt-28 pb-10 md:pb-16 overflow-hidden bg-[var(--color-brand-black)]"
+      className="relative w-full min-h-[100svh] flex flex-col md:justify-end pt-24 md:pt-28 pb-10 md:pb-16 overflow-hidden bg-[var(--color-brand-black)]"
       build={({ root }) => {
         const q = (s: string) => root.querySelector<HTMLElement>(s);
         const all = (s: string) => Array.from(root.querySelectorAll<HTMLElement>(s));
@@ -34,7 +34,7 @@ export function Hero() {
       }}
     >
       {/* Full-screen photo */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-x-0 bottom-0 top-12 bottom-[16%] md:top-0 md:bottom-0 z-0">
         <div data-hero-parallax className="absolute inset-0">
           <div data-hero-img className="absolute inset-0">
             <Image src="/images/KT_Hero.webp" alt="Katherine Velasquez" fill sizes="100vw" className="object-cover object-[80%_30%] md:object-[78%_30%]" priority />
@@ -42,14 +42,15 @@ export function Hero() {
         </div>
         {/* Shade so the white words read on the grey backdrop */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 md:bg-[linear-gradient(90deg,rgba(26,26,26,0.6),rgba(26,26,26,0)_62%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--color-brand-black)] to-transparent md:hidden" />
         <div data-hero-dim className="absolute inset-0 bg-black opacity-0 pointer-events-none" />
       </div>
 
       {/* The hero from the KT360 brand manual ("El hero de ktvelasquez.com"): huge white
           name, one gold script word, flat black and pink straps, white pill button.
           Same pieces as the manual, with more room between them. */}
-      <div className="relative z-10 w-full px-6 md:pl-[6vw] md:pr-0">
-        <div className="md:w-[56vw] md:max-w-[64rem]">
+      <div className="relative z-10 w-full flex-1 md:flex-none flex flex-col px-6 md:pl-[6vw] md:pr-0">
+        <div className="flex-1 md:flex-none flex flex-col md:block md:w-[56vw] md:max-w-[64rem]">
           <div data-hero-title>
             <h1 className="font-heading uppercase text-white tracking-[-0.03em] leading-[0.82] text-[3.6rem] sm:text-7xl md:text-[clamp(5rem,10vw,12rem)]">
               <span data-hero-line className="block">{t("hero.katherine")}</span>
@@ -58,7 +59,7 @@ export function Hero() {
             </h1>
           </div>
 
-          <p data-hero-strap className="mt-8 md:mt-12 flex flex-wrap text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em]">
+          <p data-hero-strap className="mt-auto pt-8 md:pt-0 md:mt-12 flex flex-wrap text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em]">
             <span className="bg-[var(--color-brand-black)] text-white px-4 py-2.5">{t("hero.consultoria")}</span>
             <span className="bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5">{t("hero.roles")}</span>
           </p>
