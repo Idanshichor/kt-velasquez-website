@@ -26,11 +26,6 @@ const BG: Record<Bg, { cls: string; sub: string; bar: string; rule: string; star
   magenta: { cls: "bg-[#E01E79] text-white", sub: "text-white", bar: "bg-white", rule: "bg-white", star: "text-white", line: "border-white" },
 };
 
-/** Title placement inside the hero SVG, in photo-crop pixels: the H right stem touches her arm (x 872), baseline at her hip. */
-const LEAN_ES = { size: 343, x: 647, y: 609, lineGap: 304, gap: 245, edge: 874 };
-// "HELLO," is wider than "HOLA,": smaller type, same baseline, H stem still on her arm.
-const LEAN_EN = { size: 293, x: 680, y: 609, lineGap: 260, gap: 248, edge: 874 };
-
 const TITLE = "uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wrap:balance]";
 const BODY = "text-base md:text-[17px] leading-[1.7]";
 const SECTION = "py-24 md:py-36 px-6 md:px-16";
@@ -97,7 +92,6 @@ const Star = ({ bg, className = "" }: { bg: Bg; className?: string }) => (
 export default function AboutPageClient() {
   const { language, t } = useLanguage();
   const s = (k: string) => t(`aboutPage.${k}`) as string;
-  const lean = language === "es" ? LEAN_ES : LEAN_EN;
   const [galleryLead, galleryAccent] = splitLast(s("galleryTitle"));
   const [ctaLead, ctaAccent] = splitLast(s("ctaTitle"));
 
@@ -116,43 +110,30 @@ export default function AboutPageClient() {
     <div className="min-h-screen bg-white text-[var(--color-brand-black)] overflow-x-hidden" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
       <Navbar />
 
-      {/* HERO: Katherine leans on the H of the title. Photo, title and her cut-out live in one SVG
-          (viewBox = photo crop in px), so her arm stays on the H at every screen size. */}
-      <Scene className="relative overflow-hidden text-white pt-20 md:pt-24 pb-14 md:pb-20 bg-[linear-gradient(180deg,#67676B_0%,#7C7C81_55%,#86868C_100%)]">
-        <div className="relative mx-auto w-full max-w-[1180px]">
-          <h1 className="sr-only">{s("heroTitlePart1")} {s("heroTitlePart2")}</h1>
-          <svg viewBox="0 0 1923 1204" className="block w-full h-auto" aria-hidden="true">
-            <defs>
-              <radialGradient id="lean-fade" cx="50%" cy="48%" r="52%">
-                <stop offset="62%" stopColor="#fff" />
-                <stop offset="100%" stopColor="#000" />
-              </radialGradient>
-              <mask id="lean-mask"><rect width="1923" height="1204" fill="url(#lean-fade)" /></mask>
-            </defs>
-            <image href="/images/KT_Lean_Bg.webp" width="1923" height="1204" mask="url(#lean-mask)" />
-            <text fill="var(--color-brand-black)" fontFamily="var(--font-inter), Inter, sans-serif" fontSize={lean.size} letterSpacing={-0.02 * lean.size} style={{ textTransform: "uppercase" }}>
-              {(() => {
-                const [first, second = ""] = s("heroTitlePart1").split(",").map((w) => w.trim());
-                return (
-                  <>
-                    {/* Line 1: the first letter, then a gap where she stands, then the rest of the word */}
-                    <tspan x={lean.x} y={lean.y}>{first.slice(0, 1)}</tspan>
-                    <tspan dx={lean.gap}>{first.slice(1)},</tspan>
-                    {/* Line 2 ends at the same edge she leans on */}
-                    <tspan x={lean.edge} y={lean.y + lean.lineGap} textAnchor="end">{second}</tspan>
-                  </>
-                );
-              })()}
-            </text>
-            <image href="/images/KT_Lean_Cutout.webp" width="1923" height="1204" />
-          </svg>
+      {/* HERO: full-screen photo of Katherine on the stool (right). A soft shade sits behind the words only:
+          from the left on desktop, from the bottom on phones (it stops below her face), so the gold name reads. */}
+      <Scene className="relative min-h-[100svh] flex items-end overflow-hidden bg-[#C9C9C9] text-white">
+        <div data-mask className="absolute inset-0">
+          <div data-mask-img className="absolute inset-0">
+            <Image
+              src="/images/KT_Stool_Hero.webp"
+              alt="Katherine Velasquez — Estratega 360 e Ingeniera Civil"
+              fill
+              sizes="100vw"
+              quality={90}
+              className="object-cover object-[74%_center] lg:object-center"
+              priority
+            />
+          </div>
+          <div className="absolute inset-x-0 bottom-0 h-[52%] bg-gradient-to-t from-[var(--color-brand-black)]/85 via-[var(--color-brand-black)]/55 to-transparent lg:hidden" />
+          <div className="absolute inset-y-0 left-0 w-[72%] hidden lg:block bg-gradient-to-r from-[var(--color-brand-black)]/80 via-[var(--color-brand-black)]/55 to-transparent" />
         </div>
-        <Star bg="black" className="absolute right-6 md:right-16 top-24 md:top-32 w-10 md:w-16 z-10" />
 
-        <div className="relative z-10 w-full max-w-[1180px] mx-auto px-6 md:px-16 -mt-2 md:-mt-6">
-          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-7xl leading-none">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pb-14 md:pb-20 lg:pb-24 lg:pt-40">
+          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[clamp(4.5rem,7vw,7.5rem)] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-6xl leading-none mt-2">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
           <p data-reveal className="mt-8 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
-          <p data-reveal className="text-white font-medium text-base md:text-lg leading-relaxed mt-5 max-w-md">{s("heroSubtitle")}</p>
+          <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md">{s("heroSubtitle")}</p>
         </div>
       </Scene>
 
