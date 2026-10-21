@@ -181,7 +181,7 @@ export default function AboutPageClient() {
       {/* 04 pink recovers: everything black, framed studio photo with a black outline */}
       <Scene className={`${SECTION} ${BG.pink.cls}`}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-14 md:gap-24 items-center">
-          <KFrame bg="pink" src="/images/KTSecondPhoto.webp" alt="Katherine Velasquez" pos="center 35%" className="aspect-[4/5] w-full max-w-[400px]" />
+          <KFrame bg="pink" src="/images/KT_Studio_White.webp" alt="Katherine Velasquez" pos="center 30%" className="aspect-[4/5] w-full max-w-[400px]" />
           <div>
             <Label bg="pink">04</Label>
             <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch4Title")}</h2>

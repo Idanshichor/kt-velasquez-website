@@ -47,7 +47,7 @@ export function AboutPreview() {
         {/* Portrait with the name strap, like a lower third in the reels */}
         <div data-reveal className="relative mx-auto w-full max-w-[420px]">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] kt-card">
-            <Image src="/images/KT_About_Hero.webp" alt="Katherine Velasquez" fill sizes="(max-width: 1024px) 90vw, 420px" quality={90} className="object-cover object-[center_25%]" />
+            <Image src="/images/KT_Studio_Pink.webp" alt="Katherine Velasquez" fill sizes="(max-width: 1024px) 90vw, 420px" quality={90} className="object-cover object-[center_25%]" />
           </div>
         </div>
         <div>
