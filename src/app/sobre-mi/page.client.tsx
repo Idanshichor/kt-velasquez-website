@@ -139,7 +139,7 @@ export default function AboutPageClient() {
           <div className="absolute inset-y-0 left-0 w-[72%] hidden lg:block bg-gradient-to-r from-[var(--color-brand-black)]/80 via-[var(--color-brand-black)]/55 to-transparent" />
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pb-14 md:pb-20 lg:py-32">
+        <div className="relative z-10 w-full px-6 md:pl-[6vw] md:pr-16 pb-14 md:pb-20 lg:py-32">
           <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[6.5rem] lg:text-[clamp(5.5rem,9vw,9.5rem)] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
           <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-[3.7rem] lg:text-[clamp(3.1rem,5.1vw,5.4rem)] leading-none mt-2 lg:mt-3">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
           <p data-reveal className="mt-8 lg:mt-12 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
