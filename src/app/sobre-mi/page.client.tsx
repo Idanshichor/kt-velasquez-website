@@ -112,7 +112,7 @@ export default function AboutPageClient() {
 
       {/* HERO: full-screen photo, the name huge in white, script in gold, the star turning, a black label */}
       <Scene className="relative min-h-[100svh] flex items-end overflow-hidden bg-[var(--color-brand-black)] text-white">
-        <div data-mask className="absolute inset-0 md:left-auto md:w-[66%]">
+        <div data-mask className="absolute inset-x-0 top-0 h-[50svh] md:h-auto md:bottom-0 md:left-auto md:w-[50%]">
           <div data-mask-img className="absolute inset-0">
             <Image
               src="/images/KT_About_Hero.webp"
@@ -124,15 +124,14 @@ export default function AboutPageClient() {
               priority
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-black)] via-[var(--color-brand-black)]/30 to-transparent md:bg-gradient-to-r md:from-[var(--color-brand-black)] md:via-[var(--color-brand-black)]/10 md:to-transparent" />
         </div>
         <Star bg="black" className="absolute right-8 md:right-16 top-28 md:top-32 w-12 md:w-16 z-10" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-[52svh] pb-16 md:pt-40 md:pb-24">
-          <h1 data-lines className={`${TITLE} text-[4.2rem] md:text-[7.5rem] lg:text-[9rem] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
-          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[min(2.3rem,calc((100vw-3rem)/9.4))] md:text-[min(3.75rem,calc((100vw-14rem)/9.4))] lg:text-7xl leading-none mt-2 md:-mt-2 md:ml-24">{s("heroTitlePart2")}</p>
+          <h1 data-lines className={`${TITLE} text-[4.2rem] md:text-[min(9rem,calc((50vw-10rem)/4.8))] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[min(2.3rem,calc((100vw-3rem)/9.4))] md:text-[min(4.5rem,calc((50vw-13rem)/9.4))] leading-none mt-2 md:-mt-2 md:ml-12">{s("heroTitlePart2")}</p>
           <p data-reveal className="mt-8 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
-          <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]">{s("heroSubtitle")}</p>
+          <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md md:max-w-[min(28rem,calc(50vw-7rem))]">{s("heroSubtitle")}</p>
         </div>
       </Scene>
 

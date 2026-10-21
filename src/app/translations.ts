@@ -544,16 +544,56 @@ export const translations = {
     },
     faqs: [
       {
-        q: "Who is this NOT for?",
-        a: "I am not a motivational coach; my focus is on giving you structure and clarity, not inspirational speeches. This space is not for you if you prefer beating around the bush or sugarcoated answers; I like to speak with total transparency and honesty about what your business needs to grow."
+        q: "How do I know which service or package I need?",
+        a: "In our review meeting I'll get to know your project, your goals and what you need to solve. From there, I'll recommend the service and the level of support that best fit where you are right now.\nBefore you pay, you'll know the deliverables, each side's responsibilities, how often we'll meet, the time frame to use your sessions and the terms of the engagement."
       },
       {
-        q: "Do I accept projects from scratch?",
-        a: "Yes, of course, as long as you already have prior entrepreneurial experience. If you already know the reality of managing a business and this time you want to build with solid foundations and strategic order from day one, you are more than welcome."
+        q: "Who is this NOT for?",
+        a: "This work takes commitment, openness to revisit decisions and time to put into practice what we work on. If you're looking for instant results or would rather keep everything as it is, this is probably not your moment.\nWe'll work with honesty: I'll tell you what I see, why it matters and what we can do to move forward."
+      },
+      {
+        q: "Do you take on projects from scratch?",
+        a: "Yes. I support new projects from people who already have entrepreneurial experience and want to build this new stage on clearer foundations.\nIn our review meeting I'll learn about your idea, your experience and where you are, to see which service and level of support fit you."
+      },
+      {
+        q: "Are all services personalized?",
+        a: "Yes. We adapt the work to the needs of your brand, business or team. Topics, deliverables and priorities are set out in the proposal you'll receive before you sign up.\nFor mentoring, we choose the session package based on your goal. For business consulting, workshops and social media, we agree on the specific scope of the service."
+      },
+      {
+        q: "What deliverables will I receive?",
+        a: "It depends on your goals and the service you choose. They can include diagnostics, positioning documents, action plans, communication guides, content calendars, organization tools or tracking dashboards.\nYour proposal will list which ones you'll receive, their scope and the delivery dates."
+      },
+      {
+        q: "What does the monthly business consulting include?",
+        a: "It includes direction and follow-up sessions, the priorities for the period, the action plan, the deliverables and a review of the indicators agreed for your company.\nBefore you sign up we'll define the number and length of the sessions, the areas we'll cover, the support available and your team's responsibilities and mine. At the end of the period we'll review progress and whether to continue."
+      },
+      {
+        q: "How often do we meet and how long do I have to use my sessions?",
+        a: "Frequency and validity depend on the support you choose. We agree on them before you sign up, taking into account your availability, your goals and the time needed to work between meetings.\nYou'll have in writing the number of sessions, the planned schedule and the deadline to use them."
+      },
+      {
+        q: "What happens after I pay?",
+        a: "Once your payment is confirmed, within two business days you'll receive a welcome message, preparation instructions and the next steps to schedule the start.\nIf you sign up for a social media service, we'll also set up the access we need and prepare your first content calendar."
+      },
+      {
+        q: "Can I ask questions between sessions?",
+        a: "When your service includes support, you can reach us on Google Chat Monday to Friday, except holidays. You'll get a reply within two business days.\nThis space covers clarifications and coordination related to the work you hired. Topics that need in-depth analysis will be handled in a session or through an adjustment to the proposal."
+      },
+      {
+        q: "Can I reschedule a session?",
+        a: "Yes. You can request the change at least 24 hours in advance, subject to availability and within the validity of your package.\nIf you cancel with less notice or don't attend, the session counts as used, unless there's an emergency or a prior agreement. The conditions for changing a workshop date are set out in its proposal."
+      },
+      {
+        q: "What do I need to do if I hire the Social Media Kit?",
+        a: "You bring the knowledge of your business, record the material following our guidance and reply to messages from potential clients. You also review and approve the content on the agreed dates.\nOur team handles the strategy, preparing the pieces, publishing and analysis, according to the scope you hired. If you choose Mentoring + Social Media Kit, we add support sessions to work on the priorities of your brand or business."
+      },
+      {
+        q: "What if I'm late with social media materials or approvals?",
+        a: "Delivering materials and approvals on time lets us prepare and publish your content as agreed. If there's a delay, we'll review the impact with you and adjust the calendar based on the team's availability and the terms of your proposal."
       },
       {
         q: "How long does it take to see results?",
-        a: "Clarity comes in the very first session. Measurable results in 60 to 90 days. But this is not magic: it depends on how fast you implement."
+        a: "It depends on your starting point, the goal we set and how consistently we put the actions into practice.\nFrom the first sessions we'll work on sorting priorities and making decisions. When we start, we'll agree on what progress we want, how we'll measure it and when it makes sense to review it. That way you can judge your project's progress with clear criteria."
       }
     ],
     marquee: [

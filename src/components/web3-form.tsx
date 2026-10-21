@@ -99,7 +99,7 @@ export function Web3Form({
             )}
           </p>
 
-          <button type="submit" disabled={status === "submitting" || status === "success"} className="bg-[var(--color-brand-pink)] text-white px-10 py-4 font-semibold uppercase tracking-widest hover:bg-[#E01E79] transition-colors w-max rounded-full mt-4 text-xs shadow-premium hover:-translate-y-1 disabled:opacity-50 disabled:hover:-translate-y-0 disabled:cursor-not-allowed">
+          <button type="submit" disabled={status === "submitting" || status === "success"} className="bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-10 py-4 font-bold uppercase tracking-widest hover:bg-white transition-colors w-max rounded-full mt-4 text-xs shadow-premium hover:-translate-y-1 disabled:opacity-50 disabled:hover:-translate-y-0 disabled:cursor-not-allowed">
             {status === "success" ? t("newsletter.success") : status === "submitting" ? t("newsletter.submitting") : status === "error" ? t("newsletter.error") : t("footer.subscribe")}
           </button>
         </>
