@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   return (
     <footer className="bg-[var(--color-brand-black)] text-white py-24 px-6 md:px-16 relative overflow-hidden">
@@ -56,7 +56,7 @@ export function Footer() {
                   {t("footer.contact_whatsapp")}
                 </span>
                 <a 
-                  href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" 
+                  href={language === "es" ? "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" : "https://wa.me/573216154870?text=Hi%20Kathe%2C%20I%27d%20like%20to%20talk%20to%20you%20about%20my%20project%20%3A%29"} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-base font-semibold text-[var(--color-brand-gold)] hover:text-white transition-colors"

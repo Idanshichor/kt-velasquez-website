@@ -6,9 +6,16 @@
 
 const WA = "https://wa.me/573216154870?text=";
 
-/** WhatsApp link that opens with a short note naming the service. */
-export function whatsapp(service: string) {
-  return WA + encodeURIComponent(`Hola Kathe, quiero agendar la reunión de revisión para: ${service}.`);
+/**
+ * WhatsApp link that opens with a note saying which service (or package)
+ * the visitor is interested in, in the language they are browsing in.
+ */
+export function whatsapp(service: string, language: string) {
+  const text =
+    language === "es"
+      ? `Hola Kathe, me interesa ${service} y me gustaría agendar la reunión de revisión.`
+      : `Hi Kathe, I'm interested in ${service} and would like to book the review meeting.`;
+  return WA + encodeURIComponent(text);
 }
 
 export const INTRO = {

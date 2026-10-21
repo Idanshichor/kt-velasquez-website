@@ -138,7 +138,7 @@ export default function ServicesPageClient() {
                     <p className="text-lg md:text-xl font-semibold leading-snug mb-6">{s.tagline}</p>
                     {s.intro.map((p) => <p key={p} className={`${BODY} ${c.sub} mb-4`}>{p}</p>)}
                     <div className="mt-8">
-                      <KtCta href={whatsapp(s.title)} tone={c.cta}>{s.button}</KtCta>
+                      <KtCta href={whatsapp(s.title, language)} tone={c.cta}>{s.button}</KtCta>
                     </div>
                   </div>
                   <div className="space-y-12">
@@ -173,13 +173,22 @@ export default function ServicesPageClient() {
                             <span className="text-sm font-bold mb-8">0{k + 1}</span>
                             <p className="text-lg font-semibold leading-tight mb-3">{p.name}</p>
                             <p className="text-[15px] leading-relaxed text-[var(--color-brand-black)]/75 mb-8">{p.desc}</p>
-                            <p className="mt-auto pt-5 border-t border-[var(--color-brand-black)]/15 text-xl font-bold">{p.price}</p>
+                            <p className="mt-auto pt-5 border-t border-[var(--color-brand-black)]/15 text-xl font-bold mb-5">{p.price}</p>
+                            <a
+                              href={whatsapp(`${p.name} (${p.price})`, language)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group/pk inline-flex items-center justify-between gap-2 h-11 pl-4 pr-1.5 rounded-full border-[1.5px] border-[var(--color-brand-black)] text-[11px] font-bold uppercase tracking-[0.16em] transition-colors duration-300 hover:bg-[var(--color-brand-black)] hover:text-white"
+                            >
+                              {language === "es" ? "Me interesa" : "I'm interested"}
+                              <span className="w-8 h-8 rounded-full bg-[var(--color-brand-black)] text-white grid place-items-center transition-colors duration-300 group-hover/pk:bg-white group-hover/pk:text-[var(--color-brand-black)]"><KtStar className="w-3.5 h-3.5" /></span>
+                            </a>
                           </li>
                         ))}
                       </ol>
                       <div className="mt-12 flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <p className={`${BODY} max-w-2xl`}>{PACKAGES.note}</p>
-                        <KtCta href={whatsapp(SERVICES[0].title)}>{SERVICES[0].button}</KtCta>
+                        <KtCta href={whatsapp(SERVICES[0].title, language)}>{SERVICES[0].button}</KtCta>
                       </div>
                     </div>
                   </section>
