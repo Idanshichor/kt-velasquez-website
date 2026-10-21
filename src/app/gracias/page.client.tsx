@@ -10,7 +10,7 @@ const TITLE = "uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wra
 const COPY = {
   es: {
     eyebrow: "Pago confirmado",
-    title: "¡Pago recibido con éxito! 🎉",
+    title: ["¡Pago recibido", "con éxito!"],
     lead: "Bienvenido(a) a esta nueva etapa de transformación para tu negocio.",
     body: "Tu transacción ha sido procesada correctamente. En los próximos minutos recibirás un correo electrónico con el recibo de tu pago y los detalles del servicio.",
     next: "¿Qué sigue ahora?",
@@ -24,7 +24,7 @@ const COPY = {
   },
   en: {
     eyebrow: "Payment confirmed",
-    title: "Payment received successfully! 🎉",
+    title: ["Payment received", "successfully!"],
     lead: "Welcome to this new stage of transformation for your business.",
     body: "Your transaction has been processed correctly. In the next few minutes, you will receive an email with your payment receipt and service details.",
     next: "What happens next?",
@@ -38,7 +38,7 @@ const COPY = {
   },
 };
 
-/** Thank-you page after a Wompi payment: a white welcome, then the next steps on black. */
+/** Thank-you page after a Wompi payment: purple welcome, pink next steps, gold WhatsApp close. */
 export default function GraciasPageClient() {
   const { language } = useLanguage();
   const c = COPY[language === "es" ? "es" : "en"];
@@ -48,39 +48,48 @@ export default function GraciasPageClient() {
       <Navbar />
 
       <main className="flex-grow">
-        <section className="pt-40 md:pt-52 pb-20 md:pb-28 px-6 md:px-16 bg-white">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-10 md:gap-20 items-end">
-            <div>
-              <p className="kt-eyebrow mb-6">{c.eyebrow}</p>
-              <h1 className={`${TITLE} text-5xl md:text-7xl`}>{c.title}</h1>
-            </div>
-            <div>
-              <span className="kt-rule mb-5" />
-              <p className="text-lg font-semibold leading-snug mb-4">{c.lead}</p>
+        {/* Purple hero: white type only */}
+        <section className="relative overflow-hidden bg-[var(--color-brand-purple)] text-white pt-36 md:pt-48 pb-20 md:pb-28 px-6 md:px-16">
+          <KtStar className="absolute right-6 md:right-16 top-28 md:top-36 w-10 md:w-16 h-10 md:h-16 text-white" />
+          <div className="relative max-w-7xl mx-auto">
+            <p className="inline-block border border-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.2em] mb-10">{c.eyebrow}</p>
+            <h1>
+              <span className={`${TITLE} block text-[13vw] sm:text-7xl md:text-[7.5rem] lg:text-[9rem] leading-[0.85] tracking-[-0.03em]`}>{c.title[0]}</span>
+              <span className="block font-script text-[3.4rem] md:text-8xl lg:text-9xl leading-none mt-1 md:-mt-3 md:ml-28">
+                {c.title[1]} <span className="font-body text-4xl md:text-6xl align-middle">🎉</span>
+              </span>
+            </h1>
+            <div className="mt-14 md:mt-20 grid md:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] gap-6 md:gap-16 border-t border-white pt-8">
+              <p className="text-xl md:text-2xl font-semibold leading-snug">{c.lead}</p>
               <p className="text-base leading-[1.7]">{c.body}</p>
             </div>
           </div>
         </section>
 
-        <section className="py-24 md:py-32 px-6 md:px-16 bg-[var(--color-brand-black)] text-white">
-          <div className="max-w-6xl mx-auto">
-            <h2 className={`${TITLE} text-3xl md:text-5xl mb-14 md:mb-20 flex items-center gap-4`}>
-              <KtStar className="w-6 h-6 md:w-8 md:h-8 text-[var(--color-brand-gold)] shrink-0" />
-              {c.next}
-            </h2>
-            <ol className="grid md:grid-cols-2 gap-12 md:gap-16 mb-20">
+        {/* Pink next steps: title left, numbered steps right */}
+        <section className="bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] py-24 md:py-36 px-6 md:px-16">
+          <div className="max-w-7xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-14 md:gap-24">
+            <h2 className={`${TITLE} text-5xl md:text-7xl md:sticky md:top-32 self-start`}>{c.next}</h2>
+            <ol>
               {c.steps.map(([title, text], i) => (
-                <li key={i} className="border-t border-white/25 pt-8">
-                  <span className="block text-6xl md:text-7xl font-normal leading-none text-[var(--color-brand-gold)] mb-8">0{i + 1}</span>
-                  <p className="text-xl font-semibold mb-3">{title}</p>
-                  <p className="text-base leading-[1.7] text-white/75">{text}</p>
+                <li key={i} className="grid grid-cols-[4.5rem_minmax(0,1fr)] md:grid-cols-[7rem_minmax(0,1fr)] gap-4 border-t border-[var(--color-brand-black)] py-10 md:py-12 last:border-b">
+                  <span className="font-heading text-6xl md:text-8xl leading-none tabular-nums">0{i + 1}</span>
+                  <div>
+                    <p className={`${TITLE} text-2xl md:text-3xl mb-4`}>{title}</p>
+                    <p className="text-base md:text-lg leading-[1.7]">{text}</p>
+                  </div>
                 </li>
               ))}
             </ol>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-white/25 pt-10">
-              <p className="text-lg">{c.question}</p>
-              <KtCta href={c.wa} tone="gold">{c.cta}</KtCta>
-            </div>
+          </div>
+        </section>
+
+        {/* Gold close: the question and WhatsApp */}
+        <section className="bg-[var(--color-brand-gold)] text-[var(--color-brand-black)] py-24 md:py-32 px-6 md:px-16">
+          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+            <KtStar className="w-8 h-8 md:w-10 md:h-10 text-[var(--color-brand-black)] mb-8" />
+            <p className={`${TITLE} text-3xl md:text-5xl mb-10`}>{c.question}</p>
+            <KtCta href={c.wa} tone="dark">{c.cta}</KtCta>
           </div>
         </section>
       </main>
