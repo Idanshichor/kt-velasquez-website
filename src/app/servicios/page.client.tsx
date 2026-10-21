@@ -81,7 +81,7 @@ export default function ServicesPageClient() {
           return (
             <section key={i} id={`servicio-${i + 1}`} className={`scroll-mt-20 py-24 md:py-36 px-6 md:px-16 ${s.cls}`}>
               <div className="max-w-6xl mx-auto">
-                <div className={`grid lg:grid-cols-[minmax(0,1fr)_24rem] gap-12 lg:gap-20 items-start ${s.flip ? "lg:grid-cols-[24rem_minmax(0,1fr)]" : ""}`}>
+                <div className={`grid gap-12 lg:gap-20 items-start ${s.flip ? "lg:grid-cols-[24rem_minmax(0,1fr)]" : "lg:grid-cols-[minmax(0,1fr)_24rem]"}`}>
                   <div className={s.flip ? "lg:order-2" : ""}>
                     <p className="flex items-center gap-3 mb-6">
                       <span className="text-sm font-bold">0{i + 1}</span>
