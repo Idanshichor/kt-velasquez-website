@@ -22,8 +22,9 @@ export default function FaqAccordion() {
                 className="w-full flex items-start gap-4 md:gap-6 py-5 md:py-6 text-left group cursor-pointer"
               >
                 <span
-                  className={`shrink-0 w-10 md:w-12 h-7 rounded-full grid place-items-center text-[11px] font-bold tracking-[0.12em] tabular-nums transition-colors duration-500 ${
-                    isOpen ? "bg-[var(--color-brand-pink)] text-[var(--color-brand-black)]" : "bg-[var(--color-brand-black)]/[0.06] text-[var(--color-brand-black)]"
+                  aria-hidden="true"
+                  className={`shrink-0 w-12 md:w-16 font-heading text-3xl md:text-4xl leading-none tabular-nums transition-colors duration-500 ${
+                    isOpen ? "text-[var(--color-brand-gold-deep)]" : "text-[var(--color-brand-black)]/25 group-hover:text-[var(--color-brand-gold-deep)]"
                   }`}
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -46,7 +47,7 @@ export default function FaqAccordion() {
               className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
             >
               <div className="overflow-hidden">
-                <div className="pb-7 pl-14 md:pl-[4.5rem] pr-2 md:pr-14 max-w-3xl space-y-3 text-[15px] md:text-base leading-relaxed text-[var(--color-brand-black)]/75">
+                <div className="pb-7 pl-16 md:pl-[5.5rem] pr-2 md:pr-14 max-w-3xl space-y-3 text-[15px] md:text-base leading-relaxed text-[var(--color-brand-black)]/75">
                   {faq.a.split("\n").map((p, j) => <p key={j}>{p}</p>)}
                 </div>
               </div>
