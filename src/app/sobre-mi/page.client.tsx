@@ -131,7 +131,7 @@ export default function AboutPageClient() {
               fill
               sizes="100vw"
               quality={90}
-              className="object-cover object-center hidden lg:block"
+              className="object-cover object-[62%_center] xl:object-[100%_center] hidden lg:block"
               priority
             />
           </div>
