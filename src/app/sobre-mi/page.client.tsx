@@ -125,13 +125,23 @@ export default function AboutPageClient() {
               className="object-cover object-[42%_top] lg:hidden"
               priority
             />
+            {/* Smaller desktops get a tighter crop so she stays on the right, clear of the words */}
+            <Image
+              src="/images/KT_Stool_Hero_Md.webp"
+              alt=""
+              fill
+              sizes="100vw"
+              quality={90}
+              className="object-cover object-right hidden lg:block xl:hidden"
+              priority
+            />
             <Image
               src="/images/KT_Stool_Hero.webp"
               alt=""
               fill
               sizes="100vw"
               quality={90}
-              className="object-cover object-[62%_center] xl:object-[100%_center] hidden lg:block"
+              className="object-cover object-right hidden xl:block"
               priority
             />
           </div>
@@ -140,8 +150,8 @@ export default function AboutPageClient() {
         </div>
 
         <div className="relative z-10 w-full px-6 md:pl-[6vw] md:pr-16 pb-14 md:pb-20 lg:py-32">
-          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[6.5rem] lg:text-[clamp(5.5rem,9vw,9.5rem)] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
-          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-[3.7rem] lg:text-[clamp(3.1rem,5.1vw,5.4rem)] leading-none mt-2 lg:mt-3">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
+          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[6.5rem] lg:text-[6.5vw] xl:text-[clamp(5.5rem,9vw,9.5rem)] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-[3.7rem] lg:text-[3.7vw] xl:text-[clamp(3.1rem,5.1vw,5.4rem)] leading-none mt-2 lg:mt-3">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
           <p data-reveal className="mt-8 lg:mt-12 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
           <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md">{s("heroSubtitle")}</p>
         </div>
