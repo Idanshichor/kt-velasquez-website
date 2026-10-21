@@ -6,6 +6,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FinalCta } from "@/components/home/final-cta";
 import { KtCta, KtStar } from "@/components/home/scrub";
+import { mangoCooper, mangoGothic } from "./mango-fonts";
+import { MangoTags, MANGO_OFFERS } from "@/components/services/mango-tags";
 import { CLARITY, INTRO, MANGO, PACKAGES, SERVICES, whatsapp, type Block } from "@/components/services/services-data";
 import { useLanguage } from "@/context/language-context";
 
@@ -198,17 +200,27 @@ export default function ServicesPageClient() {
           );
         })}
 
-        <section className="py-24 md:py-36 px-6 md:px-16 bg-[var(--color-brand-black)] text-white">
+        {/* Mango Creative Studio: a different company, so it wears Mango's own system (yellow, charcoal, Cooper + Century Gothic, the mango mark) */}
+        <section className={`${mangoCooper.variable} ${mangoGothic.variable} py-24 md:py-32 px-6 md:px-16 bg-[#FFCC00] text-[#323336] [font-family:var(--font-mango-gothic)]`}>
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] gap-12 lg:gap-24 items-start">
             <div>
-              <p className="kt-eyebrow on-dark mb-6">Mango Creative Studio</p>
-              <h2 className={`${TITLE} text-4xl md:text-6xl mb-8`}><Accent text={MANGO.title} n={3} /></h2>
-              <p className="text-lg md:text-xl font-semibold leading-snug">{MANGO.question}</p>
+              <a href={MANGO.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 mb-10 group" aria-label="Mango Creative Studio">
+                <img src="/images/mango-mark-black.svg" alt="" className="w-12 md:w-14 h-auto transition-transform duration-500 group-hover:-rotate-6" />
+                <span className="[font-family:var(--font-mango-cooper)] text-2xl md:text-3xl leading-none">Mango<br /><span className="text-base md:text-lg">Creative Studio</span></span>
+              </a>
+              <h2 className="[font-family:var(--font-mango-cooper)] text-4xl md:text-6xl leading-[1.05] mb-8 [text-wrap:balance]">{MANGO.title}</h2>
+              <p className="text-lg md:text-xl font-bold leading-snug">{MANGO.question}</p>
             </div>
-            <div>
-              {MANGO.paragraphs.map((p) => <p key={p} className={`${BODY} text-white/75 mb-5`}>{p}</p>)}
-              <div className="mt-8"><KtCta href={MANGO.href} tone="gold">{MANGO.link}</KtCta></div>
+            <div className="lg:pt-24">
+              {MANGO.paragraphs.map((p) => <p key={p} className="text-base md:text-lg leading-[1.7] mb-5">{p}</p>)}
+              <a href={MANGO.href} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#323336] text-[#FFCC00] px-7 py-4 text-sm md:text-base font-bold transition-colors duration-300 hover:bg-[#D95629] hover:text-white">
+                {MANGO.link}
+                <svg viewBox="0 0 16 16" className="w-4 h-4" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </a>
             </div>
+          </div>
+          <div className="max-w-6xl mx-auto mt-16 md:mt-24">
+            <MangoTags items={MANGO_OFFERS[language === "es" ? "es" : "en"]} href={MANGO.href} label={verMas} />
           </div>
         </section>
       </main>
