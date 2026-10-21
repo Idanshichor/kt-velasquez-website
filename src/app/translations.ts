@@ -241,16 +241,56 @@ export const translations = {
     },
     faqs: [
       {
+        q: "¿Cómo sé qué servicio o paquete necesito?",
+        a: "En nuestra reunión de revisión conoceré tu proyecto, tus objetivos y lo que necesitas resolver. A partir de ahí, te recomendaré el servicio y el nivel de acompañamiento más adecuados para tu momento.\nAntes del pago conocerás los entregables, las responsabilidades de cada parte, la frecuencia de las sesiones, el plazo para utilizarlas y las condiciones de contratación."
+      },
+      {
         q: "¿Para quién NO es esto?",
-        a: "No soy una coach motivacional; mi enfoque está en darte estructura y claridad, no discursos de inspiración. Este espacio no es para ti si prefieres los rodeos o las respuestas maquilladas; me gusta hablar con total transparencia y honestidad sobre lo que tu negocio necesita para crecer."
+        a: "Este acompañamiento requiere compromiso, apertura para revisar decisiones y tiempo para poner en práctica lo que trabajemos. Si buscas resultados inmediatos o prefieres mantener todo como está, probablemente este no sea tu momento.\nTrabajaremos con honestidad: te diré lo que veo, por qué importa y qué podemos hacer para avanzar."
       },
       {
         q: "¿Recibo proyectos desde cero?",
-        a: "Sí, por supuesto, siempre y cuando ya cuentes con experiencia previa emprendiendo. Si ya conoces la realidad de gestionar un negocio y esta vez quieres fundar con bases sólidas y orden estratégico desde el primer día, eres más que bienvenido."
+        a: "Sí, acompaño proyectos nuevos de personas que ya tienen experiencia emprendiendo y quieren construir esta nueva etapa con bases más claras.\nEn nuestra reunión de revisión conoceré tu idea, tu experiencia y el punto en el que estás para valorar qué servicio y nivel de acompañamiento encajan contigo."
+      },
+      {
+        q: "¿Todos los servicios son personalizados?",
+        a: "Sí. Adaptamos el trabajo a las necesidades de tu marca, negocio o equipo. Los temas, entregables y prioridades se definen en la propuesta que recibirás antes de contratar.\nEn mentoría elegimos el paquete de sesiones según tu objetivo. En consultoría empresarial, talleres y social media, acordamos el alcance específico del servicio."
+      },
+      {
+        q: "¿Qué entregables recibiré?",
+        a: "Dependerá de tus objetivos y del servicio contratado. Pueden incluir diagnósticos, documentos de posicionamiento, planes de acción, guías de comunicación, calendarios de contenido, herramientas de organización o tableros de seguimiento.\nTu propuesta detallará cuáles recibirás, su alcance y las fechas de entrega."
+      },
+      {
+        q: "¿Qué incluye la consultoría empresarial mensual?",
+        a: "Incluye las sesiones de dirección y seguimiento, las prioridades del periodo, el plan de acción, los entregables y la revisión de indicadores acordados para tu empresa.\nAntes de contratar definiremos el número y la duración de las sesiones, las áreas que abordaremos, el soporte disponible y las responsabilidades de tu equipo y las mías. Al cierre del periodo revisaremos los avances y la continuidad del acompañamiento."
+      },
+      {
+        q: "¿Con qué frecuencia nos reunimos y cuánto tiempo tengo para utilizar las sesiones?",
+        a: "La frecuencia y la vigencia dependen del acompañamiento elegido. Las acordamos antes de contratar, teniendo en cuenta tu disponibilidad, los objetivos y el tiempo necesario para trabajar entre encuentros.\nTendrás por escrito el número de sesiones, el calendario previsto y la fecha límite para utilizarlas."
+      },
+      {
+        q: "¿Qué ocurre después del pago?",
+        a: "Una vez confirmado el pago, recibirás en un máximo de dos días hábiles un mensaje de bienvenida, las indicaciones de preparación y los siguientes pasos para coordinar el inicio.\nSi contratas un servicio de social media, también organizaremos los accesos necesarios y la preparación del primer calendario de contenido."
+      },
+      {
+        q: "¿Puedo hacer consultas entre sesiones?",
+        a: "Cuando tu servicio incluya soporte, podrás comunicarte por Google Chat de lunes a viernes, excepto días festivos. Recibirás respuesta en un máximo de dos días hábiles.\nEste espacio cubre aclaraciones y coordinación relacionadas con el trabajo contratado. Los temas que requieran un análisis extenso se abordarán en sesión o mediante un ajuste de la propuesta."
+      },
+      {
+        q: "¿Puedo reprogramar una sesión?",
+        a: "Sí. Puedes solicitar el cambio con al menos 24 horas de anticipación, sujeto a disponibilidad y dentro de la vigencia de tu acompañamiento.\nSi cancelas con menor anticipación o no asistes, la sesión se contabiliza como utilizada, salvo emergencia o acuerdo previo. Las condiciones para cambiar la fecha de un taller se especifican en su propuesta."
+      },
+      {
+        q: "¿Qué debo hacer yo si contrato el Kit de Social Media?",
+        a: "Tú aportas el conocimiento de tu negocio, grabas el material siguiendo nuestras indicaciones y respondes los mensajes de tus posibles clientes. También revisas y apruebas el contenido en las fechas acordadas.\nNuestro equipo se encarga de la estrategia, la preparación de las piezas, la publicación y el análisis según el alcance contratado. Si eliges Mentorías + Kit de Social Media, sumamos las sesiones de acompañamiento para trabajar las prioridades de tu marca o emprendimiento."
+      },
+      {
+        q: "¿Qué pasa si me retraso con los materiales o las aprobaciones de social media?",
+        a: "La entrega de materiales y las aprobaciones permiten preparar y publicar tu contenido según lo acordado. Si surge un retraso, revisaremos contigo su impacto y ajustaremos el calendario según la disponibilidad del equipo y las condiciones de tu propuesta."
       },
       {
         q: "¿Cuánto tiempo tarda en verse resultados?",
-        a: "La claridad llega en la primera sesión. Los resultados medibles, en 60 a 90 días. Pero esto no es magia: depende de qué tan rápido implementas."
+        a: "Depende de tu punto de partida, del objetivo que definamos y de la constancia con la que implementemos las acciones.\nDesde las primeras sesiones trabajaremos para ordenar prioridades y tomar decisiones. Al comenzar, acordaremos qué avances queremos conseguir, cómo los mediremos y en qué plazos tiene sentido revisarlos. Así podrás evaluar el progreso de tu proyecto con criterios claros."
       }
     ],
     marquee: [
