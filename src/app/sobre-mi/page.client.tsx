@@ -113,40 +113,35 @@ export default function AboutPageClient() {
     <div className="min-h-screen bg-white text-[var(--color-brand-black)] overflow-x-hidden" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
       <Navbar />
 
-      {/* HERO: Katherine on the left, her elbow resting on top of the H. Photo, title and her cut-out live in one
-          SVG (viewBox = photo crop in px), so the elbow stays on the H at every screen size. */}
-      <Scene className="relative overflow-hidden text-[var(--color-brand-black)] pt-20 md:pt-24 pb-14 md:pb-20 bg-[linear-gradient(90deg,#E2E1DF_0%,#CFCECE_45%,#A6A6A6_100%)]">
-        <div className="relative mx-auto w-full max-w-[1280px]">
-          <h1 className="sr-only">{s("heroTitlePart1")} {s("heroTitlePart2")}</h1>
-          <svg viewBox="0 0 2284 1092" className="block w-full h-auto" aria-hidden="true">
-            <defs>
-              <radialGradient id="lean-fade" cx="45%" cy="45%" r="58%">
-                <stop offset="60%" stopColor="#fff" />
-                <stop offset="100%" stopColor="#000" />
-              </radialGradient>
-              <linearGradient id="lean-cut-fade" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="88%" stopColor="#fff" />
-                <stop offset="100%" stopColor="#000" />
-              </linearGradient>
-              <mask id="lean-mask"><rect width="2284" height="1092" fill="url(#lean-fade)" /></mask>
-              <mask id="lean-cut-mask"><rect width="2284" height="1092" fill="url(#lean-cut-fade)" /></mask>
-            </defs>
-            <image href="/images/KT_LeanLeft_Bg.webp" width="2284" height="1092" mask="url(#lean-mask)" />
-            <text fill="var(--color-brand-black)" fontFamily="var(--font-inter), Inter, sans-serif" fontSize={LEAN.size} letterSpacing={-0.02 * LEAN.size} style={{ textTransform: "uppercase" }}>
-              {s("heroTitlePart1").split(",").map((w, i) => (
-                <tspan key={i} x={LEAN.x} y={LEAN.y + i * LEAN.lineGap}>{w.trim()}</tspan>
-              ))}
-            </text>
-            <image href="/images/KT_LeanLeft_Cutout.webp" width="2284" height="1092" mask="url(#lean-cut-mask)" />
-          </svg>
-        </div>
-        <Star bg="white" className="absolute right-6 md:right-16 top-24 md:top-32 w-10 md:w-16 z-10" />
+      {/* HERO: words on top, then the photo running edge to edge. Katherine's elbow rests on the H; the photo's
+          bottom edge is the end of the section, so the purple chapter starts exactly where the photo is cut. */}
+      <Scene className="relative overflow-hidden text-[var(--color-brand-black)] pt-28 md:pt-36 bg-[linear-gradient(90deg,#E1E0DE_0%,#D3D2D3_50%,#A8A9A7_100%)]">
+        <h1 className="sr-only">{s("heroTitlePart1")} {s("heroTitlePart2")}</h1>
 
-        <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 md:px-16 mt-6 md:mt-4">
-          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-7xl leading-none">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
-          <p data-reveal className="mt-8 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
-          <p data-reveal className="font-medium text-base md:text-lg leading-relaxed mt-5 max-w-md">{s("heroSubtitle")}</p>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 lg:gap-12">
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-6xl xl:text-7xl leading-none [text-shadow:0_1px_0_rgba(26,26,26,0.35)]">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
+          <div className="max-w-md lg:max-w-sm">
+            <p data-reveal className="inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
+            <p data-reveal className="font-medium text-base leading-relaxed mt-4">{s("heroSubtitle")}</p>
+          </div>
         </div>
+
+        <svg viewBox="0 0 2284 1092" className="block w-full h-auto mt-6 md:mt-4" aria-hidden="true">
+          <defs>
+            <linearGradient id="lean-top" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#000" />
+              <stop offset="12%" stopColor="#fff" />
+            </linearGradient>
+            <mask id="lean-top-mask"><rect width="2284" height="1092" fill="url(#lean-top)" /></mask>
+          </defs>
+          <image href="/images/KT_LeanLeft_Bg.webp" width="2284" height="1092" mask="url(#lean-top-mask)" />
+          <text fill="var(--color-brand-black)" fontFamily="var(--font-inter), Inter, sans-serif" fontSize={LEAN.size} letterSpacing={-0.02 * LEAN.size} style={{ textTransform: "uppercase" }}>
+            {s("heroTitlePart1").split(",").map((w, i) => (
+              <tspan key={i} x={LEAN.x} y={LEAN.y + i * LEAN.lineGap}>{w.trim()}</tspan>
+            ))}
+          </text>
+          <image href="/images/KT_LeanLeft_Cutout.webp" width="2284" height="1092" />
+        </svg>
       </Scene>
 
       {/* 01 purple, what came before: white type only, few words, lots of air */}
