@@ -42,7 +42,7 @@ export function Testimonials() {
     <Scene className="bg-[var(--color-brand-black)] text-white py-28 md:py-40 px-6 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-12 lg:gap-20 items-center">
         <div>
-          <h2 data-lines className="kt-title text-4xl md:text-6xl lg:text-[min(3.75rem,calc((min(100vw_-_8rem,80rem)_-_5rem)_*_5_/_96))] text-white mb-10 md:mb-14">
+          <h2 data-lines className="kt-title text-4xl md:text-6xl fit-testimonials text-white mb-10 md:mb-14">
             {t("testimonials.title")}
           </h2>
           <div data-reveal className="flex items-center gap-6">

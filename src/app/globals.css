@@ -171,3 +171,22 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
 
+
+/* Fit-to-column title sizes: long words (INDEPENDENCIA, CONSTRUYENDO...) never get cut.
+   Unlayered, so each rule only lives inside its own breakpoint range. */
+@media (max-width: 639.98px) {
+  .fit-hero-h1 { font-size: min(3.6rem, calc((100vw - 3rem) / 5.4)); }
+  .fit-banner { font-size: min(2.5rem, calc((100vw - 3rem) / 8)); }
+  .fit-services { font-size: min(3rem, calc((100vw - 3rem) / 6.8)); }
+  .fit-service-title { font-size: min(2.25rem, calc((100vw - 3rem) / 9.2)); }
+  .fit-final-cta { font-size: min(3rem, calc((100vw - 3rem) / 6)); }
+}
+@media (min-width: 1024px) {
+  .fit-banner { font-size: min(5.5rem, calc((min(100vw - 8rem, 72rem) - 19rem) / 8.2)); }
+  .fit-faq { font-size: min(3.75rem, calc((min(100vw - 8rem, 80rem) - 5rem) / 19)); }
+  .fit-testimonials { font-size: min(3.75rem, calc((min(100vw - 8rem, 80rem) - 5rem) * 5 / 96)); }
+  .fit-podcast-cta { font-size: min(3.75rem, calc((min(100vw - 8rem, 72rem) - 6rem) * 5 / 84)); }
+}
+@media (min-width: 1280px) {
+  .fit-chapter { font-size: min(4.5rem, calc((min(100vw - 8rem, 72rem) - 6rem) * 5 / 90)); }
+}

@@ -26,7 +26,7 @@ export function Services() {
         <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-8 lg:gap-16 items-end mb-14 md:mb-20">
           <div>
             <p className="kt-eyebrow mb-6">{t("nav.servicios")}</p>
-            <h2 data-lines className={`${TITLE} text-[min(3rem,calc((100vw_-_3rem)_/_6.8))] sm:text-5xl md:text-7xl text-[var(--color-brand-black)]`}>
+            <h2 data-lines className={`${TITLE} text-5xl fit-services sm:text-5xl md:text-7xl text-[var(--color-brand-black)]`}>
               {cut === -1 ? title : title.slice(0, cut)}
               {cut !== -1 && <span className="block font-script normal-case tracking-normal text-[0.8em] leading-[1.1] mt-1">{title.slice(cut + 1)}</span>}
             </h2>
