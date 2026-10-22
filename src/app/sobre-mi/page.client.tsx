@@ -159,10 +159,10 @@ export default function AboutPageClient() {
 
       {/* 01 purple, what came before: white type only, few words, lots of air */}
       <Scene className={`${SECTION} md:py-44 ${BG.purple.cls}`}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24 items-end">
+        <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24 items-end">
           <div>
             <Label bg="purple">01</Label>
-            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch1Title")}</h2>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw-8rem,72rem)-6rem)*5/90))] mt-8`}>{s("ch1Title")}</h2>
           </div>
           <p data-reveal className={`${BODY} md:text-lg ${BG.purple.sub}`}>{s("ch1Text")}</p>
         </div>
@@ -183,10 +183,10 @@ export default function AboutPageClient() {
 
       {/* 03 black holds the story, then magenta breaks with one short line */}
       <Scene className={`${SECTION} ${BG.black.cls}`}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24">
+        <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24">
           <div>
             <Label bg="black">03</Label>
-            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch3Title")}</h2>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw-8rem,72rem)-6rem)*5/90))] mt-8`}>{s("ch3Title")}</h2>
             <Rule bg="black" className="mt-10" />
           </div>
           <p data-reveal className={`${BODY} ${BG.black.sub} md:pt-14`}>{s("ch3Text")}</p>
@@ -201,11 +201,11 @@ export default function AboutPageClient() {
 
       {/* 04 pink recovers: everything black, framed studio photo with a black outline */}
       <Scene className={`${SECTION} ${BG.pink.cls}`}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-14 md:gap-24 items-center">
+        <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-14 xl:gap-24 items-center">
           <KFrame bg="pink" src="/images/KT_Studio_Seated.webp" alt="Katherine Velasquez" pos="center 40%" className="aspect-[4/5] w-full max-w-[400px]" />
           <div>
             <Label bg="pink">04</Label>
-            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch4Title")}</h2>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw-8rem,72rem)-6rem)*5/90))] mt-8`}>{s("ch4Title")}</h2>
             <Rule bg="pink" className="mt-10 mb-10" />
             <p data-reveal className={`${BODY} ${BG.pink.sub}`}>{s("ch4Text")}</p>
           </div>
@@ -214,10 +214,10 @@ export default function AboutPageClient() {
 
       {/* 05 white structure for the story, then the one statement block of the page on black */}
       <Scene className={`${SECTION} ${BG.white.cls}`}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24">
+        <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24">
           <div>
             <Label bg="white">05</Label>
-            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch5Title")}</h2>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw-8rem,72rem)-6rem)*5/90))] mt-8`}>{s("ch5Title")}</h2>
             <Rule bg="white" className="mt-10" />
           </div>
           <p data-reveal className={`${BODY} ${BG.white.sub} md:pt-14`}>{s("ch5Text")}</p>
@@ -262,7 +262,7 @@ export default function AboutPageClient() {
 
       {/* 07 white: a travel photo in the frame, the travelers' question as a large quote */}
       <Scene className={`${SECTION} ${BG.white.cls}`}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-14 md:gap-24 items-center">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-14 lg:gap-24 items-center">
           <div>
             <Label bg="white">07</Label>
             <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch7Title")}</h2>
@@ -280,7 +280,7 @@ export default function AboutPageClient() {
 
       {/* GALLERY on black: travel photos run edge to edge */}
       <Scene className={`py-24 md:py-32 ${BG.black.cls}`}>
-        <div className="max-w-6xl mx-auto px-6 md:px-16 grid md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-10 md:gap-24 items-end mb-14 md:mb-20">
+        <div className="max-w-6xl mx-auto px-6 md:px-16 grid lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-10 lg:gap-24 items-end mb-14 md:mb-20">
           <div>
             <Label bg="black">{s("galleryTag")}</Label>
             <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{galleryLead}</h2>

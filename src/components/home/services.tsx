@@ -23,7 +23,7 @@ export function Services() {
   return (
     <Scene id="servicios" className="py-28 md:py-40 px-6 md:px-16 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-8 md:gap-16 items-end mb-14 md:mb-20">
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-8 lg:gap-16 items-end mb-14 md:mb-20">
           <div>
             <p className="kt-eyebrow mb-6">{t("nav.servicios")}</p>
             <h2 data-lines className={`${TITLE} text-5xl md:text-7xl text-[var(--color-brand-black)]`}>
