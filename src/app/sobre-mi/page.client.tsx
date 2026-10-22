@@ -250,6 +250,13 @@ export default function AboutPageClient() {
               <p key={k} className={`${BODY} pt-6 pb-6 md:pb-0 md:pr-8 ${i > 0 ? "md:pl-8 md:border-l border-t md:border-t-0 border-[var(--color-brand-black)]/30" : ""}`}>{s(k)}</p>
             ))}
           </div>
+          {/* Mango Creative Studio: the black mango and a link to the agency's site */}
+          <div data-reveal className="mt-12 md:mt-16 pt-10 border-t border-[var(--color-brand-black)] flex flex-wrap items-center gap-6 md:gap-8">
+            <a href={language === "es" ? "https://mangocreativestudio.com/es/" : "https://mangocreativestudio.com/"} target="_blank" rel="noopener noreferrer" aria-label="Mango Creative Studio">
+              <img src="/images/mango-mark-black.svg" alt="" className="w-12 md:w-14 h-auto" />
+            </a>
+            <KtCta href={language === "es" ? "https://mangocreativestudio.com/es/" : "https://mangocreativestudio.com/"} tone="dark">{language === "es" ? "Ver el sitio de Mango Creative" : "Visit Mango Creative"}</KtCta>
+          </div>
         </div>
       </Scene>
 
@@ -330,7 +337,7 @@ export default function AboutPageClient() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24 items-center">
           <div>
             <Star bg="pink" className="w-12 md:w-16 mb-10" />
-            <h2 data-lines className={`${TITLE} text-[13vw] sm:text-6xl md:text-8xl`}>{ctaLead}</h2>
+            <h2 data-lines className={`${TITLE} text-[13vw] sm:text-6xl md:text-[min(5rem,4.9vw)] whitespace-nowrap`}>{ctaLead}</h2>
             {ctaAccent && <p data-reveal className="font-script text-[var(--color-brand-black)] text-6xl md:text-8xl leading-none mt-1 md:ml-16">{ctaAccent}</p>}
           </div>
           <div>
