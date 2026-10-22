@@ -1,6 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/navbar";
+import { sendForm } from "@/lib/send-form";
 import { Footer } from "@/components/footer";
 import { Scene } from "@/components/home/scene";
 import { KtCta, KtStar, Scrub, type ScrubPart } from "@/components/home/scrub";
@@ -41,21 +42,11 @@ export default function PodcastPageClient() {
 
     setFormStatus("submitting");
 
-    const formData = new FormData(e.currentTarget);
-    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "7bd1aa94-7d33-4738-b627-5b9378af65d4");
-    formData.append("subject", language === "es" ? "Nueva Solicitud de Participación - Podcast (KT360)" : "New Guest Application - Podcast (KT360)");
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-      if (response.ok) {
-        setFormStatus("success");
-      } else {
-        setFormStatus("error");
-      }
-    } catch (err) {
+      const subject = language === "es" ? "Nueva Solicitud de Participación - Podcast (KT360)" : "New Guest Application - Podcast (KT360)";
+      const ok = await sendForm(new FormData(e.currentTarget), subject, "podcast");
+      setFormStatus(ok ? "success" : "error");
+    } catch {
       setFormStatus("error");
     }
   }

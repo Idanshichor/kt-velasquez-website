@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
+import { sendForm } from "@/lib/send-form";
 
 export function Web3Form({ 
   className, 
@@ -22,21 +23,10 @@ export function Web3Form({
     
     setStatus("submitting");
 
-    const formData = new FormData(e.currentTarget);
-    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "7bd1aa94-7d33-4738-b627-5b9378af65d4");
-    formData.append("subject", subject);
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-      if (response.ok) {
-        setStatus("success");
-      } else {
-        setStatus("error");
-      }
-    } catch (err) {
+      const ok = await sendForm(new FormData(e.currentTarget), subject, "newsletter");
+      setStatus(ok ? "success" : "error");
+    } catch {
       setStatus("error");
     }
   }
