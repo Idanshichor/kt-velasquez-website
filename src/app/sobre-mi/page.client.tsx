@@ -162,7 +162,7 @@ export default function AboutPageClient() {
         <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24 items-end">
           <div>
             <Label bg="purple">01</Label>
-            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw-8rem,72rem)-6rem)*5/90))] mt-8`}>{s("ch1Title")}</h2>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw_-_8rem,72rem)_-_6rem)_*_5_/_90))] mt-8`}>{s("ch1Title")}</h2>
           </div>
           <p data-reveal className={`${BODY} md:text-lg ${BG.purple.sub}`}>{s("ch1Text")}</p>
         </div>
@@ -186,7 +186,7 @@ export default function AboutPageClient() {
         <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24">
           <div>
             <Label bg="black">03</Label>
-            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw-8rem,72rem)-6rem)*5/90))] mt-8`}>{s("ch3Title")}</h2>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw_-_8rem,72rem)_-_6rem)_*_5_/_90))] mt-8`}>{s("ch3Title")}</h2>
             <Rule bg="black" className="mt-10" />
           </div>
           <p data-reveal className={`${BODY} ${BG.black.sub} md:pt-14`}>{s("ch3Text")}</p>
@@ -205,7 +205,7 @@ export default function AboutPageClient() {
           <KFrame bg="pink" src="/images/KT_Studio_Seated.webp" alt="Katherine Velasquez" pos="center 40%" className="aspect-[4/5] w-full max-w-[400px]" />
           <div>
             <Label bg="pink">04</Label>
-            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw-8rem,72rem)-6rem)*5/90))] mt-8`}>{s("ch4Title")}</h2>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw_-_8rem,72rem)_-_6rem)_*_5_/_90))] mt-8`}>{s("ch4Title")}</h2>
             <Rule bg="pink" className="mt-10 mb-10" />
             <p data-reveal className={`${BODY} ${BG.pink.sub}`}>{s("ch4Text")}</p>
           </div>
@@ -217,18 +217,18 @@ export default function AboutPageClient() {
         <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24">
           <div>
             <Label bg="white">05</Label>
-            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw-8rem,72rem)-6rem)*5/90))] mt-8`}>{s("ch5Title")}</h2>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl xl:text-[min(4.5rem,calc((min(100vw_-_8rem,72rem)_-_6rem)_*_5_/_90))] mt-8`}>{s("ch5Title")}</h2>
             <Rule bg="white" className="mt-10" />
           </div>
           <p data-reveal className={`${BODY} ${BG.white.sub} md:pt-14`}>{s("ch5Text")}</p>
         </div>
       </Scene>
       <Scene className={`py-24 md:py-36 px-6 md:px-16 ${BG.black.cls}`}>
-        <figure className="max-w-6xl mx-auto grid md:grid-cols-[13rem_minmax(0,1fr)] gap-10 md:gap-16 items-center">
+        <figure className="max-w-6xl mx-auto grid lg:grid-cols-[13rem_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
           <Star bg="black" className="w-20 md:w-48" />
           <blockquote>
             {lead && <span data-reveal className="block font-script-readable text-[var(--color-brand-pink)] text-5xl md:text-7xl leading-none md:-ml-2">{lead}</span>}
-            <span data-lines className={`block ${TITLE} text-4xl md:text-6xl lg:text-7xl mt-3`}>
+            <span data-lines className={`block ${TITLE} text-4xl md:text-6xl xl:text-7xl mt-3`}>
               {mainHead} <span className="text-[var(--color-brand-gold)]">{mainGold}</span>
             </span>
           </blockquote>
