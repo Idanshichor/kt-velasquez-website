@@ -280,7 +280,7 @@ export default function PodcastPageClient() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-14 lg:gap-24 items-start">
           <div className="lg:sticky lg:top-36">
             <p data-reveal className="kt-eyebrow on-dark text-white">{t("podcastPage.heroTag")}</p>
-            <h2 data-lines className="kt-title text-4xl md:text-5xl lg:text-6xl mt-6">
+            <h2 data-lines className="kt-title text-4xl md:text-5xl lg:text-[min(3.75rem,calc((min(100vw-8rem,72rem)-6rem)*5/12/7))] mt-6">
               {ctaHead}
               {ctaScript && <span className="block font-script normal-case tracking-normal leading-tight text-[var(--color-brand-pink)] text-[1.1em] mt-1">{ctaScript}</span>}
             </h2>
