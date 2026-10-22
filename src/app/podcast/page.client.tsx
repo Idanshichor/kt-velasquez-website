@@ -173,7 +173,6 @@ export default function PodcastPageClient() {
           <div className="relative w-full aspect-square md:aspect-auto md:h-full">
             <Image src="/images/ktspacepodcast.webp" alt="" fill priority sizes="(max-width: 768px) 100vw, 52vw" className="object-contain object-bottom md:object-right-bottom grayscale contrast-[1.3] mix-blend-multiply" />
           </div>
-          <KtStar className="kt-turn absolute right-6 top-4 md:right-16 md:top-36 w-14 md:w-20 text-[var(--color-brand-gold)]" />
         </div>
       </Scene>
 
