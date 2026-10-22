@@ -179,7 +179,7 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
   .fit-banner { font-size: min(2.5rem, calc((100vw - 3rem) / 8)); }
   .fit-services { font-size: min(3rem, calc((100vw - 3rem) / 6.8)); }
   .fit-service-title { font-size: min(2.25rem, calc((100vw - 3rem) / 9.2)); }
-  .fit-final-cta { font-size: min(3rem, calc((100vw - 3rem) / 6)); }
+  .fit-final-cta { font-size: min(3rem, calc((100vw - 3rem) / 6.6)); }
 }
 @media (min-width: 1024px) {
   .fit-banner { font-size: min(5.5rem, calc((min(100vw - 8rem, 72rem) - 19rem) / 8.2)); }
