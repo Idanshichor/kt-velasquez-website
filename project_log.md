@@ -221,3 +221,4 @@ This log serves as a source of truth for the development, configuration, and des
 - Q6 is multi-select. All answers are required; a missing answer scrolls to the question and says so. Drafts are kept on the device (localStorage) until sent.
 - Sends through `/api/forms` (kind "intake"): one formatted Resend email to katherine@ktvelasquez.com, reply-to the client, no audience add. Falls back to Web3Forms (one field per answer) while RESEND_API_KEY is unset.
 - After sending, the gold "Cierre del formulario" text replaces the form.
+- 2026-10-22 (later): New intake copy from Katherine: 11 questions plus an unnumbered contact block (name, email, WhatsApp, kept so she knows who answered). No more team-only questions (the new options cover solo clients). Q2 and Q5 "Otra..." options open a text box; Q5, Q8, Q10 are multi-select; the "cuéntame" boxes under Q8 and Q9 are optional. Closing now shows its title.
