@@ -16,6 +16,7 @@ export const translations = {
       katherine: "Katherine",
       velasquez: "Velasquez",
       h1_keyword: "Consultoría Estratégica 360 para fundadores y marcas en Colombia",
+      roles: "Estratega · Ingeniera · Emprendedora",
       direccion: "Dirección estratégica para marcas y negocios con visión de futuro.",
       description: "Integro estructura de negocio, estrategia digital y mentalidad ejecutiva para escalar con claridad, sin dejar tu bienestar en el camino.",
       cta: "Hablemos de tu proyecto"
@@ -195,7 +196,7 @@ export const translations = {
       ch6Title: "Las Chocoaventuras y Mango Creative",
       ch6Text1: "Viví demasiadas chocoaventuras fuera. Para certificar toda la experiencia que traía con mis empresas de tantos años, me postulé a dos becas para un doble máster en Madrid... ¡y pasé! Eso me dio la oportunidad de residir en España por un tiempo. Sin embargo, la montaña rusa emocional del trading no iba con la paz que yo quería para mi futuro, así que decidí retirarme de los mercados a pesar de que me iba bien.",
       ch6Text2: "Todos los que hemos emigrado sabemos que es un proceso donde tienes el cuerpo en otro país, pero tu corazón sigue en Colombia. Y fue justo ahí cuando recibí la segunda oleada: a mi madre le dio cáncer de nuevo. Como esta vez no podía estar físicamente ahí para cuidarla como en la primera ocasión, mi amado padre jugó un papel impresionante sosteniéndolo todo. Al final, mi madre, que es una guerrera absoluta, superó con éxito esta segunda prueba.",
-      ch6Text3: "Me resultó una propuesta de trabajo en España que me garantizaba quedarme legal con contrato a largo plazo. Pero la idea de encerrarme a trabajar en una empresa tradicional simplemente no encajaba conmigo. Ahí nació Mango Creative Studio, mi prueba piloto para trabajar de forma freelance mientras viajaba por India, Vietnam, Tailandia, Israel, Italia y Estados Unidos y bueno… también abriendo las puertas de mi corazón para el amor.",
+      ch6Text3: "Me resultó una propuesta de trabajo en España que me garantizaba quedarme legal con contrato a largo plazo. Pero la idea de encerrarme a trabajar en una empresa tradicional simplemente no encajaba conmigo. En 2024 nació Mango Creative Studio, mi prueba piloto para trabajar de forma freelance que se convirtió en mi agencia creativa, mientras viajaba por India, Vietnam, Tailandia, Israel, Italia y Estados Unidos y bueno… también abriendo las puertas de mi corazón para el amor.",
       ch7Title: "La Pregunta de los Viajeros",
       ch7Dialog: "“Che/Oye, ¿y vos a qué te dedicás que estás acá en un día laboral, al mediodía, metido en un café o cerca de la playa?”",
       ch7Text1: "En cada destino me iba encontrando con otros viajeros. Siempre que te topás con gente en la misma sintonía, te pica la curiosidad y nace la típica pregunta:",
@@ -209,7 +210,7 @@ export const translations = {
       ch8Text3: "Así nació KT. VELASQUEZ.",
       ctaTitle: "Hablemos Claro",
       ctaText1: "En cada etapa de mi vida tuve la oportunidad de tomar el camino 'seguro' de un empleo tradicional, pero siempre seguí mi pasión por el emprendimiento. ¿Por qué? Esa historia se las comparto cuando me inviten a un podcast.",
-      ctaText2: "No te cuento todo esto para que veas qué tan triste fue mi historia, hubieron también cosas maravillosas. Te lo cuento porque si te identificas con alguna de mis etapas y decides contar la tuya, estoy aquí para que nos sentemos, nos tomemos un café y hablemos como si estuviéramos en la sala de tu casa hablando regias e intergalácticas pero sin pelos en la lengua.",
+      ctaText2: "No te cuento todo esto para que veas qué tan triste fue mi historia, hubieron también cosas maravillosas. Te lo cuento porque si te identificas con alguna de mis etapas y decides dar el paso, estoy aquí para acompañarte. Elegiremos juntos el servicio que va contigo, nos tomaremos un café y empezaremos a ordenar tu proyecto con toda la energía y actitud.",
       ctaButton: "Inscríbete aquí y hablemos"
     },
     testimonials: {
@@ -241,16 +242,56 @@ export const translations = {
     },
     faqs: [
       {
+        q: "¿Cómo sé qué servicio o paquete necesito?",
+        a: "En nuestra reunión de revisión conoceré tu proyecto, tus objetivos y lo que necesitas resolver. A partir de ahí, te recomendaré el servicio y el nivel de acompañamiento más adecuados para tu momento.\nAntes del pago conocerás los entregables, las responsabilidades de cada parte, la frecuencia de las sesiones, el plazo para utilizarlas y las condiciones de contratación."
+      },
+      {
         q: "¿Para quién NO es esto?",
-        a: "No soy una coach motivacional; mi enfoque está en darte estructura y claridad, no discursos de inspiración. Este espacio no es para ti si prefieres los rodeos o las respuestas maquilladas; me gusta hablar con total transparencia y honestidad sobre lo que tu negocio necesita para crecer."
+        a: "Este acompañamiento requiere compromiso, apertura para revisar decisiones y tiempo para poner en práctica lo que trabajemos. Si buscas resultados inmediatos o prefieres mantener todo como está, probablemente este no sea tu momento.\nTrabajaremos con honestidad: te diré lo que veo, por qué importa y qué podemos hacer para avanzar."
       },
       {
         q: "¿Recibo proyectos desde cero?",
-        a: "Sí, por supuesto, siempre y cuando ya cuentes con experiencia previa emprendiendo. Si ya conoces la realidad de gestionar un negocio y esta vez quieres fundar con bases sólidas y orden estratégico desde el primer día, eres más que bienvenido."
+        a: "Sí, acompaño proyectos nuevos de personas que ya tienen experiencia emprendiendo y quieren construir esta nueva etapa con bases más claras.\nEn nuestra reunión de revisión conoceré tu idea, tu experiencia y el punto en el que estás para valorar qué servicio y nivel de acompañamiento encajan contigo."
+      },
+      {
+        q: "¿Todos los servicios son personalizados?",
+        a: "Sí. Adaptamos el trabajo a las necesidades de tu marca, negocio o equipo. Los temas, entregables y prioridades se definen en la propuesta que recibirás antes de contratar.\nEn mentoría elegimos el paquete de sesiones según tu objetivo. En consultoría empresarial, talleres y social media, acordamos el alcance específico del servicio."
+      },
+      {
+        q: "¿Qué entregables recibiré?",
+        a: "Dependerá de tus objetivos y del servicio contratado. Pueden incluir diagnósticos, documentos de posicionamiento, planes de acción, guías de comunicación, calendarios de contenido, herramientas de organización o tableros de seguimiento.\nTu propuesta detallará cuáles recibirás, su alcance y las fechas de entrega."
+      },
+      {
+        q: "¿Qué incluye la consultoría empresarial mensual?",
+        a: "Incluye las sesiones de dirección y seguimiento, las prioridades del periodo, el plan de acción, los entregables y la revisión de indicadores acordados para tu empresa.\nAntes de contratar definiremos el número y la duración de las sesiones, las áreas que abordaremos, el soporte disponible y las responsabilidades de tu equipo y las mías. Al cierre del periodo revisaremos los avances y la continuidad del acompañamiento."
+      },
+      {
+        q: "¿Con qué frecuencia nos reunimos y cuánto tiempo tengo para utilizar las sesiones?",
+        a: "La frecuencia y la vigencia dependen del acompañamiento elegido. Las acordamos antes de contratar, teniendo en cuenta tu disponibilidad, los objetivos y el tiempo necesario para trabajar entre encuentros.\nTendrás por escrito el número de sesiones, el calendario previsto y la fecha límite para utilizarlas."
+      },
+      {
+        q: "¿Qué ocurre después del pago?",
+        a: "Una vez confirmado el pago, recibirás en un máximo de dos días hábiles un mensaje de bienvenida, las indicaciones de preparación y los siguientes pasos para coordinar el inicio.\nSi contratas un servicio de social media, también organizaremos los accesos necesarios y la preparación del primer calendario de contenido."
+      },
+      {
+        q: "¿Puedo hacer consultas entre sesiones?",
+        a: "Cuando tu servicio incluya soporte, podrás comunicarte por Google Chat de lunes a viernes, excepto días festivos. Recibirás respuesta en un máximo de dos días hábiles.\nEste espacio cubre aclaraciones y coordinación relacionadas con el trabajo contratado. Los temas que requieran un análisis extenso se abordarán en sesión o mediante un ajuste de la propuesta."
+      },
+      {
+        q: "¿Puedo reprogramar una sesión?",
+        a: "Sí. Puedes solicitar el cambio con al menos 24 horas de anticipación, sujeto a disponibilidad y dentro de la vigencia de tu acompañamiento.\nSi cancelas con menor anticipación o no asistes, la sesión se contabiliza como utilizada, salvo emergencia o acuerdo previo. Las condiciones para cambiar la fecha de un taller se especifican en su propuesta."
+      },
+      {
+        q: "¿Qué debo hacer yo si contrato el Kit de Social Media?",
+        a: "Tú aportas el conocimiento de tu negocio, grabas el material siguiendo nuestras indicaciones y respondes los mensajes de tus posibles clientes. También revisas y apruebas el contenido en las fechas acordadas.\nNuestro equipo se encarga de la estrategia, la preparación de las piezas, la publicación y el análisis según el alcance contratado. Si eliges Mentorías + Kit de Social Media, sumamos las sesiones de acompañamiento para trabajar las prioridades de tu marca o emprendimiento."
+      },
+      {
+        q: "¿Qué pasa si me retraso con los materiales o las aprobaciones de social media?",
+        a: "La entrega de materiales y las aprobaciones permiten preparar y publicar tu contenido según lo acordado. Si surge un retraso, revisaremos contigo su impacto y ajustaremos el calendario según la disponibilidad del equipo y las condiciones de tu propuesta."
       },
       {
         q: "¿Cuánto tiempo tarda en verse resultados?",
-        a: "La claridad llega en la primera sesión. Los resultados medibles, en 60 a 90 días. Pero esto no es magia: depende de qué tan rápido implementas."
+        a: "Depende de tu punto de partida, del objetivo que definamos y de la constancia con la que implementemos las acciones.\nDesde las primeras sesiones trabajaremos para ordenar prioridades y tomar decisiones. Al comenzar, acordaremos qué avances queremos conseguir, cómo los mediremos y en qué plazos tiene sentido revisarlos. Así podrás evaluar el progreso de tu proyecto con criterios claros."
       }
     ],
     marquee: [
@@ -277,6 +318,7 @@ export const translations = {
       katherine: "Katherine",
       velasquez: "Velasquez",
       h1_keyword: "360° Strategic Consulting for Founders and Brands",
+      roles: "Strategist · Engineer · Entrepreneur",
       direccion: "Strategic direction for future-oriented brands and businesses.",
       description: "I integrate business structure, digital strategy, and executive mindset to help you scale with clarity—without burning out along the way.",
       cta: "Let's discuss your project"
@@ -456,7 +498,7 @@ export const translations = {
       ch6Title: "Adventures & Mango Creative",
       ch6Text1: "I lived through too many wild adventures abroad. To certify all the business experience I carried from so many years, I applied for two scholarships for a double master's degree in Madrid... and I got in! That gave me the opportunity to live in Spain for a while. However, the emotional roller coaster of trading did not align with the peace I wanted for my future, so I decided to step away from the markets, even though I was doing well.",
       ch6Text2: "All of us who have emigrated know it's a process where your body is in another country, but your heart remains in Colombia. And it was right then when I received the second wave: my mother was diagnosed with cancer again. Since I couldn't be physically there to care for her like the first time, my beloved father played an amazing role supporting everything. In the end, my mother, who is an absolute warrior, successfully overcame this second battle.",
-      ch6Text3: "I received a job offer in Spain that guaranteed I could stay legally with a long-term contract. But the idea of locking myself up to work in a traditional company simply didn't fit who I was. That's how Mango Creative Studio was born, my pilot project to work freelance while traveling through India, Vietnam, Thailand, Israel, Italy, and the United States—and, well, also opening the doors of my heart to love.",
+      ch6Text3: "I received a job offer in Spain that guaranteed I could stay legally with a long-term contract. But the idea of locking myself up to work in a traditional company simply didn't fit who I was. In 2024 Mango Creative Studio was born, my pilot project to work freelance that grew into my creative agency, while traveling through India, Vietnam, Thailand, Israel, Italy, and the United States—and, well, also opening the doors of my heart to love.",
       ch7Title: "The Traveler's Question",
       ch7Dialog: "“Hey, what do you do for a living that you're here on a workday, at noon, sitting in a cafe or near the beach?”",
       ch7Text1: "In every destination, I met other travelers. Whenever you run into people on the same wavelength, curiosity strikes, and that typical question is born:",
@@ -470,7 +512,7 @@ export const translations = {
       ch8Text3: "That's how KT. VELASQUEZ was born.",
       ctaTitle: "Let's Talk Straight",
       ctaText1: "At every stage of my life, I had the chance to take the 'safe' path of a traditional job, but I always followed my passion for entrepreneurship. Why? That story I will share when you invite me to a podcast.",
-      ctaText2: "I don't tell you all this to make you see how sad my story was—there were also wonderful things. I tell you this because if you identify with any of my stages and decide to tell yours, I am here for us to sit down, have coffee, and talk as if we were sitting in your living room talking 'regias' and 'intergalácticas', but completely unfiltered.",
+      ctaText2: "I don't tell you all this to make you see how sad my story was—there were also wonderful things. I tell you this because if you identify with any of my stages and decide to take the step, I'm here to walk with you. Together we'll choose the service that fits you, have a coffee, and start organizing your project with all the energy and attitude.",
       ctaButton: "Apply here and let's talk"
     },
     testimonials: {
@@ -502,16 +544,56 @@ export const translations = {
     },
     faqs: [
       {
-        q: "Who is this NOT for?",
-        a: "I am not a motivational coach; my focus is on giving you structure and clarity, not inspirational speeches. This space is not for you if you prefer beating around the bush or sugarcoated answers; I like to speak with total transparency and honesty about what your business needs to grow."
+        q: "How do I know which service or package I need?",
+        a: "In our review meeting I'll get to know your project, your goals and what you need to solve. From there, I'll recommend the service and the level of support that best fit where you are right now.\nBefore you pay, you'll know the deliverables, each side's responsibilities, how often we'll meet, the time frame to use your sessions and the terms of the engagement."
       },
       {
-        q: "Do I accept projects from scratch?",
-        a: "Yes, of course, as long as you already have prior entrepreneurial experience. If you already know the reality of managing a business and this time you want to build with solid foundations and strategic order from day one, you are more than welcome."
+        q: "Who is this NOT for?",
+        a: "This work takes commitment, openness to revisit decisions and time to put into practice what we work on. If you're looking for instant results or would rather keep everything as it is, this is probably not your moment.\nWe'll work with honesty: I'll tell you what I see, why it matters and what we can do to move forward."
+      },
+      {
+        q: "Do you take on projects from scratch?",
+        a: "Yes. I support new projects from people who already have entrepreneurial experience and want to build this new stage on clearer foundations.\nIn our review meeting I'll learn about your idea, your experience and where you are, to see which service and level of support fit you."
+      },
+      {
+        q: "Are all services personalized?",
+        a: "Yes. We adapt the work to the needs of your brand, business or team. Topics, deliverables and priorities are set out in the proposal you'll receive before you sign up.\nFor mentoring, we choose the session package based on your goal. For business consulting, workshops and social media, we agree on the specific scope of the service."
+      },
+      {
+        q: "What deliverables will I receive?",
+        a: "It depends on your goals and the service you choose. They can include diagnostics, positioning documents, action plans, communication guides, content calendars, organization tools or tracking dashboards.\nYour proposal will list which ones you'll receive, their scope and the delivery dates."
+      },
+      {
+        q: "What does the monthly business consulting include?",
+        a: "It includes direction and follow-up sessions, the priorities for the period, the action plan, the deliverables and a review of the indicators agreed for your company.\nBefore you sign up we'll define the number and length of the sessions, the areas we'll cover, the support available and your team's responsibilities and mine. At the end of the period we'll review progress and whether to continue."
+      },
+      {
+        q: "How often do we meet and how long do I have to use my sessions?",
+        a: "Frequency and validity depend on the support you choose. We agree on them before you sign up, taking into account your availability, your goals and the time needed to work between meetings.\nYou'll have in writing the number of sessions, the planned schedule and the deadline to use them."
+      },
+      {
+        q: "What happens after I pay?",
+        a: "Once your payment is confirmed, within two business days you'll receive a welcome message, preparation instructions and the next steps to schedule the start.\nIf you sign up for a social media service, we'll also set up the access we need and prepare your first content calendar."
+      },
+      {
+        q: "Can I ask questions between sessions?",
+        a: "When your service includes support, you can reach us on Google Chat Monday to Friday, except holidays. You'll get a reply within two business days.\nThis space covers clarifications and coordination related to the work you hired. Topics that need in-depth analysis will be handled in a session or through an adjustment to the proposal."
+      },
+      {
+        q: "Can I reschedule a session?",
+        a: "Yes. You can request the change at least 24 hours in advance, subject to availability and within the validity of your package.\nIf you cancel with less notice or don't attend, the session counts as used, unless there's an emergency or a prior agreement. The conditions for changing a workshop date are set out in its proposal."
+      },
+      {
+        q: "What do I need to do if I hire the Social Media Kit?",
+        a: "You bring the knowledge of your business, record the material following our guidance and reply to messages from potential clients. You also review and approve the content on the agreed dates.\nOur team handles the strategy, preparing the pieces, publishing and analysis, according to the scope you hired. If you choose Mentoring + Social Media Kit, we add support sessions to work on the priorities of your brand or business."
+      },
+      {
+        q: "What if I'm late with social media materials or approvals?",
+        a: "Delivering materials and approvals on time lets us prepare and publish your content as agreed. If there's a delay, we'll review the impact with you and adjust the calendar based on the team's availability and the terms of your proposal."
       },
       {
         q: "How long does it take to see results?",
-        a: "Clarity comes in the very first session. Measurable results in 60 to 90 days. But this is not magic: it depends on how fast you implement."
+        a: "It depends on your starting point, the goal we set and how consistently we put the actions into practice.\nFrom the first sessions we'll work on sorting priorities and making decisions. When we start, we'll agree on what progress we want, how we'll measure it and when it makes sense to review it. That way you can judge your project's progress with clear criteria."
       }
     ],
     marquee: [

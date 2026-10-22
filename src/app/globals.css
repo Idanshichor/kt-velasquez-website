@@ -3,24 +3,26 @@
 @theme {
   --color-brand-pink: #FFB4C8;
   --color-brand-pink-light: #FFDFE8;
-  --color-brand-pink-dark: #E01E79;
+  --color-brand-pink-dark: #FFB4C8; /* exact logo pink, sampled from KT_LOGO.webp */
+  --color-brand-pink-ink: var(--color-brand-black); /* pink text on light backgrounds uses brand black: logo pink is too faint to read */
   --color-brand-gold: #EBBF7E;
   --color-brand-gold-light: #F5E5CD;
+  --color-brand-gold-deep: #8F6A2A; /* gold for text on light backgrounds (4.9:1 on white) */
   --color-brand-cream: #FFFFFF;
   --color-brand-black: #1A1A1A;
   --color-brand-purple: #7244D4;
 
   --font-heading: var(--font-playfair), serif;
   --font-body: var(--font-inter), sans-serif;
-  --font-script: var(--font-script), cursive;
-  --font-script-readable: var(--font-script-readable), cursive;
+  --font-script: var(--font-great-vibes), cursive;
+  --font-script-readable: var(--font-playball), cursive;
 }
 
 body {
   background-color: var(--color-brand-cream);
   color: var(--color-brand-black);
   font-family: var(--font-body);
-  overflow-x: hidden;
+  overflow-x: clip; /* clip, not hidden: hidden turns body into a scroll box and breaks sticky + ScrollTrigger */
 }
 
 ::selection {
@@ -86,4 +88,105 @@ body {
 }
 .gallery-marquee-track:hover {
   animation-play-state: paused;
+}
+
+/* ---------- Motion system (GSAP + Lenis) ---------- */
+
+/* Before scene scripts run, hide what they will animate in. Removed once scripts are ready. */
+html.motion-ok:not(.motion-ready) [data-reveal] { opacity: 0; transform: translateY(40px); }
+html.motion-ok:not(.motion-ready) [data-stagger] > * { opacity: 0; }
+html.motion-ok:not(.motion-ready) [data-lines],
+html.motion-ok:not(.motion-ready) [data-words],
+html.motion-ok:not(.motion-ready) [data-hero-line] { visibility: hidden; }
+html.motion-ok:not(.motion-ready) [data-mask] { clip-path: inset(100% 0 0 0); }
+html.motion-ok:not(.motion-ready) [data-frame],
+html.motion-ok:not(.motion-ready) [data-hero-tag],
+html.motion-ok:not(.motion-ready) [data-hero-desc],
+html.motion-ok:not(.motion-ready) [data-hero-cta] { opacity: 0; }
+html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
+
+
+.split-line { padding-bottom: 0.12em; }
+
+/* Scroll-lit headline: words start dim and light up as the line passes */
+.scrub[data-ready] [data-w] { opacity: 0.2; transition: opacity 0.5s ease; }
+.scrub[data-ready] [data-w].lit { opacity: 1; }
+
+/* Slow turning stars (statement, orbit, closing CTA) */
+@keyframes kt-turn { to { transform: rotate(360deg); } }
+@keyframes kt-sway { 0%, 100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.04); } }
+@media (prefers-reduced-motion: no-preference) {
+  .statement-star { animation: kt-sway 9s ease-in-out infinite; transform-origin: 50% 50%; }
+  .kt-turn { animation: kt-turn 60s linear infinite; }
+}
+
+/* Method 360: orbit beside a stack of sticky cards (desktop with room only) */
+.method360 .m-node-ring { fill: var(--color-brand-pink-dark); stroke: #fff; stroke-width: 1.2; transition: fill 0.4s, r 0.4s; }
+.method360 .m-node-num { font-family: var(--font-body); font-size: 13px; font-weight: 700; fill: var(--color-brand-black); letter-spacing: 0.05em; transition: fill 0.4s; }
+.method360 .m-node.is-on .m-node-ring { fill: var(--color-brand-black); stroke: var(--color-brand-gold); r: 27px; }
+.method360 .m-node.is-on .m-node-num { fill: var(--color-brand-gold); }
+.method360 .m-progress { display: none; }
+@media (min-width: 1024px) and (min-height: 740px) and (prefers-reduced-motion: no-preference) {
+  .method360 .m-anchor { position: sticky; top: 120px; }
+  .method360 .m-cards { gap: 110px; padding-bottom: 80px; }
+  .method360 .m-card { position: sticky; top: 150px; min-height: 380px; display: flex; flex-direction: column; justify-content: center; }
+  .method360 .m-progress { display: block; position: absolute; top: 0; bottom: 80px; left: -32px; width: 2px; background: rgba(255, 255, 255, 0.25); }
+  .method360 .m-progress i { display: block; height: 100%; background: var(--color-brand-gold); transform: scaleY(0); transform-origin: top; }
+}
+
+/* Services: the detail panel eases in when a tab is picked */
+@keyframes svc-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) { .svc-panel { animation: svc-in 0.55s cubic-bezier(0.22, 1, 0.36, 1); } }
+
+/* Soundwave (podcast) */
+@keyframes wave { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
+.wave-bar { transform-origin: bottom; animation: wave 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .wave-bar { animation: none; transform: scaleY(0.6); } }
+
+/* KT360 video kit, carried to the web: uppercase editorial titles, lower-third eyebrows,
+   short gold rules, soft cards, and the one button. Colour keeps its kit meaning:
+   gold builds, purple was before, magenta breaks, pink recovers, white structures, black holds. */
+.kt-title { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.95; font-weight: 400; }
+.kt-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; }
+.kt-eyebrow::before { content: ""; width: 3px; height: 1.6em; border-radius: 2px; background: var(--color-brand-pink-dark); }
+.kt-eyebrow.on-dark::before { background: var(--color-brand-pink); }
+.kt-rule { display: block; width: 64px; height: 1px; background: var(--color-brand-gold); }
+.kt-card { border: 1px solid rgba(26, 26, 26, 0.12); box-shadow: 0 24px 60px -28px rgba(26, 26, 26, 0.35); }
+.kt-card-lift { transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.kt-card-lift:hover { translate: 0 -4px; }
+.kt-btn { display: inline-flex; align-items: center; gap: 14px; padding: 8px 8px 8px 28px; border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.kt-btn-dot { width: 38px; height: 38px; border-radius: 999px; display: grid; place-items: center; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.kt-btn:hover .kt-btn-dot { transform: rotate(90deg); }
+.kt-btn-dark:hover { background: var(--color-brand-pink-dark); color: var(--color-brand-black); }
+.kt-btn-gold:hover, .kt-btn-pink:hover { background: #fff; }
+.kt-btn-dark { background: var(--color-brand-black); color: #fff; }
+.kt-btn-dark .kt-btn-dot { background: var(--color-brand-gold); color: var(--color-brand-black); }
+.kt-btn-gold { background: var(--color-brand-gold); color: var(--color-brand-black); }
+.kt-btn-gold .kt-btn-dot { background: var(--color-brand-black); color: var(--color-brand-gold); }
+.kt-btn-pink { background: var(--color-brand-pink); color: var(--color-brand-black); }
+.kt-btn-pink .kt-btn-dot { background: var(--color-brand-black); color: var(--color-brand-pink); }
+
+/* Horizontal card rails (services on phones) */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+
+
+/* Fit-to-column title sizes: long words (INDEPENDENCIA, CONSTRUYENDO...) never get cut.
+   Unlayered, so each rule only lives inside its own breakpoint range. */
+@media (max-width: 639.98px) {
+  .fit-hero-h1 { font-size: min(3.6rem, calc((100vw - 3rem) / 5.4)); }
+  .fit-banner { font-size: min(2.5rem, calc((100vw - 3rem) / 8)); }
+  .fit-services { font-size: min(3rem, calc((100vw - 3rem) / 6.8)); }
+  .fit-service-title { font-size: min(2.25rem, calc((100vw - 3rem) / 9.2)); }
+  .fit-final-cta { font-size: min(3rem, calc((100vw - 3rem) / 6.6)); }
+}
+@media (min-width: 1024px) {
+  .fit-banner { font-size: min(5.5rem, calc((min(100vw - 8rem, 72rem) - 19rem) / 8.2)); }
+  .fit-faq { font-size: min(3.75rem, calc((min(100vw - 8rem, 80rem) - 5rem) / 19)); }
+  .fit-testimonials { font-size: min(3.75rem, calc((min(100vw - 8rem, 80rem) - 5rem) * 5 / 96)); }
+  .fit-podcast-cta { font-size: min(3.75rem, calc((min(100vw - 8rem, 72rem) - 6rem) * 5 / 84)); }
+}
+@media (min-width: 1280px) {
+  .fit-chapter { font-size: min(4.5rem, calc((min(100vw - 8rem, 72rem) - 6rem) * 5 / 90)); }
 }

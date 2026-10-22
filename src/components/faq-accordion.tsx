@@ -7,40 +7,50 @@ export default function FaqAccordion() {
   const faqs = t("faqs") as Array<{ q: string; a: string }>;
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div data-stagger className="border-t border-[var(--color-brand-black)]/15">
       {faqs.map((faq, i) => {
         const isOpen = openIndex === i;
+        const id = `faq-${i}`;
         return (
-          <div key={i} className={`border-b border-gray-200 ${i === 0 ? "border-t" : ""}`}>
-            <button
-              onClick={() => setOpenIndex(isOpen ? -1 : i)}
-              className="w-full flex items-center justify-between py-7 text-left group cursor-pointer"
-            >
-              <span
-                className={`font-heading italic text-xl md:text-2xl transition-colors ${
-                  isOpen ? "text-[var(--color-brand-pink-dark)]" : "text-[var(--color-brand-black)] group-hover:text-[var(--color-brand-pink-dark)]"
-                }`}
+          <div key={i} className="border-b border-[var(--color-brand-black)]/15">
+            <h3>
+              <button
+                id={`${id}-q`}
+                onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                aria-expanded={isOpen}
+                aria-controls={`${id}-a`}
+                className="w-full flex items-start gap-4 md:gap-6 py-5 md:py-6 text-left group cursor-pointer"
               >
-                {faq.q}
-              </span>
-              <span
-                className={`ml-6 shrink-0 w-8 h-8 rounded-full border flex items-center justify-center text-lg transition-all duration-300 ${
-                  isOpen
-                    ? "border-[var(--color-brand-pink-dark)] text-[var(--color-brand-pink-dark)] rotate-45"
-                    : "border-gray-400 text-gray-600 rotate-0"
-                }`}
-              >
-                +
-              </span>
-            </button>
+                <span
+                  aria-hidden="true"
+                  className={`shrink-0 w-12 md:w-16 font-heading text-3xl md:text-4xl leading-none tabular-nums transition-colors duration-500 ${
+                    isOpen ? "text-[var(--color-brand-gold-deep)]" : "text-[var(--color-brand-black)]/25 group-hover:text-[var(--color-brand-gold-deep)]"
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="flex-1 text-base md:text-xl font-semibold leading-snug text-[var(--color-brand-black)] pt-0.5 [text-wrap:balance]">{faq.q}</span>
+                <span
+                  aria-hidden="true"
+                  className={`shrink-0 w-8 h-8 md:w-9 md:h-9 rounded-full grid place-items-center transition-all duration-500 ${
+                    isOpen ? "bg-[var(--color-brand-black)] text-white rotate-45" : "border border-[var(--color-brand-black)]/25 text-[var(--color-brand-black)] group-hover:bg-[var(--color-brand-pink)] group-hover:border-[var(--color-brand-pink)]"
+                  }`}
+                >
+                  <svg viewBox="0 0 16 16" className="w-3 h-3"><path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
+                </span>
+              </button>
+            </h3>
             <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                isOpen ? "max-h-[300px] opacity-100 pb-8" : "max-h-0 opacity-0"
-              }`}
+              id={`${id}-a`}
+              role="region"
+              aria-labelledby={`${id}-q`}
+              className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
             >
-              <p className="text-gray-800 font-normal text-base leading-relaxed pl-0 md:pl-1 max-w-2xl">
-                {faq.a}
-              </p>
+              <div className="overflow-hidden">
+                <div className="pb-7 pl-16 md:pl-[5.5rem] pr-2 md:pr-14 max-w-3xl space-y-3 text-[15px] md:text-base leading-relaxed text-[var(--color-brand-black)]/75">
+                  {faq.a.split("\n").map((p, j) => <p key={j}>{p}</p>)}
+                </div>
+              </div>
             </div>
           </div>
         );

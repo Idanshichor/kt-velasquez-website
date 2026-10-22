@@ -185,6 +185,18 @@ This log serves as a source of truth for the development, configuration, and des
 
 
 
+* **2026-10-18:** Home page second pass (branch `feature/premium-rebuild-v2`). Removed motion gimmicks and scroll pins that fought the reader, shortened the services section with expandable feature details and a phone swipe rail, evened out the logo strip, cleaner method and testimonials layouts. Copy, payment links and plan picker unchanged. `npm run build` clean.
+
+---
+
+* **2026-10-18:** Home page third pass (branch `feature/premium-rebuild-v3`, off v2). Mango-style elements in KT360 colors: scroll-lit statement banner, scroll-driven marquee, Method 360 orbit with sticky stacked cards, expandable service pills, full-bleed closing CTA. Copy and payments unchanged. `npm run build` clean.
+
+---
+
+* **2026-10-18:** Home page v4 (branch `feature/premium-rebuild-v4`, off v3) from Idan's review: fixed nav, services tabs + panel, new hero intro, podcast bars back, testimonial slider, FAQ cards, richer Diagnóstico and About sections, 360 orbit hidden on phones. Copy and payments unchanged. `npm run build` clean.
+
+---
+
 ## ⚠️ Guidelines for Future Updates
 1. **Feature Branching:** Do **NOT** push or commit directly to the `main` branch. Create a feature branch (e.g. `feature/name` or `fix/name`) for any edits. Make sure to push your feature branches to the `live` remote repository (`https://github.com/Idanshichor/kt-velasquez-website.git`) so Vercel can generate a **Preview Deployment** link to test changes before they go live. Once verified, merge the branch into `main` on the `live` repository.
 2. **Copy Modification:** Do **NOT** modify or change any of the copy on the landing page unless explicitly requested by the user.
@@ -192,3 +204,13 @@ This log serves as a source of truth for the development, configuration, and des
 4. **Deployment:** Pushing or merging to the `main` branch of the `live` remote repository triggers the final production deployment on Vercel.
 5. **Consistency Check:** Whenever there is a change to something visual that has implications on SEO or other pages, or any text/copy changes that have implications on the rest of the website, or any change with cross-page implications, you MUST always ask the user if you should update it everywhere.
 
+- 2026-10-19: v7 logo pink: 360 once in circle, hero + about restyled in KT360 kit. Commit 151f7e5, preview kt-velasquez-website-9fio1163b-ktvelasquez.vercel.app
+- 2026-10-19: New /servicios page (Mango layout: big title, numbered index, one block per service with all plans + Wompi links). Home services section is now a numbered list linking to it. Nav "Servicios" goes to /servicios; sitemap updated. Branch feature/services-page-mango.
+- 2026-10-20: Home service rows open a pink bubble (description + Leer más). /servicios is now a one-open-at-a-time list; service card redesigned (numbered includes list + price card with plan radio buttons instead of dropdown).
+- 2026-10-20: /servicios picker changed to 3 side-by-side cards (open one in logo pink, swipe on phone) with the detail below, so it no longer copies the home list.
+- 2026-10-20: /podcast restyled to match the new home: KT360 kit hero (podcast art with pink lower-third, logo title, jump-to-form button), monochrome platform strip, manifesto in the "Hola, soy Katherine" layout, values as a Mango-style numbered list, and the guest form beside an uppercase title. Copy unchanged. Branch feature/podcast-redesign.
+- 2026-10-20: /podcast round 2 after Idan said round 1 was boring: full-screen magenta hero with the mic photo and soundwave, gold platform strip, black manifesto statement, purple values with pink/gold/white cards, pink form section. Removed the pink italic box (Idan: "very AI").
+- 2026-10-20: /podcast round 3 on the KT360 design system (ds-bundle): dark full-screen title-card hero with the vector KT360 logo (podcast colorway), lower thirds naming Katherine, pink marquee-style platform band, cream manifesto title card, gold-light values section with dark/pink/cream title cards, pink-light form. Square corners and #E01E79 (kit pink-dark) for script accents, as in the kit. Logo ported to src/app/podcast/kt360-logo.tsx.
+- 2026-10-20: /podcast round 4, styled on the brand guide (KT360 Manual de marca v1.3): pink full-screen hero (podcast colour) with the vector logo, black platform pills, star button and the halftone mic shot; black featured-phrase manifesto (Playball lead, gold key words, gold star); white values with the KT photo frame and a numbered list; gold voice band for the manifesto line; black form section. Not pushed yet at round 3 (network), so rounds 3+4 go up together.
+- 2026-10-20: /podcast: platforms moved from the hero to a white logo bar under it (like the home client strip). "Aquí entendemos" band redone: big uppercase line lighting up word by word with black "+" badges between business / digital / mindset, gold star on a black disc, "Sin filtros..." in Playball script.
+- 2026-10-21: /podcast platform bar: title on its own centered row, the five logos in one row under it.

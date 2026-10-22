@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
+import { sendForm } from "@/lib/send-form";
 
 export function Web3Form({ 
   className, 
@@ -22,21 +23,10 @@ export function Web3Form({
     
     setStatus("submitting");
 
-    const formData = new FormData(e.currentTarget);
-    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "7bd1aa94-7d33-4738-b627-5b9378af65d4");
-    formData.append("subject", subject);
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-      if (response.ok) {
-        setStatus("success");
-      } else {
-        setStatus("error");
-      }
-    } catch (err) {
+      const ok = await sendForm(new FormData(e.currentTarget), subject, "newsletter");
+      setStatus(ok ? "success" : "error");
+    } catch {
       setStatus("error");
     }
   }
@@ -99,7 +89,7 @@ export function Web3Form({
             )}
           </p>
 
-          <button type="submit" disabled={status === "submitting" || status === "success"} className="bg-[var(--color-brand-pink)] text-white px-10 py-4 font-semibold uppercase tracking-widest hover:bg-[#E01E79] transition-colors w-max rounded-full mt-4 text-xs shadow-premium hover:-translate-y-1 disabled:opacity-50 disabled:hover:-translate-y-0 disabled:cursor-not-allowed">
+          <button type="submit" disabled={status === "submitting" || status === "success"} className="bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-10 py-4 font-bold uppercase tracking-widest hover:bg-white transition-colors w-max rounded-full mt-4 text-xs shadow-premium hover:-translate-y-1 disabled:opacity-50 disabled:hover:-translate-y-0 disabled:cursor-not-allowed">
             {status === "success" ? t("newsletter.success") : status === "submitting" ? t("newsletter.submitting") : status === "error" ? t("newsletter.error") : t("footer.subscribe")}
           </button>
         </>

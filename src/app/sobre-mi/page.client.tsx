@@ -1,11 +1,34 @@
 "use client";
 
+import type { ReactNode } from "react";
+import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { ScrollReveal } from "@/components/scroll-reveal";
+import { Scene } from "@/components/home/scene";
+import { KtCta, KtStar } from "@/components/home/scrub";
 import { useLanguage } from "@/context/language-context";
-import Image from "next/image";
-import Link from "next/link";
+
+const WHATSAPP = "https://wa.me/573216154870?text=Hola%20Kathe%2C%20le%C3%AD%20tu%20historia%20en%20sobre-mi%20y%20me%20encantar%C3%ADa%20que%20nos%20tomemos%20un%20caf%C3%A9%20para%20hablar%20de%20negocios%20%3A%29";
+
+/*
+ * Follows the KT360 Manual de marca v1.3: titles in Inter uppercase 400, script for 1 to 3 words,
+ * a 3px bar before every label, a 64px rule, the gold star, and the photo frame (32px corners with a
+ * thin outline offset down-right). Each background keeps its colour role and its own text rules:
+ * purple = before, gold = builds, black = holds, magenta = breaks, pink = recovers, white = structure.
+ */
+type Bg = "white" | "black" | "pink" | "gold" | "purple" | "magenta";
+const BG: Record<Bg, { cls: string; sub: string; bar: string; rule: string; star: string; line: string }> = {
+  white: { cls: "bg-white text-[var(--color-brand-black)]", sub: "text-[var(--color-brand-black)]/75", bar: "bg-[var(--color-brand-pink)]", rule: "bg-[var(--color-brand-gold)]", star: "text-[var(--color-brand-gold)]", line: "border-[var(--color-brand-black)]" },
+  black: { cls: "bg-[var(--color-brand-black)] text-white", sub: "text-white/65", bar: "bg-[var(--color-brand-pink)]", rule: "bg-[var(--color-brand-gold)]", star: "text-[var(--color-brand-gold)]", line: "border-white" },
+  pink: { cls: "bg-[var(--color-brand-pink)] text-[var(--color-brand-black)]", sub: "text-[var(--color-brand-black)]", bar: "bg-[var(--color-brand-black)]", rule: "bg-[var(--color-brand-black)]", star: "text-[var(--color-brand-black)]", line: "border-[var(--color-brand-black)]" },
+  gold: { cls: "bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]", sub: "text-[var(--color-brand-black)]", bar: "bg-[var(--color-brand-black)]", rule: "bg-[var(--color-brand-black)]", star: "text-[var(--color-brand-black)]", line: "border-[var(--color-brand-black)]" },
+  purple: { cls: "bg-[var(--color-brand-purple)] text-white", sub: "text-white", bar: "bg-white", rule: "bg-white", star: "text-[var(--color-brand-gold)]", line: "border-white" },
+  magenta: { cls: "bg-[#E01E79] text-white", sub: "text-white", bar: "bg-white", rule: "bg-white", star: "text-white", line: "border-white" },
+};
+
+const TITLE = "uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wrap:balance]";
+const BODY = "text-base md:text-[17px] leading-[1.7]";
+const SECTION = "py-24 md:py-36 px-6 md:px-16";
 
 const galleryPhotos = [
   { src: "/images/gallery/KT_Gallery_04.webp", width: 1600, height: 900, alt: "Katherine Velasquez alimentando a un elefante bebé en un santuario en Tailandia" },
@@ -31,421 +54,299 @@ const galleryPhotos = [
   { src: "/images/gallery/KT_Gallery_05.webp", width: 900, height: 1600, alt: "Katherine Velasquez entre los detalles arquitectónicos del Templo Blanco, Tailandia" }
 ];
 
+/** Splits a title so its last word can take the script accent. */
+function splitLast(title: string) {
+  const cut = title.lastIndexOf(" ");
+  return cut === -1 ? [title, ""] : [title.slice(0, cut), title.slice(cut + 1)];
+}
+
+/** Label: 11px uppercase with the 3px bar in front. */
+function Label({ children, bg, className = "" }: { children: ReactNode; bg: Bg; className?: string }) {
+  return (
+    <p data-reveal className={`inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] ${className}`}>
+      <span aria-hidden="true" className={`w-[3px] h-[1.6em] rounded-sm ${BG[bg].bar}`} />
+      {children}
+    </p>
+  );
+}
+
+const Rule = ({ bg, className = "" }: { bg: Bg; className?: string }) => <span data-reveal className={`block w-16 h-px ${BG[bg].rule} ${className}`} />;
+
+/** The KT photo frame: 32px corners, a thin outline offset down and to the right. */
+function KFrame({ src, alt, bg, pos = "center", className = "" }: { src: string; alt: string; bg: Bg; pos?: string; className?: string }) {
+  return (
+    <div data-reveal className={`relative mr-7 mb-7 ${className}`}>
+      <div aria-hidden="true" className={`absolute inset-0 translate-x-7 translate-y-7 rounded-[32px] border opacity-60 ${BG[bg].line}`} />
+      <div className="relative w-full h-full rounded-[32px] overflow-hidden shadow-[0_24px_60px_-28px_rgba(26,26,26,0.45)]">
+        <Image src={src} alt={alt} fill sizes="(max-width: 768px) 85vw, 440px" className="object-cover" style={{ objectPosition: pos }} />
+      </div>
+    </div>
+  );
+}
+
+/** The four-point star, turning slowly. */
+const Star = ({ bg, className = "" }: { bg: Bg; className?: string }) => (
+  <KtStar className={`kt-turn ${BG[bg].star} ${className}`} />
+);
+
 export default function AboutPageClient() {
   const { language, t } = useLanguage();
+  const s = (k: string) => t(`aboutPage.${k}`) as string;
+  const [galleryLead, galleryAccent] = splitLast(s("galleryTitle"));
+  const [ctaLead, ctaAccent] = splitLast(s("ctaTitle"));
 
+  // The statement block: a 1 to 2 word script lead, the rest in capitals, the last words in gold.
+  const quote = s("ch5Quote").replace(/[“”"]/g, "").trim();
+  const comma = quote.indexOf(",");
+  const lead = comma > 0 && quote.slice(0, comma).split(" ").length <= 2 ? quote.slice(0, comma + 1) : "";
+  const main = (lead ? quote.slice(comma + 1) : quote).trim();
+  const words = main.split(" ");
+  const mainHead = words.slice(0, -3).join(" ");
+  const mainGold = words.slice(-3).join(" ");
 
+  // The site-wide --font-body token resolves on :root, before next/font defines --font-inter on body,
+  // so it falls back to system sans. Inter is set on this page's wrapper, where the variable exists.
   return (
-    <div className="min-h-screen bg-[var(--color-brand-cream)] text-[var(--color-brand-black)] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-[var(--color-brand-black)] overflow-x-hidden" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
       <Navbar />
 
-      {/* HERO SECTION */}
-      <section className="relative w-full pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden bg-[var(--color-brand-pink-light)]">
-        {/* Decorative background blobs */}
-        <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[var(--color-brand-gold-light)] opacity-35 blur-3xl z-0" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-white opacity-25 blur-3xl z-0" />
+      {/* HERO: full-screen photo of Katherine on the stool (right). A soft shade sits behind the words only:
+          from the left on desktop, from the bottom on phones (it stops below her face), so the gold name reads. */}
+      <Scene className="relative min-h-[100svh] max-lg:landscape:min-h-0 max-lg:landscape:h-[calc(100vw*2344/4590+5rem)] flex items-end lg:items-center max-lg:landscape:items-center overflow-hidden bg-[#C9C9C9] text-white">
+        <div data-mask className="absolute inset-0 max-lg:landscape:top-20">
+          <div data-mask-img className="absolute inset-0">
+            {/* Phones and tablets: the tall original, so her whole figure fits. Desktop: the wide version. */}
+            <Image
+              src="/images/KT_Stool_Portrait.webp"
+              alt="Katherine Velasquez — Estratega 360 e Ingeniera Civil"
+              fill
+              sizes="100vw"
+              quality={90}
+              className="object-cover object-[10%_top] lg:hidden max-lg:landscape:hidden"
+              priority
+            />
+            {/* Smaller desktops get a tighter crop so she stays on the right, clear of the words */}
+            <Image
+              src="/images/KT_Stool_Hero_Md.webp"
+              alt=""
+              fill
+              sizes="100vw"
+              quality={90}
+              className="object-cover object-right hidden lg:block xl:hidden"
+              priority
+            />
+            <Image
+              src="/images/KT_Stool_Hero.webp"
+              alt=""
+              fill
+              sizes="100vw"
+              quality={90}
+              className="object-cover object-right hidden xl:block max-lg:landscape:block max-lg:landscape:object-[right_top]"
+              priority
+            />
+          </div>
+          <div className="absolute inset-x-0 bottom-0 h-[52%] bg-gradient-to-t from-[var(--color-brand-black)]/85 via-[var(--color-brand-black)]/55 to-transparent lg:hidden max-lg:landscape:hidden" />
+          <div className="absolute inset-y-0 left-0 w-[72%] hidden lg:block max-lg:landscape:block bg-gradient-to-r from-[var(--color-brand-black)]/80 via-[var(--color-brand-black)]/55 to-transparent" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-          
-          {/* Left: Text Content */}
-          <div className="flex flex-col text-center md:text-left">
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--color-brand-black)] mb-6 bg-white w-max px-4 py-1.5 rounded-full mx-auto md:mx-0 shadow-soft">
-              {t("aboutPage.heroTag")}
+        <div className="relative z-10 w-full px-6 md:pl-[6vw] md:pr-16 pb-14 md:pb-20 lg:py-32 max-lg:landscape:pt-20 max-lg:landscape:pb-0">
+          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[6.5rem] lg:text-[6.5vw] xl:text-[clamp(5.5rem,9vw,9.5rem)] max-lg:landscape:text-[13vh] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-[3.7rem] lg:text-[3.7vw] xl:text-[clamp(3.1rem,5.1vw,5.4rem)] max-lg:landscape:text-[7.4vh] leading-none mt-2 lg:mt-3">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
+          <p data-reveal className="mt-8 lg:mt-12 max-lg:landscape:mt-4 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
+          <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md max-lg:landscape:text-sm max-lg:landscape:mt-3 max-lg:landscape:max-w-xs">{s("heroSubtitle")}</p>
+        </div>
+      </Scene>
+
+      {/* 01 purple, what came before: white type only, few words, lots of air */}
+      <Scene className={`${SECTION} md:py-44 ${BG.purple.cls}`}>
+        <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24 items-end">
+          <div>
+            <Label bg="purple">01</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl fit-chapter mt-8`}>{s("ch1Title")}</h2>
+          </div>
+          <p data-reveal className={`${BODY} md:text-lg ${BG.purple.sub}`}>{s("ch1Text")}</p>
+        </div>
+      </Scene>
+
+      {/* 02 gold, building: all black, black rule */}
+      <Scene className={`${SECTION} ${BG.gold.cls}`}>
+        <div className="max-w-6xl mx-auto">
+          <Label bg="gold">02</Label>
+          <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl lg:text-8xl mt-8 max-w-4xl`}>{s("ch2Title")}</h2>
+          <Rule bg="gold" className="mt-10 mb-12 md:mb-16" />
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16">
+            <p data-reveal className={`${BODY} ${BG.gold.sub}`}>{s("ch2Text1")}</p>
+            <p data-reveal className={`${BODY} ${BG.gold.sub} border-l-[3px] border-[var(--color-brand-black)] pl-5 self-start`}>{s("ch2Text2")}</p>
+          </div>
+        </div>
+      </Scene>
+
+      {/* 03 black holds the story, then magenta breaks with one short line */}
+      <Scene className={`${SECTION} ${BG.black.cls}`}>
+        <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24">
+          <div>
+            <Label bg="black">03</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl fit-chapter mt-8`}>{s("ch3Title")}</h2>
+            <Rule bg="black" className="mt-10" />
+          </div>
+          <p data-reveal className={`${BODY} ${BG.black.sub} md:pt-14`}>{s("ch3Text")}</p>
+        </div>
+      </Scene>
+      <Scene className={`py-28 md:py-44 px-6 md:px-16 ${BG.magenta.cls}`}>
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
+          <Star bg="magenta" className="w-14 md:w-24 shrink-0" />
+          <p data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl lg:text-[6.5rem]`}>{s("ch3Callout")}</p>
+        </div>
+      </Scene>
+
+      {/* 04 pink recovers: everything black, framed studio photo with a black outline */}
+      <Scene className={`${SECTION} ${BG.pink.cls}`}>
+        <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-14 xl:gap-24 items-center">
+          <KFrame bg="pink" src="/images/KT_Studio_Seated.webp" alt="Katherine Velasquez" pos="center 40%" className="aspect-[4/5] w-full max-w-[400px]" />
+          <div>
+            <Label bg="pink">04</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl fit-chapter mt-8`}>{s("ch4Title")}</h2>
+            <Rule bg="pink" className="mt-10 mb-10" />
+            <p data-reveal className={`${BODY} ${BG.pink.sub}`}>{s("ch4Text")}</p>
+          </div>
+        </div>
+      </Scene>
+
+      {/* 05 white structure for the story, then the one statement block of the page on black */}
+      <Scene className={`${SECTION} ${BG.white.cls}`}>
+        <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 xl:gap-24">
+          <div>
+            <Label bg="white">05</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl fit-chapter mt-8`}>{s("ch5Title")}</h2>
+            <Rule bg="white" className="mt-10" />
+          </div>
+          <p data-reveal className={`${BODY} ${BG.white.sub} md:pt-14`}>{s("ch5Text")}</p>
+        </div>
+      </Scene>
+      <Scene className={`py-24 md:py-36 px-6 md:px-16 ${BG.black.cls}`}>
+        <figure className="max-w-6xl mx-auto grid lg:grid-cols-[13rem_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
+          <Star bg="black" className="w-20 md:w-48" />
+          <blockquote>
+            {lead && <span data-reveal className="block font-script-readable text-[var(--color-brand-pink)] text-5xl md:text-7xl leading-none md:-ml-2">{lead}</span>}
+            <span data-lines className={`block ${TITLE} text-4xl md:text-6xl xl:text-7xl mt-3`}>
+              {mainHead} <span className="text-[var(--color-brand-gold)]">{mainGold}</span>
             </span>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-[var(--color-brand-black)] mb-6">
-              {t("aboutPage.heroTitlePart1")}<br />
-              <span className="italic font-bold text-[var(--color-brand-pink)]">{t("aboutPage.heroTitlePart2")}</span>
-            </h1>
-            <p className="font-body text-gray-700 text-base md:text-lg leading-relaxed font-medium max-w-xl mx-auto md:mx-0">
-              {t("aboutPage.heroSubtitle")}
-            </p>
-          </div>
+          </blockquote>
+        </figure>
+      </Scene>
 
-          {/* Right: Katherine Second Photo with offset frame */}
-          <div className="relative h-[350px] md:h-[450px] lg:h-[500px] w-full max-w-[400px] mx-auto flex justify-center">
-            {/* Offset Gold Border Frame */}
-            <div className="absolute inset-0 border border-[var(--color-brand-gold)] top-6 bottom-0 left-0 right-6 z-0 hidden md:block rounded-2xl" />
-            
-            <div className="relative w-full h-full z-10 rounded-[2rem] overflow-hidden shadow-elevated border-4 border-white bg-white">
-              <Image
-                src="/images/KT_About_Hero.webp"
-                alt="Katherine Velasquez — Estratega 360 e Ingeniera Civil"
-                fill
-                sizes="(max-width: 768px) 100vw, 400px"
-                className="object-cover object-[center_25%]"
-                priority
-              />
+      {/* 06 gold builds: Mango Creative in three ruled columns */}
+      <Scene className={`${SECTION} ${BG.gold.cls}`}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-start justify-between gap-8">
+            <div>
+              <Label bg="gold">06</Label>
+              <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8 max-w-4xl`}>{s("ch6Title")}</h2>
             </div>
+            <Star bg="gold" className="hidden md:block w-14 shrink-0" />
           </div>
-
-        </div>
-      </section>
-
-      {/* CHAPTER 1: RAÍCES E INDEPENDENCIA (White Card style) */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-8 md:px-16 rounded-[3.5rem] bg-white border border-gray-100 shadow-soft relative overflow-hidden">
-            <div className="max-w-4xl mx-auto relative z-10 grid md:grid-cols-5 gap-12 items-center">
-              
-              {/* Year / Chapter Marker */}
-              <div className="md:col-span-2 flex flex-row md:flex-col gap-4 items-baseline md:items-start">
-                <span className="font-heading text-8xl font-black text-[var(--color-brand-gold)] opacity-30 select-none leading-none">01</span>
-                <div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-[var(--color-brand-black)] leading-tight">
-                    {t("aboutPage.ch1Title")}
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[var(--color-brand-gold)] mt-4 hidden md:block" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="md:col-span-3">
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                  {t("aboutPage.ch1Text")}
-                </p>
-              </div>
-
-            </div>
+          <div data-stagger className="grid md:grid-cols-3 gap-0 mt-14 md:mt-20 border-t border-[var(--color-brand-black)]">
+            {["ch6Text1", "ch6Text2", "ch6Text3"].map((k, i) => (
+              <p key={k} className={`${BODY} pt-6 pb-6 md:pb-0 md:pr-8 ${i > 0 ? "md:pl-8 md:border-l border-t md:border-t-0 border-[var(--color-brand-black)]/30" : ""}`}>{s(k)}</p>
+            ))}
+          </div>
+          {/* Mango Creative Studio: the black mango and a link to the agency's site */}
+          <div data-reveal className="mt-12 md:mt-16 pt-10 border-t border-[var(--color-brand-black)] flex flex-wrap items-center gap-6 md:gap-8">
+            <a href={language === "es" ? "https://mangocreativestudio.com/es/" : "https://mangocreativestudio.com/"} target="_blank" rel="noopener noreferrer" aria-label="Mango Creative Studio">
+              <img src="/images/mango-mark-black.svg" alt="" className="w-12 md:w-14 h-auto" />
+            </a>
+            <KtCta href={language === "es" ? "https://mangocreativestudio.com/es/" : "https://mangocreativestudio.com/"} tone="dark">{language === "es" ? "Ver el sitio de Mango Creative" : "Visit Mango Creative"}</KtCta>
           </div>
         </div>
-      </ScrollReveal>
+      </Scene>
 
-      {/* CHAPTER 2: LA MARATÓN ACADÉMICA (Warm Gold Light Card style) */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-8 md:px-16 rounded-[3.5rem] bg-[var(--color-brand-gold-light)] border border-[var(--color-brand-gold-light)] shadow-soft relative overflow-hidden">
-            <div className="max-w-4xl mx-auto relative z-10 grid md:grid-cols-5 gap-12 items-center">
-              
-              {/* Year / Chapter Marker */}
-              <div className="md:col-span-2 flex flex-row md:flex-col gap-4 items-baseline md:items-start">
-                <span className="font-heading text-8xl font-black text-[var(--color-brand-pink)] opacity-35 select-none leading-none">02</span>
-                <div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-[var(--color-brand-black)] leading-tight">
-                    {t("aboutPage.ch2Title")}
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[var(--color-brand-pink)] mt-4 hidden md:block" />
-                </div>
-              </div>
+      {/* 07 white: a travel photo in the frame, the travelers' question as a large quote */}
+      <Scene className={`${SECTION} ${BG.white.cls}`}>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-14 lg:gap-24 items-center">
+          <div>
+            <Label bg="white">07</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{s("ch7Title")}</h2>
+            <Rule bg="white" className="mt-10 mb-10" />
+            <p data-reveal className={`${BODY} ${BG.white.sub}`}>{s("ch7Text1")}</p>
+            <figure data-reveal className="mt-12">
+              <Label bg="white">{language === "es" ? "Pregunta Típica" : "Typical Question"}</Label>
+              <blockquote className="text-2xl md:text-[2rem] leading-[1.25] tracking-[-0.01em] mt-5 [text-wrap:balance]">{s("ch7Dialog")}</blockquote>
+            </figure>
+            <p data-reveal className={`${BODY} ${BG.white.sub} mt-12`}>{s("ch7Text2")}</p>
+          </div>
+          <KFrame bg="white" src="/images/gallery/KT_Gallery_07.webp" alt="Katherine Velasquez caminando frente al Templo Blanco de Chiang Rai, Tailandia" className="aspect-[4/5] w-full max-w-[400px] md:sticky md:top-32" />
+        </div>
+      </Scene>
 
-              {/* Text */}
-              <div className="md:col-span-3 space-y-6">
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                  {t("aboutPage.ch2Text1")}
-                </p>
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium border-l-4 border-l-[var(--color-brand-pink)] pl-6">
-                  {t("aboutPage.ch2Text2")}
-                </p>
-              </div>
-
-            </div>
+      {/* GALLERY on black: travel photos run edge to edge */}
+      <Scene className={`py-24 md:py-32 ${BG.black.cls}`}>
+        <div className="max-w-6xl mx-auto px-6 md:px-16 grid lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] gap-10 lg:gap-24 items-end mb-14 md:mb-20">
+          <div>
+            <Label bg="black">{s("galleryTag")}</Label>
+            <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl mt-8`}>{galleryLead}</h2>
+            {galleryAccent && <p data-reveal className="font-script text-[var(--color-brand-pink)] text-6xl md:text-8xl leading-none mt-1">{galleryAccent}</p>}
+          </div>
+          <div>
+            <Rule bg="black" className="mb-6" />
+            <p data-reveal className={`${BODY} ${BG.black.sub}`}>{s("gallerySubtitle")}</p>
           </div>
         </div>
-      </ScrollReveal>
-
-      {/* CHAPTER 3: EL CHOQUE Y LA QUIEBRA (Immersive Dark-Mode Card style) */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-8 md:px-16 rounded-[3.5rem] bg-[var(--color-brand-black)] text-white border border-gray-900 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--color-brand-pink)]/5 blur-3xl z-0 pointer-events-none" />
-            
-            <div className="max-w-4xl mx-auto relative z-10 grid md:grid-cols-5 gap-12 items-center">
-              
-              {/* Title / Chapter */}
-              <div className="md:col-span-2 flex flex-row md:flex-col gap-4 items-baseline md:items-start">
-                <span className="font-heading text-8xl font-black text-[var(--color-brand-pink)] opacity-20 select-none leading-none">03</span>
-                <div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-white leading-tight">
-                    {t("aboutPage.ch3Title")}
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[var(--color-brand-pink)] mt-4 hidden md:block" />
-                </div>
+        <div className="relative w-full overflow-hidden">
+          <div className="flex gap-3 gallery-marquee-track w-max">
+            {[...galleryPhotos, ...galleryPhotos].map((photo, idx) => (
+              <div
+                key={`${photo.src}-${idx}`}
+                className="shrink-0 relative overflow-hidden rounded-xl bg-white/5 aspect-[4/5] w-[calc(100vw-5rem)] sm:w-[calc((100vw-4rem)/2)] md:w-[calc((100vw-10rem)/3)] xl:w-[320px]"
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={`object-cover ${photo.src.endsWith("KT_Gallery_11.webp") ? "object-left" : "object-center"}`}
+                />
               </div>
+            ))}
+          </div>
+        </div>
+      </Scene>
 
-              {/* Text & Climax Quote */}
-              <div className="md:col-span-3 space-y-8">
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-300 font-medium">
-                  {t("aboutPage.ch3Text")}
-                </p>
-                
-                <div className="w-full h-[1px] bg-gray-800" />
-                
-                <h3 className="font-heading italic text-3xl md:text-4xl lg:text-5xl text-[var(--color-brand-pink)] leading-[1.1] tracking-tight font-bold">
-                  &ldquo;{t("aboutPage.ch3Callout")}&rdquo;
-                </h3>
-              </div>
-
+      {/* 08 gold builds: the payoff, ending on a black label */}
+      <Scene className={`${SECTION} md:py-44 ${BG.gold.cls}`}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-start justify-between gap-8">
+            <div>
+              <Label bg="gold">08</Label>
+              <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-8xl lg:text-[7rem] mt-8`}>{s("ch8Title")}</h2>
+            </div>
+            <Star bg="gold" className="w-12 md:w-20 shrink-0" />
+          </div>
+          <Rule bg="gold" className="mt-10 mb-12" />
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+            <p data-reveal className="text-xl md:text-2xl leading-[1.45] font-medium">{s("ch8Text1")}</p>
+            <div>
+              <p data-reveal className={`${BODY} ${BG.gold.sub} mb-10`}>{s("ch8Text2")}</p>
+              <p data-reveal className="inline-block bg-[var(--color-brand-black)] text-white px-5 py-3 text-sm md:text-base font-bold uppercase tracking-[0.2em]">{s("ch8Text3")}</p>
             </div>
           </div>
         </div>
-      </ScrollReveal>
+      </Scene>
 
-      {/* CHAPTER 4: RESILIENCIA DESDE CERO (Soft Pink Light Card style) */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-8 md:px-16 rounded-[3.5rem] bg-[var(--color-brand-pink-light)] border border-[var(--color-brand-pink-light)] shadow-soft relative overflow-hidden">
-            <div className="max-w-4xl mx-auto relative z-10 grid md:grid-cols-5 gap-12 items-center">
-              
-              {/* Year / Chapter Marker */}
-              <div className="md:col-span-2 flex flex-row md:flex-col gap-4 items-baseline md:items-start">
-                <span className="font-heading text-8xl font-black text-[var(--color-brand-gold)] opacity-35 select-none leading-none">04</span>
-                <div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-[var(--color-brand-black)] leading-tight">
-                    {t("aboutPage.ch4Title")}
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[var(--color-brand-gold)] mt-4 hidden md:block" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="md:col-span-3">
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium bg-white p-8 rounded-[2rem] border border-white shadow-soft">
-                  {t("aboutPage.ch4Text")}
-                </p>
-              </div>
-
-            </div>
+      {/* CALL TO ACTION on pink: all black, black star, black button, no logo */}
+      <Scene className={`${SECTION} md:py-40 ${BG.pink.cls}`}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-12 md:gap-24 items-center">
+          <div>
+            <Star bg="pink" className="w-12 md:w-16 mb-10" />
+            <h2 data-lines className={`${TITLE} text-[13vw] sm:text-6xl md:text-[min(5rem,4.9vw)] whitespace-nowrap`}>{ctaLead}</h2>
+            {ctaAccent && <p data-reveal className="font-script text-[var(--color-brand-black)] text-6xl md:text-8xl leading-none mt-1 md:ml-16">{ctaAccent}</p>}
+          </div>
+          <div>
+            <p data-reveal className={`${BODY} ${BG.pink.sub}`}>{s("ctaText1")}</p>
+            <p data-reveal className={`${BODY} ${BG.pink.sub} mt-6 border-l-[3px] border-[var(--color-brand-black)] pl-5`}>{s("ctaText2")}</p>
+            <div data-reveal className="mt-10"><KtCta href={WHATSAPP}>{s("ctaButton")}</KtCta></div>
           </div>
         </div>
-      </ScrollReveal>
-
-      {/* CHAPTER 5: EMIGRAR DE GOLPE & GESTIÓN DE RIESGO (White Card style) */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-8 md:px-16 rounded-[3.5rem] bg-white border border-gray-100 shadow-soft relative overflow-hidden">
-            <div className="max-w-4xl mx-auto relative z-10 grid md:grid-cols-5 gap-12 items-center">
-              
-              {/* Year / Chapter Marker */}
-              <div className="md:col-span-2 flex flex-row md:flex-col gap-4 items-baseline md:items-start">
-                <span className="font-heading text-8xl font-black text-[var(--color-brand-pink)] opacity-30 select-none leading-none">05</span>
-                <div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-[var(--color-brand-black)] leading-tight">
-                    {t("aboutPage.ch5Title")}
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[var(--color-brand-pink)] mt-4 hidden md:block" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="md:col-span-3 space-y-8">
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                  {t("aboutPage.ch5Text")}
-                </p>
-                
-                {/* Quote Block inside Card */}
-                <div className="border-2 border-[var(--color-brand-gold)] bg-[var(--color-brand-cream)] rounded-[2.5rem] p-8 md:p-10 relative shadow-sm text-center">
-                  <span className="absolute -top-4 left-8 font-heading text-6xl text-[var(--color-brand-gold)] leading-none select-none">&ldquo;</span>
-                  <p className="font-heading italic text-xl md:text-2xl text-[var(--color-brand-black)] leading-relaxed relative z-10">
-                    {t("aboutPage.ch5Quote")}
-                  </p>
-                  <span className="absolute -bottom-10 right-8 font-heading text-6xl text-[var(--color-brand-gold)] leading-none select-none">&rdquo;</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
-
-      {/* CHAPTER 6: LAS CHOCOAVENTURAS Y MANGO CREATIVE (Warm Gold Light Card style) */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-8 md:px-16 rounded-[3.5rem] bg-[var(--color-brand-gold-light)] border border-[var(--color-brand-gold-light)] shadow-soft relative overflow-hidden">
-            <div className="max-w-4xl mx-auto relative z-10 grid md:grid-cols-5 gap-12 items-center">
-              
-              {/* Year / Chapter Marker */}
-              <div className="md:col-span-2 flex flex-row md:flex-col gap-4 items-baseline md:items-start">
-                <span className="font-heading text-8xl font-black text-[var(--color-brand-gold)] opacity-35 select-none leading-none">06</span>
-                <div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-[var(--color-brand-black)] leading-tight">
-                    {t("aboutPage.ch6Title")}
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[var(--color-brand-gold)] mt-4 hidden md:block" />
-                </div>
-              </div>
-
-              {/* Multi-paragraph content */}
-              <div className="md:col-span-3 space-y-6">
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                  {t("aboutPage.ch6Text1")}
-                </p>
-                <div className="w-12 h-[1px] bg-gray-300 opacity-60" />
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                  {t("aboutPage.ch6Text2")}
-                </p>
-                <div className="w-12 h-[1px] bg-gray-300 opacity-60" />
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                  {t("aboutPage.ch6Text3")}
-                </p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
-
-      {/* CHAPTER 7: LA PREGUNTA DE LOS VIAJEROS (White Card style) */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-8 md:px-16 rounded-[3.5rem] bg-white border border-gray-100 shadow-soft relative overflow-hidden">
-            <div className="max-w-4xl mx-auto relative z-10 grid md:grid-cols-5 gap-12 items-center">
-              
-              {/* Year / Chapter Marker */}
-              <div className="md:col-span-2 flex flex-row md:flex-col gap-4 items-baseline md:items-start">
-                <span className="font-heading text-8xl font-black text-[var(--color-brand-pink)] opacity-30 select-none leading-none">07</span>
-                <div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-[var(--color-brand-black)] leading-tight">
-                    {t("aboutPage.ch7Title")}
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[var(--color-brand-pink)] mt-4 hidden md:block" />
-                </div>
-              </div>
-
-              {/* Messenger-style dialogue block & description */}
-              <div className="md:col-span-3 space-y-8">
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                  {t("aboutPage.ch7Text1")}
-                </p>
-
-                {/* Dialogue Box */}
-                <div className="bg-[var(--color-brand-pink-light)]/40 rounded-3xl p-6 md:p-8 shadow-soft border border-[var(--color-brand-pink-light)]/60 max-w-md relative border-l-4 border-l-[var(--color-brand-gold)]">
-                  <span className="absolute -top-3 left-6 text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2 py-0.5 rounded-full border border-gray-100">
-                    {language === "es" ? "Pregunta Típica" : "Typical Question"}
-                  </span>
-                  <p className="font-heading italic text-lg md:text-xl text-[var(--color-brand-black)] leading-relaxed mt-2">
-                    {t("aboutPage.ch7Dialog")}
-                  </p>
-                </div>
-
-                <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                  {t("aboutPage.ch7Text2")}
-                </p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
-
-      {/* TRAVEL GALLERY: LA VIDA DETRÁS DE LA ESTRATEGIA */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-6 md:px-16 rounded-[3.5rem] bg-white border border-gray-100 shadow-soft relative overflow-hidden">
-            <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--color-brand-black)] mb-6 bg-[var(--color-brand-pink-light)] w-max px-4 py-1.5 rounded-full mx-auto inline-block shadow-soft">
-                {t("aboutPage.galleryTag")}
-              </span>
-              <h2 className="font-heading italic text-3xl md:text-4xl lg:text-5xl text-[var(--color-brand-black)] mb-6 leading-tight">
-                {t("aboutPage.galleryTitle")}
-              </h2>
-              <p className="font-body text-gray-700 text-base md:text-lg leading-relaxed font-medium max-w-2xl mx-auto">
-                {t("aboutPage.gallerySubtitle")}
-              </p>
-              <div className="w-16 h-[2px] bg-[var(--color-brand-gold)] mx-auto mt-8" />
-            </div>
-
-            {/* Smooth Infinite Marquee */}
-            <div className="relative w-full overflow-hidden py-4">
-              {/* Fade masks (hidden on mobile, subtle on desktop) */}
-              <div className="hidden sm:block absolute top-0 bottom-0 left-0 w-8 md:w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-              <div className="hidden sm:block absolute top-0 bottom-0 right-0 w-8 md:w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-              <div className="flex gap-4 gallery-marquee-track w-max">
-                {[...galleryPhotos, ...galleryPhotos].map((photo, idx) => (
-                  <div
-                    key={`${photo.src}-${idx}`}
-                    className="shrink-0 relative rounded-[2rem] overflow-hidden shadow-soft border border-gray-100 group aspect-[4/5] w-[calc(100vw-5rem)] sm:w-[calc((100vw-4rem)/2)] md:w-[calc((100vw-10rem)/3)] xl:w-[320px] bg-gray-50"
-                  >
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className={`object-cover transition-transform duration-700 group-hover:scale-105 ${photo.src.endsWith("KT_Gallery_11.webp") ? "object-left" : "object-center"}`}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
-
-      {/* CHAPTER 8: NACE ESTRATEGIA 360 (Soft Pink Light Card style) */}
-      <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 my-8">
-          <div className="py-16 md:py-24 px-8 md:px-16 rounded-[3.5rem] bg-[var(--color-brand-pink-light)] border border-[var(--color-brand-pink-light)] shadow-soft relative overflow-hidden">
-            <div className="max-w-4xl mx-auto relative z-10 grid md:grid-cols-5 gap-12 items-center">
-              
-              {/* Year / Chapter Marker */}
-              <div className="md:col-span-2 flex flex-row md:flex-col gap-4 items-baseline md:items-start">
-                <span className="font-heading text-8xl font-black text-[var(--color-brand-gold)] opacity-25 select-none leading-none">08</span>
-                <div>
-                  <h2 className="font-heading italic text-2xl md:text-3xl text-[var(--color-brand-black)] leading-tight">
-                    {t("aboutPage.ch8Title")}
-                  </h2>
-                  <div className="w-12 h-[2px] bg-[var(--color-brand-gold)] mt-4 hidden md:block" />
-                </div>
-              </div>
-
-              {/* Climax Container Card inside Card */}
-              <div className="md:col-span-3">
-                <div className="bg-white border-2 border-[var(--color-brand-gold)] rounded-[2.5rem] p-8 md:p-10 shadow-soft space-y-6">
-                  <p className="font-body text-base md:text-lg leading-relaxed text-gray-800 font-bold">
-                    {t("aboutPage.ch8Text1")}
-                  </p>
-                  <div className="w-16 h-[2px] bg-[var(--color-brand-pink)]" />
-                  <p className="font-body text-sm md:text-base leading-relaxed text-gray-700 font-medium">
-                    {t("aboutPage.ch8Text2")}
-                  </p>
-                  <div className="pt-2">
-                    <span className="text-lg font-heading font-black uppercase tracking-[0.2em] text-[var(--color-brand-black)] border-b-2 border-b-[var(--color-brand-gold)] pb-1">
-                      {t("aboutPage.ch8Text3")}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
-
-      {/* CALL TO ACTION: PERSONAL COFFEE CHAT */}
-      <ScrollReveal>
-        <section className="py-24 px-6 md:px-16 bg-[var(--color-brand-gold-light)] relative overflow-hidden">
-          <div className="absolute top-1/2 -left-24 w-60 h-60 rounded-full bg-[var(--color-brand-pink-light)] opacity-40 blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 -right-24 w-80 h-80 rounded-full bg-white opacity-35 blur-3xl pointer-events-none" />
-
-          <div className="max-w-3xl mx-auto relative z-10 text-center">
-            
-            <h2 className="font-heading italic text-4xl md:text-6xl text-[var(--color-brand-black)] mb-8">
-              {t("aboutPage.ctaTitle")}
-            </h2>
-
-            <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-elevated border border-gray-100 space-y-8 text-left">
-              <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                {t("aboutPage.ctaText1")}
-              </p>
-              
-              <p className="font-body text-base md:text-lg leading-relaxed text-gray-700 font-medium border-l-4 border-l-[var(--color-brand-pink)] pl-6 italic">
-                {t("aboutPage.ctaText2")}
-              </p>
-
-              <div className="pt-6">
-                <Link 
-                  href="https://wa.me/573216154870?text=Hola%20Kathe%2C%20le%C3%AD%20tu%20historia%20en%20sobre-mi%20y%20me%20encantar%C3%ADa%20que%20nos%20tomemos%20un%20caf%C3%A9%20para%20hablar%20de%20negocios%20%3A%29" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="block w-full bg-[var(--color-brand-gold)] border-2 border-[var(--color-brand-black)] text-[var(--color-brand-black)] px-10 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[var(--color-brand-gold-light)] transition-colors shadow-none text-center cursor-pointer font-body"
-                >
-                  {t("aboutPage.ctaButton")}
-                </Link>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      </ScrollReveal>
+      </Scene>
 
       <Footer />
     </div>
