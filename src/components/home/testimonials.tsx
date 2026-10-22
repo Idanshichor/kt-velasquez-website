@@ -10,9 +10,11 @@ export function Testimonials() {
 
   const testimonials = [
     {
-      text: "I had an excellent experience working with Katherine on design and marketing. I highly recommend her for her creativity and flexibility.",
+      text: language === "es"
+        ? "Tuve una excelente experiencia trabajando con Katherine en diseño y marketing. La recomiendo totalmente por su creatividad y su flexibilidad."
+        : "I had an excellent experience working with Katherine on design and marketing. I highly recommend her for her creativity and flexibility.",
       name: "Hilit Hochman",
-      role: "Marketing VP, BioChange",
+      role: language === "es" ? "VP de Marketing, BioChange" : "Marketing VP, BioChange",
     },
     {
       text: language === "es"
