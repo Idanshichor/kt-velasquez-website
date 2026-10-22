@@ -18,13 +18,11 @@
   --font-script-readable: var(--font-playball), cursive;
 }
 
-html { overflow-x: clip; }
-
 body {
   background-color: var(--color-brand-cream);
   color: var(--color-brand-black);
   font-family: var(--font-body);
-  overflow-x: hidden;
+  overflow-x: clip; /* clip, not hidden: hidden turns body into a scroll box and breaks sticky + ScrollTrigger */
 }
 
 ::selection {
