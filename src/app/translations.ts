@@ -210,7 +210,7 @@ export const translations = {
       ch8Text3: "Así nació KT. VELASQUEZ.",
       ctaTitle: "Hablemos Claro",
       ctaText1: "En cada etapa de mi vida tuve la oportunidad de tomar el camino 'seguro' de un empleo tradicional, pero siempre seguí mi pasión por el emprendimiento. ¿Por qué? Esa historia se las comparto cuando me inviten a un podcast.",
-      ctaText2: "No te cuento todo esto para que veas qué tan triste fue mi historia, hubieron también cosas maravillosas. Te lo cuento porque si te identificas con alguna de mis etapas y decides contar la tuya, estoy aquí para que nos sentemos, nos tomemos un café y hablemos como si estuviéramos en la sala de tu casa hablando regias e intergalácticas pero sin pelos en la lengua.",
+      ctaText2: "No te cuento todo esto para que veas qué tan triste fue mi historia, hubieron también cosas maravillosas. Te lo cuento porque si te identificas con alguna de mis etapas y decides dar el paso, estoy aquí para acompañarte. Elegiremos juntos el servicio que va contigo, nos tomaremos un café y empezaremos a ordenar tu proyecto con toda la energía y actitud.",
       ctaButton: "Inscríbete aquí y hablemos"
     },
     testimonials: {
@@ -512,7 +512,7 @@ export const translations = {
       ch8Text3: "That's how KT. VELASQUEZ was born.",
       ctaTitle: "Let's Talk Straight",
       ctaText1: "At every stage of my life, I had the chance to take the 'safe' path of a traditional job, but I always followed my passion for entrepreneurship. Why? That story I will share when you invite me to a podcast.",
-      ctaText2: "I don't tell you all this to make you see how sad my story was—there were also wonderful things. I tell you this because if you identify with any of my stages and decide to tell yours, I am here for us to sit down, have coffee, and talk as if we were sitting in your living room talking 'regias' and 'intergalácticas', but completely unfiltered.",
+      ctaText2: "I don't tell you all this to make you see how sad my story was—there were also wonderful things. I tell you this because if you identify with any of my stages and decide to take the step, I'm here to walk with you. Together we'll choose the service that fits you, have a coffee, and start organizing your project with all the energy and attitude.",
       ctaButton: "Apply here and let's talk"
     },
     testimonials: {
