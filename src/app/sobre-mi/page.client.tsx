@@ -122,7 +122,7 @@ export default function AboutPageClient() {
               fill
               sizes="100vw"
               quality={90}
-              className="object-cover object-[42%_top] lg:hidden"
+              className="object-cover object-[10%_top] lg:hidden"
               priority
             />
             {/* Smaller desktops get a tighter crop so she stays on the right, clear of the words */}
