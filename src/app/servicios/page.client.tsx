@@ -98,7 +98,7 @@ export default function ServicesPageClient() {
             <div className="relative aspect-[4/5] w-full max-w-sm mx-auto lg:max-w-none">
               <div aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 rounded-[32px] border border-white opacity-60" />
               <div className="relative w-full h-full rounded-[32px] overflow-hidden">
-                <Image src="/images/KTSecondPhoto.webp" alt="Katherine Velasquez" fill sizes="(min-width: 1024px) 24rem, 90vw" className="object-cover" priority />
+                <Image src="/images/KTSecondPhoto.webp" alt="Katherine Velasquez con blazer blanco, sentada en un estudio" fill sizes="(min-width: 1024px) 24rem, 90vw" className="object-cover" priority />
               </div>
               <KtStar className="absolute -top-5 -left-5 w-10 h-10 text-[var(--color-brand-gold)]" />
             </div>
@@ -205,7 +205,7 @@ export default function ServicesPageClient() {
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] gap-12 lg:gap-24 items-start">
             <div>
               <a href={MANGO.href} target="_blank" rel="noopener noreferrer" className="inline-block mb-10 group" aria-label="Mango Creative Studio">
-                <img src="/images/mango-mark.svg" alt="" className="w-14 md:w-16 h-auto transition-transform duration-500 group-hover:-rotate-6" />
+                <img src="/images/mango-mark.svg" alt="" width={64} height={99} className="w-14 md:w-16 h-auto transition-transform duration-500 group-hover:-rotate-6" />
               </a>
               <h2 className="[font-family:var(--font-mango-cooper)] text-4xl md:text-6xl leading-[1.05] mb-8 [text-wrap:balance]">{MANGO.title}</h2>
               <p className="text-lg md:text-xl font-bold leading-snug">{MANGO.question}</p>

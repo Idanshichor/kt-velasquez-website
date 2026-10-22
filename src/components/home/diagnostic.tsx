@@ -61,7 +61,7 @@ export function Diagnostic() {
 
           <div data-mask className="kt-card relative w-full h-full z-10 overflow-hidden rounded-[2rem]">
             <div data-mask-img className="absolute inset-0">
-              <Image src="/images/KT_Studio_Grey.webp" alt="Katherine Velasquez" fill sizes="(max-width: 768px) 100vw, 50vw" quality={90} className="object-cover object-[center_40%]" />
+              <Image src="/images/KT_Studio_Grey.webp" alt="Katherine Velasquez sonriendo, con conjunto gris, en un estudio" fill sizes="(max-width: 768px) 100vw, 50vw" quality={90} className="object-cover object-[center_40%]" />
             </div>
           </div>
         </div>

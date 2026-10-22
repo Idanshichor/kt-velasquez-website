@@ -118,7 +118,7 @@ export default function AboutPageClient() {
             {/* Phones and tablets: the tall original, so her whole figure fits. Desktop: the wide version. */}
             <Image
               src="/images/KT_Stool_Portrait.webp"
-              alt="Katherine Velasquez — Estratega 360 e Ingeniera Civil"
+              alt="Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"
               fill
               sizes="100vw"
               quality={90}
@@ -128,7 +128,7 @@ export default function AboutPageClient() {
             {/* Smaller desktops get a tighter crop so she stays on the right, clear of the words */}
             <Image
               src="/images/KT_Stool_Hero_Md.webp"
-              alt=""
+              alt="Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"
               fill
               sizes="100vw"
               quality={90}
@@ -137,7 +137,7 @@ export default function AboutPageClient() {
             />
             <Image
               src="/images/KT_Stool_Hero.webp"
-              alt=""
+              alt="Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"
               fill
               sizes="100vw"
               quality={90}
@@ -202,7 +202,7 @@ export default function AboutPageClient() {
       {/* 04 pink recovers: everything black, framed studio photo with a black outline */}
       <Scene className={`${SECTION} ${BG.pink.cls}`}>
         <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-14 xl:gap-24 items-center">
-          <KFrame bg="pink" src="/images/KT_Studio_Seated.webp" alt="Katherine Velasquez" pos="center 40%" className="aspect-[4/5] w-full max-w-[400px]" />
+          <KFrame bg="pink" src="/images/KT_Studio_Seated.webp" alt="Katherine Velasquez riendo, sentada en un banco de estudio" pos="center 40%" className="aspect-[4/5] w-full max-w-[400px]" />
           <div>
             <Label bg="pink">04</Label>
             <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl fit-chapter mt-8`}>{s("ch4Title")}</h2>
@@ -253,7 +253,7 @@ export default function AboutPageClient() {
           {/* Mango Creative Studio: the black mango and a link to the agency's site */}
           <div data-reveal className="mt-12 md:mt-16 pt-10 border-t border-[var(--color-brand-black)] flex flex-wrap items-center gap-6 md:gap-8">
             <a href={language === "es" ? "https://mangocreativestudio.com/es/" : "https://mangocreativestudio.com/"} target="_blank" rel="noopener noreferrer" aria-label="Mango Creative Studio">
-              <img src="/images/mango-mark-black.svg" alt="" className="w-12 md:w-14 h-auto" />
+              <img src="/images/mango-mark-black.svg" alt="" width={56} height={87} className="w-12 md:w-14 h-auto" />
             </a>
             <KtCta href={language === "es" ? "https://mangocreativestudio.com/es/" : "https://mangocreativestudio.com/"} tone="dark">{language === "es" ? "Ver el sitio de Mango Creative" : "Visit Mango Creative"}</KtCta>
           </div>

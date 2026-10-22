@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 import AboutPageClient from "./page.client";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Quién es Katherine Velasquez — Mi Historia | Estratega 360",
   description: "Conoce la historia, trayectoria e hitos de Katherine Velasquez. De ingeniera civil y emprendedora a estratega de negocios y marcas personales.",
-  alternates: {
-    canonical: "https://www.ktvelasquez.com/sobre-mi",
-  },
-};
+  path: "/sobre-mi",
+});
 
 export default function AboutPage() {
   const jsonLd = {
@@ -15,27 +14,27 @@ export default function AboutPage() {
     "@graph": [
       {
         "@type": "ProfilePage",
-        "@id": "https://www.ktvelasquez.com/sobre-mi/#profile",
-        "url": "https://www.ktvelasquez.com/sobre-mi",
+        "@id": `${SITE_URL}/sobre-mi/#profile`,
+        "url": `${SITE_URL}/sobre-mi`,
         "mainEntity": {
-          "@id": "https://www.ktvelasquez.com/#person"
+          "@id": `${SITE_URL}/#person`
         }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://www.ktvelasquez.com/sobre-mi/#breadcrumb",
+        "@id": `${SITE_URL}/sobre-mi/#breadcrumb`,
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Inicio",
-            "item": "https://www.ktvelasquez.com"
+            "item": `${SITE_URL}`
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Sobre Mí",
-            "item": "https://www.ktvelasquez.com/sobre-mi"
+            "item": `${SITE_URL}/sobre-mi`
           }
         ]
       }

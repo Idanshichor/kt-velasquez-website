@@ -45,7 +45,8 @@ export function Marquee() {
   );
 
   return (
-    <div className="relative overflow-hidden py-6 md:py-8 bg-[var(--color-brand-pink-dark)] border-y-[1.5px] border-[var(--color-brand-black)]" aria-label={items.join(", ")}>
+    <div className="relative overflow-hidden py-6 md:py-8 bg-[var(--color-brand-pink-dark)] border-y-[1.5px] border-[var(--color-brand-black)]">
+      <span className="sr-only">{items.join(", ")}</span>
       <div ref={track} className="flex w-max will-change-transform" aria-hidden="true">
         {run}
         {run}

@@ -26,7 +26,7 @@ export function Navbar() {
       <Link href="/" className="flex items-center shrink-0 z-50">
         <Image
           src="/images/KT_LOGO.webp"
-          alt="Katherine Velasquez Logo"
+          alt="Logo de Katherine Velasquez"
           width={350}
           height={120}
           className="h-12 md:h-16 lg:h-20 w-auto object-contain"
@@ -54,15 +54,15 @@ export function Navbar() {
         <button
           onClick={toggleLanguage}
           className="flex items-center bg-gray-100 border border-gray-200 rounded-full p-1 transition-all relative w-[68px] h-9 cursor-pointer shadow-inner shrink-0"
-          aria-label="Change language"
         >
+          <span className="sr-only">{language === "es" ? "Cambiar idioma" : "Change language"}</span>
           <div
             className={`absolute top-0.5 bottom-0.5 w-[30px] rounded-full bg-[var(--color-brand-black)] transition-all duration-300 ${
               language === "en" ? "left-[34px]" : "left-1"
             }`}
           />
-          <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "es" ? "text-white" : "text-gray-400"}`}>ES</span>
-          <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "en" ? "text-white" : "text-gray-400"}`}>EN</span>
+          <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "es" ? "text-white" : "text-gray-600"}`}>ES</span>
+          <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "en" ? "text-white" : "text-gray-600"}`}>EN</span>
         </button>
 
         <Link href={language === "es" ? "https://wa.me/573216154870?text=Hola%20Kathe%2C%20Quiero%20hablar%20contigo%20sobre%20mi%20proyecto%20%3A%29" : "https://wa.me/573216154870?text=Hi%20Kathe%2C%20I%27d%20like%20to%20talk%20to%20you%20about%20my%20project%20%3A%29"} target="_blank" rel="noopener noreferrer">
@@ -78,15 +78,15 @@ export function Navbar() {
         <button
           onClick={toggleLanguage}
           className="flex items-center bg-gray-100 border border-gray-200 rounded-full p-1 transition-all relative w-[68px] h-9 cursor-pointer shadow-inner shrink-0"
-          aria-label="Change language"
         >
+          <span className="sr-only">{language === "es" ? "Cambiar idioma" : "Change language"}</span>
           <div
             className={`absolute top-0.5 bottom-0.5 w-[30px] rounded-full bg-[var(--color-brand-black)] transition-all duration-300 ${
               language === "en" ? "left-[34px]" : "left-1"
             }`}
           />
-          <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "es" ? "text-white" : "text-gray-400"}`}>ES</span>
-          <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "en" ? "text-white" : "text-gray-400"}`}>EN</span>
+          <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "es" ? "text-white" : "text-gray-600"}`}>ES</span>
+          <span className={`flex-1 text-[10px] font-black uppercase text-center relative z-10 select-none tracking-widest ${language === "en" ? "text-white" : "text-gray-600"}`}>EN</span>
         </button>
 
         {/* Hamburger Toggle */}
