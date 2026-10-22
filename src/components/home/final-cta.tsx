@@ -22,7 +22,7 @@ export function FinalCta() {
 
       <div id="contacto" className="relative z-10 max-w-5xl mx-auto text-center">
         <KtStar className="statement-star w-12 h-12 md:w-16 md:h-16 mx-auto mb-10 text-[var(--color-brand-black)]" />
-        <h2 data-lines className="kt-title text-5xl md:text-7xl lg:text-[6.5rem] mb-8 text-[var(--color-brand-black)]">
+        <h2 data-lines className="kt-title text-[min(3rem,calc((100vw_-_3rem)_/_6))] sm:text-5xl md:text-7xl lg:text-[6.5rem] mb-8 text-[var(--color-brand-black)]">
           {t("cta.title")} <span className="font-script normal-case tracking-normal text-6xl md:text-8xl lg:text-[8.5rem] text-[var(--color-brand-pink-ink)]">{t("cta.accent")}</span> {t("cta.suffix")}
         </h2>
         <p data-reveal className="font-body font-medium mb-12 text-base md:text-xl max-w-2xl mx-auto text-[var(--color-brand-black)]/80 leading-relaxed">

@@ -52,7 +52,7 @@ export function Hero() {
       <div className="relative z-10 w-full flex-1 md:flex-none flex flex-col px-6 md:pl-[6vw] md:pr-0">
         <div className="flex-1 md:flex-none flex flex-col md:block md:w-[56vw] md:max-w-[64rem]">
           <div data-hero-title>
-            <h1 className="font-heading uppercase text-white tracking-[-0.03em] leading-[0.82] text-[3.6rem] sm:text-7xl md:text-[clamp(5rem,10vw,12rem)]">
+            <h1 className="font-heading uppercase text-white tracking-[-0.03em] leading-[0.82] text-[min(3.6rem,calc((100vw_-_3rem)_/_5.4))] sm:text-7xl md:text-[clamp(5rem,10vw,12rem)]">
               <span data-hero-line className="block">{t("hero.katherine")}</span>
               <span data-hero-line className="block font-script normal-case tracking-normal leading-none text-[var(--color-brand-gold)] text-[0.75em] -mt-[0.12em] ml-[1.1em] md:ml-[1.6em]">{t("hero.velasquez")}</span>
               <span className="sr-only">— {t("hero.h1_keyword")}</span>

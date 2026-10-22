@@ -133,10 +133,10 @@ export default function ServicesPageClient() {
           return (
             <div key={s.title}>
               <section id={`servicio-${i + 1}`} className={`scroll-mt-20 py-24 md:py-36 px-6 md:px-16 ${c.cls}`}>
-                <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] gap-14 lg:gap-24 items-start">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] gap-14 lg:gap-24 items-start">
                   <div className="lg:sticky lg:top-28">
                     <p className="text-sm font-bold mb-6">0{i + 1}</p>
-                    <h2 className={`${TITLE} text-4xl md:text-5xl mb-6`}>{s.title}</h2>
+                    <h2 className={`${TITLE} text-[min(2.25rem,calc((100vw_-_3rem)_/_9.2))] sm:text-4xl md:text-5xl mb-6`}>{s.title}</h2>
                     <p className="text-lg md:text-xl font-semibold leading-snug mb-6">{s.tagline}</p>
                     {s.intro.map((p) => <p key={p} className={`${BODY} ${c.sub} mb-4`}>{p}</p>)}
                     <div className="mt-8">
