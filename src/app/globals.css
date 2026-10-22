@@ -114,6 +114,7 @@ html.motion-ok:not(.motion-ready) [data-hero-script] { opacity: 0; }
 
 /* Slow turning stars (statement, orbit, closing CTA) */
 @keyframes kt-turn { to { transform: rotate(360deg); } }
+@keyframes kt-fade { from { opacity: 0; transform: translateY(12px); } }
 @keyframes kt-sway { 0%, 100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.04); } }
 @media (prefers-reduced-motion: no-preference) {
   .statement-star { animation: kt-sway 9s ease-in-out infinite; transform-origin: 50% 50%; }

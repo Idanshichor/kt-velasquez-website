@@ -214,3 +214,11 @@ This log serves as a source of truth for the development, configuration, and des
 - 2026-10-20: /podcast round 4, styled on the brand guide (KT360 Manual de marca v1.3): pink full-screen hero (podcast colour) with the vector logo, black platform pills, star button and the halftone mic shot; black featured-phrase manifesto (Playball lead, gold key words, gold star); white values with the KT photo frame and a numbered list; gold voice band for the manifesto line; black form section. Not pushed yet at round 3 (network), so rounds 3+4 go up together.
 - 2026-10-20: /podcast: platforms moved from the hero to a white logo bar under it (like the home client strip). "Aquí entendemos" band redone: big uppercase line lighting up word by word with black "+" badges between business / digital / mindset, gold star on a black disc, "Sin filtros..." in Playball script.
 - 2026-10-21: /podcast platform bar: title on its own centered row, the five logos in one row under it.
+
+## 2026-10-22: Private client intake form at /empecemos (branch feature/intake-form)
+- New page `src/app/empecemos/` with Katherine's 12 questions, word for word (copy lives in `questions.ts`). Spanish only. noindex/nofollow, left out of the sitemap, no links from the menu or any page.
+- Q9, Q10 and the line after Q10 show only when Q8 = "Tengo un equipo de trabajo." Q8 got two choices (own vs team) so the form can branch; questions renumber so there is no gap.
+- Q6 is multi-select. All answers are required; a missing answer scrolls to the question and says so. Drafts are kept on the device (localStorage) until sent.
+- Sends through `/api/forms` (kind "intake"): one formatted Resend email to katherine@ktvelasquez.com, reply-to the client, no audience add. Falls back to Web3Forms (one field per answer) while RESEND_API_KEY is unset.
+- After sending, the gold "Cierre del formulario" text replaces the form.
+- 2026-10-22 (later): New intake copy from Katherine: 11 questions plus an unnumbered contact block (name, email, WhatsApp, kept so she knows who answered). No more team-only questions (the new options cover solo clients). Q2 and Q5 "Otra..." options open a text box; Q5, Q8, Q10 are multi-select; the "cuéntame" boxes under Q8 and Q9 are optional. Closing now shows its title.
