@@ -24,7 +24,7 @@ export function Navbar() {
       </Link>
 
       {/* Desktop Links */}
-      <div className="hidden md:flex items-center gap-8 lg:gap-12 text-sm font-semibold tracking-widest uppercase text-gray-600">
+      <div className="hidden lg:flex items-center gap-8 lg:gap-12 text-sm font-semibold tracking-widest uppercase text-gray-600">
         <Link href="/" className="hover:text-[var(--color-brand-pink)] transition-colors">{t("nav.inicio")}</Link>
         <Link href="/sobre-mi" className="hover:text-[var(--color-brand-purple)] transition-colors">{t("nav.sobre_mi")}</Link>
         <Link href="/#metodologia" className="hover:text-[var(--color-brand-pink)] transition-colors">{t("nav.metodologia")}</Link>
@@ -33,7 +33,7 @@ export function Navbar() {
       </div>
 
       {/* Desktop Actions */}
-      <div className="hidden md:flex items-center gap-4 lg:gap-6 shrink-0">
+      <div className="hidden lg:flex items-center gap-4 lg:gap-6 shrink-0">
         {/* Sliding Language Toggle */}
         <button
           onClick={toggleLanguage}
@@ -57,7 +57,7 @@ export function Navbar() {
       </div>
 
       {/* Mobile Actions (Language Switch + Hamburger) */}
-      <div className="flex md:hidden items-center gap-3 z-50">
+      <div className="flex lg:hidden items-center gap-3 z-50">
         {/* Sliding Language Toggle */}
         <button
           onClick={toggleLanguage}
@@ -85,7 +85,7 @@ export function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-[var(--color-brand-cream)] flex flex-col pt-12 px-6 pb-6 shadow-xl border-t border-gray-100 md:hidden overflow-y-auto" data-lenis-prevent style={{ height: "calc(100vh - 5rem)" }}>
+        <div className="absolute top-full left-0 w-full bg-[var(--color-brand-cream)] flex flex-col pt-12 px-6 pb-6 shadow-xl border-t border-gray-100 lg:hidden overflow-y-auto" data-lenis-prevent style={{ height: "calc(100vh - 5rem)" }}>
           <div className="flex flex-col gap-8 text-lg font-semibold tracking-widest uppercase text-[var(--color-brand-black)] text-center mb-12">
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>{t("nav.inicio")}</Link>
             <Link href="/sobre-mi" onClick={() => setIsMobileMenuOpen(false)}>{t("nav.sobre_mi")}</Link>

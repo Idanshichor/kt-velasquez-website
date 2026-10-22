@@ -112,8 +112,8 @@ export default function AboutPageClient() {
 
       {/* HERO: full-screen photo of Katherine on the stool (right). A soft shade sits behind the words only:
           from the left on desktop, from the bottom on phones (it stops below her face), so the gold name reads. */}
-      <Scene className="relative min-h-[100svh] flex items-end lg:items-center overflow-hidden bg-[#C9C9C9] text-white">
-        <div data-mask className="absolute inset-0">
+      <Scene className="relative min-h-[100svh] max-lg:landscape:min-h-0 max-lg:landscape:h-[calc(100vw*2344/4590+5rem)] flex items-end lg:items-center max-lg:landscape:items-center overflow-hidden bg-[#C9C9C9] text-white">
+        <div data-mask className="absolute inset-0 max-lg:landscape:top-20">
           <div data-mask-img className="absolute inset-0">
             {/* Phones and tablets: the tall original, so her whole figure fits. Desktop: the wide version. */}
             <Image
@@ -122,7 +122,7 @@ export default function AboutPageClient() {
               fill
               sizes="100vw"
               quality={90}
-              className="object-cover object-[10%_top] lg:hidden"
+              className="object-cover object-[10%_top] lg:hidden max-lg:landscape:hidden"
               priority
             />
             {/* Smaller desktops get a tighter crop so she stays on the right, clear of the words */}
@@ -141,19 +141,19 @@ export default function AboutPageClient() {
               fill
               sizes="100vw"
               quality={90}
-              className="object-cover object-right hidden xl:block"
+              className="object-cover object-right hidden xl:block max-lg:landscape:block max-lg:landscape:object-[right_top]"
               priority
             />
           </div>
-          <div className="absolute inset-x-0 bottom-0 h-[52%] bg-gradient-to-t from-[var(--color-brand-black)]/85 via-[var(--color-brand-black)]/55 to-transparent lg:hidden" />
-          <div className="absolute inset-y-0 left-0 w-[72%] hidden lg:block bg-gradient-to-r from-[var(--color-brand-black)]/80 via-[var(--color-brand-black)]/55 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-[52%] bg-gradient-to-t from-[var(--color-brand-black)]/85 via-[var(--color-brand-black)]/55 to-transparent lg:hidden max-lg:landscape:hidden" />
+          <div className="absolute inset-y-0 left-0 w-[72%] hidden lg:block max-lg:landscape:block bg-gradient-to-r from-[var(--color-brand-black)]/80 via-[var(--color-brand-black)]/55 to-transparent" />
         </div>
 
-        <div className="relative z-10 w-full px-6 md:pl-[6vw] md:pr-16 pb-14 md:pb-20 lg:py-32">
-          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[6.5rem] lg:text-[6.5vw] xl:text-[clamp(5.5rem,9vw,9.5rem)] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
-          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-[3.7rem] lg:text-[3.7vw] xl:text-[clamp(3.1rem,5.1vw,5.4rem)] leading-none mt-2 lg:mt-3">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
-          <p data-reveal className="mt-8 lg:mt-12 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
-          <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md">{s("heroSubtitle")}</p>
+        <div className="relative z-10 w-full px-6 md:pl-[6vw] md:pr-16 pb-14 md:pb-20 lg:py-32 max-lg:landscape:pt-20 max-lg:landscape:pb-0">
+          <h1 data-lines className={`${TITLE} text-[min(4.2rem,calc((100vw-3rem)/5.3))] md:text-[6.5rem] lg:text-[6.5vw] xl:text-[clamp(5.5rem,9vw,9.5rem)] max-lg:landscape:text-[13vh] leading-[0.82] tracking-[-0.03em] text-white`}>{s("heroTitlePart1")}</h1>
+          <p data-reveal className="font-script text-[var(--color-brand-gold)] whitespace-nowrap text-[2.6rem] md:text-[3.7rem] lg:text-[3.7vw] xl:text-[clamp(3.1rem,5.1vw,5.4rem)] max-lg:landscape:text-[7.4vh] leading-none mt-2 lg:mt-3">{(() => { const w = s("heroTitlePart2").split(" "); return <>{w.slice(0, 2).join(" ")}{w.length > 2 && <span className="hidden md:inline"> {w.slice(2).join(" ")}</span>}</>; })()}</p>
+          <p data-reveal className="mt-8 lg:mt-12 max-lg:landscape:mt-4 inline-block bg-[var(--color-brand-pink)] text-[var(--color-brand-black)] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em]">{s("heroTag")}</p>
+          <p data-reveal className="text-white text-base md:text-lg leading-relaxed mt-5 max-w-md max-lg:landscape:text-sm max-lg:landscape:mt-3 max-lg:landscape:max-w-xs">{s("heroSubtitle")}</p>
         </div>
       </Scene>
 
