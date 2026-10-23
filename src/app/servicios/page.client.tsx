@@ -8,7 +8,7 @@ import { FinalCta } from "@/components/home/final-cta";
 import { KtCta, KtStar } from "@/components/home/scrub";
 import { mangoCooper, mangoGothic } from "./mango-fonts";
 import { MangoTags, MANGO_OFFERS } from "@/components/services/mango-tags";
-import { CLARITY, INTRO, MANGO, PACKAGES, SERVICES, whatsapp, type Block } from "@/components/services/services-data";
+import { servicesCopy, whatsapp, type Block } from "@/components/services/services-data";
 import { useLanguage } from "@/context/language-context";
 
 const TITLE = "uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wrap:balance]";
@@ -80,6 +80,7 @@ function ServiceBlock({ block, tone }: { block: Block; tone: Tone }) {
  */
 export default function ServicesPageClient() {
   const { language, t } = useLanguage();
+  const { CLARITY, INTRO, MANGO, PACKAGES, SERVICES } = servicesCopy(language);
   const verMas = language === "es" ? "Ver más" : "See more";
 
   return (
