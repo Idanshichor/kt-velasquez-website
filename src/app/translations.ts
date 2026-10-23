@@ -238,7 +238,8 @@ export const translations = {
       contact_phone: "Teléfono",
       contact_whatsapp: "WhatsApp",
       service_area: "Medellín, Colombia & Remoto Internacional",
-      privacy_policy: "Política de Privacidad"
+      privacy_policy: "Política de Privacidad",
+      payment_methods: "Métodos de pago"
     },
     faqs: [
       {
@@ -540,7 +541,8 @@ export const translations = {
       contact_phone: "Phone",
       contact_whatsapp: "WhatsApp",
       service_area: "Medellin, Colombia & International Remote",
-      privacy_policy: "Privacy Policy"
+      privacy_policy: "Privacy Policy",
+      payment_methods: "Payment methods"
     },
     faqs: [
       {

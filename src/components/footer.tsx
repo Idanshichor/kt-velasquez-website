@@ -5,6 +5,13 @@ import { Web3Form } from "./web3-form";
 import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
 
+const paymentLogos = [
+  { name: "Bancolombia", src: "/images/payments/bancolombia.svg", width: 100, height: 14, className: "h-4" },
+  { name: "PayPal", src: "/images/payments/paypal.svg", width: 1310, height: 440, className: "h-5" },
+  { name: "Wompi", src: "/images/payments/wompi.svg", width: 316, height: 74, className: "h-5" },
+  { name: "Wise", src: "/images/payments/wise.svg", width: 512, height: 214, className: "h-7" },
+];
+
 export function Footer() {
   const { language, t, href } = useLanguage();
 
@@ -94,6 +101,35 @@ export function Footer() {
           </h3>
           <Web3Form subject="Nuevo Suscriptor - Newsletter (Footer)" className="flex flex-col gap-6" variant="footer" />
         </div>
+      </div>
+
+      {/* Payment methods (display only) */}
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center gap-5 md:gap-10 relative z-10">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 shrink-0">
+          {t("footer.payment_methods")}
+        </span>
+        <ul className="flex flex-wrap items-center gap-x-8 gap-y-5">
+          {paymentLogos.map((logo) => (
+            <li key={logo.name}>
+              <Image
+                src={logo.src}
+                alt={logo.name}
+                width={logo.width}
+                height={logo.height}
+                unoptimized
+                className={`${logo.className} w-auto object-contain brightness-0 invert opacity-60`}
+              />
+            </li>
+          ))}
+          <li>
+            <span
+              aria-label={language === "en" ? "ACH bank transfer" : "Transferencia ACH"}
+              className="inline-flex items-center h-6 px-2 border border-white/60 rounded text-[11px] font-bold tracking-widest text-white opacity-60"
+            >
+              ACH
+            </span>
+          </li>
+        </ul>
       </div>
     </footer>
   );
