@@ -47,6 +47,7 @@ This log serves as a source of truth for the development, configuration, and des
   * No page redirects on submit.
   * Disables inputs and button state to prevent double-submitting.
   * Updates button text to `"¡Suscrito!"` on success.
+* **Bot protection (2026-10-22):** every form (newsletter main + footer, podcast application, /empecemos intake) has a hidden `botcheck` trap field (`src/components/honeypot.tsx`). `src/lib/send-form.ts` drops bot-looking sends (trap filled, or sent under 3 s after page load) and adds `elapsed`. `/api/forms` checks the same things server-side, refuses posts without `elapsed` or from another site's origin, ignores links in the name field, and allows 5 sends per IP per 10 minutes (in memory, per server instance). No captcha. If spam still gets through, next step is Cloudflare Turnstile (needs keys in Vercel).
 
 ---
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
 import { sendForm } from "@/lib/send-form";
+import { Honeypot } from "@/components/honeypot";
 
 export function Web3Form({ 
   className, 
@@ -33,6 +34,7 @@ export function Web3Form({
 
   return (
     <form onSubmit={handleSubmit} className={className}>
+      <Honeypot />
       {variant === "main" ? (
         <div className="flex flex-col w-full gap-3">
           <div className="flex flex-col md:flex-row gap-4 w-full">

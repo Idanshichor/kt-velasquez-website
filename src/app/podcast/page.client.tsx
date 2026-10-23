@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/navbar";
 import { sendForm } from "@/lib/send-form";
+import { Honeypot } from "@/components/honeypot";
 import { Footer } from "@/components/footer";
 import { Scene } from "@/components/home/scene";
 import { KtCta, KtStar, Scrub, type ScrubPart } from "@/components/home/scrub";
@@ -290,6 +291,7 @@ export default function PodcastPageClient() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <Honeypot />
                 <div className="flex flex-col gap-2">
                   <label htmlFor="guest_name" className={label}>{t("podcastPage.formName")}</label>
                   <input type="text" id="guest_name" name="name" required autoComplete="name" onBlur={() => handleBlur("name")} disabled={formStatus === "submitting"} className={field(touched.name)} />
