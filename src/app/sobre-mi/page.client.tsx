@@ -31,27 +31,27 @@ const BODY = "text-base md:text-[17px] leading-[1.7]";
 const SECTION = "py-24 md:py-36 px-6 md:px-16";
 
 const galleryPhotos = [
-  { src: "/images/gallery/KT_Gallery_04.webp", width: 1600, height: 900, alt: "Katherine Velasquez alimentando a un elefante bebé en un santuario en Tailandia" },
-  { src: "/images/gallery/KT_Gallery_07.webp", width: 1600, height: 900, alt: "Katherine Velasquez caminando frente al Templo Blanco de Chiang Rai, Tailandia" },
-  { src: "/images/gallery/KT_Gallery_08.webp", width: 1600, height: 900, alt: "Katherine Velasquez descansando en un campo de flores rosadas" },
-  { src: "/images/gallery/KT_Gallery_17.webp", width: 1200, height: 1600, alt: "Conexión humana y momentos de tranquilidad en los viajes de Katherine Velasquez" },
-  { src: "/images/gallery/KT_Gallery_16.webp", width: 1200, height: 1600, alt: "Detalles de los paisajes y momentos reales que marcaron la historia de Katherine Velasquez" },
-  { src: "/images/gallery/KT_Gallery_06.webp", width: 1600, height: 900, alt: "Vista panorámica del Templo Blanco de Chiang Rai, Tailandia" },
-  { src: "/images/gallery/KT_Gallery_13.webp", width: 1200, height: 1600, alt: "Experiencias de viaje que dieron origen al enfoque y metodología de Estrategia 360" },
-  { src: "/images/gallery/KT_Gallery_09.webp", width: 1600, height: 902, alt: "Katherine Velasquez jugando con la perspectiva de una jirafa en un safari" },
-  { src: "/images/gallery/KT_Gallery_11.webp", width: 1600, height: 899, alt: "Momentos de viaje de Katherine Velasquez inspirados en el autodescubrimiento y crecimiento" },
-  { src: "/images/gallery/KT_Gallery_20.webp", width: 1200, height: 1600, alt: "Estilo de vida independiente y nómada de Katherine Velasquez en el extranjero" },
-  { src: "/images/gallery/KT_Gallery_10.webp", width: 800, height: 1600, alt: "Recuerdo en cámara 360 de Katherine Velasquez en una cascada durante sus viajes" },
-  { src: "/images/gallery/KT_Gallery_14.webp", width: 1600, height: 1200, alt: "Katherine Velasquez disfrutando de su tiempo y libertad como nómada digital" },
-  { src: "/images/gallery/KT_Gallery_19.webp", width: 1200, height: 1600, alt: "Katherine Velasquez explorando nuevos horizontes y consolidando su visión empresarial" },
-  { src: "/images/gallery/KT_Gallery_02.webp", width: 1600, height: 900, alt: "Retrato de Katherine Velasquez junto al río en las montañas de Rishikesh, India" },
-  { src: "/images/gallery/KT_Gallery_15.webp", width: 1200, height: 1600, alt: "Katherine Velasquez en uno de los pintorescos destinos durante sus viajes internacionales" },
-  { src: "/images/gallery/KT_Gallery_03.webp", width: 900, height: 1600, alt: "Detalle de la mano de Katherine Velasquez con arena en la playa" },
-  { src: "/images/gallery/KT_Gallery_18.webp", width: 1200, height: 1600, alt: "Momentos de reflexión de Katherine Velasquez durante su recorrido por el mundo" },
-  { src: "/images/gallery/KT_Gallery_21.webp", width: 1200, height: 1600, alt: "Katherine Velasquez en una de las chocoaventuras memorables de su viaje" },
-  { src: "/images/gallery/KT_Gallery_12.webp", width: 1600, height: 899, alt: "Katherine Velasquez conectando con nuevas culturas y paisajes" },
-  { src: "/images/gallery/KT_Gallery_01.webp", width: 1600, height: 900, alt: "Katherine Velasquez recorriendo un mercado nocturno durante sus viajes por Asia" },
-  { src: "/images/gallery/KT_Gallery_05.webp", width: 900, height: 1600, alt: "Katherine Velasquez entre los detalles arquitectónicos del Templo Blanco, Tailandia" }
+  { src: "/images/gallery/KT_Gallery_04.webp", width: 1600, height: 900, alt: "Katherine Velasquez alimentando a un elefante bebé en un santuario en Tailandia", altEn: "Katherine Velasquez feeding a baby elephant at a sanctuary in Thailand" },
+  { src: "/images/gallery/KT_Gallery_07.webp", width: 1600, height: 900, alt: "Katherine Velasquez caminando frente al Templo Blanco de Chiang Rai, Tailandia", altEn: "Katherine Velasquez walking in front of the White Temple in Chiang Rai, Thailand" },
+  { src: "/images/gallery/KT_Gallery_08.webp", width: 1600, height: 900, alt: "Katherine Velasquez descansando en un campo de flores rosadas", altEn: "Katherine Velasquez resting in a field of pink flowers" },
+  { src: "/images/gallery/KT_Gallery_17.webp", width: 1200, height: 1600, alt: "Conexión humana y momentos de tranquilidad en los viajes de Katherine Velasquez", altEn: "Human connection and quiet moments on Katherine Velasquez's travels" },
+  { src: "/images/gallery/KT_Gallery_16.webp", width: 1200, height: 1600, alt: "Detalles de los paisajes y momentos reales que marcaron la historia de Katherine Velasquez", altEn: "Details of the landscapes and real moments that shaped Katherine Velasquez's story" },
+  { src: "/images/gallery/KT_Gallery_06.webp", width: 1600, height: 900, alt: "Vista panorámica del Templo Blanco de Chiang Rai, Tailandia", altEn: "Panoramic view of the White Temple in Chiang Rai, Thailand" },
+  { src: "/images/gallery/KT_Gallery_13.webp", width: 1200, height: 1600, alt: "Experiencias de viaje que dieron origen al enfoque y metodología de Estrategia 360", altEn: "Travel experiences that gave rise to the Estrategia 360 approach and methodology" },
+  { src: "/images/gallery/KT_Gallery_09.webp", width: 1600, height: 902, alt: "Katherine Velasquez jugando con la perspectiva de una jirafa en un safari", altEn: "Katherine Velasquez playing with perspective next to a giraffe on a safari" },
+  { src: "/images/gallery/KT_Gallery_11.webp", width: 1600, height: 899, alt: "Momentos de viaje de Katherine Velasquez inspirados en el autodescubrimiento y crecimiento", altEn: "Katherine Velasquez's travel moments inspired by self-discovery and growth" },
+  { src: "/images/gallery/KT_Gallery_20.webp", width: 1200, height: 1600, alt: "Estilo de vida independiente y nómada de Katherine Velasquez en el extranjero", altEn: "Katherine Velasquez's independent, nomadic lifestyle abroad" },
+  { src: "/images/gallery/KT_Gallery_10.webp", width: 800, height: 1600, alt: "Recuerdo en cámara 360 de Katherine Velasquez en una cascada durante sus viajes", altEn: "360 camera memory of Katherine Velasquez at a waterfall during her travels" },
+  { src: "/images/gallery/KT_Gallery_14.webp", width: 1600, height: 1200, alt: "Katherine Velasquez disfrutando de su tiempo y libertad como nómada digital", altEn: "Katherine Velasquez enjoying her time and freedom as a digital nomad" },
+  { src: "/images/gallery/KT_Gallery_19.webp", width: 1200, height: 1600, alt: "Katherine Velasquez explorando nuevos horizontes y consolidando su visión empresarial", altEn: "Katherine Velasquez exploring new horizons and strengthening her business vision" },
+  { src: "/images/gallery/KT_Gallery_02.webp", width: 1600, height: 900, alt: "Retrato de Katherine Velasquez junto al río en las montañas de Rishikesh, India", altEn: "Portrait of Katherine Velasquez by the river in the mountains of Rishikesh, India" },
+  { src: "/images/gallery/KT_Gallery_15.webp", width: 1200, height: 1600, alt: "Katherine Velasquez en uno de los pintorescos destinos durante sus viajes internacionales", altEn: "Katherine Velasquez at one of the picturesque destinations on her international travels" },
+  { src: "/images/gallery/KT_Gallery_03.webp", width: 900, height: 1600, alt: "Detalle de la mano de Katherine Velasquez con arena en la playa", altEn: "Close-up of Katherine Velasquez's hand with sand on the beach" },
+  { src: "/images/gallery/KT_Gallery_18.webp", width: 1200, height: 1600, alt: "Momentos de reflexión de Katherine Velasquez durante su recorrido por el mundo", altEn: "Katherine Velasquez's moments of reflection on her journey around the world" },
+  { src: "/images/gallery/KT_Gallery_21.webp", width: 1200, height: 1600, alt: "Katherine Velasquez en una de las chocoaventuras memorables de su viaje", altEn: "Katherine Velasquez on one of the memorable chocolate adventures of her trip" },
+  { src: "/images/gallery/KT_Gallery_12.webp", width: 1600, height: 899, alt: "Katherine Velasquez conectando con nuevas culturas y paisajes", altEn: "Katherine Velasquez connecting with new cultures and landscapes" },
+  { src: "/images/gallery/KT_Gallery_01.webp", width: 1600, height: 900, alt: "Katherine Velasquez recorriendo un mercado nocturno durante sus viajes por Asia", altEn: "Katherine Velasquez exploring a night market during her travels in Asia" },
+  { src: "/images/gallery/KT_Gallery_05.webp", width: 900, height: 1600, alt: "Katherine Velasquez entre los detalles arquitectónicos del Templo Blanco, Tailandia", altEn: "Katherine Velasquez among the architectural details of the White Temple, Thailand" }
 ];
 
 /** Splits a title so its last word can take the script accent. */
@@ -118,7 +118,7 @@ export default function AboutPageClient() {
             {/* Phones and tablets: the tall original, so her whole figure fits. Desktop: the wide version. */}
             <Image
               src="/images/KT_Stool_Portrait.webp"
-              alt="Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"
+              alt={language === "en" ? "Katherine Velasquez, 360 strategist and civil engineer, seated on a studio bench" : "Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"}
               fill
               sizes="100vw"
               quality={90}
@@ -128,7 +128,7 @@ export default function AboutPageClient() {
             {/* Smaller desktops get a tighter crop so she stays on the right, clear of the words */}
             <Image
               src="/images/KT_Stool_Hero_Md.webp"
-              alt="Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"
+              alt={language === "en" ? "Katherine Velasquez, 360 strategist and civil engineer, seated on a studio bench" : "Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"}
               fill
               sizes="100vw"
               quality={90}
@@ -137,7 +137,7 @@ export default function AboutPageClient() {
             />
             <Image
               src="/images/KT_Stool_Hero.webp"
-              alt="Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"
+              alt={language === "en" ? "Katherine Velasquez, 360 strategist and civil engineer, seated on a studio bench" : "Katherine Velasquez, estratega 360 e ingeniera civil, sentada en un banco de estudio"}
               fill
               sizes="100vw"
               quality={90}
@@ -202,7 +202,7 @@ export default function AboutPageClient() {
       {/* 04 pink recovers: everything black, framed studio photo with a black outline */}
       <Scene className={`${SECTION} ${BG.pink.cls}`}>
         <div className="max-w-6xl mx-auto grid xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-14 xl:gap-24 items-center">
-          <KFrame bg="pink" src="/images/KT_Studio_Seated.webp" alt="Katherine Velasquez riendo, sentada en un banco de estudio" pos="center 40%" className="aspect-[4/5] w-full max-w-[400px]" />
+          <KFrame bg="pink" src="/images/KT_Studio_Seated.webp" alt={language === "en" ? "Katherine Velasquez laughing, seated on a studio bench" : "Katherine Velasquez riendo, sentada en un banco de estudio"} pos="center 40%" className="aspect-[4/5] w-full max-w-[400px]" />
           <div>
             <Label bg="pink">04</Label>
             <h2 data-lines className={`${TITLE} text-[8.5vw] sm:text-5xl md:text-7xl fit-chapter mt-8`}>{s("ch4Title")}</h2>
@@ -274,7 +274,7 @@ export default function AboutPageClient() {
             </figure>
             <p data-reveal className={`${BODY} ${BG.white.sub} mt-12`}>{s("ch7Text2")}</p>
           </div>
-          <KFrame bg="white" src="/images/gallery/KT_Gallery_07.webp" alt="Katherine Velasquez caminando frente al Templo Blanco de Chiang Rai, Tailandia" className="aspect-[4/5] w-full max-w-[400px] md:sticky md:top-32" />
+          <KFrame bg="white" src="/images/gallery/KT_Gallery_07.webp" alt={language === "en" ? "Katherine Velasquez walking in front of the White Temple in Chiang Rai, Thailand" : "Katherine Velasquez caminando frente al Templo Blanco de Chiang Rai, Tailandia"} className="aspect-[4/5] w-full max-w-[400px] md:sticky md:top-32" />
         </div>
       </Scene>
 
@@ -300,7 +300,7 @@ export default function AboutPageClient() {
               >
                 <Image
                   src={photo.src}
-                  alt={photo.alt}
+                  alt={language === "en" ? photo.altEn : photo.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className={`object-cover ${photo.src.endsWith("KT_Gallery_11.webp") ? "object-left" : "object-center"}`}

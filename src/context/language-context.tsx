@@ -69,6 +69,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = language;
   }, [language]);
 
+  // Remember the language of the page being read, so pages without their own
+  // English URL (/gracias after a form) open in that language too.
+  useEffect(() => {
+    if (routeLang) localStorage.setItem("preferred-lang", routeLang);
+  }, [routeLang]);
+
   // Safe nested key translation resolver
   const t = (path: string): any => {
     const keys = path.split(".");

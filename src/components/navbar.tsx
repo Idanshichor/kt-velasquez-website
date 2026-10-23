@@ -27,7 +27,7 @@ export function Navbar() {
       <Link href={home} className="flex items-center shrink-0 z-50">
         <Image
           src="/images/KT_LOGO.webp"
-          alt="Logo de Katherine Velasquez"
+          alt={language === "en" ? "Katherine Velasquez logo" : "Logo de Katherine Velasquez"}
           width={350}
           height={120}
           className="h-12 md:h-16 lg:h-20 w-auto object-contain"

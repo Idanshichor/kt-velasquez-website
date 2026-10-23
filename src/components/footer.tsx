@@ -17,7 +17,7 @@ export function Footer() {
           <div>
             <Image 
               src="/images/KT_White_Logo.webp" 
-              alt="Logo de Katherine Velasquez" 
+              alt={language === "en" ? "Katherine Velasquez logo" : "Logo de Katherine Velasquez"} 
               width={180} 
               height={70} 
               className="h-12 w-auto object-contain mb-6"

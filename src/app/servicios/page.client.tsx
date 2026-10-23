@@ -98,7 +98,7 @@ export default function ServicesPageClient() {
             <div className="relative aspect-[4/5] w-full max-w-sm mx-auto lg:max-w-none">
               <div aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-3 md:translate-x-6 md:translate-y-6 rounded-[32px] border border-white opacity-60" />
               <div className="relative w-full h-full rounded-[32px] overflow-hidden">
-                <Image src="/images/KTSecondPhoto.webp" alt="Katherine Velasquez con blazer blanco, sentada en un estudio" fill sizes="(min-width: 1024px) 24rem, 90vw" className="object-cover" priority />
+                <Image src="/images/KTSecondPhoto.webp" alt={language === "en" ? "Katherine Velasquez in a white blazer, seated in a studio" : "Katherine Velasquez con blazer blanco, sentada en un estudio"} fill sizes="(min-width: 1024px) 24rem, 90vw" className="object-cover" priority />
               </div>
               <KtStar className="absolute -top-5 -left-5 w-10 h-10 text-[var(--color-brand-gold)]" />
             </div>
@@ -106,7 +106,7 @@ export default function ServicesPageClient() {
         </header>
 
         {/* The five services at a glance, each row jumps to its section */}
-        <nav aria-label="Servicios" className="py-20 md:py-28 px-6 md:px-16 bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]">
+        <nav aria-label={language === "en" ? "Services" : "Servicios"} className="py-20 md:py-28 px-6 md:px-16 bg-[var(--color-brand-gold)] text-[var(--color-brand-black)]">
           <ol className="max-w-6xl mx-auto border-t-[1.5px] border-[var(--color-brand-black)]">
             {SERVICES.map((s, i) => (
               <li key={s.title} className="border-b border-[var(--color-brand-black)]/25">
