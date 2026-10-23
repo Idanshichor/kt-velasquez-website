@@ -230,3 +230,12 @@ This log serves as a source of truth for the development, configuration, and des
 * **html lang:** the root layout stays `lang="es"`; `src/app/en/layout.tsx` and the provider switch it to `en` in the browser. A server-side `lang="en"` would need two root layouts (moving every page into route groups), left out to avoid conflicts with the open redesign branches.
 * **English slugs:** Idan asked for English words in the English URLs, so the map lives in `EN_SLUGS` (`src/lib/i18n-routes.ts`); the `?lang=en` redirects in `next.config.ts` repeat it (next start cannot import app files there).
 * **Open:** services copy in `services-data.ts` is Spanish only. English share images reuse the Spanish route images (English alt text).
+
+---
+
+## 2026-10-22: Schema graph and llms.txt (SEO plan steps 2.2 and 3.1)
+* **Schema:** one `@graph` per page from `src/lib/schema.ts`, rendered by `src/components/json-ld.tsx`. Every page carries Person (`/#person`), ProfessionalService KT360 (`/#kt360`) and WebSite (`/#website`), plus its own WebPage. Home adds FAQPage (built from the same `faqs` the accordion shows), /servicios adds one Service per service with the mentoring packages as COP offers, /podcast adds a fuller PodcastSeries, /sobre-mi a ProfilePage. ES and EN pages get the same graph with localized descriptions.
+* **Why:** the AI baseline found Gemini treats KT360 as her podcast. The graph names KT360 as Katherine's consultancy and the podcast as a show she hosts that KT360 produces.
+* **llms.txt:** `public/llms.txt`, bilingual: who she is, services and public prices, page map, contact.
+* **Open:** sameAs has only the footer LinkedIn (the old schema used a different LinkedIn URL; Katherine to confirm). Podcast platform links on /podcast are placeholders, so none are in the schema. /servicios copy is Spanish only, so the English page's Service nodes use the Spanish names.
+* **Checked:** schema.org validator 0 errors on all 10 pages; build clean; layouts unchanged at desktop, phone and phone landscape.

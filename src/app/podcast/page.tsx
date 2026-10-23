@@ -1,35 +1,21 @@
 import type { Metadata } from "next";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/json-ld";
 import PodcastPageClient from "./page.client";
 
+const TITLE = "Estrategia 360 - Sin Pelos en la Lengua | Katherine Velasquez";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Estrategia 360 - Sin Pelos en la Lengua | Katherine Velasquez",
+  title: TITLE,
   description: "Conversaciones honestas y herramientas estratégicas para CEOs, fundadores y emprendedores. Sin pelos en la lengua.",
   path: "/podcast",
   bilingual: true,
 });
 
 export default function PodcastPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "PodcastSeries",
-    "@id": `${SITE_URL}/podcast/#podcast`,
-    "name": "Estrategia 360 - Sin Pelos en la Lengua",
-    "description": "Conversaciones honestas y herramientas estratégicas para CEOs, fundadores y emprendedores. Sin pelos en la lengua.",
-    "url": `${SITE_URL}/podcast`,
-    "author": {
-      "@type": "Person",
-      "@id": `${SITE_URL}/#person`
-    },
-    "inLanguage": ["es", "en"]
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd page="podcast" lang="es" name={TITLE} />
       <PodcastPageClient />
     </>
   );

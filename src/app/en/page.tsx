@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/json-ld";
 import PageClient from "../page.client";
 
+const TITLE = "Katherine Velasquez | 360 Strategic Consulting";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Katherine Velasquez | 360 Strategic Consulting",
+  title: TITLE,
   description: "360° strategist for founders and established brands. I bring together business structure, communication and mindset so you can scale with clarity.",
   path: "/",
   lang: "en",
@@ -11,23 +14,9 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function Page() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": `${SITE_URL}/en/#webpage`,
-    "url": `${SITE_URL}/en`,
-    "name": "Katherine Velasquez | 360 Strategic Consulting",
-    "inLanguage": "en",
-    "isPartOf": { "@id": `${SITE_URL}/#website` },
-    "about": { "@id": `${SITE_URL}/#person` }
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd page="home" lang="en" name={TITLE} />
       <PageClient />
     </>
   );
