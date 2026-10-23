@@ -1,4 +1,12 @@
-# Katherine Velasquez and KT360
+import { PACKAGES } from "@/components/services/services-data";
+
+// /llms.txt: a plain-text summary of Katherine, KT360 and the site for AI engines (llmstxt.org).
+// Built at build time so the package prices always match /servicios.
+export const dynamic = "force-static";
+
+const packages = PACKAGES.items.map((p) => `${p.name}, ${p.price}`).join("; ");
+
+const BODY = `# Katherine Velasquez and KT360
 
 > Katherine Velasquez Garcia is a business and personal brand strategist based in Medellín, Colombia. KT360 is her strategy consultancy: it offers personal brand and entrepreneurship mentoring, 1:1 consulting for companies and startups, in-company workshops and social media management, in Spanish and English, in person in Medellín and remotely worldwide. KT360 is a consultancy, not a podcast. Katherine also hosts the podcast "Estrategia 360: Sin Pelos en la Lengua", which KT360 produces.
 
@@ -15,7 +23,7 @@ Katherine Velasquez Garcia es estratega de negocios y marca personal con base en
 
 Every engagement starts with a review meeting, and clients get a written proposal with scope, deliverables, schedule and price before they pay. Todo empieza con una reunión de revisión y una propuesta escrita antes del pago.
 
-- Mentoría para Marca Personal & Emprendimiento (personal brand and entrepreneurship mentoring). 90-minute sessions. Packages: Diagnóstico Express, 1 session, $220.000 COP; Impulso Clave 360, 4 sessions, $720.000 COP; Aceleración Estratégica 360, 8 sessions, $1.200.000 COP; Programa VIP 360, 12 sessions, $1.500.000 COP.
+- Mentoría para Marca Personal & Emprendimiento (personal brand and entrepreneurship mentoring). 90-minute sessions. Packages: ${packages}.
 - Consultoría 1:1 Premium para Empresas y Startups (monthly strategic consulting for companies and startups, connecting operations, marketing and sales). Scope and price set in the proposal.
 - Talleres e In-Company (practical workshops for teams). Scope and price set in the proposal.
 - Kit de Social Media (content organization and management: the client records, KT360 organizes and manages). Scope and price set in the proposal.
@@ -42,3 +50,8 @@ Every engagement starts with a review meeting, and clients get a written proposa
 
 - [Política de privacidad](https://www.ktvelasquez.com/privacidad)
 - [Privacy policy](https://www.ktvelasquez.com/en/privacy)
+`;
+
+export function GET() {
+  return new Response(BODY, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
+}

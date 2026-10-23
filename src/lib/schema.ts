@@ -87,8 +87,8 @@ function coreNodes(lang: Language) {
       address: { "@type": "PostalAddress", addressLocality: "Medellín", addressCountry: "CO" },
       areaServed: [MEDELLIN, { "@type": "Country", name: "Colombia" }, "Worldwide (remote)"],
       knowsLanguage: ["es", "en"],
-      currenciesAccepted: "COP",
-      priceRange: "$220.000 - $1.500.000 COP",
+      currenciesAccepted: CURRENCY,
+      priceRange: PRICE_RANGE,
       contactPoint: { "@type": "ContactPoint", contactType: "customer service", telephone: PHONE, url: "https://wa.me/573216154870", availableLanguage: ["es", "en"] },
     },
     {
@@ -148,9 +148,18 @@ function faqPage(lang: Language) {
   };
 }
 
-function priceValue(price: string) {
-  return price.replace(/[^\d]/g, "");
+// Reads a price as shown on /servicios ("$220.000 COP", "$60 USD"), so the schema follows whatever the page says.
+// COP uses dots for thousands; USD uses commas for thousands and a dot for cents.
+export function parsePrice(price: string) {
+  const currency = /USD/i.test(price) ? "USD" : "COP";
+  const digits = currency === "COP" ? price.replace(/[^\d]/g, "") : price.replace(/[^\d.]/g, "");
+  return { value: Number(digits), currency };
 }
+
+const PRICES = PACKAGES.items.map((p) => parsePrice(p.price));
+const CURRENCY = PRICES[0].currency;
+const sorted = [...PACKAGES.items].sort((a, b) => parsePrice(a.price).value - parsePrice(b.price).value);
+export const PRICE_RANGE = `${sorted[0].price} - ${sorted[sorted.length - 1].price}`;
 
 // The services on /servicios. Their copy is Spanish only for now, so the English page lists the same Spanish names.
 function serviceNodes() {
@@ -173,8 +182,8 @@ function serviceNodes() {
               "@type": "Offer",
               name: p.name,
               description: p.desc,
-              price: priceValue(p.price),
-              priceCurrency: "COP",
+              price: String(parsePrice(p.price).value),
+              priceCurrency: parsePrice(p.price).currency,
               url: `${SITE_URL}/servicios`,
             })),
           },
