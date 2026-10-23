@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { KtStar } from "@/components/home/scrub";
 import { sendForm } from "@/lib/send-form";
+import { Honeypot } from "@/components/honeypot";
 import { CLOSING, INTRO, QUESTIONS, type Question } from "./questions";
 
 type Answers = Record<string, string | string[]>;
@@ -111,7 +112,7 @@ export default function EmpecemosPageClient() {
     // Built by hand so the email only carries the answers, not the raw input names.
     const fd = new FormData();
     const bot = e.currentTarget.elements.namedItem("botcheck") as HTMLInputElement | null;
-    if (bot?.checked) fd.set("botcheck", "on");
+    if (bot?.value) fd.set("botcheck", bot.value);
     const name = String(answers.nombre).trim();
     fd.set("name", name);
     fd.set("email", email);
@@ -179,7 +180,7 @@ export default function EmpecemosPageClient() {
             </section>
 
             <form onSubmit={submit} noValidate className="px-6 md:px-16 pb-24 md:pb-32">
-              <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" />
+              <Honeypot />
               <ol className="max-w-5xl mx-auto">
                 {QUESTIONS.map((q, i) => (
                   <li
