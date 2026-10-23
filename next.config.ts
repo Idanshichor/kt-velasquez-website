@@ -35,11 +35,17 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // Old ?lang=en links (the toggle used to be a query string) go to the real English URL.
-      { source: "/", has: [{ type: "query", key: "lang", value: "en" }], destination: "/en", permanent: true },
-      ...["/sobre-mi", "/servicios", "/podcast", "/privacidad"].map((path) => ({
-        source: path,
+      // Same pairs as EN_SLUGS in src/lib/i18n-routes.ts (next start cannot import app files here).
+      ...Object.entries({
+        "/": "/en",
+        "/sobre-mi": "/en/about",
+        "/servicios": "/en/services",
+        "/podcast": "/en/podcast",
+        "/privacidad": "/en/privacy",
+      }).map(([source, destination]) => ({
+        source,
         has: [{ type: "query" as const, key: "lang", value: "en" }],
-        destination: `/en${path}`,
+        destination,
         permanent: true,
       })),
     ];

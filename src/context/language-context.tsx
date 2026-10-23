@@ -10,7 +10,7 @@ type LanguageContextType = {
   setLanguage: (lang: Language) => void;
   toggleLanguage: () => void;
   t: (path: string) => any;
-  // An internal href in the current language ("/servicios" -> "/en/servicios" on English pages).
+  // An internal href in the current language ("/servicios" -> "/en/services" on English pages).
   href: (path: string) => string;
 };
 

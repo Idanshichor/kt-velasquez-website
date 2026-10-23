@@ -16,8 +16,8 @@ export default function AboutPage() {
     "@graph": [
       {
         "@type": "ProfilePage",
-        "@id": `${SITE_URL}/en/sobre-mi/#profile`,
-        "url": `${SITE_URL}/en/sobre-mi`,
+        "@id": `${SITE_URL}/en/about/#profile`,
+        "url": `${SITE_URL}/en/about`,
         "inLanguage": "en",
         "mainEntity": {
           "@id": `${SITE_URL}/#person`
@@ -25,7 +25,7 @@ export default function AboutPage() {
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `${SITE_URL}/en/sobre-mi/#breadcrumb`,
+        "@id": `${SITE_URL}/en/about/#breadcrumb`,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -37,7 +37,7 @@ export default function AboutPage() {
             "@type": "ListItem",
             "position": 2,
             "name": "About Me",
-            "item": `${SITE_URL}/en/sobre-mi`
+            "item": `${SITE_URL}/en/about`
           }
         ]
       }
