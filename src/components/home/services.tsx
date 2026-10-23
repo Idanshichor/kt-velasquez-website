@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
-import { SERVICES } from "@/components/services/services-data";
+import { servicesCopy } from "@/components/services/services-data";
 import { KtCta } from "./scrub";
 import { Scene } from "./scene";
 
@@ -16,6 +16,7 @@ const TITLE = "uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wra
  */
 export function Services() {
   const { language, t, href } = useLanguage();
+  const { SERVICES } = servicesCopy(language);
   const title = (t("services.title") as string) || "";
   const cut = title.lastIndexOf(" ");
   const es = language === "es";

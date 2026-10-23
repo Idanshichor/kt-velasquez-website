@@ -230,3 +230,7 @@ This log serves as a source of truth for the development, configuration, and des
 * **html lang:** the root layout stays `lang="es"`; `src/app/en/layout.tsx` and the provider switch it to `en` in the browser. A server-side `lang="en"` would need two root layouts (moving every page into route groups), left out to avoid conflicts with the open redesign branches.
 * **English slugs:** Idan asked for English words in the English URLs, so the map lives in `EN_SLUGS` (`src/lib/i18n-routes.ts`); the `?lang=en` redirects in `next.config.ts` repeat it (next start cannot import app files there).
 * **Open:** services copy in `services-data.ts` is Spanish only. English share images reuse the Spanish route images (English alt text).
+
+## 2026-10-23: English services copy
+* **Branch:** `feature/en-services-copy`. Idan approved the translation in the Claude Doc draft (claude.ai/artifact/FPvotktmVTrpWRJsvvRekU).
+* `services-data.ts` now has `*_EN` copies and `servicesCopy(language)`; /servicios and the home services list read through it. English Mango link goes to mangocreativestudio.com/ (its /en/ is a 404). Prices stay COP, English number format.

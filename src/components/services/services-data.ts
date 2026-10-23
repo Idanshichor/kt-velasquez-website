@@ -1,7 +1,7 @@
 /**
  * Copy for /servicios and the home services rows, word for word from Idan
- * (2026-10-21). Spanish only for now: the English site shows the same text
- * until a translation exists.
+ * (2026-10-21). English below (`*_EN`), approved by Idan 2026-10-23.
+ * Pages read both through `servicesCopy(language)`.
  */
 
 const WA = "https://wa.me/573216154870?text=";
@@ -195,10 +195,10 @@ export const PACKAGES = {
   title: "Paquetes de Mentoría Personalizada 360",
   intro: "Trabajamos sobre las necesidades de tu marca personal o emprendimiento: posicionamiento, oferta, estrategia digital, organización y enfoque. En la reunión de revisión identificamos tus prioridades y elegimos el paquete adecuado.",
   items: [
-    { name: "Diagnóstico Express", price: "$220.000 COP", desc: "Una sesión de 90 minutos para analizar un reto puntual, identificar oportunidades y definir tus siguientes pasos." },
-    { name: "Impulso Clave 360", price: "$720.000 COP", desc: "Cuatro sesiones de 90 minutos para abordar una prioridad concreta y avanzar con orientación estratégica y un plan de acción personalizado." },
-    { name: "Aceleración Estratégica 360", price: "$1.200.000 COP", desc: "Ocho sesiones de 90 minutos para profundizar en los retos de tu proyecto, desarrollar una estrategia y revisar tus avances durante la implementación." },
-    { name: "Programa VIP 360", price: "$1.500.000 COP", desc: "Doce sesiones de 90 minutos para trabajar varias prioridades de forma progresiva, dar seguimiento a la ejecución y ajustar las decisiones según tu evolución." },
+    { name: "Diagnóstico Express", price: "$70 USD", desc: "Una sesión de 90 minutos para analizar un reto puntual, identificar oportunidades y definir tus siguientes pasos." },
+    { name: "Impulso Clave 360", price: "$230 USD", desc: "Cuatro sesiones de 90 minutos para abordar una prioridad concreta y avanzar con orientación estratégica y un plan de acción personalizado." },
+    { name: "Aceleración Estratégica 360", price: "$380 USD", desc: "Ocho sesiones de 90 minutos para profundizar en los retos de tu proyecto, desarrollar una estrategia y revisar tus avances durante la implementación." },
+    { name: "Programa VIP 360", price: "$475 USD", desc: "Doce sesiones de 90 minutos para trabajar varias prioridades de forma progresiva, dar seguimiento a la ejecución y ajustar las decisiones según tu evolución." },
   ],
   note: "Todos los paquetes se adaptan a ti. Los objetivos, entregables, frecuencia, vigencia y alcance del soporte se acuerdan antes de contratar.",
 };
@@ -213,3 +213,197 @@ export const MANGO = {
   link: "Conoce Mango Creative Studio",
   href: "https://mangocreativestudio.com/es/",
 };
+
+/* English, approved by Idan 2026-10-23 (draft: claude.ai/artifact/FPvotktmVTrpWRJsvvRekU). */
+
+const INTRO_EN: typeof INTRO = {
+  title: "Strategic solutions for where you are right now",
+  paragraphs: [
+    "Every brand, business and team needs a different path. That's why we start with a review meeting to understand where you are, what you want to achieve and what kind of support makes sense for you.",
+    "Before you sign on, you'll receive a proposal with the scope, deliverables, schedule and investment.",
+  ],
+};
+
+const SERVICES_EN: Service[] = [
+  {
+    title: "Personal Brand & Entrepreneurship Mentorship",
+    tagline: "Positioning, clarity and direction to build your next stage.",
+    intro: [
+      "Personalized guidance for professionals, founders and entrepreneurs who want to organize their ideas, strengthen their value proposition and build a brand with intention.",
+      "In our review meeting, I'll identify your needs and recommend the session package that best fits your goal.",
+    ],
+    blocks: [
+      {
+        title: "What we can work on",
+        items: [
+          "Positioning and differentiation: identify what makes you relevant, who you help and how to communicate your value.",
+          "Offer and business model: organize your services around your clients' needs.",
+          "Digital and content strategy: define channels, messaging pillars and priorities.",
+          "Storytelling and writing: develop messages that express your experience clearly.",
+          "Focus and executive mindset: work through the blocks and decisions that affect your progress.",
+          "Action plan: turn strategy into tasks that fit your schedule.",
+        ],
+      },
+      { title: "What you receive", text: ["Depending on the agreed scope, we'll build positioning documents, communication guides, content plans, organization tools or a roadmap. Your proposal will list the deliverables included."] },
+      { title: "How sessions are organized", text: ["One-on-one sessions last 90 minutes. We agree on a weekly or biweekly rhythm based on your availability and the work between sessions. The number of sessions and the deadline to use them are set before payment."] },
+    ],
+    button: "Find the right support for you",
+  },
+  {
+    title: "Premium 1:1 Consulting for Companies and Startups",
+    tagline: "Strategic direction that connects operations, marketing and sales.",
+    intro: [
+      "For founders and teams who need to analyze their business, clear bottlenecks and make decisions with the full picture in view.",
+      "We work on your company's real priorities, with a scope matched to its stage, resources and capacity to execute.",
+    ],
+    blocks: [
+      {
+        title: "What the monthly engagement includes",
+        items: [
+          "Initial assessment: a review of the areas and information covered in the proposal.",
+          "Direction and follow-up sessions: time to make decisions, review progress and clear roadblocks.",
+          "Monthly plan: priorities, actions, owners and dates.",
+          "Working tools: documents, recommendations or process adjustments tied to the agreed goal.",
+          "KPI tracking: a review of the agreed metrics and the available data.",
+          "Period review: progress, open items and priorities for the next month.",
+          "Support between sessions: answers on the plan's decisions and tasks.",
+        ],
+        text: [
+          "The number and length of sessions, the areas involved and the deliverables are set out in your monthly proposal.",
+          "When the goal calls for a growth plan, we'll map a six-month roadmap and decide which part we'll tackle in each contracted period.",
+        ],
+      },
+      { title: "Clear responsibilities", text: ["We'll agree on which activities I carry out, which belong to your team and which additional implementation needs a quote. Continuity and scope changes are reviewed at the end of each period."] },
+    ],
+    button: "Let's review your company's priorities",
+  },
+  {
+    title: "Workshops & In-Company Training",
+    tagline: "Hands-on training built around your team's challenges.",
+    intro: ["Tailored learning experiences for companies that want to strengthen their skills and apply tools to real situations in their operations."],
+    blocks: [
+      {
+        title: "What we can work on",
+        items: [
+          "Digital strategy, content and positioning.",
+          "Analytics for decision-making.",
+          "Process organization and improvement.",
+          "Alignment between marketing, sales and operations.",
+          "Strategic focus and team coordination.",
+        ],
+      },
+      {
+        title: "What's included",
+        items: [
+          "A prior conversation with the person in charge to define needs.",
+          "Agenda and content designed around the goal.",
+          "Facilitation and hands-on exercises.",
+          "Supporting materials for the workshop.",
+          "A summary of key learnings and recommended actions.",
+        ],
+        text: ["The proposal will set out the format, length, participants, materials, dates and any travel costs. If you need follow-up afterward, we'll add it to the scope."],
+      },
+    ],
+    button: "Let's design your team's workshop",
+  },
+  {
+    title: "Social Media Kit",
+    tagline: "You record and talk with your prospects. We organize and manage your content.",
+    intro: [
+      "For brands and businesses that need a steady, strategic digital presence but have little time to plan, produce and publish.",
+      "We turn your knowledge into content aligned with your business goals.",
+    ],
+    blocks: [
+      {
+        title: "What's included",
+        items: [
+          "Initial review: goals, audience, offer and the state of your channels.",
+          "Content strategy: pillars, formats and key messages.",
+          "Recording plan: ideas, scripts and directions so you know what to record.",
+          "Content production: video editing, design and copy for the formats in your plan.",
+          "Calendar and publishing: organizing, scheduling and publishing approved content.",
+          "Monthly analysis: a review of results and recommendations to improve.",
+        ],
+      },
+      {
+        title: "How we work",
+        text: [
+          "We prepare the strategy and the content; you bring your knowledge, record the material and answer your prospects' messages. We coordinate approvals before anything is published.",
+          "Your monthly proposal will set the platforms included, the number of pieces, the formats, the rounds of revisions and the dates for delivering material.",
+          "Replying to messages, closing sales and ad spend stay with your business unless they're expressly contracted.",
+        ],
+      },
+    ],
+    button: "I want to hand off my content",
+  },
+  {
+    title: "Mentorship + Social Media Kit",
+    tagline: "Direction for your brand and a team to help you bring it to your social media.",
+    intro: [
+      "For professionals and entrepreneurs who want to work on their positioning and business decisions while handing off their content management.",
+      "We bring strategic guidance and social media execution together, moving in one direction.",
+    ],
+    blocks: [
+      {
+        title: "What's included",
+        items: [
+          "An assessment of your brand, offer and digital presence.",
+          "Mentorship sessions on the agreed priorities.",
+          "Positioning and messaging development.",
+          "Strategy, calendar and recording guides.",
+          "Production and publishing of the pieces in your plan.",
+          "KPI tracking and adjustments.",
+          "Support to coordinate the sessions and content execution.",
+        ],
+      },
+      {
+        title: "What you receive",
+        text: [
+          "A shared roadmap, the agreed mentorship deliverables and the content set for each period. We review what happens on your social media to guide the next decisions.",
+          "The proposal will list separately the sessions available, how long they're valid and the monthly content volume. You record, share your experience and handle sales conversations; we coordinate the strategy and the management in your plan.",
+        ],
+      },
+    ],
+    button: "I want guidance and execution",
+  },
+];
+
+const CLARITY_EN: typeof CLARITY = {
+  title: "Clarity to decide. Strategy to move forward.",
+  paragraphs: [
+    "Your experience and your ideas have value. Giving them direction starts with understanding where you are, what you want to build and what you need to solve to take the next step.",
+    "In these mentorships, we work on the reality of your personal brand or business: we strengthen your offer, organize your priorities and turn your goals into actions you can put into practice.",
+    "In our review meeting, we identify your needs and choose the right package. Each session has a purpose and adapts to your pace, your challenges and how your project evolves.",
+  ],
+};
+
+const PACKAGES_EN: typeof PACKAGES = {
+  title: "360 Personalized Mentorship Packages",
+  intro: "We work on what your personal brand or business needs: positioning, offer, digital strategy, organization and focus. In the review meeting, we identify your priorities and choose the right package.",
+  items: [
+    { name: "Express Diagnosis", price: "$70 USD", desc: "One 90-minute session to analyze a specific challenge, spot opportunities and define your next steps." },
+    { name: "Key Boost 360", price: "$230 USD", desc: "Four 90-minute sessions to tackle one specific priority and move forward with strategic guidance and a personalized action plan." },
+    { name: "Strategic Acceleration 360", price: "$380 USD", desc: "Eight 90-minute sessions to dig into your project's challenges, develop a strategy and review your progress during implementation." },
+    { name: "VIP Program 360", price: "$475 USD", desc: "Twelve 90-minute sessions to work through several priorities step by step, follow up on execution and adjust decisions as you progress." },
+  ],
+  note: "Every package adapts to you. Goals, deliverables, frequency, validity period and support scope are agreed before you sign on.",
+};
+
+const MANGO_EN: typeof MANGO = {
+  title: "Shape your brand with Mango Creative Studio",
+  question: "Do you need a website, a refreshed visual identity or more online visibility for your business?",
+  paragraphs: [
+    "I invite you to discover Mango Creative Studio, my creative design agency. With my team, we develop your brand identity and your website, with a digital strategy focused on making you easy to find: SEO for search engines like Google, AEO for answer engines and GEO for AI platforms.",
+    "We combine design, content and technology to connect your website with the people looking for what you offer.",
+  ],
+  link: "Discover Mango Creative Studio",
+  // Mango's English site is its root; /en/ does not exist.
+  href: "https://mangocreativestudio.com/",
+};
+
+/** All services copy in the visitor's language. */
+export function servicesCopy(language: string) {
+  return language === "en"
+    ? { INTRO: INTRO_EN, SERVICES: SERVICES_EN, CLARITY: CLARITY_EN, PACKAGES: PACKAGES_EN, MANGO: MANGO_EN }
+    : { INTRO, SERVICES, CLARITY, PACKAGES, MANGO };
+}
