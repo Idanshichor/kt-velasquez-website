@@ -44,6 +44,8 @@ export function genericEffects(root: HTMLElement) {
     SplitText.create(el, {
       type: "lines",
       mask: "lines",
+      // "none": keep the text readable as-is. The default ("auto") puts aria-label on <p>/<span>, which ARIA forbids.
+      aria: "none",
       autoSplit: true,
       linesClass: "split-line",
       onSplit(self) {

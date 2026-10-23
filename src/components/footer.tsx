@@ -17,7 +17,7 @@ export function Footer() {
           <div>
             <Image 
               src="/images/KT_White_Logo.webp" 
-              alt="Katherine Velasquez Logo" 
+              alt="Logo de Katherine Velasquez" 
               width={180} 
               height={70} 
               className="h-12 w-auto object-contain mb-6"
@@ -37,7 +37,7 @@ export function Footer() {
             </a>
             <Link 
               href="/privacidad" 
-              className="text-xs font-medium tracking-wide text-gray-500 hover:text-white transition-colors w-max"
+              className="text-xs font-medium tracking-wide text-gray-400 hover:text-white transition-colors w-max"
             >
               {t("footer.privacy_policy")}
             </Link>
@@ -52,7 +52,7 @@ export function Footer() {
           <div className="flex flex-col gap-4 font-light text-sm text-gray-300">
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-0.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
                   {t("footer.contact_whatsapp")}
                 </span>
                 <a 
@@ -65,7 +65,7 @@ export function Footer() {
                 </a>
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
                   {t("footer.contact_phone")}
                 </span>
                 <a 
@@ -77,7 +77,7 @@ export function Footer() {
               </div>
             </div>
             <div className="flex flex-col gap-1 mt-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+              <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Cobertura
               </span>
               <p className="text-sm">

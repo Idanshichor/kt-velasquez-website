@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 import PodcastPageClient from "./page.client";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Estrategia 360 - Sin Pelos en la Lengua | Katherine Velasquez",
   description: "Conversaciones honestas y herramientas estratégicas para CEOs, fundadores y emprendedores. Sin pelos en la lengua.",
-  alternates: {
-    canonical: "https://www.ktvelasquez.com/podcast",
-  },
-};
+  path: "/podcast",
+});
 
 export default function PodcastPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "PodcastSeries",
-    "@id": "https://www.ktvelasquez.com/podcast/#podcast",
+    "@id": `${SITE_URL}/podcast/#podcast`,
     "name": "Estrategia 360 - Sin Pelos en la Lengua",
     "description": "Conversaciones honestas y herramientas estratégicas para CEOs, fundadores y emprendedores. Sin pelos en la lengua.",
-    "url": "https://www.ktvelasquez.com/podcast",
+    "url": `${SITE_URL}/podcast`,
     "author": {
       "@type": "Person",
-      "@id": "https://www.ktvelasquez.com/#person"
+      "@id": `${SITE_URL}/#person`
     },
     "inLanguage": ["es", "en"]
   };

@@ -37,7 +37,7 @@ export function Hero() {
       <div className="absolute inset-x-0 bottom-0 top-12 bottom-[16%] md:top-0 md:bottom-0 z-0">
         <div data-hero-parallax className="absolute inset-0">
           <div data-hero-img className="absolute inset-0">
-            <Image src="/images/KT_Hero.webp" alt="Katherine Velasquez" fill sizes="100vw" className="object-cover object-[80%_30%] md:object-[78%_30%]" priority />
+            <Image src="/images/KT_Hero.webp" alt="Katherine Velasquez, estratega 360, sentada en un banco con camisa blanca" fill sizes="100vw" className="object-cover object-[80%_30%] md:object-[78%_30%]" priority />
           </div>
         </div>
         {/* Shade so the white words read on the grey backdrop */}

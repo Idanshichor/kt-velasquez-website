@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const SITE_URL = "https://www.ktvelasquez.com";
+import { SITE_URL } from "@/lib/seo";
 
 // Public, production-visible routes only.
 // `/gracias` is excluded because it is a noindex thank-you page.

@@ -8,7 +8,7 @@ const LOGOS = [
   { src: "/images/BioChange_logo.png", alt: "BioChange", href: "https://biochange.life/" },
   { src: "/images/logo-roma-studio.webp", alt: "Roma Studio Creativo", href: "https://romastudiocreativo.es/" },
   { src: "/images/logo-bound-travel-updated.png", alt: "Bound To Travel", href: "https://www.boundtotravel.com/", scale: "scale-[2.1]" },
-  { src: "/images/logo-aev.png", alt: "AevArk", href: "https://www.aevark.com/", scale: "scale-[0.8]" },
+  { src: "/images/logo-aev.png", alt: "aēv", href: "https://www.aevark.com/", scale: "scale-[0.8]" },
   { src: "/images/logo-lightu-v2.png", alt: "Light U", href: "https://www.lightu.es/", scale: "scale-[1.6]" },
 ];
 

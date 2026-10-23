@@ -15,7 +15,7 @@ export function Podcast() {
         {/* Podcast image */}
         <div data-mask className="kt-card relative aspect-square md:aspect-[4/5] rounded-[2rem] overflow-hidden">
           <div data-mask-img className="absolute inset-0">
-            <Image src="/images/ktspacepodcast.webp" alt="KT.360 - Sin Pelos en la Lengua — Podcast de Katherine Velasquez" fill className="object-cover" />
+            <Image src="/images/ktspacepodcast.webp" alt="Katherine Velasquez en el set del podcast KT.360 Sin Pelos en la Lengua" fill className="object-cover" />
           </div>
           <div className="absolute inset-x-0 bottom-0 h-24 flex items-end justify-center gap-1.5 px-8 pb-5 bg-gradient-to-t from-black/40 to-transparent" aria-hidden="true">
             {BARS.map((b, i) => (
@@ -31,7 +31,7 @@ export function Podcast() {
             <span className="sr-only">
               {t("podcast.title_p1")} {t("podcast.title_p2")}
             </span>
-            <Image src="/images/kt-360-bw.webp" alt="KT.360 - Sin Pelos en la Lengua Podcast Logo" fill className="object-contain" />
+            <Image src="/images/kt-360-bw.webp" alt="Logo del podcast KT.360 Sin Pelos en la Lengua" fill className="object-contain" />
           </h2>
           <p data-reveal className="font-body text-base md:text-lg text-[var(--color-brand-black)] font-medium mb-10 leading-relaxed max-w-md mx-auto md:mx-0">
             {language === "es" ? (
