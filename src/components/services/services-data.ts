@@ -195,10 +195,10 @@ export const PACKAGES = {
   title: "Paquetes de Mentoría Personalizada 360",
   intro: "Trabajamos sobre las necesidades de tu marca personal o emprendimiento: posicionamiento, oferta, estrategia digital, organización y enfoque. En la reunión de revisión identificamos tus prioridades y elegimos el paquete adecuado.",
   items: [
-    { name: "Diagnóstico Express", price: "$220.000 COP", desc: "Una sesión de 90 minutos para analizar un reto puntual, identificar oportunidades y definir tus siguientes pasos." },
-    { name: "Impulso Clave 360", price: "$720.000 COP", desc: "Cuatro sesiones de 90 minutos para abordar una prioridad concreta y avanzar con orientación estratégica y un plan de acción personalizado." },
-    { name: "Aceleración Estratégica 360", price: "$1.200.000 COP", desc: "Ocho sesiones de 90 minutos para profundizar en los retos de tu proyecto, desarrollar una estrategia y revisar tus avances durante la implementación." },
-    { name: "Programa VIP 360", price: "$1.500.000 COP", desc: "Doce sesiones de 90 minutos para trabajar varias prioridades de forma progresiva, dar seguimiento a la ejecución y ajustar las decisiones según tu evolución." },
+    { name: "Diagnóstico Express", price: "$70 USD", desc: "Una sesión de 90 minutos para analizar un reto puntual, identificar oportunidades y definir tus siguientes pasos." },
+    { name: "Impulso Clave 360", price: "$230 USD", desc: "Cuatro sesiones de 90 minutos para abordar una prioridad concreta y avanzar con orientación estratégica y un plan de acción personalizado." },
+    { name: "Aceleración Estratégica 360", price: "$380 USD", desc: "Ocho sesiones de 90 minutos para profundizar en los retos de tu proyecto, desarrollar una estrategia y revisar tus avances durante la implementación." },
+    { name: "Programa VIP 360", price: "$475 USD", desc: "Doce sesiones de 90 minutos para trabajar varias prioridades de forma progresiva, dar seguimiento a la ejecución y ajustar las decisiones según tu evolución." },
   ],
   note: "Todos los paquetes se adaptan a ti. Los objetivos, entregables, frecuencia, vigencia y alcance del soporte se acuerdan antes de contratar.",
 };
@@ -381,10 +381,10 @@ const PACKAGES_EN: typeof PACKAGES = {
   title: "360 Personalized Mentorship Packages",
   intro: "We work on what your personal brand or business needs: positioning, offer, digital strategy, organization and focus. In the review meeting, we identify your priorities and choose the right package.",
   items: [
-    { name: "Express Diagnosis", price: "$220,000 COP", desc: "One 90-minute session to analyze a specific challenge, spot opportunities and define your next steps." },
-    { name: "Key Boost 360", price: "$720,000 COP", desc: "Four 90-minute sessions to tackle one specific priority and move forward with strategic guidance and a personalized action plan." },
-    { name: "Strategic Acceleration 360", price: "$1,200,000 COP", desc: "Eight 90-minute sessions to dig into your project's challenges, develop a strategy and review your progress during implementation." },
-    { name: "VIP Program 360", price: "$1,500,000 COP", desc: "Twelve 90-minute sessions to work through several priorities step by step, follow up on execution and adjust decisions as you progress." },
+    { name: "Express Diagnosis", price: "$70 USD", desc: "One 90-minute session to analyze a specific challenge, spot opportunities and define your next steps." },
+    { name: "Key Boost 360", price: "$230 USD", desc: "Four 90-minute sessions to tackle one specific priority and move forward with strategic guidance and a personalized action plan." },
+    { name: "Strategic Acceleration 360", price: "$380 USD", desc: "Eight 90-minute sessions to dig into your project's challenges, develop a strategy and review your progress during implementation." },
+    { name: "VIP Program 360", price: "$475 USD", desc: "Twelve 90-minute sessions to work through several priorities step by step, follow up on execution and adjust decisions as you progress." },
   ],
   note: "Every package adapts to you. Goals, deliverables, frequency, validity period and support scope are agreed before you sign on.",
 };
