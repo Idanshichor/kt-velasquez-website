@@ -21,7 +21,7 @@ function splitLast(title: string) {
 }
 
 export default function PodcastPageClient() {
-  const { language, t } = useLanguage();
+  const { language, t, href } = useLanguage();
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   // Custom validation tracking for improved UX
@@ -314,12 +314,12 @@ export default function PodcastPageClient() {
                   {language === "es" ? (
                     <>
                       Al enviar tu postulación, autorizas el tratamiento de tus datos personales de acuerdo con nuestra{" "}
-                      <Link href="/privacidad" className="underline underline-offset-2 hover:opacity-70 transition-opacity">Política de Privacidad</Link>.
+                      <Link href={href("/privacidad")} className="underline underline-offset-2 hover:opacity-70 transition-opacity">Política de Privacidad</Link>.
                     </>
                   ) : (
                     <>
                       By submitting your application, you authorize the processing of your personal data in accordance with our{" "}
-                      <Link href="/privacidad" className="underline underline-offset-2 hover:opacity-70 transition-opacity">Privacy Policy</Link>.
+                      <Link href={href("/privacidad")} className="underline underline-offset-2 hover:opacity-70 transition-opacity">Privacy Policy</Link>.
                     </>
                   )}
                 </p>

@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/language-context";
 import Link from "next/link";
 
 export function Footer() {
-  const { language, t } = useLanguage();
+  const { language, t, href } = useLanguage();
 
   return (
     <footer className="bg-[var(--color-brand-black)] text-white py-24 px-6 md:px-16 relative overflow-hidden">
@@ -36,7 +36,7 @@ export function Footer() {
               LinkedIn
             </a>
             <Link 
-              href="/privacidad" 
+              href={href("/privacidad")} 
               className="text-xs font-medium tracking-wide text-gray-400 hover:text-white transition-colors w-max"
             >
               {t("footer.privacy_policy")}

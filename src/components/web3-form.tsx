@@ -15,7 +15,7 @@ export function Web3Form({
   variant: "main" | "footer"
 }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const { language, t } = useLanguage();
+  const { language, t, href } = useLanguage();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -45,7 +45,7 @@ export function Web3Form({
             {language === "es" ? (
               <>
                 Al suscribirte, autorizas el tratamiento de tus datos según nuestra{" "}
-                <Link href="/privacidad" className="underline hover:text-[var(--color-brand-pink)] transition-colors">
+                <Link href={href("/privacidad")} className="underline hover:text-[var(--color-brand-pink)] transition-colors">
                   Política de Privacidad
                 </Link>
                 .
@@ -53,7 +53,7 @@ export function Web3Form({
             ) : (
               <>
                 By subscribing, you authorize the processing of your data in accordance with our{" "}
-                <Link href="/privacidad" className="underline hover:text-[var(--color-brand-pink)] transition-colors">
+                <Link href={href("/privacidad")} className="underline hover:text-[var(--color-brand-pink)] transition-colors">
                   Privacy Policy
                 </Link>
                 .
@@ -73,7 +73,7 @@ export function Web3Form({
             {language === "es" ? (
               <>
                 Al suscribirte, autorizas el tratamiento de tus datos según nuestra{" "}
-                <Link href="/privacidad" className="underline hover:text-white transition-colors">
+                <Link href={href("/privacidad")} className="underline hover:text-white transition-colors">
                   Política de Privacidad
                 </Link>
                 .
@@ -81,7 +81,7 @@ export function Web3Form({
             ) : (
               <>
                 By subscribing, you authorize the processing of your data in accordance with our{" "}
-                <Link href="/privacidad" className="underline hover:text-white transition-colors">
+                <Link href={href("/privacidad")} className="underline hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
                 .

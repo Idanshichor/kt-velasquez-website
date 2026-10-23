@@ -3,9 +3,10 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 import AboutPageClient from "./page.client";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Quién es Katherine Velasquez — Mi Historia | Estratega 360",
+  title: "Quién es Katherine Velasquez: Mi Historia | Estratega 360",
   description: "Conoce la historia, trayectoria e hitos de Katherine Velasquez. De ingeniera civil y emprendedora a estratega de negocios y marcas personales.",
   path: "/sobre-mi",
+  bilingual: true,
 });
 
 export default function AboutPage() {

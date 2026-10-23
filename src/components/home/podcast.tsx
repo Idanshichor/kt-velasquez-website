@@ -8,7 +8,7 @@ import { KtCta } from "./scrub";
 const BARS = Array.from({ length: 28 }, (_, i) => ({ h: 24 + ((i * 37) % 56), d: (i % 7) * 0.17 }));
 
 export function Podcast() {
-  const { language, t } = useLanguage();
+  const { language, t, href } = useLanguage();
   return (
     <Scene className="py-24 md:py-32 px-6 md:px-16 bg-[var(--color-brand-pink)]">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -45,7 +45,7 @@ export function Podcast() {
             )}
           </p>
           <div data-reveal className="flex justify-center md:justify-start">
-            <KtCta href="/podcast" external={false}>{t("podcast.cta")}</KtCta>
+            <KtCta href={href("/podcast")} external={false}>{t("podcast.cta")}</KtCta>
           </div>
         </div>
       </div>

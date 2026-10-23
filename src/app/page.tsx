@@ -6,6 +6,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Katherine Velasquez | Consultoría Estratégica 360",
   description: "Estratega 360° para fundadores y marcas maduras. Integro estructura de negocio, comunicación y mentalidad para escalar con claridad.",
   path: "/",
+  bilingual: true,
 });
 
 export default function Page() {

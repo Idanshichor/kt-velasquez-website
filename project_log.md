@@ -223,3 +223,10 @@ This log serves as a source of truth for the development, configuration, and des
 - Sends through `/api/forms` (kind "intake"): one formatted Resend email to katherine@ktvelasquez.com, reply-to the client, no audience add. Falls back to Web3Forms (one field per answer) while RESEND_API_KEY is unset.
 - After sending, the gold "Cierre del formulario" text replaces the form.
 - 2026-10-22 (later): New intake copy from Katherine: 11 questions plus an unnumbered contact block (name, email, WhatsApp, kept so she knows who answered). No more team-only questions (the new options cover solo clients). Q2 and Q5 "Otra..." options open a text box; Q5, Q8, Q10 are multi-select; the "cuéntame" boxes under Q8 and Q9 are optional. Closing now shows its title.
+
+## 2026-10-22: English URLs and hreflang (SEO plan step 2.3)
+* **Branch:** `feature/en-routes-hreflang` (off live/main after PR #2).
+* **What:** English pages at `/en`, `/en/sobre-mi`, `/en/servicios`, `/en/podcast`, `/en/privacidad`. They reuse the Spanish page components; the language comes from the URL (`src/lib/i18n-routes.ts`, `LanguageProvider`), so the server sends English HTML. Each page pair has canonical + hreflang `es`, `en`, `x-default` (Spanish). Sitemap lists all 10 URLs with alternates. `?lang=en` on a localized page 308s to its `/en` URL. Internal links go through `href()` from the language context so English pages link to English pages.
+* **html lang:** the root layout stays `lang="es"`; `src/app/en/layout.tsx` and the provider switch it to `en` in the browser. A server-side `lang="en"` would need two root layouts (moving every page into route groups), left out to avoid conflicts with the open redesign branches.
+* **Why not English slugs (/en/services):** the plan named `/en/servicios`; keeping one slug per page keeps the toggle and hreflang a simple prefix.
+* **Open:** services copy in `services-data.ts` is Spanish only. English share images reuse the Spanish route images (English alt text).

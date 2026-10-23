@@ -34,6 +34,14 @@ const nextConfig: NextConfig = {
         destination: "https://www.ktvelasquez.com/:path*",
         permanent: true,
       },
+      // Old ?lang=en links (the toggle used to be a query string) go to the real English URL.
+      { source: "/", has: [{ type: "query", key: "lang", value: "en" }], destination: "/en", permanent: true },
+      ...["/sobre-mi", "/servicios", "/podcast", "/privacidad"].map((path) => ({
+        source: path,
+        has: [{ type: "query" as const, key: "lang", value: "en" }],
+        destination: `/en${path}`,
+        permanent: true,
+      })),
     ];
   },
 };
