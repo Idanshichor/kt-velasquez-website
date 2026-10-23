@@ -6,6 +6,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Estrategia 360 - Sin Pelos en la Lengua | Katherine Velasquez",
   description: "Conversaciones honestas y herramientas estratégicas para CEOs, fundadores y emprendedores. Sin pelos en la lengua.",
   path: "/podcast",
+  bilingual: true,
 });
 
 export default function PodcastPage() {

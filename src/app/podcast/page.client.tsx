@@ -21,7 +21,7 @@ function splitLast(title: string) {
 }
 
 export default function PodcastPageClient() {
-  const { language, t } = useLanguage();
+  const { language, t, href } = useLanguage();
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   // Custom validation tracking for improved UX
@@ -218,7 +218,7 @@ export default function PodcastPageClient() {
             <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-[var(--color-brand-gold-light)] shadow-[0_24px_60px_-28px_rgba(26,26,26,0.45)]">
               <Image
                 src="/images/KT_Podcast_Katherine.webp"
-                alt="Katherine Velasquez, host del podcast Estrategia 360 Sin Pelos en la Lengua"
+                alt={language === "en" ? "Katherine Velasquez, host of the Estrategia 360 Sin Pelos en la Lengua podcast" : "Katherine Velasquez, host del podcast Estrategia 360 Sin Pelos en la Lengua"}
                 fill
                 sizes="(max-width: 1024px) 90vw, 380px"
                 className="object-cover scale-[1.9] origin-[52%_30%]"
@@ -314,12 +314,12 @@ export default function PodcastPageClient() {
                   {language === "es" ? (
                     <>
                       Al enviar tu postulación, autorizas el tratamiento de tus datos personales de acuerdo con nuestra{" "}
-                      <Link href="/privacidad" className="underline underline-offset-2 hover:opacity-70 transition-opacity">Política de Privacidad</Link>.
+                      <Link href={href("/privacidad")} className="underline underline-offset-2 hover:opacity-70 transition-opacity">Política de Privacidad</Link>.
                     </>
                   ) : (
                     <>
                       By submitting your application, you authorize the processing of your personal data in accordance with our{" "}
-                      <Link href="/privacidad" className="underline underline-offset-2 hover:opacity-70 transition-opacity">Privacy Policy</Link>.
+                      <Link href={href("/privacidad")} className="underline underline-offset-2 hover:opacity-70 transition-opacity">Privacy Policy</Link>.
                     </>
                   )}
                 </p>

@@ -10,23 +10,24 @@ import { useLanguage } from "@/context/language-context";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { language, toggleLanguage, t } = useLanguage();
+  const { language, toggleLanguage, t, href } = useLanguage();
   const pathname = usePathname();
   // The page you are on: black text with a pink bar under it. "Metodología" is a section of the home page, so it never lights up.
   const links = [
-    { href: "/", label: t("nav.inicio"), page: true },
-    { href: "/sobre-mi", label: t("nav.sobre_mi"), page: true },
-    { href: "/#metodologia", label: t("nav.metodologia"), page: false },
-    { href: "/servicios", label: t("nav.servicios"), page: true },
-    { href: "/podcast", label: t("nav.podcast"), page: true },
+    { href: href("/"), label: t("nav.inicio"), page: true },
+    { href: href("/sobre-mi"), label: t("nav.sobre_mi"), page: true },
+    { href: href("/#metodologia"), label: t("nav.metodologia"), page: false },
+    { href: href("/servicios"), label: t("nav.servicios"), page: true },
+    { href: href("/podcast"), label: t("nav.podcast"), page: true },
   ];
-  const isActive = (l: { href: string; page: boolean }) => l.page && (l.href === "/" ? pathname === "/" : pathname?.startsWith(l.href));
+  const home = href("/");
+  const isActive = (l: { href: string; page: boolean }) => l.page && (l.href === home ? pathname === home : pathname?.startsWith(l.href));
   return (
     <nav className="fixed top-0 w-full z-50 bg-[var(--color-brand-cream)]/90 backdrop-blur-xl border-b border-gray-200 h-20 md:h-24 flex items-center justify-between px-6 md:px-16 transition-all duration-300">
-      <Link href="/" className="flex items-center shrink-0 z-50">
+      <Link href={home} className="flex items-center shrink-0 z-50">
         <Image
           src="/images/KT_LOGO.webp"
-          alt="Logo de Katherine Velasquez"
+          alt={language === "en" ? "Katherine Velasquez logo" : "Logo de Katherine Velasquez"}
           width={350}
           height={120}
           className="h-12 md:h-16 lg:h-20 w-auto object-contain"

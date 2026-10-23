@@ -15,7 +15,7 @@ const TITLE = "uppercase font-normal tracking-[-0.02em] leading-[0.95] [text-wra
  * /servicios, where the details and the button to book are.
  */
 export function Services() {
-  const { language, t } = useLanguage();
+  const { language, t, href } = useLanguage();
   const title = (t("services.title") as string) || "";
   const cut = title.lastIndexOf(" ");
   const es = language === "es";
@@ -41,7 +41,7 @@ export function Services() {
           {SERVICES.map((s, i) => (
             <li key={s.title} className="border-b border-[var(--color-brand-black)]/15">
               <Link
-                href={`/servicios#servicio-${i + 1}`}
+                href={href(`/servicios#servicio-${i + 1}`)}
                 className="group grid grid-cols-1 md:grid-cols-[3rem_minmax(0,1fr)_minmax(0,22rem)_auto] gap-x-6 md:gap-x-10 gap-y-3 items-center py-7 md:py-9 px-2 md:px-6 -mx-2 md:-mx-6 rounded-2xl transition-colors duration-500 hover:bg-[var(--color-brand-pink)] focus-visible:bg-[var(--color-brand-pink)] focus-visible:outline-none"
               >
                 <span className="hidden md:block text-sm font-bold text-[var(--color-brand-black)]">0{i + 1}</span>
@@ -60,7 +60,7 @@ export function Services() {
           <p className="text-lg md:text-xl text-[var(--color-brand-black)] max-w-xl">
             {es ? "Todo lo que incluye cada servicio y cómo empezamos." : "Everything each service includes and how we start."}
           </p>
-          <KtCta href="/servicios" external={false}>{es ? "Ver todos los servicios" : "See all services"}</KtCta>
+          <KtCta href={href("/servicios")} external={false}>{es ? "Ver todos los servicios" : "See all services"}</KtCta>
         </div>
       </div>
     </Scene>
